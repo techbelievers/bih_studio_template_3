@@ -1,0 +1,94 @@
+.template1-amenities-container {
+    padding: 40px;
+    text-align: center;
+    background-color: #f5f5f5; /* Light gray background for contrast */
+    margin-bottom : 40px;
+    margin-top : 40px;
+  }
+  
+  .template1-amenities-container h2 {
+    /* font-size: 32px;
+    margin-bottom: 20px;
+    color: #28a745;
+    font-family: 'Arial', sans-serif; */
+
+
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: #28a745; /* Dark, elegant color */
+    font-family: 'Playfair Display', serif; /* Luxurious, elegant serif font */
+    font-weight: 700; /* Bold weight for emphasis */
+    letter-spacing: 1.2px; /* Slightly increased letter spacing */
+    text-transform: capitalize; /* Capitalize for a refined look */
+
+  }
+  
+  .template1-amenities-container h4 {
+    font-size: 18px;
+    color: #000000;
+    margin-bottom: 40px;
+  }
+  
+  .template1-amenities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    justify-content: center; /* Center the grid items */
+    max-width: 1200px; /* Maximum width to keep it centered */
+    margin: 0 auto; /* Center the grid container */
+  }
+  
+  .template1-amenity-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .template1-amenity-item img {
+    width: 100%;
+    height: 200px; /* Fixed height for uniformity */
+    object-fit: cover; /* Ensures images cover the container while maintaining aspect ratio */
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  .template1-amenity-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  }
+  
+  .template1-amenity-name {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .template1-amenities-grid {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .template1-amenities-container {
+      padding: 20px;
+    }
+  
+    .template1-amenities-grid {
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 15px;
+    }
+  
+    .template1-amenity-name {
+      font-size: 14px;
+    }
+  }
+  

@@ -1,0 +1,53 @@
+.location-map-container {
+    padding: 40px;
+    text-align: center;
+    background-color: #ffffff;
+  }
+  
+  .location-map-container h2 {
+
+
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: #28a745; /* Dark, elegant color */
+    font-family: 'Playfair Display', serif; /* Luxurious, elegant serif font */
+    font-weight: 700; /* Bold weight for emphasis */
+    letter-spacing: 1.2px; /* Slightly increased letter spacing */
+    text-transform: capitalize; /* Capitalize for a refined look */
+
+  }
+  
+  .location-map-container h4 {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  .location-map {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto; /* Center the map */
+  }
+  
+  .location-map iframe {
+    width: 100%;
+    height: 450px; /* Ensure the height is appropriate */
+    border: 0;
+  }
+  
+  @media (max-width: 768px) {
+    .location-map-container {
+      padding: 20px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .location-map-container {
+      padding: 15px;
+    }
+  }
+  

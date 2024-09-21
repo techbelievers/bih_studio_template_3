@@ -1,0 +1,151 @@
+/* Template1 FloorPlans Styles */
+
+/* Wrapper for Template1 */
+.template1 .floorplans-container {
+    padding: 20px;
+    text-align: center;
+
+  }
+  
+  .template1 .floorplans-header {
+    margin-bottom: 30px;
+  }
+  
+  .template1 .floorplans-heading {
+
+    animation: fade-in 0.6s ease-in-out;
+    text-align: center;
+
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: #28a745; /* Dark, elegant color */
+    font-family: 'Playfair Display', serif; /* Luxurious, elegant serif font */
+    font-weight: 700; /* Bold weight for emphasis */
+    letter-spacing: 1.2px; /* Slightly increased letter spacing */
+    text-transform: capitalize; /* Capitalize for a refined look */
+
+  }
+  
+  /* Subheading styles, if needed */
+  .template1 .floorplans-subheading {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  
+  /* Grid container for floor plans */
+  .template1 .floorplans-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  /* Individual floor plan item */
+  .template1 .floorplan-item {
+    width: 100%;
+    max-width: 350px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: #f5f5f5;
+  }
+  
+  .template1 .floorplan-image {
+    width: 100%;
+    height: 200px; /* Fixed height to maintain aspect ratio */
+    object-fit: cover; /* Adjust to 'fill' if stretching the image */
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .template1 .floorplan-item:hover .floorplan-image {
+    transform: scale(1.05);
+  }
+  
+  /* Layout name styles */
+  .template1 .layout-name {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  /* Fullscreen overlay */
+  .template1 .fullscreen-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .template1 .fullscreen-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+  }
+  
+  .template1 .fullscreen-image {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Adjust based on your needs */
+    border-radius: 8px;
+  }
+  
+  .template1 .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #fff;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    color: #000;
+    transition: background 0.3s ease;
+  }
+  
+  .template1 .close-button:hover {
+    background: #f8f8f8;
+  }
+  
+  /* Animations */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .template1 .floorplan-item {
+      max-width: 300px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .template1 .floorplan-item {
+      max-width: 350px;
+    }
+  }
+  

@@ -1,0 +1,83 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { API } from '../../../Config'; // Use your config.js structure
+import '../css/Video.css'; // Ensure the path is correct
+
+const Video = () => {
+  const [videoData, setVideoData] = useState([]);
+  const [heading, setHeading] = useState("");
+  const [subheading, setSubHeading] = useState("");
+  const videoRefs = useRef([]);
+
+  useEffect(() => {
+    const fetchVideoData = async () => {
+      try {
+        const response = await fetch(API.VIDEO());
+        const data = await response.json();
+        setVideoData(data.property_videos);
+        setHeading(data.page?.heading || 'Video');
+        setSubHeading(data.page?.subheading || '');
+      } catch (error) {
+        console.error('Error fetching video data:', error);
+      }
+    };
+
+    fetchVideoData();
+  }, []);
+
+  // Intersection Observer to autoplay video when in view
+  useEffect(() => {
+    const refs = videoRefs.current; // Copy ref to a local variable
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const videoElement = entry.target.querySelector('iframe');
+          if (entry.isIntersecting) {
+            const src = videoElement.src;
+            if (!src.includes("autoplay=1")) {
+              videoElement.src = `${src}?autoplay=1&mute=1`;
+            }
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    refs.forEach((videoRef) => {
+      if (videoRef) observer.observe(videoRef);
+    });
+
+    return () => {
+      refs.forEach((videoRef) => {
+        if (videoRef) observer.unobserve(videoRef);
+      });
+    };
+  }, [videoData]);
+
+  return (
+    <div className="video-container">
+      <h2>{heading}</h2>
+      <h4>{subheading}</h4>
+      <div className="video-wrapper">
+        {videoData.length > 0 ? (
+          videoData.map((video, index) => (
+            <div key={video.id} className="video-item" ref={el => videoRefs.current[index] = el}>
+              <iframe
+                width="100%"
+                height="315"
+                src={`https://www.youtube.com/embed/${video.youtube_video_id}`}
+                title="Property Video"
+                frameBorder="0"
+                allowFullScreen
+              ></iframe>
+            </div>
+          ))
+        ) : (
+          <p>Loading videos...</p>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default Video;

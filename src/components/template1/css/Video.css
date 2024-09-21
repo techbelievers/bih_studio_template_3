@@ -1,0 +1,62 @@
+.video-container {
+    padding: 40px;
+    text-align: center;
+    background-color: #ffffff; /* Light background for contrast */
+  }
+  
+  .video-container h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #28a745; /* Dark, elegant color */
+    font-family: 'Playfair Display', serif; /* Luxurious, elegant serif font */
+    font-weight: 700; /* Bold weight for emphasis */
+    letter-spacing: 1.2px; /* Slightly increased letter spacing */
+    text-transform: capitalize; /* Capitalize for a refined look */
+    /* text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); Soft shadow for depth */
+  }
+  
+  .video-container h2:hover {
+    color: #28a745; /* Change to a premium green on hover */
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3); /* Slightly more pronounced shadow on hover */
+    transition: all 0.3s ease-in-out; /* Smooth transition for hover effect */
+  }
+  
+  .video-container h4 {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #666;
+  }
+  
+  .video-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .video-item {
+    width: 100%;
+    max-width: 900px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .video-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  @media (max-width: 768px) {
+    .video-item {
+      width: 90%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .video-item {
+      width: 100%;
+    }
+  }
+  

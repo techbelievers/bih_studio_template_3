@@ -1,0 +1,69 @@
+.maharera-info-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center; /* Center-align text within the container */
+  }
+  
+  .maharera-info-container h2 {
+    /* color: green;
+    margin-bottom: 20px;
+    font-size: 24px; */
+
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: #28a745; /* Dark, elegant color */
+    font-family: 'Playfair Display', serif; /* Luxurious, elegant serif font */
+    font-weight: 700; /* Bold weight for emphasis */
+    letter-spacing: 1.2px; /* Slightly increased letter spacing */
+    text-transform: capitalize; /* Capitalize for a refined look */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+  }
+  
+  .rera-info-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    text-align: center; /* Center-align text within each grid item */
+    border: 1px solid #ddd;
+    padding: 20px;
+  }
+  
+  .rera-info-item {
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .rera-info-item strong {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  @media (max-width: 768px) {
+    .rera-info-grid {
+      grid-template-columns: repeat(2, 1fr); /* Adjust grid columns for medium screens */
+    }
+  
+    .maharera-info-container h2 {
+      font-size: 20px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .rera-info-grid {
+        grid-template-columns: repeat(2, 1fr); /* Adjust grid columns for medium screens */
+    }
+  
+    .maharera-info-container h2 {
+      font-size: 18px;
+    }
+  }
+  

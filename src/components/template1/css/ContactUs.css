@@ -1,0 +1,110 @@
+.template1-contact-us {
+    padding: 20px;
+    background: url('../images/background.webp') no-repeat center center;
+    background-size: cover;
+}
+
+.template1-contact-container {
+    display: flex;
+    flex-direction: row; /* Default to horizontal layout */
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .template1-contact-container {
+        flex-direction: column; /* Switch to vertical layout on smaller screens */
+    }
+}
+
+.template1-contact-details {
+    flex: 1;
+    color: #fff;
+    margin-right: 20px;
+}
+
+.template1-contact-title {
+    font-size: 3rem;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 10px;
+    color: #06a34e;
+}
+
+.template1-contact-tagline {
+    font-size: 1.5rem;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.template1-contact-description {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    font-family: 'Georgia', serif;
+}
+
+.template1-contact-info p {
+    margin: 5px 0;
+}
+
+.template1-contact-map {
+    margin-top: 20px;
+}
+
+.template1-contact-form {
+    flex: 1;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.template1-form-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+}
+
+.template1-contact-form input,
+.template1-contact-form textarea {
+    width: calc(100% - 20px);
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: 'Arial', sans-serif;
+}
+
+.template1-contact-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #0383c5;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: 'Arial', sans-serif;
+}
+
+.template1-contact-form button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+}
+
+.template1-success-message {
+    color: green;
+    margin-bottom: 10px;
+}
+
+.template1-error-message {
+    color: red;
+    margin-bottom: 10px;
+}
