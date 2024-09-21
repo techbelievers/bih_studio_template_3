@@ -1,70 +1,73 @@
-.price-section {
+.template1 .price-section {
     padding: 20px;
     margin: 0 auto;
     max-width: 1200px;
     text-align: center;
+    
+    
 }
 
-.price-heading {
-    /* font-size: 24px;
-    color: #27ae60;
-    margin-bottom: 20px; */
-
+.template1 .price-heading {
     font-size: 30px;
+    text-align: center;
     margin-bottom: 20px;
-    color: #28a745; /* Dark, elegant color */
-    font-family: 'Playfair Display', serif; /* Luxurious, elegant serif font */
-    font-weight: 700; /* Bold weight for emphasis */
-    letter-spacing: 1.2px; /* Slightly increased letter spacing */
-    text-transform: capitalize; /* Capitalize for a refined look */
-
+    color: #28a745; /* Luxurious, elegant color */
+    font-family: 'Playfair Display', serif; /* Luxurious serif font */
+    font-weight: 700; /* Bold for emphasis */
+    letter-spacing: 1.2px;
+    text-transform: capitalize;
 }
 
-.price-table {
-    width: 100%;
+.template1 .price-table {
+    width: 90%;
     border-collapse: collapse;
     margin: 0 auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.price-table th,
-.price-table td {
+.template1 .price-table th,
+.template1 .price-table td {
     padding: 12px 20px;
     border: 1px solid #ddd;
     text-align: center;
     font-size: 16px;
 }
 
-.price-table th {
+.template1 .price-table th {
     background-color: #27ae60;
     color: #fff;
 }
 
-.price-table tr:nth-child(even) {
+.template1 .price-table tr:nth-child(even) {
     background-color: #f9f9f9;
+}
+
+.template1 .error-message {
+    color: red;
+    margin-bottom: 15px;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .price-table th,
-    .price-table td {
+    .template1 .price-table th,
+    .template1 .price-table td {
         font-size: 14px;
         padding: 10px 15px;
     }
 
-    .price-heading {
+    .template1 .price-heading {
         font-size: 20px;
     }
 }
 
 @media (max-width: 480px) {
-    .price-table th,
-    .price-table td {
+    .template1 .price-table th,
+    .template1 .price-table td {
         font-size: 12px;
         padding: 8px 10px;
     }
 
-    .price-heading {
+    .template1 .price-heading {
         font-size: 18px;
     }
 }
