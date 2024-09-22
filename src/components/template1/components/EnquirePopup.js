@@ -15,6 +15,10 @@ const EnquirePopup = ({ onClose }) => {
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState('');
   const [headerData, setHeaderData] = useState({});
+  // const [isOpen, setIsOpen] = useState(false); 
+
+
+
 
   useEffect(() => {
     const fetchHeaderData = async () => {
@@ -28,6 +32,12 @@ const EnquirePopup = ({ onClose }) => {
     };
 
     fetchHeaderData();
+
+    // const timer = setTimeout(() => {
+    //   setIsOpen(true); // Open popup after 20 seconds
+    // }, 100); // 20 seconds
+
+    // return () => clearTimeout(timer); // Cleanup on unmount
   }, []);
 
   const handleChange = (e) => {

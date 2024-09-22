@@ -29,21 +29,21 @@
 }
 
 .template1-contact-title {
-    font-size: 3rem;
+    font-size: 2rem;
     font-family: 'Playfair Display', serif;
     margin-bottom: 10px;
-    color: #06a34e;
+    color: #ffffff;
 }
 
 .template1-contact-tagline {
-    font-size: 1.5rem;
+    font-size: 1.0rem;
     font-family: 'Roboto', sans-serif;
     margin-bottom: 20px;
-    color: #fff;
+    color: #00f400;
 }
 
 .template1-contact-description {
-    font-size: 1rem;
+    font-size: 0.6rem;
     line-height: 1.5;
     margin-bottom: 20px;
     font-family: 'Georgia', serif;

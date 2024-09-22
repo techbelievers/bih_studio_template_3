@@ -73,7 +73,7 @@ const ContactUs = () => {
             <div className="template1-contact-container">
                 {/* Contact Details */}
                 <div className="template1-contact-details">
-                    <h1 className="template1-contact-title">Contact Us</h1>
+                    <h1 className="template1-contact-title">{data.contact_us.name}</h1>
                     <h2 className="template1-contact-tagline">We'd Love to Hear from You</h2>
                     <p className="template1-contact-description" dangerouslySetInnerHTML={{ __html: data.contact_us.detail }}></p>
                     <div className="template1-contact-info">

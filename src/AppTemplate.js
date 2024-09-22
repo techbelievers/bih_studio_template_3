@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { API } from './Config';
+import './index.css'
+import Loader from './components/Loader';
 // Import template components
 import Template1 from './components/template1/App';
 // import Template2 from './components/template2/App';
@@ -14,6 +16,14 @@ const App = () => {
   useEffect(() => {
     // Get current website domain dynamically
     // const website = window.location.hostname; // This will get the current domain name
+
+    // const Loader = () => {
+    //   return (
+    //     <div className="loader">
+    //       <div className="spinner"></div>
+    //     </div>
+    //   );
+    // };
 
     // Fetch templateId based on website parameter
     const fetchTemplateId = async () => {
@@ -30,7 +40,7 @@ const App = () => {
     fetchTemplateId();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <Loader />;
   if (error) return <div>{error}</div>;
 
   // Conditional rendering based on templateId

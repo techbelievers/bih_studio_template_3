@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../css/HeroBanner.css';
+import EnquirePopup from './EnquirePopup';
 import { API } from '../../../Config'; // Adjust the path as needed
 
 const HeroBanner = () => {
   const [heroData, setHeroData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [error, setError] = useState(null);
 
   // For form submission
@@ -93,7 +95,12 @@ const HeroBanner = () => {
         <div className="hero-text">
           <h1>{heroData.heading}</h1>
           <p>{heroData.description}</p>
-          <a href="#contact-form" className="enquire-now">Enquire Now</a>
+          <div
+              onClick={() => setIsPopupOpen(true)}
+            >
+           <a href="#contact-form" className="enquire-now">Enquire Now</a>
+            </div>
+      
         </div>
         <div className="contact-form-container" id="contact-form">
           <form className="contact-form" onSubmit={handleSubmit}>
@@ -171,8 +178,12 @@ const HeroBanner = () => {
           </form>
         </div>
       </div>
+      <div> {isPopupOpen && <EnquirePopup onClose={() => setIsPopupOpen(false)} />} </div>
     </div>
+
+     
   );
+
 };
 
 export default HeroBanner;

@@ -18,8 +18,9 @@ import LocationMap from './components/LocationMap';
 import LocationHighlights from './components/LocationHighlights';
 import Video from './components/Video';
 import FAQ from './components/FAQ';
+import EMICalculator from './components/EMICalculator';
 import BankPartners from './components/BankPartners';
-import Blogs from './components/Blogs';
+// import Blogs from './components/Blogs';
 import ContactUs from './components/ContactUs';
 import FloatingButtons from './components/FloatingButtons';
 // import UnitLayout_2  from './components/UnitLayout_2';
@@ -46,7 +47,8 @@ function App() {
       <LocationHighlights />
       <BankPartners />
       <ContactUs />
-      <Blogs />
+      <EMICalculator />
+      {/* <Blogs /> */}
       <FAQ />
       <Footer />
       <FloatingButtons />
