@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import '../css/Amenities.css'; // Ensure the path is correct
-import { API } from '../../../Config'; // Use your config.js structure
+import '../css/Amenities.css'; // Updated path for new CSS
+import { API } from '../../../Config';
 
 const Amenities = () => {
   const [amenitiesData, setAmenitiesData] = useState([]);
@@ -15,7 +15,6 @@ const Amenities = () => {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
-        console.log('Fetched amenities data:', data); // Debugging line
         setAmenitiesData(data.amenities?.amenities || []);
         setHeading(data.amenities?.page?.heading || 'Amenities');
         setSubHeading(data.amenities?.page?.subheading || 'Discover the features that enhance your living experience');
@@ -28,15 +27,15 @@ const Amenities = () => {
   }, []);
 
   return (
-    <div id="amenities" className="template1-amenities-container">
+    <div className="template2-amenities-container">
       <h2>{heading}</h2>
       <h4>{subHeading}</h4>
-      <div className="template1-amenities-grid">
+      <div className="template2-amenities-list">
         {amenitiesData.length > 0 ? (
           amenitiesData.map(amenity => (
-            <div key={amenity.id} className="template1-amenity-item">
+            <div key={amenity.id} className="template2-amenity-item">
               <img src={amenity.property_amenities_photo} alt={amenity.amenity_name} />
-              <div className="template1-amenity-name">{amenity.amenity_name}</div>
+              <div className="template2-amenity-name">{amenity.amenity_name}</div>
             </div>
           ))
         ) : (

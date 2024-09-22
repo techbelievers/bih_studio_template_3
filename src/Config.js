@@ -32,7 +32,7 @@ const API = {
   ADVERTISEMENT: () => getApiUrl('advertisement'),
   FOOTER: () => getApiUrl('footer'),
   TEMPLATE: () => getApiUrl('template'),
-  postContactUs: `${BASE_URL}/contact?website=buyindiahomes.in`,
+  postContactUs: `${BASE_URL}/contact?website=${WEBSITE_DOMAIN}`,
 };
 
 

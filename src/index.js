@@ -8,6 +8,12 @@ import AppTemplate from './AppTemplate';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+// Add viewport meta tag dynamically
+const metaViewport = document.createElement('meta');
+metaViewport.name = "viewport";
+metaViewport.content = "width=device-width, initial-scale=1.0";
+document.head.appendChild(metaViewport);
+
 root.render(
   <React.StrictMode>
     {/* <App /> */}

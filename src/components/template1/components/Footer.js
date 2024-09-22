@@ -45,7 +45,7 @@ const Footer = () => {
                     </div>
 
                     <div className="footer-logo">
-                        <img src={`path/to/logo/${g_setting.logo}`} alt="Company Logo" />
+                        <img src={`${g_setting.logo}`} alt="Company Logo" />
                         {g_setting.footer_agent_rera && 
                             <p className="footer-agent-rera">{g_setting.footer_agent_rera}</p>
                         }

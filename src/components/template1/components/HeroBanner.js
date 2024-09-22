@@ -21,27 +21,28 @@ const HeroBanner = () => {
   const [submitError, setSubmitError] = useState(null);
 
   useEffect(() => {
-    // Fetch data from the API
-    fetch('http://buyindiahomes.in/api/header?website=buyindiahomes.in')
-      .then(response => {
+    const fetchHeaderData = async () => {
+      try {
+        const response = await fetch(API.HEADER());
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        return response.json();
-      })
-      .then(data => {
+        const data = await response.json();
         setHeroData({
           backgroundImage: data.hero_banner_img,
           heading: data.property_name,
-          description: data.hero_banner_subheading
+          description: data.hero_banner_subheading,
         });
-        setLoading(false);
-      })
-      .catch(error => {
+      } catch (error) {
         setError(error);
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+
+    fetchHeaderData();
   }, []);
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;

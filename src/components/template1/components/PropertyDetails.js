@@ -34,7 +34,7 @@ const PropertyDetails = () => {
   }
 
   return (
-    <div className="property-details-section">
+    <div id="about" className="property-details-section">
       {/* Render only when propertyDetails is loaded */}
       {propertyDetails && (
         <>

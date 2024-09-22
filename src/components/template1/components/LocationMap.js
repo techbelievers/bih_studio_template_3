@@ -41,7 +41,7 @@ const LocationMap = () => {
   }, []);
 
   return (
-    <div className="location-map-container">
+    <div id="location" className="location-map-container">
       <h2>{mapData.heading} & {heading}</h2>
       {mapData.subheading && <h4>{mapData.subheading}</h4>}
       <div className="location-map" dangerouslySetInnerHTML={{ __html: mapData.map }}></div>

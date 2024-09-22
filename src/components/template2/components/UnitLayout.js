@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../css/UnitLayout.css"; // Assuming CSS is stored in the css/ directory
+import "../css/UnitLayout.css"; // Scoped CSS
 
 const UnitLayout = () => {
   const [unitLayoutData, setUnitLayoutData] = useState([]);
@@ -40,13 +40,13 @@ const UnitLayout = () => {
   );
 
   return (
-    <div className="unit-layout">
-      <h2 className="unit-layout-heading">{heading}</h2>
-      <div className="unit-buttons">
+    <div className="template2-unit-layout">
+      <h2 className="template2-unit-layout-heading">{heading}</h2>
+      <div className="template2-unit-buttons">
         {unitLayoutData.map((unit) => (
           <button
             key={unit.id}
-            className={`unit-button ${selectedUnit === unit.layout_name ? "active" : ""}`}
+            className={`template2-unit-button ${selectedUnit === unit.layout_name ? "active" : ""}`}
             onClick={() => handleUnitClick(unit.layout_name)}
           >
             {unit.layout_name}
@@ -54,13 +54,15 @@ const UnitLayout = () => {
         ))}
       </div>
       {selectedUnitData && (
-        <div className="unit-content">
-          <img
-            src={selectedUnitData.layout_image}
-            alt={`Layout for ${selectedUnitData.layout_name}`}
-            className="unit-image"
-          />
-          <div className="unit-details">
+        <div className="template2-unit-content">
+          <div className="template2-unit-image-container">
+            <img
+              src={selectedUnitData.layout_image}
+              alt={`Layout for ${selectedUnitData.layout_name}`}
+              className="template2-unit-image"
+            />
+          </div>
+          <div className="template2-unit-details">
             <h3>{selectedUnitData.unit_layout_heading}</h3>
             <p>Carpet Area: {selectedUnitData.unit_layout_carpet_area}</p>
             <p>Price: ₹{Number(selectedUnitData.unit_layout_price).toLocaleString()}</p>

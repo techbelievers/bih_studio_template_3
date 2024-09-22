@@ -11,6 +11,7 @@ import Gallery from './components/Gallery';
 import PropertyPriceTable  from './components/PropertyPriceTable';
 import PropertyDetails  from './components/PropertyDetails';
 import UnitLayout  from './components/UnitLayout';
+import Amenities from './components/Amenities';
 // import UnitLayout_2  from './components/UnitLayout_2';
 
 
@@ -26,6 +27,7 @@ function App() {
       <PropertyDetails />
       <Gallery />
       <UnitLayout />
+      <Amenities />
       <Footer />
     </div>
   );

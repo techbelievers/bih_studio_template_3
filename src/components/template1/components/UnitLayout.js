@@ -40,7 +40,7 @@ const UnitLayout = () => {
   );
 
   return (
-    <div className="template1-unit-layout">
+    <div id="layouts" className="template1-unit-layout">
       <h2 className="template1-unit-layout-heading">{heading}</h2>
       <div className="template1-unit-buttons">
         {unitLayoutData.map((unit) => (
