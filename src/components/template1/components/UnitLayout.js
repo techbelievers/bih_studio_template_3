@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../css/UnitLayout.css"; // Scoped CSS
+import { API } from "../../../Config";
 
 const UnitLayout = () => {
   const [unitLayoutData, setUnitLayoutData] = useState([]);
@@ -14,9 +15,7 @@ const UnitLayout = () => {
 
   const fetchUnitLayoutData = async () => {
     try {
-      const response = await fetch(
-        "http://buyindiahomes.in/api/unit-layout?website=buyindiahomes.in"
-      );
+      const response = await fetch(API.UNIT_LAYOUT());
       const data = await response.json();
       setUnitLayoutData(data.unit_layout);
       setLoading(false);

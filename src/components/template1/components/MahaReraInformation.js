@@ -1,26 +1,47 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { QRCodeCanvas } from 'qrcode.react'; // Import QRCodeCanvas component
 import '../css/Maharera.css'; // Import your CSS file
+import { API } from '../../../Config'; // Adjust the path as needed
 
 const MahareraInformation = () => {
   const [reraData, setReraData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   // Fetching data from the Maharera Information API
   useEffect(() => {
-    axios
-      .get('http://buyindiahomes.in/api/rera?website=buyindiahomes.in')
-      .then((response) => {
-        setReraData(response.data.rera); // Assuming "rera" is an array
-      })
-      .catch((error) => {
-        console.error("There was an error fetching the Maharera Information!", error);
-      });
+    const fetchReraData = async () => {
+      try {
+        const url = API.MAHARERA(); // Use the API method from config.js
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setReraData(data.rera || []); // Assuming "rera" is an array
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchReraData();
   }, []);
 
-  // Check if data is still being loaded
-  if (reraData.length === 0) {
+  // Loading state
+  if (loading) {
     return <div>Loading...</div>;
+  }
+
+  // Error state
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  // Empty state
+  if (reraData.length === 0) {
+    return <div>No Maharera information available.</div>;
   }
 
   return (
@@ -29,10 +50,8 @@ const MahareraInformation = () => {
 
       {reraData.map((reraItem, index) => (
         <div key={index} className="rera-info">
-          {/* <h3>Phase: {reraItem.phase_name}</h3> */}
           <div className="rera-info-grid">
             <div className="rera-info-item">
-              {/* <strong>QR:</strong> */}
               {reraItem.rera_url ? (
                 <QRCodeCanvas value={reraItem.rera_url} size={100} />
               ) : (

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../css/PropertyDetails.css'; // Add styling in this file
+import { API } from '../../../Config';
 
 const PropertyDetails = () => {
   const [propertyDetails, setPropertyDetails] = useState(null);
@@ -9,7 +10,7 @@ const PropertyDetails = () => {
 
   useEffect(() => {
     // Fetch property details from the API
-    fetch("http://buyindiahomes.in/api/propert-details?website=buyindiahomes.in")
+    fetch(API.PROPERTY_DETAILS())
       .then((response) => response.json())
       .then((data) => {
         setPropertyDetails(data.property_details);

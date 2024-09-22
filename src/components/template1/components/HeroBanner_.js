@@ -1,6 +1,7 @@
 // src/components/HeroBanner.js
 import React, { useEffect, useState } from 'react';
 import '../css/HeroBanner.css';
+import { API } from '../../../Config';
 
 const HeroBanner = () => {
   const [heroData, setHeroData] = useState(null);
@@ -9,7 +10,7 @@ const HeroBanner = () => {
 
   useEffect(() => {
     // Fetch data from the API
-    fetch('http://buyindiahomes.in/api/header?website=buyindiahomes.in')
+    fetch(API.HEADER())
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
