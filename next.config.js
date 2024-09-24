@@ -23,5 +23,9 @@ module.exports = {
     // output: 'export',
     assetPrefix: '',
     trailingSlash: true,
+    experimental: {
+      workerThreads: false,
+      cpus: 2, // Limit to 2 CPUs
+    },
   };
 
