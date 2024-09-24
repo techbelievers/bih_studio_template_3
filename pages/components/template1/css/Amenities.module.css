@@ -1,0 +1,93 @@
+/* Amenities.module.css */
+
+/* Container styles */
+.amenitiesContainer {
+  padding: 40px;
+  text-align: center;
+  background-color: #ffffff; /* Light background for a modern feel */
+  margin: 40px 0;
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Softer shadow */
+}
+
+.amenitiesHeading {
+  font-size: 32px; /* Slightly larger for emphasis */
+  margin-bottom: 10px;
+  color: #2c3e50; /* Darker, modern color */
+  font-family: 'Roboto', sans-serif; /* Clean sans-serif font */
+  font-weight: 600; /* Semi-bold weight for emphasis */
+  letter-spacing: 1px; /* Slightly increased letter spacing */
+  text-transform: capitalize; /* Capitalize for a refined look */
+}
+
+.amenitiesSubHeading {
+  font-size: 20px; /* Increased size for better visibility */
+  color: #7f8c8d; /* Softer gray for subheading */
+  margin-bottom: 30px;
+}
+
+/* Grid styles */
+.amenitiesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  justify-content: center; /* Center the grid items */
+  max-width: 1200px; /* Maximum width to keep it centered */
+  margin: 0 auto; /* Center the grid container */
+}
+
+/* Individual amenity item */
+.amenityItem {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #ecf0f1; /* Light background for items */
+  border: 1px solid #bdc3c7; /* Soft border */
+}
+
+.amenityItem img {
+  width: 100%;
+  height: 200px; /* Fixed height for uniformity */
+  object-fit: cover; /* Ensures images cover the container while maintaining aspect ratio */
+  transition: transform 0.3s ease;
+}
+
+.amenityItem:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15); /* Softer, modern shadow */
+}
+
+.amenityName {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: 500; /* Slightly lighter weight for better readability */
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .amenitiesGrid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .amenitiesContainer {
+    padding: 20px;
+  }
+
+  .amenitiesGrid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+  }
+
+  .amenityName {
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,50 @@
+.locationHighlightsContainer {
+  padding: 20px;
+  /* width: 100%; */
+  max-width: 1200px; /* Optional: set a max width */
+  background-color: #ffffff;
+  text-align: center;
+  margin: 0 auto; /* Center the container */
+}
+
+.locationHighlightsHeading {
+  font-size: 36px;
+  font-family: 'Playfair Display', serif; /* Use an elegant font */
+  color: #28a745; /* Dark, elegant color */
+  margin-bottom: 20px; /* Space below the heading */
+}
+
+.locationHighlightItem {
+  background-color: #ffffff; /* Light background for contrast */
+  padding: 20px;
+  text-align: center;
+  border: 1px solid #3fe658; /* Subtle border */
+  border-radius: 8px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  margin: 10px; /* Space between items */
+  box-sizing: border-box; /* Include padding and border in width calculations */
+  height: 200px; /* Ensure auto height */
+}
+
+.locationHighlightItem:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+}
+
+.slick-slide {
+  margin: 0 10px; /* Space between slides */
+}
+
+@media (max-width: 1024px) {
+  .locationHighlightItem {
+      width: calc(50% - 20px); /* Adjust width for tablets */
+  }
+}
+
+@media (max-width: 768px) {
+  .locationHighlightItem {
+      width: 100%; /* Full width for mobile */
+      margin: 10px 0; /* Vertical spacing */
+  }
+}

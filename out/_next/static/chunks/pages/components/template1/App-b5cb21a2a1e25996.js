@@ -1,0 +1,1 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[667],{6993:function(n,_,u){(window.__NEXT_P=window.__NEXT_P||[]).push(["/components/template1/App",function(){return u(2083)}])}},function(n){n.O(0,[365,948,196,66,598,853,603,508,16,888,774,179],function(){return n(n.s=6993)}),_N_E=n.O()}]);
