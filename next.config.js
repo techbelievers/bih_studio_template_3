@@ -28,13 +28,13 @@ module.exports = {
       cpus: 2, // Limit to 2 CPUs
     },
 
-    async rewrites() {
-      return [
-        {
-          source: '/', // Match the root URL
-          destination: '/AppTemplate', // Serve content from this page
-        },
-      ];
-    },
+    // async rewrites() {
+    //   return [
+    //     {
+    //       source: '/', // Match the root URL
+    //       destination: '/AppTemplate', // Serve content from this page
+    //     },
+    //   ];
+    // },
   };
 
