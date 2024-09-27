@@ -1,53 +1,57 @@
 import React from 'react';
-import Head from 'next/head';
 import axios from 'axios';
-import { API } from '../Config'; // Adjust the import path
+import Head from 'next/head';
+import { API } from '../Config';
 import AppTemplate from './AppTemplate';
 
-const HomePage = ({ headerData, error }) => {
-  if (error) return <div>{error}</div>;
+const withMetaTags = (WrappedComponent) => {
+  return class extends React.Component {
+    static async getInitialProps(ctx) {
+      let headerData = null;
+      let error = null;
+      try {
+        const response = await axios.get(API.HEADER());
+        headerData = response.data;
+      } catch (err) {
+        error = `Failed to fetch header data: ${err.message}`;
+      }
 
-  const title = `${headerData.property_name} - ${headerData.location}`;
-  const description = `${headerData.property_name} - ${headerData.property_type_price_range_text} in ${headerData.location}, ${headerData.sublocation}, by ${headerData.builder_name}`;
-  const keywords = `real estate, ${headerData.property_name}, ${headerData.location}, ${headerData.sublocation}, property for sale`;
+      return { headerData, error };
+    }
 
+    render() {
+      const { headerData, error } = this.props;
+      if (error) return <div>Error: {error}</div>;
+
+      const title = `${headerData.property_name} - ${headerData.location}`;
+      const description = `${headerData.property_name} - ${headerData.property_type_price_range_text} in ${headerData.location}, ${headerData.sublocation}, by ${headerData.builder_name}`;
+      const keywords = `real estate, ${headerData.property_name}, ${headerData.location}, ${headerData.sublocation}, property for sale`;
+
+      return (
+        <>
+          <Head>
+            <title>{title}</title>
+            <meta name="description" content={description} />
+            <meta name="keywords" content={keywords} />
+            <meta property="og:title" content={title} />
+            <meta property="og:description" content={description} />
+            <meta property="og:image" content={headerData.hero_banner_img || ''} />
+            <meta property="og:type" content="website" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          </Head>
+          <WrappedComponent {...this.props} />
+        </>
+      );
+    }
+  };
+};
+
+const HomePage = (props) => {
   return (
-    <div>
-      <Head>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <meta name="keywords" content={keywords} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:image" content={headerData.hero_banner_img || ''} />
-        <meta property="og:type" content="website" />
-      </Head>
-      <AppTemplate>
-      </AppTemplate>
-    </div>
+    <AppTemplate>
+      {/* Your AppTemplate content goes here */}
+    </AppTemplate>
   );
 };
 
-export async function getStaticProps() {
-  try {
-    const response = await axios.get(API.HEADER());
-    return {
-      props: {
-        headerData: response.data,
-      },
-      // Revalidate every 10 minutes to ensure content is fresh
-      revalidate: 600, // Regenerates the page every 600 seconds (10 minutes)
-    };
-  } catch (err) {
-    console.error(err);
-    return {
-      props: {
-        headerData: null,
-        error: 'Failed to fetch header data',
-      },
-      revalidate: 600, // Retry static regeneration after 10 minutes
-    };
-  }
-}
-
-export default HomePage;
+export default withMetaTags(HomePage);
