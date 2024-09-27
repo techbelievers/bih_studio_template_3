@@ -1,24 +1,8 @@
-// pages/_app.js
-import './components/Loader.css'; // Make sure to create this CSS file
-import './index.css'
-import Head from 'next/head';
 import React from 'react';
 import axios from 'axios';
+import Head from 'next/head';
 import { API } from '../Config';
-
-
-
-const MyApp = ({ Component, pageProps }) => {
-
-  return (
-    <>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </Head>
-      <Component {...pageProps} />
-    </>
-  );
-};
+import AppTemplate from './AppTemplate';
 
 const withMetaTags = (WrappedComponent) => {
   return class extends React.Component {
@@ -62,6 +46,12 @@ const withMetaTags = (WrappedComponent) => {
   };
 };
 
-// export default MyApp;
-export default withMetaTags(MyApp);
+const HomePage = (props) => {
+  return (
+    <AppTemplate>
+      {/* Your AppTemplate content goes here */}
+    </AppTemplate>
+  );
+};
 
+export default withMetaTags(HomePage);

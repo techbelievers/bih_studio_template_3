@@ -1,57 +1,59 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Head from 'next/head';
 import { API } from '../Config';
-import AppTemplate from './AppTemplate';
+// import './index.css'
+import Loader from './components/Loader';
+// Import template components
+import Template1 from './components/template1/App';
+// import Template2 from './components/template2/App';
+// import Template3 from './components/template3/Template3';
 
-const withMetaTags = (WrappedComponent) => {
-  return class extends React.Component {
-    static async getInitialProps(ctx) {
-      let headerData = null;
-      let error = null;
+const App = () => {
+  const [templateId, setTemplateId] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    // Get current website domain dynamically
+    // const website = window.location.hostname; // This will get the current domain name
+
+    // const Loader = () => {
+    //   return (
+    //     <div className="loader">
+    //       <div className="spinner"></div>
+    //     </div>
+    //   );
+    // };
+
+    // Fetch templateId based on website parameter
+    const fetchTemplateId = async () => {
       try {
-        const response = await axios.get(API.HEADER());
-        headerData = response.data;
+        const response = await axios.get(API.TEMPLATE());
+        setTemplateId(response.data.templateId);  // Assuming API returns templateId
+        setLoading(false);
       } catch (err) {
-        error = `Failed to fetch header data: ${err.message}`;
+        setError('Failed to fetch template data');
+        setLoading(false);
       }
+    };
 
-      return { headerData, error };
-    }
+    fetchTemplateId();
+  }, []);
 
-    render() {
-      const { headerData, error } = this.props;
-      if (error) return <div>Error: {error}</div>;
+  if (loading) return <Loader />;
+  if (error) return <div>{error}</div>;
 
-      const title = `${headerData.property_name} - ${headerData.location}`;
-      const description = `${headerData.property_name} - ${headerData.property_type_price_range_text} in ${headerData.location}, ${headerData.sublocation}, by ${headerData.builder_name}`;
-      const keywords = `real estate, ${headerData.property_name}, ${headerData.location}, ${headerData.sublocation}, property for sale`;
-
-      return (
-        <>
-          <Head>
-            <title>{title}</title>
-            <meta name="description" content={description} />
-            <meta name="keywords" content={keywords} />
-            <meta property="og:title" content={title} />
-            <meta property="og:description" content={description} />
-            <meta property="og:image" content={headerData.hero_banner_img || ''} />
-            <meta property="og:type" content="website" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          </Head>
-          <WrappedComponent {...this.props} />
-        </>
-      );
-    }
-  };
+  // Conditional rendering based on templateId
+  switch (templateId) {
+    case "1":
+      return <Template1 />;
+    // case "2":
+    //   return <Template2 />;
+    // case 3:
+    //   return <Template3 />;
+    default:
+      return <div>Template not found {templateId}</div>;
+  }
 };
 
-const HomePage = (props) => {
-  return (
-    <AppTemplate>
-      {/* Your AppTemplate content goes here */}
-    </AppTemplate>
-  );
-};
-
-export default withMetaTags(HomePage);
+export default App;
