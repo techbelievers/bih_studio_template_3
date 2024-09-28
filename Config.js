@@ -1,7 +1,7 @@
 const BASE_URL = 'https://buyindiahomes.in/api';
 // const WEBSITE_DOMAIN = "buyindiahomes.in";
 const WEBSITE_DOMAIN = typeof window !== 'undefined' ? window.location.hostname : 'buyindiahomes.in';
-console.log('Website Domain:', WEBSITE_DOMAIN);
+// console.log('Website Domain:', WEBSITE_DOMAIN);
 // const getApiUrl = (endpoint) => `${BASE_URL}/${endpoint}?website=${WEBSITE_DOMAIN}`;
 const getApiUrl = (endpoint) => {
   const WEBSITE_DOMAIN = typeof window !== 'undefined' ? window.location.hostname : 'buyindiahomes.in';
@@ -21,7 +21,7 @@ const getApiUrlmetadata = (endpoint,domain) => {
   return `${BASE_URL}/${endpoint}?website=${domain}`;
 };
 
-console.log('Website Domain:', `${BASE_URL}/header?website=${WEBSITE_DOMAIN}`);
+// console.log('Website Domain:', `${BASE_URL}/header?website=${WEBSITE_DOMAIN}`);
 
 const API = {
   METAHEADER: (domain) => getApiUrlmetadata('header',domain),
