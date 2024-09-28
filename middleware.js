@@ -9,8 +9,8 @@ export function middleware(req) {
   // Add the website domain to the request headers
   req.headers.set('x-website-domain', finalDomain);
 
-  console.log('middleware');
-  console.log(req.headers);
+  // console.log('middleware');
+  // console.log(req.headers);
 
   return NextResponse.next({
     request: {
