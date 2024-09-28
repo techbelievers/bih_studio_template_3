@@ -1,6 +1,9 @@
 # Enable the Rewrite Engine
 RewriteEngine On
 
+# Internally rewrite root requests to /AppTemplate/
+RewriteRule ^$ /AppTemplate/ [L]
+
 # Redirect all requests to your Next.js app running on port 3000
 RewriteRule ^(.*)$ http://localhost:3000/$1 [P,L]
 
@@ -17,5 +20,5 @@ ErrorDocument 404 /404.html
 
 Options -MultiViews
 
-RewriteEngine On
+# Rewrite .var files to .html
 RewriteRule ^(.*)\.var$ $1.html [R=301,L]
