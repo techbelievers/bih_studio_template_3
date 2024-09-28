@@ -70,10 +70,12 @@ export const getServerSideProps = async (context) => {
 
   const websiteDomain = context.req.headers['x-website-domain'] || 'default.domain.com';
 
+   console.log(context.req.headers);
   try {
     // Fetch meta data based on the website domain
     const metaResponse = await axios.get(API.METAHEADER(websiteDomain));
     metaData = metaResponse.data;
+
   } catch (err) {
     error = `Failed to fetch data: ${err.message} - ${websiteDomain} `;
   }
