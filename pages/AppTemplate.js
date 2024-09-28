@@ -75,7 +75,7 @@ export const getServerSideProps = async (context) => {
     const metaResponse = await axios.get(API.METAHEADER(websiteDomain));
     metaData = metaResponse.data;
   } catch (err) {
-    error = `Failed to fetch data: ${err.message}`;
+    error = `Failed to fetch data: ${err.message} - ${websiteDomain} `;
   }
 
   return {
