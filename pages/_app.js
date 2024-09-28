@@ -46,18 +46,25 @@ const MyApp = ({ Component, pageProps, headerData, error }) => {
 
 // Using getInitialProps to fetch data
 MyApp.getInitialProps = async (appContext) => {
-  // Get the component's props
   const appProps = await App.getInitialProps(appContext); // Use the imported App component
 
   let headerData = null;
   let error = null;
-  const websiteDomain = appContext.ctx.req ? appContext.ctx.req.headers.host : 'buyindiahomes.in';
+
+  // Determine the domain properly
+  const isServer = !!appContext.ctx.req;
+  const websiteDomain = isServer
+    ? appContext.ctx.req.headers.host // This gets the request host (e.g., localhost:3000)
+    : window.location.hostname; // This gets the host in the client-side environment
+
+  // Use a fallback for the local development environment
+  const finalDomain = websiteDomain === 'localhost:3000' ? 'buyindiahomes.in' : websiteDomain;
 
   try {
-    const response = await axios.get(API.METAHEADER(websiteDomain));
+    const response = await axios.get(API.METAHEADER(finalDomain));
     headerData = response.data;
   } catch (err) {
-    error = `Failed to fetch header data: ${err.message} - ${API.METAHEADER(websiteDomain)}`;
+    error = `Failed to fetch header data: ${err.message} - ${API.METAHEADER(finalDomain)}`;
   }
 
   return {
