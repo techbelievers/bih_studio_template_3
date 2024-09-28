@@ -8,7 +8,12 @@ import axios from 'axios';
 import { API } from '../Config';
 
 const MyApp = ({ Component, pageProps }) => {
-  const { headerData, error } = pageProps;
+  const { headerData, error, isLoading } = pageProps;
+
+  // Show loading state until the header data is fetched
+  if (isLoading) {
+    return <div>Loading...</div>; // Replace with your Loader component if needed
+  }
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -40,12 +45,12 @@ const MyApp = ({ Component, pageProps }) => {
   );
 };
 
-// Use a higher-order function to fetch data
+// Fetching data in getServerSideProps
 MyApp.getServerSideProps = async (context) => {
   let headerData = null;
   let error = null;
   const websiteDomain = context.req ? context.req.headers.host : 'buyindiahomes.in';
-  console.log(websiteDomain);
+
   try {
     const response = await axios.get(API.METAHEADER(websiteDomain));
     headerData = response.data;
@@ -57,6 +62,7 @@ MyApp.getServerSideProps = async (context) => {
     props: {
       headerData,
       error,
+      isLoading: !headerData && !error, // Determine loading state
     },
   };
 };
