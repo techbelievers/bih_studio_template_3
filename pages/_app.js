@@ -45,7 +45,7 @@ const MyApp = ({ Component, pageProps, headerData, error }) => {
 MyApp.getInitialProps = async ({ ctx }) => {
   let headerData = null;
   let error = null;
-  const websiteDomain = ctx.req ? 'buyindiahomes.in' : ctx.req.headers.host; 
+  const websiteDomain = ctx.req.headers.host; 
   try {
     
     const response = await axios.get(API.METAHEADER(websiteDomain));
