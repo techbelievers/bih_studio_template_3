@@ -17,7 +17,7 @@ const getApiUrlmetadata = (endpoint,domain) => {
   // Log the endpoint and the website domain
   console.log('API Endpoint:', endpoint);
   console.log('Website Domain:', WEBSITE_DOMAIN);
-  console.log(`${BASE_URL}/${endpoint}?website=${WEBSITE_DOMAIN}`);
+  console.log('Logs: - ',`${BASE_URL}/${endpoint}?website=${WEBSITE_DOMAIN}`);
   return `${BASE_URL}/${endpoint}?website=${domain}`;
 };
 
