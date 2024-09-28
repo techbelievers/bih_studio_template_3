@@ -3,27 +3,25 @@ import './components/Loader.css'; // Ensure this file exists
 import './index.css';
 import Head from 'next/head';
 import React from 'react';
-import { useRouter } from 'next/router';
-import axios from 'axios';
 import AppTemplate from './AppTemplate';
+import axios from 'axios';
 import { API } from '../Config';
 
-const MyApp = ({ Component, pageProps, headerData, error }) => {
-  const router = useRouter();
-
-  if (router.pathname === '/') {
-    // Render AppTemplate without meta tags
-    return <AppTemplate />;
-  }
+const MyApp = ({ Component, pageProps }) => {
+  const { headerData, error } = pageProps;
 
   if (error) {
     return <div>Error: {error}</div>;
   }
 
   // Construct meta tags based on the fetched header data
-  const title = `${headerData.property_name} - ${headerData.location}`;
-  const description = `${headerData.property_name} - ${headerData.property_type_price_range_text} in ${headerData.location}, ${headerData.sublocation}, by ${headerData.builder_name}`;
-  const keywords = `real estate, ${headerData.property_name}, ${headerData.location}, ${headerData.sublocation}, property for sale`;
+  const title = headerData ? `${headerData.property_name} - ${headerData.location}` : 'Default Title';
+  const description = headerData
+    ? `${headerData.property_name} - ${headerData.property_type_price_range_text} in ${headerData.location}, ${headerData.sublocation}, by ${headerData.builder_name}`
+    : 'Default Description';
+  const keywords = headerData
+    ? `real estate, ${headerData.property_name}, ${headerData.location}, ${headerData.sublocation}, property for sale`
+    : 'real estate';
 
   return (
     <>
@@ -33,29 +31,34 @@ const MyApp = ({ Component, pageProps, headerData, error }) => {
         <meta name="keywords" content={keywords} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
-        <meta property="og:image" content={headerData.hero_banner_img || ''} />
+        <meta property="og:image" content={headerData?.hero_banner_img || ''} />
         <meta property="og:type" content="website" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <Component {...pageProps} />
+      {Component.name === "Home" ? <AppTemplate /> : <Component {...pageProps} />}
     </>
   );
 };
 
-MyApp.getInitialProps = async ({ ctx }) => {
+// Use a higher-order function to fetch data
+MyApp.getServerSideProps = async (context) => {
   let headerData = null;
   let error = null;
-  const websiteDomain = window.location.hostname;
+  const websiteDomain = context.req ? context.req.headers.host : 'buyindiahomes.in';
+  console.log(websiteDomain);
   try {
-    
     const response = await axios.get(API.METAHEADER(websiteDomain));
     headerData = response.data;
   } catch (err) {
     error = `Failed to fetch header data: ${err.message} - ${API.METAHEADER(websiteDomain)}`;
   }
 
-  // Return the fetched data as props
-  return { headerData, error };
+  return {
+    props: {
+      headerData,
+      error,
+    },
+  };
 };
 
 export default MyApp;
