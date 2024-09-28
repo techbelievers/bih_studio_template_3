@@ -50,15 +50,18 @@ MyApp.getInitialProps = async (appContext) => {
 
   let headerData = null;
   let error = null;
+  const { req } = appContext;
+  const websiteDomain = req.headers['x-website-domain'] || 'default.domain.com';
 
   // Determine the domain properly
-  const isServer = !!appContext.ctx.req;
-  const websiteDomain = isServer
-    ? appContext.ctx.req.headers.host // This gets the request host (e.g., localhost:3000)
-    : window.location.hostname; // This gets the host in the client-side environment
+  // const isServer = !!appContext.ctx.req;
+  // const websiteDomain = isServer
+  //   ? appContext.ctx.req.headers.host // This gets the request host (e.g., localhost:3000)
+  //   : window.location.hostname; // This gets the host in the client-side environment
 
   // Use a fallback for the local development environment
-  const finalDomain = websiteDomain === 'localhost:3000' ? 'builderkonnect.com' : websiteDomain;
+  const finalDomain = websiteDomain === 'localhost:3000' ? 'buyindiahomes.in' : websiteDomain;
+  console.log('finaldomain : ', finalDomain);
 
   try {
     const response = await axios.get(API.METAHEADER(finalDomain));
