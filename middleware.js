@@ -19,6 +19,7 @@ export function middleware(req) {
   });
 }
 
+// Specify paths for which the middleware should apply
 export const config = {
-    matcher: ['/*'], // This will match all routes
-  };
+  matcher: ['/((?!api).*)'], // This will match all routes except those starting with '/api'
+};
