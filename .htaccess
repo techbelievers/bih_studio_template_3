@@ -1,0 +1,21 @@
+# Enable the Rewrite Engine
+RewriteEngine On
+
+# Redirect all requests to your Next.js app running on port 3000
+RewriteRule ^(.*)$ http://localhost:3000/$1 [P,L]
+
+# Optionally, you can add HTTPS redirection
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Serve static files directly
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# Handle 404 errors by redirecting to a custom 404 page
+ErrorDocument 404 /404.html
+
+Options -MultiViews
+
+RewriteEngine On
+RewriteRule ^(.*)\.var$ $1.html [R=301,L]
