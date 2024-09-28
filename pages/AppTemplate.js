@@ -68,7 +68,7 @@ export const getServerSideProps = async (context) => {
   let metaData = {};
   let error = null;
 
-  const websiteDomain = context.req.headers['x-website-domain'] || 'default.domain.com';
+  const websiteDomain = context.req.headers['x-forwarded-host'] || 'default.domain.com';
 
    console.log(context.req.headers);
   try {
