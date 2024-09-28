@@ -4,6 +4,7 @@ const WEBSITE_DOMAIN = typeof window !== 'undefined' ? window.location.hostname 
 console.log('Website Domain:', WEBSITE_DOMAIN);
 // const getApiUrl = (endpoint) => `${BASE_URL}/${endpoint}?website=${WEBSITE_DOMAIN}`;
 const getApiUrl = (endpoint) => {
+  const WEBSITE_DOMAIN = typeof window !== 'undefined' ? window.location.hostname : 'buyindiahomes.in';
   // Log the endpoint and the website domain
   console.log('API Endpoint:', endpoint);
   console.log('Website Domain:', WEBSITE_DOMAIN);
