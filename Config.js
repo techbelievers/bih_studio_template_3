@@ -1,6 +1,6 @@
 const BASE_URL = 'https://buyindiahomes.in/api';
-const WEBSITE_DOMAIN = "buyindiahomes.in";
-
+// const WEBSITE_DOMAIN = "buyindiahomes.in";
+const WEBSITE_DOMAIN = window.location.hostname;
 const getApiUrl = (endpoint) => `${BASE_URL}/${endpoint}?website=${WEBSITE_DOMAIN}`;
 
 const API = {
