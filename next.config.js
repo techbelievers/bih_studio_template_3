@@ -32,11 +32,4 @@ const nextConfig = {
 // Export the Next.js configuration
 module.exports = nextConfig;
 
-// next.config.js
-module.exports = {
-  // Other Next.js config options...
-  async middleware() {
-    return ['/']; // Specify the paths for which the middleware should run
-  },
-};
 
