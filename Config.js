@@ -12,6 +12,15 @@ const getApiUrl = (endpoint) => {
   return `${BASE_URL}/${endpoint}?website=${WEBSITE_DOMAIN}`;
 };
 
+const getApiUrlmetadata = (endpoint,domain) => {
+  const WEBSITE_DOMAIN = typeof window !== 'undefined' ? window.location.hostname : 'buyindiahomes.in';
+  // Log the endpoint and the website domain
+  console.log('API Endpoint:', endpoint);
+  console.log('Website Domain:', WEBSITE_DOMAIN);
+  console.log(`${BASE_URL}/${endpoint}?website=${WEBSITE_DOMAIN}`);
+  return `${BASE_URL}/${endpoint}?website=${domain}`;
+};
+
 console.log('Website Domain:', `${BASE_URL}/header?website=${WEBSITE_DOMAIN}`);
 
 const API = {

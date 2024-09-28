@@ -45,12 +45,13 @@ const MyApp = ({ Component, pageProps, headerData, error }) => {
 MyApp.getInitialProps = async ({ ctx }) => {
   let headerData = null;
   let error = null;
-
+  const websiteDomain = ctx.req ? 'buyindiahomes.in' : ctx.req.headers.host; 
   try {
-    const response = await axios.get(API.HEADER());
+    
+    const response = await axios.get(API.HEADER(websiteDomain));
     headerData = response.data;
   } catch (err) {
-    error = `Failed to fetch header data: ${err.message} - ${API.HEADER}`;
+    error = `Failed to fetch header data: ${err.message} - ${API.HEADER(websiteDomain)}`;
   }
 
   // Return the fetched data as props
