@@ -45,7 +45,7 @@ const MyApp = ({ Component, pageProps, headerData, error }) => {
 
 // Using getInitialProps to fetch data
 MyApp.getInitialProps = async (appContext) => {
-  const appProps = await App.getInitialProps(appContext); // Get the app's props
+  const appProps = await MyApp.getInitialProps(appContext); // Get the app's props
   let headerData = null;
   let error = null;
   const websiteDomain = appContext.ctx.req ? appContext.ctx.req.headers.host : 'buyindiahomes.in';
