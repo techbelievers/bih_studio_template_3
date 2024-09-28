@@ -47,6 +47,7 @@ const MyApp = ({ Component, pageProps }) => {
 
 // Fetching data in getServerSideProps
 MyApp.getServerSideProps = async (context) => {
+  console.log('inside getServerSideprops');
   let headerData = null;
   let error = null;
   const websiteDomain = context.req ? context.req.headers.host : 'buyindiahomes.in';
