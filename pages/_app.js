@@ -45,28 +45,54 @@ const MyApp = ({ Component, pageProps, headerData, error }) => {
 };
 
 // Using getInitialProps to fetch data
-MyApp.getInitialProps = async (appContext) => {
-  const appProps = await App.getInitialProps(appContext); // Use the imported App component
+// MyApp.getInitialProps = async (appContext) => {
+//   const appProps = await App.getInitialProps(appContext); // Use the imported App component
 
+//   let headerData = null;
+//   let error = null;
+//   const { req } = appContext;
+//   const websiteDomain = req.headers['x-forwarded-host'] || 'default.domain.com';
+//   const finalDomain = websiteDomain === 'localhost:3000' ? 'buyindiahomes.in' : websiteDomain;
+//   console.log('finaldomain : ', finalDomain);
+
+//   try {
+//     const response = await axios.get(API.METAHEADER(finalDomain));
+//     headerData = response.data;
+//   } catch (err) {
+//     error = `Failed to fetch header data: ${err.message} - ${API.METAHEADER(finalDomain)}`;
+//   }
+
+//   return {
+//     ...appProps,
+//     headerData,
+//     error,
+//   };
+// };
+
+// Fetch data with getServerSideProps
+export const getServerSideProps = async (context) => {
   let headerData = null;
   let error = null;
-  const { req } = appContext;
+  const { req } = context;
   const websiteDomain = req.headers['x-forwarded-host'] || 'default.domain.com';
-  const finalDomain = websiteDomain === 'localhost:3000' ? 'buyindiahomes.in' : websiteDomain;
-  console.log('finaldomain : ', finalDomain);
+
+  console.log('Website Domain:', websiteDomain);
 
   try {
-    const response = await axios.get(API.METAHEADER(finalDomain));
+    const response = await axios.get(API.METAHEADER(websiteDomain));
     headerData = response.data;
   } catch (err) {
-    error = `Failed to fetch header data: ${err.message} - ${API.METAHEADER(finalDomain)}`;
+    error = `Failed to fetch header data: ${err.message}`;
   }
 
   return {
-    ...appProps,
-    headerData,
-    error,
+    props: {
+      headerData,
+      error,
+      loading: !headerData && !error, // Set loading state based on the data fetched
+    },
   };
 };
+
 
 export default MyApp;
