@@ -24,6 +24,7 @@ const getApiUrlmetadata = (endpoint,domain) => {
 console.log('Website Domain:', `${BASE_URL}/header?website=${WEBSITE_DOMAIN}`);
 
 const API = {
+  METAHEADER: (domain) => getApiUrlmetadata('header',domain),
   HEADER: () => getApiUrl('header'),
   MAHARERA: () => getApiUrl('rera'),
   PROPERTY_PRICES: () => getApiUrl('property-prices'),
