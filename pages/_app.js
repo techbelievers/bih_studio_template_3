@@ -50,9 +50,9 @@ MyApp.getInitialProps = async (appContext) => {
 
   let headerData = null;
   let error = null;
-  const { req } = appContext;
+  const { req } = appContext.ctx;
   const websiteDomain = req.headers['x-forwarded-host'] || 'default.domain.com';
-
+  
   // Determine the domain properly
   // const isServer = !!appContext.ctx.req;
   // const websiteDomain = isServer
