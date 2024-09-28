@@ -15,3 +15,7 @@ export function middleware(req) {
     },
   });
 }
+
+export const config = {
+    matcher: ['/*'], // This will match all routes
+  };
