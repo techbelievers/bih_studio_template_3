@@ -4,17 +4,10 @@ import config from './config';
 
 export function middleware(req) {
   const host = req.headers.get('host');
-
-  // Set default website domain
-  let websiteDomain = 'default.domain.com'; // Fallback
-
-  // Check if the host exists in the configuration
-  if (config[host]) {
-    websiteDomain = host;
-  }
+  const finalDomain = host === 'localhost:3000' ? 'buyindiahomes.in' : host;
 
   // Add the website domain to the request headers or context
-  req.headers.set('X-Website-Domain', websiteDomain);
+  req.headers.set('X-Website-Domain', finalDomain);
 
   return NextResponse.next();
 }

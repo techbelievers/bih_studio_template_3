@@ -28,6 +28,9 @@ module.exports = {
       cpus: 2, // Limit to 2 CPUs
     },
 
+    async middleware() {
+      return ['/'];
+    },
     // async rewrites() {
     //   return [
     //     {
