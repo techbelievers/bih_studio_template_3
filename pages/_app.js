@@ -6,6 +6,7 @@ import React from 'react';
 import AppTemplate from './AppTemplate';
 import axios from 'axios';
 import { API } from '../Config';
+import App from 'next/app'; // Import the default App from Next.js
 
 const MyApp = ({ Component, pageProps, headerData, error }) => {
   // Show loading state until the header data is fetched
@@ -45,7 +46,9 @@ const MyApp = ({ Component, pageProps, headerData, error }) => {
 
 // Using getInitialProps to fetch data
 MyApp.getInitialProps = async (appContext) => {
-  const appProps = await MyApp.getInitialProps(appContext); // Get the app's props
+  // Get the component's props
+  const appProps = await App.getInitialProps(appContext); // Use the imported App component
+
   let headerData = null;
   let error = null;
   const websiteDomain = appContext.ctx.req ? appContext.ctx.req.headers.host : 'buyindiahomes.in';
