@@ -50,7 +50,7 @@ MyApp.getInitialProps = async ({ ctx }) => {
     const response = await axios.get(API.HEADER());
     headerData = response.data;
   } catch (err) {
-    error = `Failed to fetch header data: ${err.message}`;
+    error = `Failed to fetch header data: ${err.message} - ${API.HEADER}`;
   }
 
   // Return the fetched data as props
