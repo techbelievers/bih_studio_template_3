@@ -23,7 +23,7 @@ const nextConfig = {
   trailingSlash: true,
   experimental: {
     workerThreads: false,
-    cpus: 2, // Limit to 2 CPUs
+    cpus: 1, // Limit to 2 CPUs
   },
 
   // Remove invalid middleware config here
