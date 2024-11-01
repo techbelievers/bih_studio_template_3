@@ -1,0 +1,97 @@
+/* PropertyDetails.module.css */
+
+/* Main Section */
+.property_details_section {
+    max-width: 1200px;
+    margin: 40px auto; /* Added margin for spacing */
+    padding: 30px;
+    background-color: #ffffff; /* White background for a luxurious feel */
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s;
+}
+
+/* Hover effect on section */
+.property_details_section:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Title */
+.property_title {
+    font-size: 36px; /* Increased font size */
+    color: #27ae60; /* Rich green color */
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Georgia', serif; /* Elegant font */
+    text-transform: uppercase; /* Uppercase for luxury feel */
+}
+
+/* Description */
+.property_description {
+    font-size: 18px; /* Increased font size */
+    line-height: 1.8; /* Improved line spacing */
+    color: #444; /* Darker color for readability */
+    background-color: #f9f9f9; /* Light background for contrast */
+    padding: 25px; /* Generous padding */
+    border: 1px solid #ddd; /* Subtle border */
+    border-radius: 8px;
+    position: relative; /* To position child elements */
+}
+
+/* Description Headings */
+.property_description h2,
+.property_description h3 {
+    color: #27ae60; /* Rich green */
+    font-weight: bold;
+    margin-top: 20px;
+    border-bottom: 2px solid #27ae60; /* Underline for headings */
+    padding-bottom: 5px;
+}
+
+/* Paragraphs and Lists */
+.property_description p,
+.property_description ul {
+    margin-bottom: 20px; /* Increased spacing */
+}
+
+.property_description ul {
+    list-style: disc;
+    margin-left: 25px;
+}
+
+/* Button */
+.read_more_btn {
+    display: block;
+    margin: 30px auto 0;
+    padding: 12px 24px; /* Increased padding */
+    background: linear-gradient(90deg, #27ae60, #1e8449); /* Gradient background */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    font-size: 16px; /* Increased font size */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+}
+
+/* Button hover effect */
+.read_more_btn:hover {
+    background: linear-gradient(90deg, #1e8449, #27ae60); /* Reverse gradient on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .property_title {
+        font-size: 28px; /* Responsive font size */
+    }
+
+    .property_description {
+        font-size: 16px; /* Responsive font size */
+        padding: 15px; /* Responsive padding */
+    }
+
+    .read_more_btn {
+        padding: 10px 20px; /* Responsive padding */
+    }
+}

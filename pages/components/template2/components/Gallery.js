@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../css/Gallery.module.css'; // Ensure the path is correct
 import { API } from '../../../../Config'; // Use your config.js structure
-import { color } from 'chart.js/helpers';
 
 const Gallery = () => {
   const [galleryData, setGalleryData] = useState([]);
@@ -11,7 +10,6 @@ const Gallery = () => {
   const [caption, setCaption] = useState(""); // For image caption
 
   useEffect(() => {
-    // Fetch the gallery data using API from config
     fetch(API.GALLERY())
       .then(response => response.json())
       .then(data => {
@@ -33,21 +31,20 @@ const Gallery = () => {
   };
 
   return (
-    <div id="gallery" className={styles.template1_gallery_container}>
-        <br></br>
-      <h2>{heading}</h2>
-      <h3>{subheading}</h3>
-      <div className={styles.template1_gallery_grid}>
+    <div id="gallery" className={styles.galleryContainer}>
+      <h2 className={styles.heading}>{heading}</h2>
+      <h4 className={styles.subheading}>{subheading}</h4>
+      <div className={styles.galleryGrid}>
         {galleryData.length > 0 ? (
           galleryData.map(photo => (
             <div
               key={photo.id}
-              className={styles.template1_gallery_item}
+              className={styles.galleryItem}
               onClick={() => openModal(photo.photo, photo.caption)}
             >
-              <img src={photo.photo} alt={`Property ${photo.property_id}`} />
-              <div className={styles.template1_overlay}>
-                <div className={styles.template1_overlay_text}>View Image</div>
+              <img src={photo.photo} alt={`Property ${photo.property_id}`} className={styles.image} />
+              <div className={styles.overlay}>
+                <div className={styles.overlayText}>View Image</div>
               </div>
             </div>
           ))
@@ -57,10 +54,10 @@ const Gallery = () => {
       </div>
 
       {selectedImage && (
-        <div className={styles.template1_modal} onClick={closeModal}>
-          <span className={styles.template1_close}>&times;</span>
-          <img className={styles.template1_modal_content} src={selectedImage} alt="Large view" />
-          {caption && <div className={styles.template1_caption}>{caption}</div>}
+        <div className={styles.modal} onClick={closeModal}>
+          <span className={styles.close}>&times;</span>
+          <img className={styles.modalContent} src={selectedImage} alt="Large view" />
+          {caption && <div className={styles.caption}>{caption}</div>}
         </div>
       )}
     </div>

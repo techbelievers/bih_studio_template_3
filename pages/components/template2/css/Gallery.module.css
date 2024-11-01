@@ -1,0 +1,138 @@
+/* Container */
+.galleryContainer {
+  padding: 40px;
+  text-align: center;
+  background-color: #ffffff; /* Light gray for a soft background */
+  border-radius: 15px; /* Rounded corners for modern feel */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Heading Style */
+.heading {
+  font-size: 28px; /* Larger font size for better prominence */
+  margin-bottom: 10px;
+  color: #2c3e50; /* Dark blue for contrast */
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Subheading Style */
+.subheading {
+  font-size: 18px; /* Slightly smaller font size */
+  margin-bottom: 30px;
+  color: #7f8c8d; /* Gray for subtlety */
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Gallery Grid */
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Gallery Item */
+.galleryItem {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Gallery Image */
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+/* Hover Effect */
+.galleryItem:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Overlay */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(44, 62, 80, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 15px;
+}
+
+.galleryItem:hover .overlay {
+  opacity: 1;
+}
+
+.overlayText {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: bold;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Modal */
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modalContent {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.caption {
+  color: #fff;
+  font-size: 18px;
+  margin-top: 10px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .galleryGrid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .galleryContainer {
+    padding: 20px;
+  }
+
+  .galleryGrid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+  }
+}

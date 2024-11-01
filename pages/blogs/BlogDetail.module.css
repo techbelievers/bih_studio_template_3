@@ -1,0 +1,58 @@
+.blogDetailContainer {
+    max-width: 800px; /* Restricts the width for better readability */
+    margin: 2rem auto; /* Centers the container */
+    padding: 1.5rem;
+    background: #ffffff; /* White background for contrast */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  }
+  
+  .blogTitle {
+    font-size: 2.5rem; /* Large title for emphasis */
+    color: #333333; /* Dark gray for readability */
+    margin-bottom: 1rem; /* Space below the title */
+  }
+  
+  .blogImage {
+    width: 100%; /* Responsive image */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px; /* Rounded corners */
+    margin-bottom: 1.5rem; /* Space below the image */
+  }
+  
+  .blogContent {
+    font-size: 1.125rem; /* Slightly larger text for better readability */
+    line-height: 1.6; /* Increased line height for better readability */
+    color: #555555; /* Medium gray for the content */
+    margin-bottom: 2rem; /* Space below the content */
+  }
+  
+  .backLink {
+    display: inline-block; /* Block level for better spacing */
+    margin-top: 1.5rem; /* Space above the link */
+    padding: 0.75rem 1.5rem; /* Padding for clickable area */
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white; /* White text color */
+    text-decoration: none; /* Remove underline */
+    border-radius: 5px; /* Rounded corners for the button */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  }
+  
+  .backLink:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+  }
+  
+  .loading {
+    font-size: 1.5rem; /* Larger text for loading state */
+    color: #007bff; /* Blue color to match the theme */
+    text-align: center; /* Center the loading text */
+    margin-top: 2rem; /* Space above */
+  }
+  
+  .error {
+    font-size: 1.5rem; /* Larger text for error messages */
+    color: #dc3545; /* Bootstrap danger color for errors */
+    text-align: center; /* Center the error message */
+    margin-top: 2rem; /* Space above */
+  }
+  

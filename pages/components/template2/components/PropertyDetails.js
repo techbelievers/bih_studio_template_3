@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styles from '../css/PropertyDetails.module.css'; // Add styling in this file
+import styles from '../css/PropertyDetails.module.css'; // Ensure to update your CSS file as well
 import { API } from '../../../../Config';
 
 const PropertyDetails = () => {
@@ -36,10 +36,9 @@ const PropertyDetails = () => {
 
   return (
     <div id="about" className={styles.property_details_section}>
-      {/* Render only when propertyDetails is loaded */}
       {propertyDetails && (
         <>
-          <h2 className={styles.property_title}>{propertyDetails.property_name}</h2>
+          <h1 className={styles.property_title}>{propertyDetails.property_name}</h1>
           <div
             className={styles.property_description}
             dangerouslySetInnerHTML={{ __html: isExpanded ? propertyDetails.property_description : `${propertyDetails.property_description.slice(0, 1000)}...` }}

@@ -19,13 +19,20 @@ const MyApp = ({ Component, pageProps, headerData, error }) => {
   }
 
   // Construct meta tags based on the fetched header data
-  const title = headerData ? `${headerData.property_name} - ${headerData.location}` : 'Default Title';
-  const description = headerData
-    ? `${headerData.property_name} - ${headerData.property_type_price_range_text} in ${headerData.location}, ${headerData.sublocation}, by ${headerData.builder_name}`
-    : 'Default Description';
-  const keywords = headerData
-    ? `real estate, ${headerData.property_name}, ${headerData.location}, ${headerData.sublocation}, property for sale`
-    : 'real estate';
+  const title = headerData.data.title;
+  const description = headerData.data.meta_description;
+  const keywords =  headerData.data.keywords;
+
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "RealEstateListing",
+    "name": title,
+    "description": description,
+    "address": headerData.data.location,
+    "price": headerData.data.price,
+    "builderName" : headerData.data.builder_name,
+    "image": headerData.data.og_image || '',
+  };
 
   return (
     <>
@@ -33,12 +40,28 @@ const MyApp = ({ Component, pageProps, headerData, error }) => {
         <title>{title}</title>
         <meta name="description" content={description} />
         <meta name="keywords" content={keywords} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:image" content={headerData?.hero_banner_img || ''} />
-        <meta property="og:type" content="website" />
+        <meta property="og:title" content={headerData.data.og_title} />
+        <meta property="og:description" content={headerData.data.og_description} />
+        <meta property="og:image" content={headerData.data?.og_image || ''} />
+        <meta property="og:type" content={headerData.data.og_type} />
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        {/* Conditionally add custom scripts */}
+      {headerData.data.script_1 && (
+        <script dangerouslySetInnerHTML={{ __html: headerData.data.script_1 }} />
+      )}
+      {headerData.data.script_2 && (
+        <script dangerouslySetInnerHTML={{ __html: headerData.data.script_2 }} />
+      )}
+
+      {/* Structured Data */}
+      <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+        />
       </Head>
+
       {Component.name === "Home" ? <AppTemplate /> : <Component {...pageProps} />}
     </>
   );
@@ -60,11 +83,12 @@ MyApp.getInitialProps = async (appContext) => {
   //   : window.location.hostname; // This gets the host in the client-side environment
 
   // Use a fallback for the local development environment
-  const finalDomain = websiteDomain === 'localhost:3000' ? 'buyindiahomes.in' : websiteDomain;
+  // const finalDomain = '10.211.55.3';
+  const finalDomain = websiteDomain === 'localhost:3000' ? 'builderkonnect.com' : websiteDomain;
   console.log('finaldomain : ', finalDomain);
 
   try {
-    const response = await axios.get(API.METAHEADER(finalDomain));
+    const response = await axios.get(API.SEO_DETAIL(finalDomain));
     headerData = response.data;
   } catch (err) {
     error = `Failed to fetch header data: ${err.message} - ${API.METAHEADER(finalDomain)}`;

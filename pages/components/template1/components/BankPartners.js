@@ -40,7 +40,7 @@ const BankPartner = () => {
   return (
     <div className={styles.bankPartnerContainer}>
       <h2>{heading}</h2>
-      <h4>{subheading}</h4>
+      <h3>{subheading}</h3>
       <div className={styles.bankPartnerSlider} ref={sliderRef}>
         {bankData.length > 0 ? (
           bankData.map(bank => (

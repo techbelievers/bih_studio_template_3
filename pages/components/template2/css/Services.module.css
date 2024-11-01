@@ -1,0 +1,86 @@
+.template1ServicesContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 40px 20px;
+  flex-wrap: wrap;
+  background: linear-gradient(135deg, #f0f7ff, #e5f9e0); /* Gradient background */
+}
+
+.template1Card {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+  max-width: 350px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 15px;
+  position: relative;
+  overflow: hidden;
+}
+
+.template1Card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.template1Card h3 {
+  margin-top: 15px;
+  font-size: 1.6em;
+  color: #333;
+}
+
+.template1Card p {
+  margin-top: 10px;
+  color: #777;
+  font-size: 1em;
+}
+
+.template1Icon {
+  font-size: 50px;
+  color: #009688;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.template1Image {
+  max-width: 80px;
+  border-radius: 50%; /* Makes logo rounded */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.template1BusinessStrategy {
+  background-color: #ffffff;
+}
+
+.template1LocalMarketing {
+  background-color: #ffffff;
+}
+
+.template1SocialMedia {
+  background-color: #ffffff;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .template1ServicesContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .template1Card {
+    width: 90%;
+  }
+}

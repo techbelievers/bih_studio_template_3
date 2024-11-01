@@ -30,8 +30,13 @@ const HeroBanner = () => {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
+        const isMobile = window.innerWidth < 768; // Adjust this breakpoint as needed
+        const heroImages = data.hero_banner_img;
+
+        const selectedImage = isMobile ? heroImages.mobile[0] : heroImages.desktop[0];
+
         setHeroData({
-          backgroundImage: data.hero_banner_img,
+          backgroundImage: selectedImage,
           heading: data.property_name,
           description: data.hero_banner_subheading,
         });

@@ -1,10 +1,12 @@
-const BASE_URL = 'https://buyindiahomes.in/api';
-// const WEBSITE_DOMAIN = "buyindiahomes.in";
-const WEBSITE_DOMAIN = typeof window !== 'undefined' ? window.location.hostname : 'buyindiahomes.in';
+// const BASE_URL = 'http://127.0.0.1:8000/api';
+const BASE_URL = 'https://www.buyindiahomes.in/api';
+// const WEBSITE_DOMAIN = "10.211.55.3";
+const WEBSITE_DOMAIN = typeof window !== 'undefined' ? window.location.hostname : 'builderkonnect.com';
 // console.log('Website Domain:', WEBSITE_DOMAIN);
 // const getApiUrl = (endpoint) => `${BASE_URL}/${endpoint}?website=${WEBSITE_DOMAIN}`;
 const getApiUrl = (endpoint) => {
-  const WEBSITE_DOMAIN = typeof window !== 'undefined' ? window.location.hostname : 'buyindiahomes.in';
+  const WEBSITE_DOMAIN = typeof window !== 'undefined' ? window.location.hostname : 'builderkonnect.com';
+  // const WEBSITE_DOMAIN = "10.211.55.3";
   // Log the endpoint and the website domain
   console.log('API Endpoint:', endpoint);
   console.log('Website Domain:', WEBSITE_DOMAIN);
@@ -13,12 +15,23 @@ const getApiUrl = (endpoint) => {
 };
 
 const getApiUrlmetadata = (endpoint,domain) => {
-  const WEBSITE_DOMAIN = typeof window !== 'undefined' ? window.location.hostname : 'buyindiahomes.in';
+  const WEBSITE_DOMAIN = typeof window !== 'undefined' ? window.location.hostname : 'builderkonnect.com';
+  // const WEBSITE_DOMAIN = "10.211.55.3";
   // Log the endpoint and the website domain
   console.log('API Endpoint:', endpoint);
   console.log('Website Domain:', WEBSITE_DOMAIN);
   console.log('Logs: - ',`${BASE_URL}/${endpoint}?website=${WEBSITE_DOMAIN}`);
   return `${BASE_URL}/${endpoint}?website=${domain}`;
+};
+
+const getblogspost = (endpoint,post_slug) => {
+  const WEBSITE_DOMAIN = typeof window !== 'undefined' ? window.location.hostname : 'builderkonnect.com';
+  // const WEBSITE_DOMAIN = "10.211.55.3";
+  // Log the endpoint and the website domain
+  console.log('API Endpoint:', endpoint);
+  console.log('Website Domain:', WEBSITE_DOMAIN);
+  console.log('Logs: - ',`${BASE_URL}/${endpoint}/${post_slug}?website=${WEBSITE_DOMAIN}`);
+  return `${BASE_URL}/${endpoint}/${post_slug}?website=${WEBSITE_DOMAIN}`;
 };
 
 // console.log('Website Domain:', `${BASE_URL}/header?website=${WEBSITE_DOMAIN}`);
@@ -40,11 +53,15 @@ const API = {
   LOCATION_ADVANTAGES: () => getApiUrl('location-advantages'),
   FAQ: () => getApiUrl('faq'),
   BLOGS: () => getApiUrl('blogs'),
+  BLOGS_DETAIL: (post_slug) => getblogspost('blogs',post_slug),
+  
+
   TESTIMONIALS: () => getApiUrl('testimonials'),
   CONTACT_US: () => getApiUrl('contact-us'),
   ADVERTISEMENT: () => getApiUrl('advertisement'),
   FOOTER: () => getApiUrl('footer'),
   TEMPLATE: () => getApiUrl('template'),
+  SEO_DETAIL: () => getApiUrl('seo-detail'),
   postContactUs: `${BASE_URL}/contact?website=${WEBSITE_DOMAIN}`,
 };
 

@@ -1,0 +1,60 @@
+.heroBanner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  color: #fff;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+}
+
+.heroText h1 {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  color: #f4a261;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+.heroText p {
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+  color: #e9c46a;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.enquireNow {
+  padding: 12px 30px;
+  background-color: #264653;
+  color: #fff;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 1px;
+  border-radius: 50px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.enquireNow:hover {
+  background-color: #2a9d8f;
+  transform: translateY(-3px);
+}

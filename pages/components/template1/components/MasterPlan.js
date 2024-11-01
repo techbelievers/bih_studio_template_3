@@ -42,7 +42,7 @@ const MasterPlan = () => {
   return (
     <div className={`${styles.template1} ${styles.masterplanContainer}`}>
       <div className={styles.masterplanHeader}>
-        <h1 className={styles.masterplanHeading}>Master Plan</h1>
+        <h2 className={styles.masterplanHeading}>Master Plan</h2>
       </div>
       <div className={styles.masterplanGrid}>
         {masterPlansData.map(plan => (

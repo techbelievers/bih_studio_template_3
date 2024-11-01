@@ -52,7 +52,6 @@ const EnquirePopup = ({ onClose }) => {
         message: '',
       });
     } catch (error) {
-      console.log(error);
       setSubmitError('Failed to submit the form. Please try again.');
     } finally {
       setIsSubmitting(false);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { API } from '../../../../Config'; // Adjust the path as needed
-import '../css/Blogs.module.css'; // Ensure the path is correct
+import styles from '../css/Blogs.module.css'; // Ensure the path is correct
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -38,18 +38,19 @@ const Blogs = () => {
   }, []);
 
   return (
-    <div className="blogs-container">
-      <div className="blogs-heading">
+    <div className={styles.blogsContainer}>
+      <div className={styles.blogsHeading}>
         <h2>{heading}</h2>
-        <h4>{subheading}</h4>
+        <h3>{subheading}</h3>
       </div>
-      <div className="blogs-slider" ref={sliderRef}>
+      <div className={styles.blogsSlider} ref={sliderRef}>
         {blogs.map(blog => (
-          <div key={blog.id} className="blog-card">
-            <img src={blog.post_photo} alt={blog.post_title} className="blog-image" />
-            <div className="blog-content">
+          <div key={blog.post_slug} className={styles.blogCard}>
+            <img src={blog.post_photo} alt={blog.post_title} className={styles.blogImage} />
+            <div className={styles.blogContent}>
               <h3>{blog.post_title}</h3>
               <p>{blog.post_content_short}</p>
+              <a href={`/blogs/${blog.post_slug}`} className={styles.readMore}>Read More</a>
             </div>
           </div>
         ))}

@@ -30,7 +30,7 @@ const Amenities = () => {
   return (
     <div id="amenities" className={styles.amenitiesContainer}>
       <h2 className={styles.amenitiesHeading}>{heading}</h2>
-      <h4 className={styles.amenitiesSubHeading}>{subHeading}</h4>
+      <h3 className={styles.amenitiesSubHeading}>{subHeading}</h3>
       <div className={styles.amenitiesGrid}>
         {amenitiesData.length > 0 ? (
           amenitiesData.map(amenity => (

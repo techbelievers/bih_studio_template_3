@@ -5,7 +5,7 @@ import { API } from '../Config';
 import Loader from './components/Loader';
 // Import template components
 import Template1 from './components/template1/App';
-// import Template2 from './components/template2/App';
+import Template2 from './components/template2/App';
 // import Template3 from './components/template3/Template3';
 
 const App = () => {
@@ -47,8 +47,8 @@ const App = () => {
   switch (templateId) {
     case "1":
       return <Template1 />;
-    // case "2":
-    //   return <Template2 />;
+    case "2":
+      return <Template2 />;
     // case 3:
     //   return <Template3 />;
     default:

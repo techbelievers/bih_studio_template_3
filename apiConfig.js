@@ -1,5 +1,5 @@
 // src/config/apiConfig.js
-import { API } from '../../Config'; // Import API URLs from config.js
+import { API } from './Config'; // Import API URLs from config.js
 
 // Default fetch options (common headers, content type, etc.)
 const API_OPTIONS = {
