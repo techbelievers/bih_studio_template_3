@@ -25,6 +25,7 @@ const nextConfig = {
     workerThreads: false,
     cpus: 1, // Limit to 2 CPUs
   },
+  swcMinify: false,
 
   // Remove invalid middleware config here
 };
