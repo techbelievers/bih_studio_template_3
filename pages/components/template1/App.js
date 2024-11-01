@@ -21,13 +21,13 @@ import BankPartners from './components/BankPartners';
 import ContactUs from './components/ContactUs';
 import FloatingButtons from './components/FloatingButtons';
 import BlogDetail from './components/BlogDetail';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <Router basename="/AppTemplate">
-      <Routes>
-        <Route path="/" element={
+    // <Router basename="/AppTemplate">
+    //   <Routes>
+    //     <Route path="/" element={
           <div className="App">
             <Header />
             <HeroBanner />
@@ -51,11 +51,11 @@ function App() {
             <Footer />
             <FloatingButtons />
           </div>
-        } />
-       <Route path="/blogs/:post_slug" component={BlogDetail} />
+        // } />
+      //  <Route path="/blogs/:post_slug" component={BlogDetail} />
 
-      </Routes>
-    </Router>
+      // </Routes>
+    // </Router>
   );
 }
 
