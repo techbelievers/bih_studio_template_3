@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 
 export function middleware(req) {
   const host = req.headers.get('host');
-  const finalDomain = host === 'localhost:3000' ? 'buyindiahomes.in' : host;
+  const finalDomain = host === 'localhost:3000' ? 'builderkonnect.com' : host;
 
   console.log(finalDomain)
   // Add the website domain to the request headers

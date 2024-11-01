@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../css/Gallery.module.css'; // Ensure the path is correct
 import { API } from '../../../../Config'; // Use your config.js structure
-import { color } from 'chart.js/helpers';
+// import { color } from 'chart.js/helpers';
 
 const Gallery = () => {
   const [galleryData, setGalleryData] = useState([]);
