@@ -20,7 +20,7 @@ import Blogs from './components/Blogs';
 import BankPartners from './components/BankPartners';
 import ContactUs from './components/ContactUs';
 import FloatingButtons from './components/FloatingButtons';
-import BlogDetail from './components/BlogDetail';
+// import BlogDetail from './components/BlogDetail';
 // import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
