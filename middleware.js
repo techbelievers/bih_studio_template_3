@@ -2,7 +2,7 @@
 import { NextResponse } from 'next/server';
 
 export function middleware(req) {
-  const host = req.headers.get('host');
+  const host = req.headers.get('host') || 'localhost:3000'; 
   const finalDomain = host === 'localhost:3000' ? 'builderkonnect.com' : host;
 
   console.log(finalDomain)
