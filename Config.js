@@ -16,6 +16,7 @@ const getApiUrl = (endpoint) => {
 
 
 const getSeoData = (endpoint , domain) => {
+  console.log('SEODATA');
   console.log('API Endpoint:', endpoint);
   console.log('Website Domain:', domain);
   console.log(`${BASE_URL}/${endpoint}?website=${domain}`);
