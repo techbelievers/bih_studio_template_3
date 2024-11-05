@@ -47,6 +47,12 @@ const MyApp = ({ Component, pageProps, headerData, error }) => {
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+        <meta
+        name="robots"
+        content={headerData.data.status === 'Active' ? 'index, follow' : 'noindex, nofollow'}
+      />
+
+
         {/* Conditionally add custom scripts */}
       {headerData.data.script_1 && (
         <script dangerouslySetInnerHTML={{ __html: headerData.data.script_1 }} />
@@ -91,7 +97,7 @@ MyApp.getInitialProps = async (appContext) => {
     const response = await axios.get(API.SEO_DETAIL(finalDomain));
     headerData = response.data;
   } catch (err) {
-    error = `Failed to fetch header data: ${err.message} - ${API.METAHEADER(finalDomain)}`;
+    error = `Failed to fetch header data: ${err.message} - ${API.SEO_DETAIL(finalDomain)}`;
   }
 
   return {
