@@ -14,6 +14,14 @@ const getApiUrl = (endpoint) => {
   return `${BASE_URL}/${endpoint}?website=${WEBSITE_DOMAIN}`;
 };
 
+
+const getSeoData = (endpoint , domain) => {
+  console.log('API Endpoint:', endpoint);
+  console.log('Website Domain:', domain);
+  console.log(`${BASE_URL}/${endpoint}?website=${domain}`);
+  return `${BASE_URL}/${endpoint}?website=${domain}`;
+};
+
 const getApiUrlmetadata = (endpoint,domain) => {
   const WEBSITE_DOMAIN = typeof window !== 'undefined' ? window.location.hostname : 'builderkonnect.com';
   // const WEBSITE_DOMAIN = "10.211.55.3";
@@ -54,14 +62,12 @@ const API = {
   FAQ: () => getApiUrl('faq'),
   BLOGS: () => getApiUrl('blogs'),
   BLOGS_DETAIL: (post_slug) => getblogspost('blogs',post_slug),
-  
-
   TESTIMONIALS: () => getApiUrl('testimonials'),
   CONTACT_US: () => getApiUrl('contact-us'),
   ADVERTISEMENT: () => getApiUrl('advertisement'),
   FOOTER: () => getApiUrl('footer'),
   TEMPLATE: () => getApiUrl('template'),
-  SEO_DETAIL: () => getApiUrl('seo-detail'),
+  SEO_DETAIL: (domain) => getSeoData('seo-detail',domain),
   postContactUs: `${BASE_URL}/contact?website=${WEBSITE_DOMAIN}`,
 };
 
