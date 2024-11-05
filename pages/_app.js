@@ -94,12 +94,12 @@ MyApp.getInitialProps = async (appContext) => {
   console.log('finaldomain : ', finalDomain);
 
   try {
-    // const response = await axios.get(API.SEO_DETAIL(finalDomain));
-    const response = await axios.get(API.SEO_DETAIL(finalDomain), {
-      headers: {
-        'Cache-Control': 'no-cache', // Ensures data isn't cached
-      },
-    });
+    const response = await axios.get(API.SEO_DETAIL(finalDomain));
+    // const response = await axios.get(API.SEO_DETAIL(finalDomain), {ß
+    //   headers: {
+    //     'Cache-Control': 'no-cache', // Ensures data isn't cached
+    //   },
+    // });
     
     headerData = response.data;
   } catch (err) {
