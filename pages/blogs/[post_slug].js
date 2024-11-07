@@ -1,5 +1,5 @@
 import React from 'react';
-import { API } from '../../Config'; // Adjust the path as needed
+import { API, DEFAULT_DOMAIN } from '../../Config'; // Adjust the path as needed
 import styles from './BlogDetail.module.css'; // Ensure the path is correct
 
 const BlogDetail = ({ blog, error }) => {
@@ -23,7 +23,14 @@ const BlogDetail = ({ blog, error }) => {
 export async function getServerSideProps(context) {
   const { post_slug } = context.params;
   try {
-    const response = await fetch(`${API.BLOGS_DETAIL(post_slug)}`); // Adjust your API endpoint here
+    // console.log('BLOGS_DETAIL_domain : ', context);
+    const { req } = context;
+    const websiteDomain = req.headers['x-forwarded-host'] || DEFAULT_DOMAIN;
+  
+    // const finalDomain = '10.211.55.3';
+    const finalDomain = websiteDomain === 'localhost:3000' ? DEFAULT_DOMAIN : websiteDomain;
+    console.log('BLOGS_DETAIL_domain : ', finalDomain);
+    const response = await fetch(`${API.BLOGS_DETAIL(post_slug,finalDomain)}`); // Adjust your API endpoint here
     if (!response.ok) {
       throw new Error('Failed to fetch blog details');
     }

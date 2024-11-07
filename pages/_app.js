@@ -5,7 +5,7 @@ import Head from 'next/head';
 import React from 'react';
 import AppTemplate from './AppTemplate';
 import axios from 'axios';
-import { API } from '../Config';
+import { API, DEFAULT_DOMAIN } from '../Config';
 import App from 'next/app'; // Import the default App from Next.js
 
 const MyApp = ({ Component, pageProps, headerData, error }) => {
@@ -80,22 +80,17 @@ MyApp.getInitialProps = async (appContext) => {
   let headerData = null;
   let error = null;
   const { req } = appContext.ctx;
-  const websiteDomain = req.headers['x-forwarded-host'] || 'builderkonnect.com';
-  
-  // Determine the domain properly
-  // const isServer = !!appContext.ctx.req;
-  // const websiteDomain = isServer
-  //   ? appContext.ctx.req.headers.host // This gets the request host (e.g., localhost:3000)
-  //   : window.location.hostname; // This gets the host in the client-side environment
+  // console.log('Default domain',API);
+  const websiteDomain = req.headers['x-forwarded-host'] || (DEFAULT_DOMAIN);
 
-  // Use a fallback for the local development environment
   // const finalDomain = '10.211.55.3';
-  const finalDomain = websiteDomain === 'localhost:3000' ? 'builderkonnect.com' : websiteDomain;
+  const finalDomain = websiteDomain === 'localhost:3000' ? DEFAULT_DOMAIN : websiteDomain;
+  // const finalDomain = websiteDomain;
   console.log('finaldomain : ', finalDomain);
 
   try {
     const response = await axios.get(API.SEO_DETAIL(finalDomain));
-    // const response = await axios.get(API.SEO_DETAIL(finalDomain), {ß
+    // const response = await axios.get(API.SEO_DETAIL(finalDomain), {
     //   headers: {
     //     'Cache-Control': 'no-cache', // Ensures data isn't cached
     //   },

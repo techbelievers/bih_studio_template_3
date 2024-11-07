@@ -2,10 +2,11 @@
 import { NextResponse } from 'next/server';
 
 export function middleware(req) {
-  const host = req.headers.get('host') || 'localhost:3000'; 
-  const finalDomain = host === 'localhost:3000' ? 'builderkonnect.com' : host;
+  const host = req.headers.get('x-forwarded-host') || 'localhost:3000'; 
+  // const finalDomain = host === 'localhost:3000' ? 'builderkonnect.com' : host;
+  const finalDomain =  host;
 
-  console.log(finalDomain)
+  console.log('middleware : ',finalDomain);
   // Add the website domain to the request headers
   req.headers.set('x-website-domain', finalDomain);
 
