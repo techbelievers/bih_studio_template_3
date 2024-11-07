@@ -1,6 +1,9 @@
 # Enable the Rewrite Engine
 RewriteEngine On
 
+# Exclude paths that should not be rewritten to /AppTemplate/
+RewriteCond %{REQUEST_URI} !^/blogs/.*
+
 # Internally rewrite root requests to /AppTemplate/
 RewriteRule ^$ /AppTemplate/ [L]
 
