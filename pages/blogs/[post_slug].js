@@ -14,7 +14,7 @@ const BlogDetail = ({ blog, error }) => {
       <div className={styles.blogContent}>
         <div dangerouslySetInnerHTML={{ __html: blog.post_content }} />
       </div>
-      <a href="/AppTemplate/" className={styles.backLink}>Back to Blogs</a>
+      <a href="/" className={styles.backLink}>Back to Blogs</a>
     </div>
   );
 };
