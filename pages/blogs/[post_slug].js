@@ -1,47 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router'; // Use Next.js router
+import React from 'react';
 import { API } from '../../Config'; // Adjust the path as needed
 import styles from './BlogDetail.module.css'; // Ensure the path is correct
 
-const BlogDetail = () => {
-  const router = useRouter(); // Use Next.js router
-  const { post_slug } = router.query; // Get the post_slug from the URL
-  const [blog, setBlog] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-
-  useEffect(() => {
-    if (!post_slug) return; // Wait for post_slug to be available
-
-    const fetchBlogDetail = async () => {
-      try {
-        const response = await fetch(`${API.BLOGS_DETAIL(post_slug)}`); // Adjust your API call
-        if (!response.ok) {
-          throw new Error('Failed to fetch blog details');
-        }
-        const data = await response.json();
-        // Assuming the blog data is in data.blogs and you need to find the specific blog by slug
-        const foundBlog = data.blogs.find(blog => blog.post_slug === post_slug);
-        if (!foundBlog) {
-          throw new Error('Blog not found');
-        }
-        setBlog(foundBlog);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchBlogDetail();
-  }, [post_slug]);
-
-  if (loading) {
-    return <div className={styles.loading}>Loading...</div>;
-  }
-
+const BlogDetail = ({ blog, error }) => {
   if (error) {
-    return <div className={styles.error}>{error}</div>;
+    return <div className={styles.error}>Error: {error}</div>;
   }
 
   return (
@@ -55,5 +18,34 @@ const BlogDetail = () => {
     </div>
   );
 };
+
+// This function runs on the server side
+export async function getServerSideProps(context) {
+  const { post_slug } = context.params;
+  try {
+    const response = await fetch(`${API.BLOGS_DETAIL(post_slug)}`); // Adjust your API endpoint here
+    if (!response.ok) {
+      throw new Error('Failed to fetch blog details');
+    }
+    const data = await response.json();
+
+    // Assuming the API returns a single blog post object
+    const blog = data.blogs.find(blog => blog.post_slug === post_slug);
+
+    if (!blog) {
+      return {
+        notFound: true, // If blog post not found, return a 404 page
+      };
+    }
+
+    return {
+      props: { blog }, // Pass the blog data as props
+    };
+  } catch (error) {
+    return {
+      props: { error: error.message }, // Pass error message if fetching fails
+    };
+  }
+}
 
 export default BlogDetail;
