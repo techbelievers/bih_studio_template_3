@@ -39,20 +39,21 @@ const PropertyPriceTable = () => {
                         <th>Carpet Area (SQ.M)</th>
                         <th>Carpet Area (SQ.FT)</th>
                         <th>Price</th>
-                        <th>Price Tag</th>
+                        {/* <th>Price Tag</th> */}
                     </tr>
                 </thead>
                 <tbody>
                     {propertyPrices.map((price) => (
                         <tr key={price.id}>
-                            <td>{price.property_type}</td>
+                            <td className={styles.noWrap}>{price.property_type}</td>
                             <td>{price.property_tower}</td>
-                            <td>{price.property_carpet_sqm}</td>
+                            {/* <td>{price.property_carpet_sqm}</td> */}
+                            <td>{parseFloat(price.property_carpet_sqm).toFixed(2)}</td>
                             <td>{price.property_carpet_sqft}</td>
                             <td>
-                                {price.property_price} {price.price_unit}
+                                {price.property_price} {price.price_unit} - {price.price_tag}
                             </td>
-                            <td>{price.price_tag}</td>
+                            {/* <td>{price.price_tag}</td> */}
                         </tr>
                     ))}
                 </tbody>
