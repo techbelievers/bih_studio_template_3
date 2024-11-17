@@ -1,5 +1,5 @@
-// const ENVIRONMENT = "LOCAL";
 const ENVIRONMENT = "PRODUCTION";
+// const ENVIRONMENT = "PRODUCTION";
 
 
 
@@ -11,7 +11,7 @@ if (ENVIRONMENT === "PRODUCTION") {
   DEFAULT_DOMAIN = "builderkonnect.com";  // Production domain
 } else {
   BASE_URL = 'https://www.buyindiahomes.in/api';  // Local development URL (you can use localhost if required)
-  DEFAULT_DOMAIN = "builderkonnect.com";  // Local domain (for consistency)
+  DEFAULT_DOMAIN = "smp-amberwoodrahatani.com";  // Local domain (for consistency)
 }
 
 

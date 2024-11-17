@@ -61,6 +61,7 @@ const Header = () => {
           <li><a href="#amenities">AMENITIES</a></li>
           <li><a href="#layouts">LAYOUTS</a></li>
           <li><a href="#location">LOCATION</a></li>
+          <li><a href="#blogs">BLOGS</a></li>
         </ul>
       </nav>
     </header>

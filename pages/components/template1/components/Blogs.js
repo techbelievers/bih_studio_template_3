@@ -38,7 +38,7 @@ const Blogs = () => {
   }, []);
 
   return (
-    <div className={styles.blogsContainer}>
+    <div id="blogs" className={styles.blogsContainer}>
       <div className={styles.blogsHeading}>
         <h2>{heading}</h2>
         <h3>{subheading}</h3>

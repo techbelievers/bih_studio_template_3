@@ -51,7 +51,7 @@ const PropertyPriceTable = () => {
                             <td>{parseFloat(price.property_carpet_sqm).toFixed(2)}</td>
                             <td>{price.property_carpet_sqft}</td>
                             <td>
-                                {price.property_price} {price.price_unit} - {price.price_tag}
+                                {price.property_price} {price.price_unit} - {price.price_tag}*
                             </td>
                             {/* <td>{price.price_tag}</td> */}
                         </tr>
