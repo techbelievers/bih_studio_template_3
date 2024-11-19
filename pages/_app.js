@@ -83,8 +83,8 @@ MyApp.getInitialProps = async (appContext) => {
   // console.log('Default domain',API);
   const websiteDomain = req.headers['x-forwarded-host'] || (DEFAULT_DOMAIN);
 
-  const finalDomain = 'smp-amberwoodrahatani.com';
-  // const finalDomain = websiteDomain === 'localhost:3000' ? DEFAULT_DOMAIN : websiteDomain;
+  // const finalDomain = 'smp-amberwoodrahatani.com';
+  const finalDomain = websiteDomain === 'localhost:3000' ? DEFAULT_DOMAIN : websiteDomain;
   // const finalDomain = websiteDomain;
   console.log('finaldomain : ', finalDomain);
 
