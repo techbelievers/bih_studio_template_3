@@ -4,6 +4,7 @@
   align-items: center;
   padding: 20px;
   flex-wrap: wrap; /* Ensures items wrap on smaller screens */
+  /* height: 300px; */
 }
 
 .template1Card {
@@ -11,6 +12,7 @@
   border-radius: 10px;
   padding: 10px;
   text-align: center;
+  height: 150px;
   width: 100%; /* Full width on small screens */
   max-width: 400px; /* Limits the width on larger screens */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -19,7 +21,7 @@
 
 .template1Card h3 {
   margin-top: 10px;
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
 
 .template1Card p {

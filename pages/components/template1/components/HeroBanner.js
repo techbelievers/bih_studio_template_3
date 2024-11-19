@@ -39,6 +39,8 @@ const HeroBanner = () => {
           backgroundImage: selectedImage,
           heading: data.property_name,
           description: data.hero_banner_subheading,
+          location: data.location,
+          sublocation: data.sublocation,
         });
       } catch (error) {
         setError(error);
@@ -97,7 +99,9 @@ const HeroBanner = () => {
       <div className={styles.heroContent}>
         <div className={styles.heroText}>
           <h1>{heroData.heading}</h1>
-          <p>{heroData.description}</p>
+          <h3>{heroData.sublocation}</h3>
+          <h3>{heroData.location}</h3>
+          {/* <p>{heroData.description}</p> */}
           <div onClick={() => setIsPopupOpen(true)}>
             <a href="#contact-form" className={styles.enquireNow}>Enquire Now</a>
           </div>

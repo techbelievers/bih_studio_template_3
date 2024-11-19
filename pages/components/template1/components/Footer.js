@@ -51,13 +51,13 @@ const Footer = () => {
 
                     <div className={styles.footerLogo}>
                         <img src={`${g_setting.logo}`} alt="Company Logo" />
-                        {g_setting.footer_agent_rera && 
+                        {/* {g_setting.footer_agent_rera && 
                             <p className={styles.footerAgentRera}>{g_setting.footer_agent_rera}</p>
-                        }
+                        } */}
                     </div>
 
                     <div className={styles.footerContact}>
-                        <h2>Contact Us</h2>
+                        <h2> Contact Us</h2>
                         {/* <p>{g_setting.footer_address}</p> */}
                         <p>{g_setting.footer_phone}</p>
                         {/* <p>{g_setting.footer_email}</p> */}
@@ -68,6 +68,9 @@ const Footer = () => {
                     {g_setting.footer_disclamer && 
                         <p className={styles.footerDisclaimer}>{g_setting.footer_disclamer}</p>
                     }
+                     {g_setting.footer_agent_rera && 
+                            <p className={styles.footerAgentRera}>{ "Agent MahaRera : "+ g_setting.footer_agent_rera}</p>
+                        }
                     <p className={styles.footerCopyright}>{g_setting.footer_copyright}</p>
                 </div>
             </div>

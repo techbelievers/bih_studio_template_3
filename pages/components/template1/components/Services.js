@@ -29,16 +29,16 @@ const Services = () => {
           {/* First box with logo */}
           <div className={`${styles.template1Card} ${styles.template1BusinessStrategy}`}>
             <div className={styles.template1Icon}>
-              <img src={headerData.logo} alt="Logo" style={{ maxWidth: '100px' }} />
+              <img src={headerData.logo} alt="Logo" style={{ maxWidth: '200px' , borderRadius: '10px'}} />
             </div>
-            <h3>{headerData.property_name}</h3>
-            <p>Welcome to {headerData.builder_name}</p>
+            {/* <h3>{headerData.property_name}</h3> */}
+            <h3>{headerData.builder_name}</h3>
           </div>
 
           {/* Second box with location */}
           <div className={`${styles.template1Card} ${styles.template1LocalMarketing}`}>
             <div className={styles.template1Icon}>🗺️</div> {/* Static icon */}
-            <h3>{headerData.location},<br /> {headerData.sublocation}</h3>
+            <h3>{headerData.sublocation}<br /> {headerData.location}</h3>
           </div>
 
           {/* Third box with property type and price range */}

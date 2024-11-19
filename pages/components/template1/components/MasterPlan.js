@@ -7,6 +7,7 @@ const MasterPlan = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [heading, setHeading] = useState('');
 
   useEffect(() => {
     const fetchMasterPlansData = async () => {
@@ -17,6 +18,9 @@ const MasterPlan = () => {
         }
         const data = await response.json();
         setMasterPlansData(data.master_layout); // Adjust based on actual API response
+        // setLoading(false);
+        setHeading(data.page[0].heading);
+        // setHeading(data.page[0].heading);
       } catch (error) {
         console.error('Error fetching master plans data:', error);
         setError('Failed to load master plans.');
@@ -42,7 +46,7 @@ const MasterPlan = () => {
   return (
     <div className={`${styles.template1} ${styles.masterplanContainer}`}>
       <div className={styles.masterplanHeader}>
-        <h2 className={styles.masterplanHeading}>Master Plan</h2>
+        <h2 className={styles.masterplanHeading}>{heading}</h2>
       </div>
       <div className={styles.masterplanGrid}>
         {masterPlansData.map(plan => (

@@ -46,7 +46,7 @@ const MyApp = ({ Component, pageProps, headerData, error }) => {
         <meta property="og:type" content={headerData.data.og_type} />
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+        <link rel="icon" href={headerData.data.favicon} />
         <meta
         name="robots"
         content={headerData.data.status === 'Active' ? 'index, follow' : 'noindex, nofollow'}
