@@ -83,6 +83,12 @@ const HeroBanner = () => {
     }
   };
 
+  const closeThankYou = () => {
+    setSubmitSuccess(false);
+    // onClose();
+  };
+
+
   if (loading) {
     return <div className={styles.heroBanner}>Loading...</div>;
   }
@@ -92,6 +98,18 @@ const HeroBanner = () => {
   }
 
   return (
+      <>
+    {submitSuccess && (
+      <div className={styles.thankYouPopup}>
+        <div className={styles.thankYouContent}>
+          <h2>Thank You!</h2>
+          <p>Your message has been sent successfully. We will get back to you shortly.</p>
+          <button onClick={closeThankYou}>Close</button>
+        </div>
+      </div>
+    )}
+    {!submitSuccess && (
+
     <div 
       className={styles.heroBanner} 
       style={{ backgroundImage: `url(${heroData.backgroundImage})` }}
@@ -138,18 +156,6 @@ const HeroBanner = () => {
             </div>
 
             <div className={styles.formGroup}>
-              <label htmlFor="email_id">Email:</label>
-              <input 
-                type="email" 
-                id="email_id" 
-                name="email_id" 
-                value={formData.email_id} 
-                onChange={handleChange} 
-                required 
-              />
-            </div>
-
-            <div className={styles.formGroup}>
               <label htmlFor="phone_number">Phone Number:</label>
               <input 
                 type="tel" 
@@ -160,6 +166,19 @@ const HeroBanner = () => {
                 required 
               />
             </div>
+            <div className={styles.formGroup}>
+              <label htmlFor="email_id">Email:</label>
+              <input 
+                type="email" 
+                id="email_id" 
+                name="email_id" 
+                value={formData.email_id} 
+                onChange={handleChange} 
+                 
+              />
+            </div>
+
+        
 
             <div className={styles.formGroup}>
               <label htmlFor="message">Message:</label>
@@ -168,7 +187,7 @@ const HeroBanner = () => {
                 name="message" 
                 value={formData.message} 
                 onChange={handleChange} 
-                required 
+                 
               ></textarea>
             </div>
             
@@ -180,7 +199,10 @@ const HeroBanner = () => {
       </div>
       {isPopupOpen && <EnquirePopup onClose={() => setIsPopupOpen(false)} />}
     </div>
+    )}
+    </>
   );
+
 };
 
 export default HeroBanner;
