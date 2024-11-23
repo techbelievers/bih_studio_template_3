@@ -18,7 +18,7 @@
   
   .adImage {
     max-width: 100%;
-    max-height: 200px;
+    max-height: 600px;
     object-fit: cover; /* Prevents stretching */
     border-radius: 10px;
     transition: transform 0.3s, box-shadow 0.3s;
@@ -35,5 +35,48 @@
     .adImage {
       max-width: 90%; /* Adjusts to fit smaller devices */
     }
+  }
+  
+
+
+.Heading {
+    font-size: 32px; /* Slightly larger for emphasis */
+    margin-bottom: 10px;
+    color: #2c3e50; /* Darker, modern color */
+    font-family: 'Roboto', sans-serif; /* Clean sans-serif font */
+    font-weight: 600; /* Semi-bold weight for emphasis */
+    letter-spacing: 1px; /* Slightly increased letter spacing */
+    text-transform: capitalize; /* Capitalize for a refined look */
+  }
+
+  .Container {
+    padding: 40px;
+    text-align: center;
+    background-color: #ffffff; /* Light background for a modern feel */
+    margin: 40px 0;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Softer shadow */
+  }
+
+
+  .heading {
+    font-size: 2rem; /* Adjust for desired size */
+    font-weight: 700;
+    color: #333; /* Dark gray for better readability */
+    text-align: center; /* Center-align the heading */
+    margin: 20px 0; /* Add spacing above and below the heading */
+    text-transform: uppercase; /* Make the text uppercase for emphasis */
+    letter-spacing: 2px; /* Add some spacing between letters */
+    position: relative;
+  }
+  
+
+  
+  .heading::before {
+    left: calc(50% - 60px); /* Position the line to the left of the heading */
+  }
+  
+  .heading::after {
+    right: calc(50% - 60px); /* Position the line to the right of the heading */
   }
   

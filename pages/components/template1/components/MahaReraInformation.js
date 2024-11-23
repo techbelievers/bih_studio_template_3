@@ -44,6 +44,12 @@ const MahareraInformation = () => {
     return <div>No Maharera information available.</div>;
   }
 
+  const formatCompletionDate = (dateString) => {
+    if (!dateString) return 'N/A';
+    const date = new Date(dateString);
+    return date.toLocaleString('default', { month: 'long', year: 'numeric' }); // Format: "Month Year"
+  };
+
   return (
     <div className={styles.maharera_info_container}>
       <h2>Maharera Information</h2>
@@ -60,7 +66,7 @@ const MahareraInformation = () => {
             </div>
             <div className={styles.rera_info_item}><strong>Maharera:</strong> {reraItem.rera_id}</div>
             <div className={styles.rera_info_item}><strong>Phase Name:</strong> {reraItem.phase_name}</div>
-            <div className={styles.rera_info_item}><strong>Completion Date:</strong> {reraItem.completion_date}</div>
+            <div className={styles.rera_info_item}><strong>Completion Date:</strong> {formatCompletionDate(reraItem.completion_date)}</div>
             <div className={styles.rera_info_item}><strong>Total Area:</strong> {reraItem.total_area} sqft</div>
             <div className={styles.rera_info_item}><strong>Total Acre:</strong> {reraItem.total_acre}</div>
             <div className={styles.rera_info_item}><strong>Total Towers:</strong> {reraItem.total_tower}</div>

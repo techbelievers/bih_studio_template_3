@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import Slider from 'react-slick';
-import { API } from '../../../../Config'; // Adjust the path to your config.js file
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { API } from '../../../../Config'; // Adjust the path
 import styles from '../css/LocationHighlights.module.css'; // Ensure the path is correct
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 const LocationHighlights = () => {
   const [locationData, setLocationData] = useState([]);
+  const [heading, setHeading] = useState('');
 
   useEffect(() => {
     const fetchLocationData = async () => {
@@ -14,6 +17,7 @@ const LocationHighlights = () => {
         const response = await fetch(API.LOCATION_ADVANTAGES());
         const data = await response.json();
         setLocationData(data.location_advantages);
+        setHeading(data.page[0]?.heading || 'Location Advantages');
       } catch (error) {
         console.error('Error fetching location advantages data:', error);
       }
@@ -22,45 +26,40 @@ const LocationHighlights = () => {
     fetchLocationData();
   }, []);
 
-  const sliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    centerMode: true, // Optional: enable center mode
-    centerPadding: '20px', // Optional: add padding to center items
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
-  };
-  
-
   return (
     <div className={styles.locationHighlightsContainer}>
+      <h2 className={styles.heading}>{heading}</h2>
       {locationData.length > 0 ? (
-        <Slider {...sliderSettings}>
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          navigation
+          pagination={{ clickable: true }}
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          loop
+          breakpoints={{
+            320: { slidesPerView: 1, spaceBetween: 10 },
+            768: { slidesPerView: 2, spaceBetween: 20 },
+            1024: { slidesPerView: 3, spaceBetween: 30 },
+          }}
+          className={styles.slider}
+        >
           {locationData.map((item) => (
-            <div key={item.id} className={styles.locationHighlightItem}>
-              <h3>{item.location}</h3>
-              <p>{item.distance}</p>
-              <p>{item.description}</p>
-            </div>
+            <SwiperSlide key={item.id} className={styles.slide}>
+              <div className={styles.slideContent}>
+                <div className={styles.imageContainer}>
+                  <img src={item.location_image} alt={item.location} className={styles.image} />
+                </div>
+                <div className={styles.textContent}>
+                  <h3 className={styles.locationName}>{item.location}</h3>
+                  <p className={styles.distance}>{item.distance}</p>
+                  <p className={styles.description}>{item.description}</p>
+                </div>
+              </div>
+            </SwiperSlide>
           ))}
-        </Slider>
+        </Swiper>
       ) : (
-        <p>Loading location highlights...</p>
+        <p className={styles.loadingText}>Loading location highlights...</p>
       )}
     </div>
   );

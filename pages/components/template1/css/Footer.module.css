@@ -46,6 +46,7 @@
 .footerLogo img {
   max-width: 150px; /* Adjust size as needed */
   height: auto;
+  border-radius: 10px;
 }
 
 .footerAgentRera {

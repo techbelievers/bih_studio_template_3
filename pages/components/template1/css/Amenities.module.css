@@ -59,13 +59,13 @@
 }
 
 .amenityName {
-  position: absolute;
+  /* position: absolute; */
   bottom: 10px;
   left: 10px;
   background: rgba(0, 0, 0, 0.6);
   color: #fff;
   padding: 8px 12px;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   font-size: 18px;
   font-weight: 500; /* Slightly lighter weight for better readability */
 }

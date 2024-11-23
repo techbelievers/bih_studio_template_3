@@ -29,22 +29,38 @@ const Services = () => {
           {/* First box with logo */}
           <div className={`${styles.template1Card} ${styles.template1BusinessStrategy}`}>
             <div className={styles.template1Icon}>
-              <img src={headerData.logo} alt="Logo" style={{ maxWidth: '200px' , borderRadius: '10px'}} />
+              <img src={headerData.logo} alt="Logo" style={{ maxWidth: '200px', borderRadius: '10px' }} />
             </div>
-            {/* <h3>{headerData.property_name}</h3> */}
             <h3>{headerData.builder_name}</h3>
           </div>
 
           {/* Second box with location */}
           <div className={`${styles.template1Card} ${styles.template1LocalMarketing}`}>
-            <div className={styles.template1Icon}>🗺️</div> {/* Static icon */}
-            <h3>{headerData.sublocation}<br /> {headerData.location}</h3>
+            <img
+              src="https://www.buyindiahomes.in/location2.png"
+              alt="Location Icon"
+              style={{ width: '50px', height: '50px' }}
+            />
+            <h3>
+              {headerData.sublocation}
+              <br /> {headerData.location}
+            </h3>
           </div>
 
-          {/* Third box with property type and price range */}
-          <div className={`${styles.template1Card} ${styles.template1SocialMedia}`}>
-            <div className={styles.template1Icon}>🏢</div> {/* Static icon */}
-            <h3>{headerData.property_type_price_range_text}</h3>
+          {/* Redesigned third box */}
+          <div className={`${styles.template1Card} ${styles.template1PropertyDetails}`}>
+            <div className={styles.propertyDetailsContent}>
+              <img
+                src="https://www.buyindiahomes.in/apartment_2.png"
+                alt="Property Icon"
+                style={{ width: '40px', borderRadius: '50%' }}
+              />
+              <h3>{headerData.property_type_price_range_text}</h3>
+              <h6 style={{ margin: '5px 0' }}>{headerData.property_area_min_max}</h6>
+              <p className={styles.updatedText}>
+                <em>Last Updated:</em> {headerData.property_last_updated}
+              </p>
+            </div>
           </div>
         </>
       ) : (

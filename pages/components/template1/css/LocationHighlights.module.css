@@ -1,50 +1,113 @@
+/* Container Styles */
 .locationHighlightsContainer {
-  padding: 20px;
-  /* width: 100%; */
-  max-width: 1200px; /* Optional: set a max width */
-  background-color: #ffffff;
+  padding: 60px 5%;
+  background-color: #f4f4f4;
+  border-radius: 10px;
   text-align: center;
-  margin: 0 auto; /* Center the container */
 }
 
-.locationHighlightsHeading {
-  font-size: 36px;
-  font-family: 'Playfair Display', serif; /* Use an elegant font */
-  color: #28a745; /* Dark, elegant color */
-  margin-bottom: 20px; /* Space below the heading */
+.heading {
+  font-size: 2.5rem;
+  color: #222;
+  font-weight: bold;
+  margin-bottom: 40px;
 }
 
-.locationHighlightItem {
-  background-color: #ffffff; /* Light background for contrast */
+/* Swiper Styles */
+.slider {
+  width: 100%;
+}
+
+.slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slideContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.slideContent:hover {
+  transform: scale(1.05);
+}
+
+/* Image Container */
+.imageContainer {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.4s ease;
+}
+
+.slideContent:hover .image {
+  transform: scale(1.1);
+}
+
+/* Text Content */
+.textContent {
   padding: 20px;
   text-align: center;
-  border: 1px solid #3fe658; /* Subtle border */
-  border-radius: 8px;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow */
-  margin: 10px; /* Space between items */
-  box-sizing: border-box; /* Include padding and border in width calculations */
-  height: 200px; /* Ensure auto height */
 }
 
-.locationHighlightItem:hover {
-  transform: translateY(-5px); /* Lift effect on hover */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+.locationName {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
 }
 
-.slick-slide {
-  margin: 0 10px; /* Space between slides */
+.distance {
+  font-size: 1.2rem;
+  color: #777;
+  margin-bottom: 15px;
 }
 
-@media (max-width: 1024px) {
-  .locationHighlightItem {
-      width: calc(50% - 20px); /* Adjust width for tablets */
-  }
+.description {
+  font-size: 1rem;
+  color: #555;
 }
 
-@media (max-width: 768px) {
-  .locationHighlightItem {
-      width: 100%; /* Full width for mobile */
-      margin: 10px 0; /* Vertical spacing */
-  }
+/* Loading Text */
+.loadingText {
+  font-size: 1.5rem;
+  color: #888;
+  margin-top: 20px;
+}
+
+/* Swiper Navigation Buttons */
+.swiper-button-prev,
+.swiper-button-next {
+  color: #333;
+  transition: color 0.3s;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  color: #555;
+}
+
+/* Swiper Pagination */
+.swiper-pagination-bullet {
+  background: #888;
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background: #333;
 }

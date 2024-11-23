@@ -62,7 +62,8 @@ const UnitLayout = () => {
           <div className={styles.unitDetails}>
             <h3>{selectedUnitData.unit_layout_heading}</h3>
             <p>Carpet Area: {selectedUnitData.unit_layout_carpet_area}</p>
-            <p>Price: ₹{Number(selectedUnitData.unit_layout_price).toLocaleString()}</p>
+            {/* <p>Price: ₹{Number(selectedUnitData.unit_layout_price).toLocaleString()}</p> */}
+            <p>Price: ₹ {selectedUnitData.unit_layout_price }</p>
           </div>
         </div>
       )}

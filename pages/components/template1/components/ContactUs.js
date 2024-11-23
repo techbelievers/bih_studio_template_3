@@ -77,9 +77,9 @@ const ContactUs = () => {
                     <h2 className={styles.tagline}>We'd Love to Hear from You</h2>
                     <p className={styles.description} dangerouslySetInnerHTML={{ __html: data.contact_us.detail }}></p>
                     <div className={styles.info}>
-                        <p><strong>Address:</strong> {data.contact_us.contact_address}</p>
+                        {/* <p><strong>Address:</strong> {data.contact_us.contact_address}</p> */}
                         <p><strong>Phone:</strong> {data.contact_us.contact_phone}</p>
-                        <p><strong>Email:</strong> {data.contact_us.contact_email}</p>
+                        {/* <p><strong>Email:</strong> {data.contact_us.contact_email}</p> */}
                     </div>
                 </div>
 

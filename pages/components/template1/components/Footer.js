@@ -36,7 +36,7 @@ const Footer = () => {
                     <div className={styles.footerSocialIcons}>
                         <h2 className={styles.footerFollowUs}>Follow Us</h2>
                         {social_icons.map(icon => (
-                            <a key={icon.id} href={icon.social_icon} target="_blank" rel="noopener noreferrer">
+                            <a key={icon.id} href={icon.social_url} target="_blank" rel="noopener noreferrer">
                                 <FontAwesomeIcon icon={
                                     icon.social_icon === 'fab fa-facebook-f' ? faFacebookF : 
                                     icon.social_icon === 'fab fa-twitter' ? faTwitter : 

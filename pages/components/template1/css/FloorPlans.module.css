@@ -54,14 +54,14 @@
 
 /* Layout name styles */
 .layoutName {
-  position: absolute;
+  /* position: absolute; */
   bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
+  /* left: 50%; */
+  /* transform: translateX(-50%); */
   background: rgba(0, 0, 0, 0.6);
   color: #fff;
   padding: 5px 10px;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   font-size: 16px;
   text-align: center;
 }

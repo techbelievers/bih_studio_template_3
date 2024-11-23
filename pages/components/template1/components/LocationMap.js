@@ -40,7 +40,7 @@ const LocationMap = () => {
 
   return (
     <div id="location" className={styles.locationMapContainer}>
-      <h2>{mapData.heading} & {heading}</h2>
+      <h2>{mapData.heading} </h2>
       {mapData.subheading && <h4>{mapData.subheading}</h4>}
       <div className={styles.locationMap} dangerouslySetInnerHTML={{ __html: mapData.map }}></div>
     </div>
