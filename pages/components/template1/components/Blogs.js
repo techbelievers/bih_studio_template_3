@@ -24,6 +24,13 @@ const Blogs = () => {
     fetchBlogsData();
   }, []);
 
+  const truncateText = (text, limit = 100) => {
+    if (text.length > limit) {
+      return text.slice(0, limit) + '...'; // Add ellipsis if text exceeds limit
+    }
+    return text;
+  };
+
   useEffect(() => {
     const interval = setInterval(() => {
       if (sliderRef.current) {
@@ -49,7 +56,7 @@ const Blogs = () => {
             <img src={blog.post_photo} alt={blog.post_title} className={styles.blogImage} />
             <div className={styles.blogContent}>
               <h3>{blog.post_title}</h3>
-              <p>{blog.post_content_short}</p>
+              <p>{truncateText(blog.post_content_short, 150)}</p>
               <a href={`/blogs/${blog.post_slug}`} className={styles.readMore}>Read More</a>
             </div>
           </div>
