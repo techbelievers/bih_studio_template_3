@@ -68,7 +68,24 @@ const ContactUs = () => {
         return <p>Loading...</p>; // Display loading message
     }
 
+    const closeThankYou = () => {
+        setSubmitSuccess(false);
+        // onClose();
+      };
+    
+
     return (
+        <>
+        {submitSuccess && (
+          <div className={styles.thankYouPopup}>
+            <div className={styles.thankYouContent}>
+              <h2>Thank You!</h2>
+              <p>Your message has been sent successfully. We will get back to you shortly.</p>
+              <button onClick={closeThankYou}>Close</button>
+            </div>
+          </div>
+        )}
+        {!submitSuccess && (
         <section className={styles.contactUs}>
             <div className={styles.container}>
                 {/* Contact Details */}
@@ -107,16 +124,7 @@ const ContactUs = () => {
                             onChange={handleChange}
                             required
                         />
-                        <input
-                            type="email"
-                            name="email_id"
-                            className={styles.input}
-                            placeholder="Email*"
-                            value={formData.email_id}
-                            onChange={handleChange}
-                            required
-                        />
-                        <input
+                         <input
                             type="tel"
                             name="phone_number"
                             className={styles.input}
@@ -125,13 +133,21 @@ const ContactUs = () => {
                             onChange={handleChange}
                             required
                         />
+                        <input
+                            type="email"
+                            name="email_id"
+                            className={styles.input}
+                            placeholder="Email"
+                            value={formData.email_id}
+                            onChange={handleChange} 
+                        />
+                       
                         <textarea
                             name="message"
                             className={styles.textarea}
-                            placeholder="Your Message*"
+                            placeholder="Your Message"
                             value={formData.message}
                             onChange={handleChange}
-                            required
                         ></textarea>
                         <button type="submit" className={styles.button} disabled={isSubmitting}>
                             {isSubmitting ? 'Sending...' : 'Send Message'}
@@ -140,6 +156,8 @@ const ContactUs = () => {
                 </div>
             </div>
         </section>
+        )}
+        </>
     );
 };
 
