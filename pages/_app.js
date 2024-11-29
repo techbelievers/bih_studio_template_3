@@ -76,6 +76,7 @@ const MyApp = ({ Component, pageProps, headerData, error ,propertyDetails , doma
 {/* Main content with <h1> tag for SEO */}
 <main>
         <h1 className="hidden-h1">{title}</h1> {/* Main heading of the page */}
+        <h2 className="hidden-h1">{description}</h2>
         {/* Pass propertyDetails as a prop to the component */}
         {Component.name === "Home" ? (
           <AppTemplate propertyDetails={propertyDetails} />
