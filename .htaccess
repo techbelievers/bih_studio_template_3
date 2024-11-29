@@ -1,24 +1,17 @@
 # Enable the Rewrite Engine
 RewriteEngine On
 
-# Force HTTPS and remove "www"
-# RewriteCond %{HTTPS} !=on [OR]
-# RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-# RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
 
-# Redirect any trailing slashes to non-slash version (optional)
-# RewriteCond %{REQUEST_FILENAME} !-d
-# RewriteCond %{REQUEST_URI} .*/$
-# RewriteRule ^(.*)/$ https://%{HTTP_HOST}/$1 [L,R=301]
+# Redirect www to non-www
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [L,R=301]
+
 
 # Exclude paths that should not be rewritten to /AppTemplate/
 RewriteCond %{REQUEST_URI} !^/blogs/.*
 
 # Internally rewrite root requests to /AppTemplate/
 RewriteRule ^$ /AppTemplate/ [L]
-# Internally rewrite root requests to /AppTemplate/ without showing /AppTemplate/ in the URL
-# RewriteRule ^$ /AppTemplate/ [L]
-# RewriteRule ^(?!AppTemplate/)(.*)$ /AppTemplate/$1 [L]
 
 # Redirect all requests to your Next.js app running on port 3000
 RewriteRule ^(.*)$ http://localhost:3000/$1 [P,L]
