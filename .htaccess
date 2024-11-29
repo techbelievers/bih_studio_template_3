@@ -25,3 +25,8 @@ Options -MultiViews
 
 # Rewrite .var files to .html
 RewriteRule ^(.*)\.var$ $1.html [R=301,L]
+
+# Redirect non-www to www
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^([^www\.]+)\.(.+)$ [NC]
+RewriteRule ^ http://www.%1.%2%{REQUEST_URI} [L,R=301]
