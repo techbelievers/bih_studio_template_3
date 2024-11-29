@@ -3,7 +3,7 @@ import { API } from '../../../../Config';
 import styles from '../css/MasterPlan.module.css';
 
 const MasterPlan = () => {
-  const [masterPlansData, setMasterPlansData] = useState([]);
+   const [masterPlansData, setMasterPlansData] = useState([]); 
   const [selectedImage, setSelectedImage] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -17,7 +17,7 @@ const MasterPlan = () => {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        setMasterPlansData(data.master_layout); // Adjust based on actual API response
+        setMasterPlansData(data.master_layout || []); // Adjust based on actual API response
         // setLoading(false);
         setHeading(data.page[0].heading);
         // setHeading(data.page[0].heading);
@@ -43,8 +43,12 @@ const MasterPlan = () => {
   if (loading) return <div>Loading master plans...</div>;
   if (error) return <div>{error}</div>;
 
+  if (masterPlansData.length === 0) {
+    return null; // Render a message if data is empty
+ }
+
   return (
-    <div className={`${styles.template1} ${styles.masterplanContainer}`}>
+   <div className={`${styles.template1} ${styles.masterplanContainer}`}>
       <div className={styles.masterplanHeader}>
         <h2 className={styles.masterplanHeading}>{heading}</h2>
       </div>
@@ -61,7 +65,7 @@ const MasterPlan = () => {
           </div>
         ))}
       </div>
-
+      
       {selectedImage && (
         <div className={styles.fullscreenOverlay} onClick={closeModal}>
           <div className={styles.fullscreenContent}>

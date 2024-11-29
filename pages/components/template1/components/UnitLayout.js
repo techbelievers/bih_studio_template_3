@@ -38,6 +38,12 @@ const UnitLayout = () => {
     (unit) => unit.layout_name === selectedUnit
   );
 
+
+  if (unitLayoutData.length === 0) {
+    return null; // Render a message if data is empty
+ }
+
+
   return (
     <div id="layouts" className={styles.unitLayout}>
       <h2 className={styles.unitLayoutHeading}>{heading}</h2>

@@ -30,6 +30,11 @@ const FloorPlans = () => {
     setSelectedImage(null);
   };
 
+  if (floorPlansData.length === 0) {
+    return null; // Render a message if data is empty
+ }
+
+
   return (
     <div className={styles.floorplansContainer}>
       <div className={styles.floorplansHeader}>

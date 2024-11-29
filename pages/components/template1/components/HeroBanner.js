@@ -97,6 +97,10 @@ const HeroBanner = () => {
     return <div className={styles.heroBanner}>Error loading hero banner: {error.message}</div>;
   }
 
+  const sublocationDisplay = heroData && heroData.sublocation !== 'Default Sublocation'
+    ? heroData.sublocation
+    : '';
+
   return (
       <>
     {submitSuccess && (
@@ -117,7 +121,7 @@ const HeroBanner = () => {
       <div className={styles.heroContent}>
         <div className={styles.heroText}>
           <h1>{heroData.heading}</h1>
-          <h3>{heroData.sublocation}</h3>
+          <h3>{sublocationDisplay}</h3>
           <h3>{heroData.location}</h3>
           {/* <p>{heroData.description}</p> */}
           <div onClick={() => setIsPopupOpen(true)}>
