@@ -1,5 +1,5 @@
 // pages/sitemap.xml.js
-import { API } from '../Config'; // Adjust the path as needed
+import { API , DEFAULT_DOMAIN } from '../Config'; // Adjust the path as needed
 
 const Sitemap = () => {
   return null; // This component doesn't render anything
