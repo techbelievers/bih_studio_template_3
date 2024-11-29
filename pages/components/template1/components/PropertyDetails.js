@@ -19,7 +19,7 @@ const PropertyDetails = ({ propertyDetails, error }) => {
 
   return (
     <div id="about" className={styles.property_details_section}>
-      <h1 className={styles.property_title}>{propertyDetails.property_name}</h1>
+      <h2 className={styles.property_title}>{propertyDetails.property_name}</h2>
       <div
         className={styles.property_description}
         dangerouslySetInnerHTML={{

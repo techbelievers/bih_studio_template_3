@@ -90,7 +90,7 @@ const ContactUs = () => {
             <div className={styles.container}>
                 {/* Contact Details */}
                 <div className={styles.details}>
-                    <h1 className={styles.title}>{data.contact_us.name}</h1>
+                    <h2 className={styles.title}>{data.contact_us.name}</h2>
                     <h2 className={styles.tagline}>We'd Love to Hear from You</h2>
                     <p className={styles.description} dangerouslySetInnerHTML={{ __html: data.contact_us.detail }}></p>
                     <div className={styles.info}>
