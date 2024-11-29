@@ -1,5 +1,5 @@
-const ENVIRONMENT = "LOCAL";
-// const ENVIRONMENT = "PRODUCTION";
+// const ENVIRONMENT = "LOCAL";
+const ENVIRONMENT = "PRODUCTION";
 
 
 
