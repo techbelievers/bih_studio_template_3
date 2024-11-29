@@ -70,9 +70,21 @@ const MyApp = ({ Component, pageProps, headerData, error ,propertyDetails , doma
         />
       </Head>
 
- {/* Pass propertyDetails as a prop to the component */}
- {Component.name === "Home" ? <AppTemplate propertyDetails={propertyDetails} /> : <Component {...pageProps} propertyDetails={propertyDetails} />}
-      {/* {Component.name === "Home" ? <AppTemplate /> : <Component {...pageProps} />} */}
+
+ {/* {Component.name === "Home" ? <AppTemplate propertyDetails={propertyDetails} /> : <Component {...pageProps} propertyDetails={propertyDetails} />} */}
+
+{/* Main content with <h1> tag for SEO */}
+<main>
+        <h1 className="hidden-h1">{title}</h1> {/* Main heading of the page */}
+        {/* Pass propertyDetails as a prop to the component */}
+        {Component.name === "Home" ? (
+          <AppTemplate propertyDetails={propertyDetails} />
+        ) : (
+          <Component {...pageProps} propertyDetails={propertyDetails} />
+        )}
+      </main>
+
+
     </>
   );
 };
