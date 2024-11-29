@@ -33,3 +33,14 @@ Options -MultiViews
 RewriteRule ^(.*)\.var$ $1.html [R=301,L]
 
 
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  
+  # Images: Cache for 1 year
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+</IfModule>
