@@ -16,7 +16,7 @@ export const getServerSideProps = async ({ req ,res }) => {
   // const finalDomain = 'smp-amberwoodrahatani.com';
   const finalDomain = websiteDomain === 'localhost:3000' ? DEFAULT_DOMAIN : websiteDomain;
 
-  const response = await fetch(API.BLOGS(finalDomain)); 
+  const response = await fetch(API.GET_BLOG(finalDomain)); 
 
   // Check if response is successful
   if (!response.ok) {
