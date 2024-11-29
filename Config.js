@@ -16,22 +16,36 @@ if (ENVIRONMENT === "PRODUCTION") {
 
 
 
+// const getDomain = () => {
+//   // Check if window is available (i.e., client-side)
+
+//   if (ENVIRONMENT=="PRODUCTION"){
+//   if (typeof window !== 'undefined') {
+//     return window.location.hostname; // Get domain from client
+//   }
+//   // Default for server-side
+//   return DEFAULT_DOMAIN;
+//   }
+//   else{
+//     return DEFAULT_DOMAIN;
+//   }
+// };
+
+
 const getDomain = () => {
   // Check if window is available (i.e., client-side)
-
-  if (ENVIRONMENT=="PRODUCTION"){
-  if (typeof window !== 'undefined') {
-    return window.location.hostname; // Get domain from client
+  if (ENVIRONMENT === "PRODUCTION") {
+    if (typeof window !== 'undefined') {
+      const hostname = window.location.hostname; // Get domain from client
+      return hostname.startsWith("www.") ? hostname.slice(4) : hostname;
+    }
+    // Default for server-side
+    return DEFAULT_DOMAIN.startsWith("www.") ? DEFAULT_DOMAIN.slice(4) : DEFAULT_DOMAIN;
+  } else {
+    return DEFAULT_DOMAIN.startsWith("www.") ? DEFAULT_DOMAIN.slice(4) : DEFAULT_DOMAIN;
   }
-  // Default for server-side
-  return DEFAULT_DOMAIN;
-  }
-  else{
-    return DEFAULT_DOMAIN;
-  }
-
-
 };
+
 
 const WEBSITE_DOMAIN = getDomain();
 
