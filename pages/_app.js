@@ -84,7 +84,11 @@ MyApp.getInitialProps = async (appContext) => {
   let error = null;
   const { req } = appContext.ctx;
   // console.log('Default domain',API);
-  const websiteDomain = req.headers['x-forwarded-host'] || (DEFAULT_DOMAIN);
+  const rawWebsiteDomain = req.headers['x-forwarded-host'] || (DEFAULT_DOMAIN);
+  const websiteDomain = rawWebsiteDomain.startsWith('www.')
+  ? rawWebsiteDomain.replace('www.', '')
+  : rawWebsiteDomain;
+
   // const finalDomain = 'smp-amberwoodrahatani.com';
   const finalDomain = websiteDomain === 'localhost:3000' ? DEFAULT_DOMAIN : websiteDomain;
   // const finalDomain = websiteDomain;
@@ -93,7 +97,6 @@ MyApp.getInitialProps = async (appContext) => {
   try {
     const response = await axios.get(API.SEO_DETAIL(finalDomain));
     headerData = response.data;
-
 
     const propertyResponse = await  axios.get(API.PROPERTY_DETAILS(finalDomain));
     const propertyData = await propertyResponse.data;
