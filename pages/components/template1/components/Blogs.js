@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { API } from '../../../../Config'; // Adjust the path as needed
 import styles from '../css/Blogs.module.css'; // Ensure the path is correct
+import Link from 'next/link';
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -57,7 +58,10 @@ const Blogs = () => {
             <div className={styles.blogContent}>
               <h3>{blog.post_title}</h3>
               <p>{truncateText(blog.post_content_short, 150)}</p>
-              <a href={`/blogs/${blog.post_slug}`} className={styles.readMore}>Read More</a>
+              {/* <a href={`/blogs/${blog.post_slug}`} className={styles.readMore}>Read More</a> */}
+              <Link href={`/blogs/${blog.post_slug}`} className={styles.readMore}>
+                  Read More
+                </Link>
             </div>
           </div>
         ))}
