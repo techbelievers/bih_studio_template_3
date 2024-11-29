@@ -8,7 +8,7 @@ import axios from 'axios';
 import { API, DEFAULT_DOMAIN } from '../Config';
 import App from 'next/app'; // Import the default App from Next.js
 
-const MyApp = ({ Component, pageProps, headerData, error ,propertyDetails }) => {
+const MyApp = ({ Component, pageProps, headerData, error ,propertyDetails , domain }) => {
   // Show loading state until the header data is fetched
   if (!headerData && !error) {
     return <div>Loading...</div>; // Replace with your Loader component if needed
@@ -17,6 +17,8 @@ const MyApp = ({ Component, pageProps, headerData, error ,propertyDetails }) => 
   if (error) {
     return <div>Error: {error}</div>;
   }
+
+  const canonicalUrl = `https://${domain}`;
 
   // Construct meta tags based on the fetched header data
   const title = headerData.data.title;
@@ -44,7 +46,7 @@ const MyApp = ({ Component, pageProps, headerData, error ,propertyDetails }) => 
         <meta property="og:description" content={headerData.data.og_description} />
         <meta property="og:image" content={headerData.data?.og_image || ''} />
         <meta property="og:type" content={headerData.data.og_type} />
-
+        <link rel="canonical" href={canonicalUrl} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href={headerData.data.favicon} />
         <meta
@@ -91,6 +93,7 @@ MyApp.getInitialProps = async (appContext) => {
 
   // const finalDomain = 'smp-amberwoodrahatani.com';
   const finalDomain = websiteDomain === 'localhost:3000' ? DEFAULT_DOMAIN : websiteDomain;
+  domain = finalDomain
   // const finalDomain = websiteDomain;
   console.log('finaldomain : ', finalDomain);
 
@@ -100,6 +103,9 @@ MyApp.getInitialProps = async (appContext) => {
 
     const propertyResponse = await  axios.get(API.PROPERTY_DETAILS(finalDomain));
     const propertyData = await propertyResponse.data;
+
+
+
 
     console.log(propertyDetails);
 
@@ -124,6 +130,7 @@ MyApp.getInitialProps = async (appContext) => {
     ...appProps,
     headerData,
     propertyDetails,
+    domain,
     error,
   };
 };
