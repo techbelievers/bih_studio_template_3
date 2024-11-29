@@ -15,6 +15,7 @@ export const getServerSideProps = async ({ req ,res }) => {
   }
 
   const rawWebsiteDomain = req.headers['x-forwarded-host'] || (DEFAULT_DOMAIN);
+  console.log("req"+req);
   const websiteDomain = rawWebsiteDomain.startsWith('www.')
   ? rawWebsiteDomain.replace('www.', '')
   : rawWebsiteDomain;
