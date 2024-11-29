@@ -117,17 +117,13 @@ MyApp.getInitialProps = async (appContext) => {
 
     const propertyResponse = await  axios.get(API.PROPERTY_DETAILS(finalDomain));
     const propertyData = await propertyResponse.data;
-
-
-
-
     console.log(propertyDetails);
 
-    if (!propertyData || !propertyData.property_details) {
-      error = 'Property details not found.';
-    } else {
-      propertyDetails = propertyData.property_details;
-    }
+    // if (!propertyData || !propertyData.property_details) {
+    //   error = 'Property details not found.';
+    // } else {
+    //   propertyDetails = propertyData.property_details;
+    // }
 
     // const response = await axios.get(API.SEO_DETAIL(finalDomain), {
     //   headers: {
@@ -143,11 +139,46 @@ MyApp.getInitialProps = async (appContext) => {
   return {
     ...appProps,
     headerData,
-    propertyDetails,
+    // propertyDetails,
     domain,
     error,
   };
 };
+
+
+// getServerSideProps to fetch property details
+export async function getServerSideProps(context) {
+  const { req } = context;
+  const rawWebsiteDomain = req.headers['x-forwarded-host'] || DEFAULT_DOMAIN;
+  const websiteDomain = rawWebsiteDomain.startsWith('www.') 
+    ? rawWebsiteDomain.replace('www.', '') 
+    : rawWebsiteDomain;
+
+  const finalDomain = websiteDomain === 'localhost:3000' ? DEFAULT_DOMAIN : websiteDomain;
+
+  let propertyDetails = null;
+  let error = null;
+
+  try {
+    const propertyResponse = await axios.get(API.PROPERTY_DETAILS(finalDomain));
+    const propertyData = propertyResponse.data;
+
+    if (!propertyData || !propertyData.property_details) {
+      error = 'Property details not found.';
+    } else {
+      propertyDetails = propertyData.property_details;
+    }
+  } catch (err) {
+    error = `Failed to fetch property details: ${err.message} - ${API.PROPERTY_DETAILS(finalDomain)}`;
+  }
+
+  return {
+    props: {
+      propertyDetails,
+      error,
+    },
+  };
+}
 
 
 
