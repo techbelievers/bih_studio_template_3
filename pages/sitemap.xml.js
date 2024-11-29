@@ -7,19 +7,21 @@ const Sitemap = () => {
 
 export const getServerSideProps = async ({ req ,res }) => {
   // Fetch data for the sitemap
-  const response = await fetch(API.BLOGS()); // Replace with your actual API endpoint
+  
+
+  const rawWebsiteDomain = req.headers['x-forwarded-host'] || (DEFAULT_DOMAIN);
+  const websiteDomain = rawWebsiteDomain.startsWith('www.')
+  ? rawWebsiteDomain.replace('www.', '')
+  : rawWebsiteDomain;
+  // const finalDomain = 'smp-amberwoodrahatani.com';
+  const finalDomain = websiteDomain === 'localhost:3000' ? DEFAULT_DOMAIN : websiteDomain;
+
+  const response = await fetch(API.BLOGS(finalDomain)); 
 
   // Check if response is successful
   if (!response.ok) {
     throw new Error('Failed to fetch blog data');
   }
-
-  const rawWebsiteDomain = req.headers['x-forwarded-host'] || (DEFAULT_DOMAIN);
-  console.log("req"+req);
-  const websiteDomain = rawWebsiteDomain.startsWith('www.')
-  ? rawWebsiteDomain.replace('www.', '')
-  : rawWebsiteDomain;
-
 
   const data = await response.json();
   console.log('Response data:', data); // Log the response data

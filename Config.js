@@ -62,6 +62,16 @@ const getApiUrl = (endpoint) => {
 };
 
 
+const getBlogData = (endpoint , domain) => {
+  console.log('BLOGDAA');
+  console.log('API Endpoint:', endpoint);
+  console.log('Website Domain:', domain);
+  console.log(`${BASE_URL}/${endpoint}?website=${domain}`);
+  return `${BASE_URL}/${endpoint}?website=${domain}`;
+};
+
+
+
 const getSeoData = (endpoint , domain) => {
   console.log('SEODATA');
   console.log('API Endpoint:', endpoint);
@@ -120,6 +130,7 @@ const API = {
   LOCATION_ADVANTAGES: () => getApiUrl('location-advantages'),
   FAQ: () => getApiUrl('faq'),
   BLOGS: () => getApiUrl('blogs'),
+  GET_BLOG: (domain) => getBlogData('blogs',domain),
   BLOGS_DETAIL: (post_slug,domain) => getblogspost('blogs',post_slug,domain),
   TESTIMONIALS: () => getApiUrl('testimonials'),
   CONTACT_US: () => getApiUrl('contact-us'),
