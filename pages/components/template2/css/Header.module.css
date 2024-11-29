@@ -1,34 +1,39 @@
+/* Header Styles */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  background-color: #ffffff; /* White background */
-  color: #000000;
   position: sticky;
   top: 0;
-  z-index: 1000; /* Ensure it stays above other content */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  z-index: 1000;
+  /* padding: 20px 30px; */
+  background-color: #ffffff; /* Transparent by default */
+  box-shadow: none; /* No shadow on transparent background */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition on scroll */
+}
+
+.header.scrolled {
+  background-color: #fff; /* Solid background when scrolled */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
 }
 
 .logoContainer {
   flex: 1;
 }
 
-.logo {
-  max-width: 120px;
-  margin-left: 30px;
+.logo { 
+  max-width: 180px;
   height: auto;
 }
 
 .nav {
-  display: flex; /* Always show navigation on desktop */
-  flex: 2; /* Allow it to take up space */
-  justify-content: flex-end; /* Align items to the right */
+  display: flex;
+  flex: 2;
+  justify-content: flex-end;
 }
 
 .nav.open {
-  display: flex; /* Keep it as flex on open */
+  display: flex;
 }
 
 .navLinks {
@@ -36,80 +41,131 @@
   margin: 0;
   padding: 0;
   display: flex;
-  gap: 30px; /* Increase gap between menu items */
+  gap: 40px;
 }
 
 .navLinks li {
-  display: inline;
+  display: inline-block;
 }
 
 .navLinks a {
   text-decoration: none;
-  color: #333; /* Darker color for better contrast */
-  font-weight: 600;
-  font-size: 1rem;
-  transition: color 0.3s; /* Smooth transition for color */
+  color: #333;
+  font-size: 18px;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s, transform 0.3s;
 }
 
 .navLinks a:hover {
   color: #f4a261; /* Accent color on hover */
+  transform: scale(1.1); /* Subtle scale effect on hover */
+}
+
+.navLinks a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #f4a261;
+  bottom: 0;
+  left: 0;
+  transform: scaleX(0);
+  transition: transform 0.3s;
+}
+
+.navLinks a:hover::after {
+  transform: scaleX(1);
+}
+
+.ctaContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.ctaButton {
+  background-color: #f4a261;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.ctaButton:hover {
+  background-color: #e76f51; /* Darker shade on hover */
 }
 
 .hamburger {
-  display: none; /* Hide hamburger by default */
+  display: none;
   flex-direction: column;
   cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
 .line {
   width: 30px;
   height: 3px;
-  background-color: #333;
+  background-color: #fff;
   margin: 5px 0;
-  transition: transform 0.4s, opacity 0.4s;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .line.open:nth-child(1) {
-  transform: rotate(45deg) translateY(8px);
+  transform: rotate(45deg) translateY(7px);
 }
 
 .line.open:nth-child(2) {
-  opacity: 0; /* Hide the middle line */
+  opacity: 0;
 }
 
 .line.open:nth-child(3) {
-  transform: rotate(-45deg) translateY(-8px);
+  transform: rotate(-45deg) translateY(-7px);
 }
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
   .nav {
-    display: none; /* Hide navigation on mobile */
-    flex-direction: column; /* Stack items vertically */
-    position: absolute; /* Position absolute for dropdown effect */
-    top: 60px; /* Adjust based on header height */
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
     right: 0;
-    width: 100%; /* Full width */
-    background-color: #ffffff; /* Match header background */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow */
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px 30px;
   }
 
   .nav.open {
-    display: flex; /* Show when open */
+    display: flex;
   }
 
   .navLinks {
-    flex-direction: column; /* Stack links vertically */
-    padding: 10px 0; /* Add some vertical padding */
-    gap: 15px; /* Space between links */
-  }
-
-  .navLinks li {
-    display: block; /* Make each item a block for easier clicking */
-    text-align: center; /* Center align text */
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
   }
 
   .hamburger {
-    display: flex; /* Show hamburger on mobile */
+    display: flex;
   }
+}
+
+/* Scroll Effect */
+header.scrolled {
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Loading and Error States */
+.loading, .error {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  color: #f4a261;
 }

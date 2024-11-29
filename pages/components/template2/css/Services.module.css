@@ -1,86 +1,119 @@
-.template1ServicesContainer {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 40px 20px;
-  flex-wrap: wrap;
-  background: linear-gradient(135deg, #f0f7ff, #e5f9e0); /* Gradient background */
+.servicesContainer {
+  /* padding: 20px; */
 }
 
-.template1Card {
-  background-color: #fff;
-  border-radius: 12px;
+.heroBanner {
+  background-color: #2a3d6d;
+  color: white;
+  padding: 20px 10px;
+  text-align: center;
+  position: relative;
+}
+
+.heroBanner h1 {
+  font-size: 2rem;
+}
+
+.heroBanner p {
+  font-size: 1rem;
+}
+
+.heroCards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* margin-top: 20px; */
+  gap: 20px;
+}
+
+.card {
+  flex: 1 1 calc(33.333% - 20px); /* 3 cards per row on desktop */
+  max-width: calc(33.333% - 20px);
+  min-width: 250px; /* Ensure cards don't shrink too much */
   padding: 20px;
   text-align: center;
-  width: 100%;
-  max-width: 350px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  border: 1px solid #fff;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin: 15px;
-  position: relative;
-  overflow: hidden;
+  color: white;
+  box-sizing: border-box;
 }
 
-.template1Card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.template1Card h3 {
-  margin-top: 15px;
-  font-size: 1.6em;
-  color: #333;
+.card img {
+  width: 60px;
+  height: auto;
+  margin-bottom: 15px;
 }
 
-.template1Card p {
-  margin-top: 10px;
-  color: #777;
-  font-size: 1em;
+.card h3, .card h4 {
+  margin: 10px 0;
+  color: white;
 }
 
-.template1Icon {
-  font-size: 50px;
-  color: #009688;
-  animation: fadeIn 0.5s ease-in-out;
+.card p, .card h6 {
+  color: #ddd;
+  font-size: 0.9rem;
 }
 
-.template1Image {
-  max-width: 80px;
-  border-radius: 50%; /* Makes logo rounded */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.template1BusinessStrategy {
-  background-color: #ffffff;
-}
-
-.template1LocalMarketing {
-  background-color: #ffffff;
-}
-
-.template1SocialMedia {
-  background-color: #ffffff;
-}
-
-/* Mobile responsiveness */
+/* Responsive Design */
 @media (max-width: 768px) {
-  .template1ServicesContainer {
-    flex-direction: column;
-    align-items: center;
+  .heroBanner h1 {
+    font-size: 1.8rem;
   }
 
-  .template1Card {
-    width: 90%;
+  .heroBanner p {
+    font-size: 0.9rem;
+  }
+
+  .heroCards {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .card {
+    flex: 1 1 100%; /* Full width on mobile */
+    max-width: 100%;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroBanner h1 {
+    font-size: 1.5rem;
+  }
+
+  .heroBanner p {
+    font-size: 0.8rem;
+  }
+
+  .card img {
+    width: 50px;
+  }
+}
+
+
+/* Target the first card specifically */
+.card:first-child img {
+  width: 250px; /* Increase size for the first card's logo */
+  height: auto;
+  margin-bottom: 20px;
+  border-radius: 10px
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .card:first-child img {
+    width: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card:first-child img {
+    width: 80px;
   }
 }

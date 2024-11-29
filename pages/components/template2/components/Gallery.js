@@ -31,20 +31,20 @@ const Gallery = () => {
   };
 
   return (
-    <div id="gallery" className={styles.galleryContainer}>
-      <h2 className={styles.heading}>{heading}</h2>
-      <h4 className={styles.subheading}>{subheading}</h4>
-      <div className={styles.galleryGrid}>
+    <div id="gallery" className={styles.template1_gallery_container}>
+      <h2 className={styles.luxuryHeading}>{heading}</h2>
+      <h3>{subheading}</h3>
+      <div className={styles.template1_gallery_grid}>
         {galleryData.length > 0 ? (
           galleryData.map(photo => (
             <div
               key={photo.id}
-              className={styles.galleryItem}
+              className={styles.template1_gallery_item}
               onClick={() => openModal(photo.photo, photo.caption)}
             >
-              <img src={photo.photo} alt={`Property ${photo.property_id}`} className={styles.image} />
-              <div className={styles.overlay}>
-                <div className={styles.overlayText}>View Image</div>
+              <img src={photo.photo} alt={`Property ${photo.property_id}`} />
+              <div className={styles.template1_overlay}>
+                <div className={styles.template1_overlay_text}>View Image</div>
               </div>
             </div>
           ))
@@ -54,10 +54,10 @@ const Gallery = () => {
       </div>
 
       {selectedImage && (
-        <div className={styles.modal} onClick={closeModal}>
-          <span className={styles.close}>&times;</span>
-          <img className={styles.modalContent} src={selectedImage} alt="Large view" />
-          {caption && <div className={styles.caption}>{caption}</div>}
+        <div className={styles.template1_modal} onClick={closeModal}>
+          <span className={styles.template1_close}>&times;</span>
+          <img className={styles.template1_modal_content} src={selectedImage} alt="Large view" />
+          {caption && <div className={styles.template1_caption}>{caption}</div>}
         </div>
       )}
     </div>

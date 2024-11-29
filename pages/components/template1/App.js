@@ -24,7 +24,7 @@ import FloatingButtons from './components/FloatingButtons';
 // import BlogDetail from './components/BlogDetail';
 // import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-function App() {
+const App = ({ propertyDetails }) => {
   return (
     // <Router basename="/AppTemplate">
     //   <Routes>
@@ -36,7 +36,7 @@ function App() {
             <MahareraInformation />
             <Adverties/>
             <PropertyPriceTable />
-            <PropertyDetails />
+            <PropertyDetails propertyDetails={propertyDetails}/>
             <Gallery />
             <Video />
             <UnitLayout />
@@ -60,5 +60,7 @@ function App() {
     // </Router>
   );
 }
+
+
 
 export default App;

@@ -44,34 +44,56 @@ const MahareraInformation = () => {
     return <div className={styles.empty}>No Maharera information available.</div>;
   }
 
+  const formatCompletionDate = (dateString) => {
+    if (!dateString) return 'N/A';
+    const date = new Date(dateString);
+    return date.toLocaleString('default', { month: 'long', year: 'numeric' }); // Format: "Month Year"
+  };
+
   return (
     <div className={styles.maharera_info_container}>
-      <h2>Maharera Information</h2>
-
-      <div className={styles.rera_info_grid}>
+      <h2 className={styles.heading}>Maharera Information</h2>
+      <div className={styles.maharera_grid}>
         {reraData.map((reraItem, index) => (
-          <div key={index} className={styles.rera_info_item}>
-            <div className={styles.qr_code}>
+          <div key={index} className={styles.rera_info_section}>
+            <div className={styles.rera_info_left}>
               {reraItem.rera_url ? (
-                <QRCodeCanvas value={reraItem.rera_url} size={120} />
+                <QRCodeCanvas value={reraItem.rera_url} size={150} />
               ) : (
-                <p>No QR URL available</p>
+                <div className={styles.no_qr}>No QR URL available</div>
               )}
             </div>
-            <div className={styles.rera_details}>
-              <div><strong>Rera ID:</strong> {reraItem.rera_id}</div>
-              <div><strong>Phase Name:</strong> {reraItem.phase_name}</div>
-              <div><strong>Completion Date:</strong> {reraItem.completion_date}</div>
-              <div><strong>Total Area:</strong> {reraItem.total_area} sqft</div>
-              <div><strong>Total Acre:</strong> {reraItem.total_acre}</div>
-              <div><strong>Total Towers:</strong> {reraItem.total_tower}</div>
-              <div><strong>Total Units:</strong> {reraItem.total_units}</div>
+            <div className={styles.rera_info_right}>
+              <div className={styles.rera_info_item}>
+                <strong>Maharera ID:</strong> {reraItem.rera_id}
+              </div>
+              <div className={styles.rera_info_item}>
+                <strong>Phase Name:</strong> {reraItem.phase_name}
+              </div>
+              <div className={styles.rera_info_item}>
+                <strong>Completion Date:</strong>{' '}
+                {formatCompletionDate(reraItem.completion_date)}
+              </div>
+              <div className={styles.rera_info_item}>
+                <strong>Total Area:</strong> {reraItem.total_area} sqft
+              </div>
+              <div className={styles.rera_info_item}>
+                <strong>Total Acre:</strong> {reraItem.total_acre}
+              </div>
+              <div className={styles.rera_info_item}>
+                <strong>Total Towers:</strong> {reraItem.total_tower}
+              </div>
+              <div className={styles.rera_info_item}>
+                <strong>Total Units:</strong> {reraItem.total_units}
+              </div>
             </div>
+            <hr className={styles.divider} />
           </div>
         ))}
       </div>
     </div>
   );
+  
 };
 
 export default MahareraInformation;

@@ -1,4 +1,4 @@
-const ENVIRONMENT = "PRODUCTION";
+const ENVIRONMENT = "LOCAL";
 // const ENVIRONMENT = "PRODUCTION";
 
 
@@ -13,22 +13,6 @@ if (ENVIRONMENT === "PRODUCTION") {
   BASE_URL = 'https://www.buyindiahomes.in/api';  // Local development URL (you can use localhost if required)
   DEFAULT_DOMAIN = "smp-amberwoodrahatani.com";  // Local domain (for consistency)
 }
-
-
-// const DEFAULT_DOMAIN = "smp-amberwoodrahatani.com";
-// const DEFAULT_DOMAIN = "10.211.55.3";
-
-
-// const BASE_URL = 'http://127.0.0.1:8000/api';
-// const BASE_URL = 'https://www.buyindiahomes.in/api';
-// const WEBSITE_DOMAIN = "10.211.55.3";
-// const WEBSITE_DOMAIN = "smp-amberwoodrahatani.com";
-
-
-
-// const WEBSITE_DOMAIN = typeof window !== 'undefined' ? window.location.hostname : 'builderkonnect.com';
-// console.log('Website Domain:', WEBSITE_DOMAIN);
-// const getApiUrl = (endpoint) => `${BASE_URL}/${endpoint}?website=${WEBSITE_DOMAIN}`;
 
 
 
@@ -72,6 +56,14 @@ const getSeoData = (endpoint , domain) => {
   return `${BASE_URL}/${endpoint}?website=${domain}`;
 };
 
+const getPropertyData = (endpoint , domain) => {
+  console.log('PropertyData');
+  console.log('API Endpoint:', endpoint);
+  console.log('Website Domain:', domain);
+  console.log(`${BASE_URL}/${endpoint}?website=${domain}`);
+  return `${BASE_URL}/${endpoint}?website=${domain}`;
+};
+
 const getApiUrlmetadata = (endpoint,domain) => {
   // const WEBSITE_DOMAIN = typeof window !== 'undefined' ? window.location.hostname : 'builderkonnect.com';
   // const WEBSITE_DOMAIN = "10.211.55.3";
@@ -105,7 +97,8 @@ const API = {
   VIDEO: () => getApiUrl('video'),
   AMENITIES: () => getApiUrl('amenities'),
   BANKS: () => getApiUrl('banks'),
-  PROPERTY_DETAILS: () => getApiUrl('propert-details'),
+  // PROPERTY_DETAILS: () => getApiUrl('propert-details'),
+  PROPERTY_DETAILS: (domain) => getPropertyData('propert-details',domain),
   UNIT_LAYOUT: () => getApiUrl('unit-layout'),
   FLOOR_PLANS: () => getApiUrl('floor-layout'),
   MASTER_LAYOUT: () => getApiUrl('master-layout'),

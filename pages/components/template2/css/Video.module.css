@@ -1,0 +1,96 @@
+.video_container {
+  padding: 60px 40px;
+  text-align: center;
+  background-color: #ffffff; /* Soft off-white background */
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.05); /* Subtle inner shadow for depth */
+  border-radius: 15px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.heading {
+  font-size: 48px;
+  color: #1d1d1b; /* Deep, rich color for a sophisticated feel */
+  font-family: 'Playfair Display', serif;
+  font-weight: 800; /* Heavy weight for a premium look */
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+}
+
+.subheading {
+  font-size: 22px;
+  color: #333;
+  font-family: 'Lora', serif;
+  font-weight: 500;
+  margin-bottom: 40px;
+}
+
+.video_wrapper {
+  display: grid;
+  /* grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); Responsive grid */
+  gap: 30px;
+  justify-items: center;
+}
+
+.video_item {
+  width: 100%;
+  max-width: 1000px;
+  height: 315px; /* Fixed aspect ratio */
+  background-color: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1); /* Luxurious shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video_item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
+}
+
+.video_item iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 12px;
+}
+
+.loadingText {
+  font-size: 18px;
+  color: #999;
+  font-family: 'Lora', serif;
+}
+
+@media (max-width: 768px) {
+  .video_container {
+    padding: 40px 20px;
+  }
+  
+  .heading {
+    font-size: 36px;
+  }
+
+  .video_wrapper {
+    grid-template-columns: 1fr; /* Stack videos on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .video_container {
+    padding: 30px 15px;
+  }
+  
+  .heading {
+    font-size: 30px;
+  }
+
+  .subheading {
+    font-size: 18px;
+  }
+
+  .video_item {
+    width: 95%;
+  }
+}

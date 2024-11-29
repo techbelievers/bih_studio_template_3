@@ -30,15 +30,15 @@ const Header = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className={styles.loading}>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error loading header data: {error.message}</div>;
+    return <div className={styles.error}>Error loading header data: {error.message}</div>;
   }
 
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${menuOpen ? styles.open : ''}`}>
       <div className={styles.logoContainer}>
         <img 
           src={headerData.logo || 'default-logo-url'} 
@@ -47,22 +47,25 @@ const Header = () => {
         />
       </div>
 
+      <nav className={`${styles.nav} ${menuOpen ? styles.open : ''}`}>
+        <ul className={styles.navLinks}>
+          <li><a href="#about">About</a></li>
+          <li><a href="#price">Price</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#amenities">Amenities</a></li>
+          <li><a href="#layouts">Layouts</a></li>
+          <li><a href="#location">Location</a></li>
+          <li><a href="#blogs">Blogs</a></li>
+        </ul>
+      </nav>
+
+
+
       <div className={styles.hamburger} onClick={toggleMenu}>
         <div className={`${styles.line} ${menuOpen ? styles.open : ''}`}></div>
         <div className={`${styles.line} ${menuOpen ? styles.open : ''}`}></div>
         <div className={`${styles.line} ${menuOpen ? styles.open : ''}`}></div>
       </div>
-
-      <nav className={`${styles.nav} ${menuOpen ? styles.open : ''}`}>
-        <ul className={styles.navLinks}>
-          <li><a href="#about">ABOUT</a></li>
-          <li><a href="#price">PRICE</a></li>
-          <li><a href="#gallery">GALLERY</a></li>
-          <li><a href="#amenities">AMENITIES</a></li>
-          <li><a href="#layouts">LAYOUTS</a></li>
-          <li><a href="#location">LOCATION</a></li>
-        </ul>
-      </nav>
     </header>
   );
 };

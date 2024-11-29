@@ -8,7 +8,7 @@ import axios from 'axios';
 import { API, DEFAULT_DOMAIN } from '../Config';
 import App from 'next/app'; // Import the default App from Next.js
 
-const MyApp = ({ Component, pageProps, headerData, error }) => {
+const MyApp = ({ Component, pageProps, headerData, error ,propertyDetails }) => {
   // Show loading state until the header data is fetched
   if (!headerData && !error) {
     return <div>Loading...</div>; // Replace with your Loader component if needed
@@ -68,7 +68,9 @@ const MyApp = ({ Component, pageProps, headerData, error }) => {
         />
       </Head>
 
-      {Component.name === "Home" ? <AppTemplate /> : <Component {...pageProps} />}
+ {/* Pass propertyDetails as a prop to the component */}
+ {Component.name === "Home" ? <AppTemplate propertyDetails={propertyDetails} /> : <Component {...pageProps} propertyDetails={propertyDetails} />}
+      {/* {Component.name === "Home" ? <AppTemplate /> : <Component {...pageProps} />} */}
     </>
   );
 };
@@ -78,11 +80,11 @@ MyApp.getInitialProps = async (appContext) => {
   const appProps = await App.getInitialProps(appContext); // Use the imported App component
 
   let headerData = null;
+  let propertyDetails = null;
   let error = null;
   const { req } = appContext.ctx;
   // console.log('Default domain',API);
   const websiteDomain = req.headers['x-forwarded-host'] || (DEFAULT_DOMAIN);
-
   // const finalDomain = 'smp-amberwoodrahatani.com';
   const finalDomain = websiteDomain === 'localhost:3000' ? DEFAULT_DOMAIN : websiteDomain;
   // const finalDomain = websiteDomain;
@@ -90,13 +92,27 @@ MyApp.getInitialProps = async (appContext) => {
 
   try {
     const response = await axios.get(API.SEO_DETAIL(finalDomain));
+    headerData = response.data;
+
+
+    const propertyResponse = await  axios.get(API.PROPERTY_DETAILS(finalDomain));
+    const propertyData = await propertyResponse.data;
+
+    console.log(propertyDetails);
+
+    if (!propertyData || !propertyData.property_details) {
+      error = 'Property details not found.';
+    } else {
+      propertyDetails = propertyData.property_details;
+    }
+
     // const response = await axios.get(API.SEO_DETAIL(finalDomain), {
     //   headers: {
     //     'Cache-Control': 'no-cache', // Ensures data isn't cached
     //   },
     // });
     
-    headerData = response.data;
+ 
   } catch (err) {
     error = `Failed to fetch header data: ${err.message} - ${API.SEO_DETAIL(finalDomain)}`;
   }
@@ -104,8 +120,12 @@ MyApp.getInitialProps = async (appContext) => {
   return {
     ...appProps,
     headerData,
+    propertyDetails,
     error,
   };
 };
+
+
+
 
 export default MyApp;

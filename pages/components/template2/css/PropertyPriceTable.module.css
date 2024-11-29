@@ -1,77 +1,128 @@
+/* Price Section Container */
 .priceSection {
-    padding: 20px;
+    padding: 50px 20px;
+    border-radius: 15px;
     margin: 0 auto;
     max-width: 1200px;
-    text-align: center;
 }
 
+/* Heading Style */
 .priceHeading {
-    font-size: 30px;
+    font-size: 2.8rem;
+    font-weight: bold;
     text-align: center;
-    margin-bottom: 20px;
-    color: #28a745; /* Luxurious, elegant color */
-    font-family: 'Playfair Display', serif; /* Luxurious serif font */
-    font-weight: 700; /* Bold for emphasis */
+    color: #333;
+    margin-bottom: 30px;
+    text-transform: uppercase;
     letter-spacing: 1.2px;
-    text-transform: capitalize;
 }
 
+/* Table Container */
+.priceTableContainer {
+    overflow-x: auto; /* Allows horizontal scrolling */
+    -webkit-overflow-scrolling: touch; /* Ensures smooth scrolling on iOS */
+    border-radius: 15px;
+}
+
+/* Table Styles */
 .priceTable {
     width: 100%;
     border-collapse: collapse;
-    margin: 0 -15px 0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-spacing: 0;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
 }
 
-.priceTable th,
-.priceTable td {
-    padding: 12px 20px;
-    border: 1px solid #ddd;
-    text-align: center;
-    font-size: 16px;
+/* Table Header */
+.priceTable thead {
+    background: linear-gradient(135deg, #4b79a1, #283e51);
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1.1rem;
 }
 
 .priceTable th {
-    background-color: #27ae60;
-    color: #fff;
+    padding: 15px 20px;
+    text-align: left;
+    font-weight: bold;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.priceTable tr:nth-child(even) {
-    background-color: #f9f9f9;
+.priceTable th:last-child {
+    border-right: none;
 }
 
-.errorMessage {
-    color: red;
-    margin-bottom: 15px;
+/* Table Body */
+.priceTable tbody tr {
+    border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.3s ease;
 }
 
-/* Responsive adjustments */
+.priceTable tbody tr:hover {
+    background-color: rgba(75, 121, 161, 0.1);
+}
+
+.priceTable td {
+    padding: 15px 20px;
+    color: #555;
+    font-size: 1rem;
+    text-align: left;
+    border-right: 1px solid #e0e0e0;
+}
+
+.priceTable td:last-child {
+    border-right: none;
+}
+
+/* Special Cell Style for No Wrap */
+.noWrap {
+    white-space: nowrap;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-    .priceTable th,
-    .priceTable td {
-        font-size: 14px;
-        padding: 10px 15px;
+    .priceSection {
+        padding: 30px 15px;
+    }
+
+    .priceTable {
+        font-size: 0.9rem;
     }
 
     .priceHeading {
-        font-size: 20px;
+        font-size: 2.2rem;
+    }
+
+    .priceTable thead {
+        font-size: 1rem;
     }
 }
 
-@media (max-width: 480px) {
-    .priceTable{
-        width: 90%;
-        border-collapse: collapse;
-        margin: 0 -10px 0;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    .priceTable th,
-    .priceTable td {
-        font-size: 12px;
-        padding: 8px 10px;
-    }
-
-    .priceHeading {
-        font-size: 18px;
-    }
-}
+/* Universal Header Style */
+.luxuryHeading {
+    font-size: 2.8rem;
+    font-weight: bold;
+    text-align: center;
+    color: #2e3b4e; /* Rich, elegant color */
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px; /* Slightly increased letter-spacing for sophistication */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle shadow for a 3D effect */
+    background: linear-gradient(90deg, #4b79a1, #283e51); /* Gradient for a unique feel */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /* Gradient applies to the text */
+    position: relative;
+  }
+  
+  /* Optional: Add an underline effect */
+  .luxuryHeading::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: #4b79a1; /* Matches the heading color scheme */
+    margin: 10px auto 0;
+    border-radius: 2px;
+  }
+  

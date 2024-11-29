@@ -1,68 +1,81 @@
 /* Container */
-.galleryContainer {
-  padding: 40px;
+.template1_gallery_container {
+  padding: 50px;
+  top: 10px;
+  margin-top: 20px;
   text-align: center;
-  background-color: #ffffff; /* Light gray for a soft background */
-  border-radius: 15px; /* Rounded corners for modern feel */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  /* background-color: #101010; Darker background for a luxurious feel */
 }
 
 /* Heading Style */
-.heading {
-  font-size: 28px; /* Larger font size for better prominence */
-  margin-bottom: 10px;
-  color: #2c3e50; /* Dark blue for contrast */
-  font-family: 'Montserrat', sans-serif;
+.template1_gallery_container h2 {
+  font-size: 32px;
+  margin-bottom: 15px;
+  color: #f0c14b; /* Luxurious gold color */
+  font-family: 'Lora', serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 /* Subheading Style */
-.subheading {
-  font-size: 18px; /* Slightly smaller font size */
+.template1_gallery_container h3 {
+  font-size: 22px;
   margin-bottom: 30px;
-  color: #7f8c8d; /* Gray for subtlety */
-  font-family: 'Montserrat', sans-serif;
+  color: #ffffff;
+  font-family: 'Lora', serif;
+  font-weight: 300;
+  line-height: 1.6;
+  font-style: italic;
 }
 
 /* Gallery Grid */
-.galleryGrid {
+.template1_gallery_grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
   justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* Gallery Item */
-.galleryItem {
+.template1_gallery_item {
   position: relative;
   overflow: hidden;
   border-radius: 15px;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 250px; /* Increase height for better image presentation */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #f0c14b; /* Gold border for luxury feel */
 }
 
 /* Gallery Image */
-.image {
+.template1_gallery_item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 15px;
+  transition: transform 0.3s ease;
 }
 
 /* Hover Effect */
-.galleryItem:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+.template1_gallery_item:hover img {
+  transform: scale(1.1);
 }
 
 /* Overlay */
-.overlay {
+.template1_overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(44, 62, 80, 0.7);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,19 +84,20 @@
   border-radius: 15px;
 }
 
-.galleryItem:hover .overlay {
+.template1_gallery_item:hover .template1_overlay {
   opacity: 1;
 }
 
-.overlayText {
-  color: #ffffff;
-  font-size: 20px;
+.template1_overlay_text {
+  color: #f0c14b; /* Luxurious gold text */
+  font-size: 18px;
   font-weight: bold;
-  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  letter-spacing: 1px;
 }
 
 /* Modal */
-.modal {
+.template1_modal {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -93,24 +107,28 @@
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.8);
+  transition: background-color 0.3s ease;
 }
 
-.modalContent {
+.template1_modal_content {
   max-width: 90%;
   max-height: 80%;
   border-radius: 15px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
 }
 
-.caption {
+/* Modal Caption */
+.template1_caption {
   color: #fff;
   font-size: 18px;
   margin-top: 10px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.close {
+/* Close Button */
+.template1_close {
   position: absolute;
   top: 20px;
   right: 30px;
@@ -119,20 +137,52 @@
   cursor: pointer;
 }
 
+.template1_close:hover {
+  color: #f0c14b; /* Gold hover effect */
+}
+
 /* Mobile responsiveness */
 @media (max-width: 768px) {
-  .galleryGrid {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  .template1_gallery_grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
 }
 
 @media (max-width: 480px) {
-  .galleryContainer {
+  .template1_gallery_container {
     padding: 20px;
   }
 
-  .galleryGrid {
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  .template1_gallery_grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 10px;
   }
+}
+
+
+/* Universal Header Style */
+.luxuryHeading {
+  font-size: 2.8rem;
+  font-weight: bold;
+  text-align: center;
+  color: #2e3b4e; /* Rich, elegant color */
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px; /* Slightly increased letter-spacing for sophistication */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle shadow for a 3D effect */
+  background: linear-gradient(90deg, #4b79a1, #283e51); /* Gradient for a unique feel */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; /* Gradient applies to the text */
+  position: relative;
+}
+
+/* Optional: Add an underline effect */
+.luxuryHeading::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: #4b79a1; /* Matches the heading color scheme */
+  margin: 10px auto 0;
+  border-radius: 2px;
 }

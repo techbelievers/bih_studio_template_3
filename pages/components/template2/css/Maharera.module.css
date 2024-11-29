@@ -1,79 +1,90 @@
+/* Maharera information container */
 .maharera_info_container {
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto; /* Center the container horizontally */
-  text-align: center; /* Center-align text within the container */
-  background-color: #ffffff; /* Light background for contrast */
-  border-radius: 10px; /* Rounded corners for elegance */
-  /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); Subtle shadow for depth */
-  display: flex; /* Use flexbox for centering */
-  flex-direction: column; /* Stack items vertically */
-  align-items: center; /* Center items horizontally */
-  justify-content: center; /* Center items vertically */
-  min-height: 50vh; /* Minimum height to take full viewport height */
+  padding: 40px;
+  background: linear-gradient(135deg, #f1f1f1 0%, #e0e0e0 100%);
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
 
-.maharera_info_container h2 {
-  font-size: 30px;
-  margin-bottom: 20px;
-  color: #28a745; /* Dark, elegant color */
-  font-family: 'Playfair Display', serif; /* Luxurious, elegant serif font */
-  font-weight: 700; /* Bold weight for emphasis */
-  letter-spacing: 1.2px; /* Slightly increased letter spacing */
-  text-transform: capitalize; /* Capitalize for a refined look */
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
-}
-
-.rera_info_grid {
+/* Grid layout for cards */
+.maharera_grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
-  gap: 20px;
-  padding: 20px;
-  justify-items: center; /* Center items in the grid */
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 30px; /* Space between rows and columns */
+}
+
+/* Individual card styling */
+.rera_info_section {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.3s ease;
+}
+
+.rera_info_section:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+/* Left section for QR code */
+.rera_info_left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.rera_info_left .react-qrcode {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.no_qr {
+  font-size: 1.2rem;
+  color: #ff4c4c;
+  text-align: center;
+}
+
+/* Right section for details */
+.rera_info_right {
+  text-align: left;
 }
 
 .rera_info_item {
-  padding: 15px;
-  background-color: white; /* White background for cards */
-  border-radius: 10px; /* Rounded corners for cards */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow for cards */
-  transition: transform 0.2s; /* Smooth transition */
-  width: 100%; /* Full width of the grid cell */
-  max-width: 300px; /* Set a maximum width for better layout */
-  display: flex; /* Flexbox for better alignment */
-  flex-direction: column; /* Stack items vertically */
-  align-items: center; /* Center items horizontally */
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 12px;
 }
 
-.rera_info_item:hover {
-  transform: translateY(-5px); /* Lift effect on hover */
+.rera_info_item strong {
+  color: #333;
 }
 
-.qr_code {
-  margin-bottom: 15px; /* Space between QR code and details */
+/* Divider styling */
+.divider {
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px solid #e0e0e0;
 }
 
-.rera_details {
-  text-align: left; /* Align details to the left */
-}
-
-.rera_details div {
-  margin: 5px 0; /* Spacing between detail items */
-}
-
-.loading, .error, .empty {
-  font-size: 18px;
-  color: #777; /* Gray text for loading, error, and empty states */
-}
-
+/* Responsive adjustments */
 @media (max-width: 768px) {
-  .maharera_info_container h2 {
-    font-size: 24px; /* Smaller heading on medium screens */
+  .rera_info_right {
+    text-align: center;
+  }
+
+  .maharera_grid {
+    grid-template-columns: 1fr;
   }
 }
 
-@media (max-width: 480px) {
-  .maharera_info_container h2 {
-    font-size: 20px; /* Smaller heading on small screens */
-  }
+/* Centered heading */
+.heading {
+  font-size: 2.5rem; /* Adjust size as needed */
+  font-weight: 700;
+  color: #333;
+  text-align: center; /* Center text horizontally */
+  margin-bottom: 40px;
+  line-height: 1.2; /* Improve spacing for multi-line headings */
 }
+

@@ -1,97 +1,108 @@
-/* PropertyDetails.module.css */
-
-/* Main Section */
 .property_details_section {
-    max-width: 1200px;
-    margin: 40px auto; /* Added margin for spacing */
-    padding: 30px;
-    background-color: #ffffff; /* White background for a luxurious feel */
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    transition: box-shadow 0.3s;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 20px 25px;
+    /* background-color: #f8f8f8; */
+    border-radius: 10px;
+    /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); */
+    font-family: 'Lora', serif;
 }
 
-/* Hover effect on section */
-.property_details_section:hover {
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
-}
-
-/* Title */
 .property_title {
-    font-size: 36px; /* Increased font size */
-    color: #27ae60; /* Rich green color */
+    font-size: 32px;
+    color: #2c3e50;
     text-align: center;
-    margin-bottom: 20px;
-    font-family: 'Georgia', serif; /* Elegant font */
-    text-transform: uppercase; /* Uppercase for luxury feel */
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    border-bottom: 2px solid #27ae60;
+    padding-bottom: 10px;
 }
 
-/* Description */
 .property_description {
-    font-size: 18px; /* Increased font size */
-    line-height: 1.8; /* Improved line spacing */
-    color: #444; /* Darker color for readability */
-    background-color: #f9f9f9; /* Light background for contrast */
-    padding: 25px; /* Generous padding */
-    border: 1px solid #ddd; /* Subtle border */
-    border-radius: 8px;
-    position: relative; /* To position child elements */
+    font-size: 18px;
+    line-height: 1.8;
+    color: #34495e;
+    background-color: #fff;
+    padding: 30px;
+    border: 1px solid #ecf0f1;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
 
-/* Description Headings */
-.property_description h2,
+.property_description h2, 
 .property_description h3 {
-    color: #27ae60; /* Rich green */
+    color: #27ae60;
     font-weight: bold;
-    margin-top: 20px;
-    border-bottom: 2px solid #27ae60; /* Underline for headings */
-    padding-bottom: 5px;
+    margin-top: 25px;
+    font-size: 22px;
 }
 
-/* Paragraphs and Lists */
-.property_description p,
+.property_description p, 
 .property_description ul {
-    margin-bottom: 20px; /* Increased spacing */
+    margin-bottom: 18px;
 }
 
 .property_description ul {
-    list-style: disc;
+    list-style: square;
     margin-left: 25px;
 }
 
-/* Button */
 .read_more_btn {
     display: block;
     margin: 30px auto 0;
-    padding: 12px 24px; /* Increased padding */
-    background: linear-gradient(90deg, #27ae60, #1e8449); /* Gradient background */
+    padding: 12px 25px;
+    background-color: #27ae60;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
+    font-size: 16px;
     cursor: pointer;
-    transition: background 0.3s, transform 0.3s;
-    font-size: 16px; /* Increased font size */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    transition: all 0.3s ease;
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
-/* Button hover effect */
 .read_more_btn:hover {
-    background: linear-gradient(90deg, #1e8449, #27ae60); /* Reverse gradient on hover */
-    transform: translateY(-2px); /* Slight lift effect */
+    background-color: #1e8449;
+    transform: translateY(-2px);
+}
+
+.read_more_btn:focus {
+    outline: none;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .property_title {
-        font-size: 28px; /* Responsive font size */
+        font-size: 26px;
+        letter-spacing: 1px;
     }
 
     .property_description {
-        font-size: 16px; /* Responsive font size */
-        padding: 15px; /* Responsive padding */
+        font-size: 16px;
+        padding: 20px;
     }
 
     .read_more_btn {
-        padding: 10px 20px; /* Responsive padding */
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .property_title {
+        font-size: 22px;
+    }
+
+    .property_description {
+        font-size: 14px;
+        padding: 15px;
+    }
+
+    .read_more_btn {
+        padding: 8px 18px;
+        font-size: 14px;
     }
 }

@@ -52,68 +52,83 @@ const EnquirePopup = ({ onClose }) => {
         message: '',
       });
     } catch (error) {
+      console.log(error);
       setSubmitError('Failed to submit the form. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  const closeThankYou = () => {
+    setSubmitSuccess(false);
+    onClose();
+  };
+
   return (
-    <div className={styles.enquirePopup}>
-      <div className={styles.enquirePopupContent}>
-        <button className={styles.enquirePopupClose} onClick={onClose}>X</button>
-        <img src={headerData.logo} alt="Builder Logo" className={styles.enquirePopupLogo} />
-      
-        <h2>{headerData.property_name}</h2>
-        <h5>Enquire Now</h5>
-        {submitSuccess && <p className={styles.enquirePopupSuccess}>Your message has been sent successfully!</p>}
-        {submitError && <p className={styles.enquirePopupError}>{submitError}</p>}
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="first_name"
-            placeholder="First Name*"
-            value={formData.first_name}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="text"
-            name="last_name"
-            placeholder="Last Name*"
-            value={formData.last_name}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="email"
-            name="email_id"
-            placeholder="Email*"
-            value={formData.email_id}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="tel"
-            name="phone_number"
-            placeholder="Phone Number*"
-            value={formData.phone_number}
-            onChange={handleChange}
-            required
-          />
-          <textarea
-            name="message"
-            placeholder="Your Message*"
-            value={formData.message}
-            onChange={handleChange}
-            required
-          ></textarea>
-          <button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? 'Sending...' : 'Send Message'}
-          </button>
-        </form>
-      </div>
-    </div>
+    <>
+      {submitSuccess && (
+        <div className={styles.thankYouPopup}>
+          <div className={styles.thankYouContent}>
+            <h2>Thank You!</h2>
+            <p>Your message has been sent successfully. We will get back to you shortly.</p>
+            <button onClick={closeThankYou}>Close</button>
+          </div>
+        </div>
+      )}
+      {!submitSuccess && (
+        <div className={styles.enquirePopup}>
+          <div className={styles.enquirePopupContent}>
+            <button className={styles.enquirePopupClose} onClick={onClose}>X</button>
+            <img src={headerData.logo} alt="Builder Logo" className={styles.enquirePopupLogo} />
+            <h2>{headerData.property_name}</h2>
+            <h5>Enquire Now</h5>
+            {submitError && <p className={styles.enquirePopupError}>{submitError}</p>}
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                name="first_name"
+                placeholder="First Name*"
+                value={formData.first_name}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="text"
+                name="last_name"
+                placeholder="Last Name*"
+                value={formData.last_name}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="tel"
+                name="phone_number"
+                placeholder="Phone Number*"
+                value={formData.phone_number}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="email"
+                name="email_id"
+                placeholder="Email"
+                value={formData.email_id}
+                onChange={handleChange}
+              />
+              <textarea
+                name="message"
+                placeholder="Your Message"
+                value={formData.message}
+                onChange={handleChange}
+              ></textarea>
+              <button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? 'Sending...' : 'Send Message'}
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

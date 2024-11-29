@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styles from '../css/Services.module.css'; // Import the CSS module
+import styles from '../css/Services.module.css'; // Import the updated CSS module
 import { API } from '../../../../Config'; // Corrected import for API configuration
 import axios from 'axios';
 
@@ -23,28 +23,52 @@ const Services = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className={styles.template1ServicesContainer}>
+    <div className={styles.servicesContainer}>
       {headerData ? (
         <>
-          {/* First box with logo */}
-          <div className={`${styles.template1Card} ${styles.template1BusinessStrategy}`}>
-            <div className={styles.template1Icon}>
-              <img src={headerData.logo} alt="Logo" className={styles.template1Image} />
+          {/* Hero Banner Section with 3 cards */}
+          <div className={styles.heroBanner}>
+            {/* <h1>Welcome to Our Services</h1>
+            <p>Explore our exceptional offerings tailored for you</p> */}
+
+            {/* Cards inside Hero Banner */}
+            <div className={styles.heroCards}>
+              <div className={styles.card}>
+                <img src={headerData.logo} alt="Logo" className={styles.logoImage} />
+                <h3>{headerData.builder_name}</h3>
+                {/* <p>A leading real estate builder known for quality and customer satisfaction.</p> */}
+              </div>
+              <div className={styles.card}>
+                <img
+                  src="https://www.buyindiahomes.in/location2.png"
+                  alt="Location Icon"
+                  className={styles.locationIcon}
+                />
+                <div>
+                  <h3>{headerData.sublocation}</h3>
+                  <h4>{headerData.location}</h4>
+                </div>
+              </div>
+              <div className={styles.card}>
+                <img
+                  src="https://www.buyindiahomes.in/apartment_2.png"
+                  alt="Property Icon"
+                  className={styles.propertyIcon}
+                />
+                <div>
+                  <h3>{headerData.property_type_price_range_text}</h3>
+                  <p>{headerData.property_area_min_max}</p>
+                  <p className={styles.updatedText}>
+                    <em>Last Updated:</em> {headerData.property_last_updated}
+                  </p>
+                </div>
+              </div>
             </div>
-            <h3>{headerData.property_name}</h3>
-            <p>Welcome to {headerData.builder_name}</p>
           </div>
 
-          {/* Second box with location */}
-          <div className={`${styles.template1Card} ${styles.template1LocalMarketing}`}>
-            <div className={styles.template1Icon}>🗺️</div> {/* Static icon */}
-            <h3>{headerData.location},<br /> {headerData.sublocation}</h3>
-          </div>
-
-          {/* Third box with property type and price range */}
-          <div className={`${styles.template1Card} ${styles.template1SocialMedia}`}>
-            <div className={styles.template1Icon}>🏢</div> {/* Static icon */}
-            <h3>{headerData.property_type_price_range_text}</h3>
+          {/* Services Section in one row with lines separating them */}
+          <div className={styles.servicesRow}>
+            {/* More sections can be added here as needed */}
           </div>
         </>
       ) : (

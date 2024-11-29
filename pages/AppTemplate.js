@@ -8,7 +8,7 @@ import Template1 from './components/template1/App';
 import Template2 from './components/template2/App';
 // import Template3 from './components/template3/Template3';
 
-const App = () => {
+const App = ({ propertyDetails }) => {
   const [templateId, setTemplateId] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -46,7 +46,8 @@ const App = () => {
   // Conditional rendering based on templateId
   switch (templateId) {
     case "1":
-      return <Template1 />;
+      return <Template1 propertyDetails={propertyDetails}/>;
+      
     case "2":
       return <Template2 />;
     // case 3:
