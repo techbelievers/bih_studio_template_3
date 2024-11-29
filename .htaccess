@@ -17,8 +17,8 @@ RewriteCond %{REQUEST_URI} !^/blogs/.*
 # Internally rewrite root requests to /AppTemplate/
 # RewriteRule ^$ /AppTemplate/ [L]
 # Internally rewrite root requests to /AppTemplate/ without showing /AppTemplate/ in the URL
-RewriteRule ^$ /AppTemplate/ [L]
-RewriteRule ^(?!AppTemplate/)(.*)$ /AppTemplate/$1 [L]
+# RewriteRule ^$ /AppTemplate/ [L]
+# RewriteRule ^(?!AppTemplate/)(.*)$ /AppTemplate/$1 [L]
 
 # Redirect all requests to your Next.js app running on port 3000
 RewriteRule ^(.*)$ http://localhost:3000/$1 [P,L]
