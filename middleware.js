@@ -13,7 +13,7 @@ export function middleware(req) {
   // });
 
   const hostname = req.headers.get('host');
-  const protocol = req.headers.get('x-forwarded-proto') || 'http';
+  const protocol = req.headers.get('x-forwarded-host') || 'http';
   // Redirect non-www to www
   if (!hostname.startsWith('www.') && !hostname.startsWith('localhost')) {
     return NextResponse.redirect(`https://www.${hostname}${req.nextUrl.pathname}`, 301);
