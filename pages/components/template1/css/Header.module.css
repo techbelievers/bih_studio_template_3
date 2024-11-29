@@ -37,6 +37,7 @@
   margin: 0;
   padding: 0;
   display: flex;
+  text-align: left;
   gap: 30px; /* Increase gap between menu items */
 }
 
@@ -112,5 +113,6 @@
 
   .hamburger {
     display: flex; /* Show hamburger on mobile */
+    padding-right: 20px;
   }
 }

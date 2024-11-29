@@ -33,7 +33,8 @@
   /* For smaller screens */
   @media (max-width: 600px) {
     .adImage {
-      max-width: 90%; /* Adjusts to fit smaller devices */
+      padding : 15px;
+      max-width: 90%; 
     }
   }
   

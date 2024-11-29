@@ -64,7 +64,7 @@ const MahareraInformation = () => {
                 <p>No QR URL available</p>
               )}
             </div>
-            <div className={styles.rera_info_item}><strong>Maharera:</strong> {reraItem.rera_id}</div>
+            <div className={styles.rera_info_item}><strong>Maharera:</strong> <p>{reraItem.rera_id}</p></div>
             <div className={styles.rera_info_item}><strong>Phase Name:</strong> {reraItem.phase_name}</div>
             <div className={styles.rera_info_item}><strong>Completion Date:</strong> {formatCompletionDate(reraItem.completion_date)}</div>
             <div className={styles.rera_info_item}><strong>Total Area:</strong> {reraItem.total_area} sqft</div>

@@ -20,6 +20,9 @@
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
   }
   
+  .maharera_info_container p{
+    font-size: 14px;
+  }
   .rera_info_grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);

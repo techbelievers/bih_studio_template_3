@@ -89,12 +89,12 @@
 
 @media (max-width: 768px) {
   .bankPartnerItem {
-    width: 150px; /* Adjust card width for smaller screens */
+    width: 300px; /* Adjust card width for smaller screens */
   }
 }
 
 @media (max-width: 480px) {
   .bankPartnerItem {
-    width: 120px; /* Further adjust card width for very small screens */
+    width: 200px; /* Further adjust card width for very small screens */
   }
 }
