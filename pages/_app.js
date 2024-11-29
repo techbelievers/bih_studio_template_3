@@ -46,6 +46,7 @@ const MyApp = ({ Component, pageProps, headerData, error ,propertyDetails , doma
         <meta property="og:description" content={headerData.data.og_description} />
         <meta property="og:image" content={headerData.data?.og_image || ''} />
         <meta property="og:type" content={headerData.data.og_type} />
+        <meta property="og:url" content={canonicalUrl} />
         <link rel="canonical" href={canonicalUrl} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href={headerData.data.favicon} />
@@ -77,20 +78,6 @@ const MyApp = ({ Component, pageProps, headerData, error ,propertyDetails , doma
 <main>
         <h1 className="hidden-h1">{title}</h1> {/* Main heading of the page */}
         <h2 className="hidden-h1">{description}</h2>
-
-      <nav className="hidden-h1">
-         <ul>
-         <li><a href="#about">ABOUT</a></li>
-          <li><a href="#price">PRICE</a></li>
-          <li><a href="#gallery">GALLERY</a></li>
-          <li><a href="#amenities">AMENITIES</a></li>
-          <li><a href="#layouts">LAYOUTS</a></li>
-          <li><a href="#location">LOCATION</a></li>
-          <li><a href="#blogs">BLOGS</a></li>
-        </ul>
-      </nav>
-
-
         {/* Pass propertyDetails as a prop to the component */}
         {Component.name === "Home" ? (
           <AppTemplate  />
