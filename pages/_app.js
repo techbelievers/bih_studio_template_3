@@ -84,6 +84,7 @@ MyApp.getInitialProps = async (appContext) => {
   let headerData = null;
   let propertyDetails = null;
   let error = null;
+  let domain = DEFAULT_DOMAIN; 
   const { req } = appContext.ctx;
   // console.log('Default domain',API);
   const rawWebsiteDomain = req.headers['x-forwarded-host'] || (DEFAULT_DOMAIN);
