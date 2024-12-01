@@ -56,7 +56,7 @@ const Video = () => {
 
   return (
     <div className={styles.video_container}>
-      <h2 className={styles.heading}>{heading}</h2>
+      <h2 className={styles.luxuryHeading}>{heading}</h2>
       <h4 className={styles.subheading}>{subheading}</h4>
       <div className={styles.video_wrapper}>
         {videoData.length > 0 ? (

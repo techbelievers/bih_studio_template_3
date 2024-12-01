@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { API } from '../../../../Config';
 import styles from '../css/Footer.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebookF, faTwitter, faLinkedinIn , faPinterest , faYoutube , faInstagram} from '@fortawesome/free-brands-svg-icons';
+import { faFacebookF, faTwitter, faLinkedinIn, faPinterest, faYoutube, faInstagram } from '@fortawesome/free-brands-svg-icons';
 
 const Footer = () => {
     const [footerData, setFooterData] = useState(null);
@@ -35,9 +35,7 @@ const Footer = () => {
                 <div className={styles.footerTop}>
                     <div className={styles.footerLogo}>
                         <img src={`${g_setting.logo}`} alt="Company Logo" className={styles.footerLogoImage} />
-                        {g_setting.footer_agent_rera && 
-                            <p className={styles.footerAgentRera}>{ "Agent MahaRera : "+ g_setting.footer_agent_rera}</p>
-                        }
+                        
                     </div>
 
                     <div className={styles.footerLinks}>
@@ -57,6 +55,7 @@ const Footer = () => {
                                     </a>
                                 ))}
                             </div>
+ 
                         </div>
 
                         <div className={styles.footerContact}>
@@ -69,9 +68,12 @@ const Footer = () => {
                 </div>
 
                 <div className={styles.footerBottom}>
-                    {g_setting.footer_disclamer && 
+                    {g_setting.footer_disclamer && (
                         <p className={styles.footerDisclaimer}>{g_setting.footer_disclamer}</p>
-                    }
+                    )}
+                    {g_setting.footer_agent_rera && (
+                            <p className={styles.footerAgentRera}>Agent MahaRera : {g_setting.footer_agent_rera}</p>
+                        )}
                     <p className={styles.footerCopyright}>{g_setting.footer_copyright}</p>
                 </div>
             </div>

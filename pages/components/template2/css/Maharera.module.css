@@ -9,8 +9,8 @@
 /* Grid layout for cards */
 .maharera_grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 30px; /* Space between rows and columns */
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 10px; /* Space between rows and columns */
 }
 
 /* Individual card styling */
@@ -31,7 +31,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .rera_info_left .react-qrcode {
@@ -40,7 +40,7 @@
 }
 
 .no_qr {
-  font-size: 1.2rem;
+  font-size: 0.1rem;
   color: #ff4c4c;
   text-align: center;
 }
@@ -51,9 +51,10 @@
 }
 
 .rera_info_item {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   color: #555;
   margin-bottom: 12px;
+  text-align: left;
 }
 
 .rera_info_item strong {
@@ -80,7 +81,7 @@
 
 /* Centered heading */
 .heading {
-  font-size: 2.5rem; /* Adjust size as needed */
+  font-size: 1.5rem; /* Adjust size as needed */
   font-weight: 700;
   color: #333;
   text-align: center; /* Center text horizontally */
@@ -88,3 +89,30 @@
   line-height: 1.2; /* Improve spacing for multi-line headings */
 }
 
+
+/* Universal Header Style */
+.luxuryHeading {
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+  color: #2e3b4e; /* Rich, elegant color */
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px; /* Slightly increased letter-spacing for sophistication */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle shadow for a 3D effect */
+  background: linear-gradient(90deg, #4b79a1, #283e51); /* Gradient for a unique feel */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; /* Gradient applies to the text */
+  position: relative;
+}
+
+/* Optional: Add an underline effect */
+.luxuryHeading::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: #4b79a1; /* Matches the heading color scheme */
+  margin: 10px auto 0;
+  border-radius: 2px;
+}

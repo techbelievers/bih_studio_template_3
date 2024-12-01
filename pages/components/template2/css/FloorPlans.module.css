@@ -1,73 +1,77 @@
 /* FloorPlans.module.css */
 
-/* Wrapper for Template1 */
-.floorplansContainer {
-  padding: 20px;
+/* Overall Wrapper */
+.floorPlansWrapper {
+  padding: 40px 20px;
+  background-color: #f8f9fa;
   text-align: center;
 }
 
-.floorplansHeader {
+/* Header Section */
+.header {
   margin-bottom: 30px;
 }
-
-.floorplansHeading {
-  animation: fade-in 0.6s ease-in-out;
-  text-align: center;
-  font-size: 30px;
-  margin-bottom: 20px;
-  color: #28a745; /* Dark, elegant color */
-  font-family: 'Playfair Display', serif; /* Luxurious, elegant serif font */
-  font-weight: 700; /* Bold weight for emphasis */
-  letter-spacing: 1.2px; /* Slightly increased letter spacing */
-  text-transform: capitalize; /* Capitalize for a refined look */
+.title {
+  font-size: 36px;
+  font-family: 'Playfair Display', serif;
+  color: #212529;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.subtitle {
+  font-size: 18px;
+  color: #6c757d;
 }
 
-/* Grid container for floor plans */
-.floorplansGrid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+/* Carousel Grid */
+.carousel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
 }
 
-/* Individual floor plan item */
-.floorplanItem {
-  width: 100%;
-  max-width: 350px;
-  position: relative;
-  overflow: hidden;
-  border-radius: 8px;
-  background-color: #f5f5f5;
-}
-
-.floorplanImage {
-  width: 100%;
-  height: 200px; /* Fixed height to maintain aspect ratio */
-  object-fit: cover; /* Adjust to 'fill' if stretching the image */
-  transition: transform 0.3s ease;
+/* Floor Plan Card */
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.floorplanItem:hover .floorplanImage {
-  transform: scale(1.05);
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Layout name styles */
-.layoutName {
-  /* position: absolute; */
-  bottom: 10px;
-  /* left: 50%; */
-  /* transform: translateX(-50%); */
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  padding: 5px 10px;
-  /* border-radius: 5px; */
-  font-size: 16px;
-  text-align: center;
+.imageContainer {
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
+}
+.image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
-/* Fullscreen overlay */
-.fullscreenOverlay {
+.card:hover .image {
+  transform: scale(1.1);
+}
+
+.cardFooter {
+  padding: 15px;
+}
+
+.planName {
+  font-size: 20px;
+  color: #495057;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+/* Modal */
+.modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -80,19 +84,16 @@
   z-index: 1000;
 }
 
-.fullscreenContent {
+.modalContent {
   position: relative;
   max-width: 90%;
   max-height: 90%;
 }
 
-.fullscreenImage {
+.modalImage {
   width: 100%;
   height: auto;
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain; /* Adjust based on your needs */
-  border-radius: 8px;
+  border-radius: 12px;
 }
 
 .closeButton {
@@ -104,36 +105,38 @@
   border-radius: 50%;
   padding: 10px;
   cursor: pointer;
-  font-size: 24px;
-  color: #000;
-  transition: background 0.3s ease;
+  font-size: 20px;
+  color: #495057;
 }
 
 .closeButton:hover {
-  background: #f8f8f8;
+  background: #f8f9fa;
 }
 
-/* Animations */
-@keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+
+/* Universal Header Style */
+.luxuryHeading {
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+  color: #2e3b4e; /* Rich, elegant color */
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px; /* Slightly increased letter-spacing for sophistication */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle shadow for a 3D effect */
+  background: linear-gradient(90deg, #4b79a1, #283e51); /* Gradient for a unique feel */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; /* Gradient applies to the text */
+  position: relative;
 }
 
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-  .floorplanItem {
-    max-width: 300px;
-  }
-}
-
-@media (max-width: 480px) {
-  .floorplanItem {
-    max-width: 350px;
-  }
+/* Optional: Add an underline effect */
+.luxuryHeading::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: #4b79a1; /* Matches the heading color scheme */
+  margin: 10px auto 0;
+  border-radius: 2px;
 }

@@ -49,7 +49,7 @@ const App = ({ propertyDetails }) => {
       return <Template1 propertyDetails={propertyDetails}/>;
       
     case "2":
-      return <Template2 />;
+      return <Template2 propertyDetails={propertyDetails} />;
     // case 3:
     //   return <Template3 />;
     default:
@@ -76,7 +76,7 @@ export async function getServerSideProps(context) {
     const propertyResponse = await axios.get(API.PROPERTY_DETAILS(finalDomain));
     const propertyData = propertyResponse.data;
 
-    console.log(propertyData);
+    console.log(propertyData); 
 
     if (!propertyData || !propertyData.property_details) {
       error = 'Property details not found.';

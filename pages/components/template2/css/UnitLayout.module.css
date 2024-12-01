@@ -1,165 +1,187 @@
+/* Container Styling */
 .unitLayout {
-  padding: 40px;
+  padding: 50px 20px;
+  background: linear-gradient(to bottom, #ffffff, #f4f6f9);
   text-align: center;
-  background-color: #ffffff; /* Light gray background for contrast */
-  transition: all 0.3s ease;
 }
 
-.unitLayoutHeading {
-  font-size: 32px;
-  margin-bottom: 20px;
-  color: #333; /* Dark color for better readability */
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  text-transform: capitalize;
+/* Header Section */
+.luxuryHeading {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #4b79a1;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #4b79a1, #283e51);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.unitButtons {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  flex-wrap: wrap;
+.description {
+  font-size: 1rem;
+  color: #555;
   margin-bottom: 30px;
 }
 
-.unitButton {
-  padding: 12px 25px;
-  border: 2px solid #28a745;
-  border-radius: 25px;
-  background-color: transparent;
-  color: #28a745;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 600;
+/* Slider Styling */
+.sliderContainer {
+  margin: 0 auto;
+  max-width: 900px;
+  position: relative;
+}
+
+.slide {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
 }
 
-.unitButton:hover, .unitButton.active {
-  background-color: #28a745;
-  color: white;
-  transform: translateY(-5px); /* Adds subtle hover effect */
+/* Details Section */
+.unitDetailsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  align-items: flex-start;
 }
 
-.unitContent {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  align-items: center;
-  margin-top: 20px;
-  animation: fade-in 0.6s ease-in-out;
+.detailsLeft {
+  max-width: 400px;
+  text-align: left;
+}
+
+.unitTitle {
+  font-size: 1.8rem;
+  color: #4b79a1;
+  margin-bottom: 15px;
+}
+
+.detail {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.detailsRight {
+  flex: 1;
 }
 
 .unitImage {
   width: 100%;
   max-width: 500px;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
+  cursor: pointer;
 }
 
 .unitImage:hover {
-  transform: scale(1.05); /* Subtle zoom effect on image hover */
+  transform: scale(1.05);
 }
 
-.unitDetails {
-  text-align: left;
-  padding: 20px;
-  max-width: 400px;
-  width: 100%;
-  background-color: #ffffff;
-  border-radius: 10px;
-  border: 2px solid #ddd;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  animation: fade-in 0.8s ease-in-out;
+/* Slider Dots */
+.slick-dots li button:before {
+  color: #4b79a1;
 }
 
-.unitDetails h3 {
-  font-size: 24px;
-  margin-bottom: 15px;
-  color: #28a745;
+.slick-dots li.slick-active button:before {
+  color: #283e51;
 }
 
-.unitDetails p {
-  font-size: 16px;
-  color: #555;
-  margin-bottom: 10px;
-}
-
-/* Loading and Error State */
-.loader, .error {
-  font-size: 20px;
-  color: #28a745;
+/* Loader & Error */
+.loader,
+.error {
+  font-size: 1.2rem;
+  color: #4b79a1;
   margin-top: 20px;
 }
 
-/* Animations */
-@keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Modal Styling */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
 }
 
-/* Mobile responsiveness */
+.modalContent {
+  position: relative;
+  max-width: 90%;
+  max-height: 80%;
+  overflow: hidden;
+}
+
+.modalImage {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 2rem;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.closeButton:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+/* Mobile Responsive */
 @media (max-width: 768px) {
-  .unitLayout {
-    padding: 20px;
-  }
-
-  .unitLayoutHeading {
-    font-size: 26px;
-  }
-
-  .unitButtons {
-    gap: 10px;
-  }
-
-  .unitContent {
-    flex-direction: column;
-  }
-
-  .unitImage {
-    max-width: 90%;
-  }
-
-  .unitDetails {
-    max-width: 90%;
-  }
-
-  .unitButton {
-    padding: 10px 20px;
-    font-size: 14px;
-  }
-}
-
-@media (max-width: 480px) {
-  .unitLayout {
-    padding: 15px;
-  }
-
-  .unitLayoutHeading {
-    font-size: 22px;
-  }
-
-  .unitButton {
-    font-size: 12px;
-    padding: 8px 16px;
+  .detailsLeft {
+    max-width: 100%;
   }
 
   .unitImage {
     max-width: 100%;
   }
+}
 
-  .unitDetails h3 {
-    font-size: 20px;
-  }
+/* Universal Header Style */
+.luxuryHeading {
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+  color: #2e3b4e; /* Rich, elegant color */
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px; /* Slightly increased letter-spacing for sophistication */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle shadow for a 3D effect */
+  background: linear-gradient(90deg, #4b79a1, #283e51); /* Gradient for a unique feel */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; /* Gradient applies to the text */
+  position: relative;
+}
 
-  .unitDetails p {
-    font-size: 14px;
-  }
+/* Optional: Add an underline effect */
+.luxuryHeading::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: #4b79a1; /* Matches the heading color scheme */
+  margin: 10px auto 0;
+  border-radius: 2px;
 }

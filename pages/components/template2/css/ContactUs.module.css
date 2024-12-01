@@ -1,165 +1,213 @@
 /* ContactUs.module.css */
 
+/* Contact Section */
 .contactUs {
-    padding: 20px;
-    background: url('../images/background.webp') no-repeat center center;
-    background-size: cover;
-    min-height: 70vh; /* Full height for a more dramatic effect */
+    padding: 40px 20px;
+    background-color: #4b79a1;
+}
+
+.contactUs h2 {
+    padding: 0px;
+    margin: 2px;
+}
+.contactUs p {
+    padding: 0px;
+    margin: 2px;
 }
 
 .container {
     display: flex;
-    flex-direction: row; /* Default to horizontal layout */
-    justify-content: space-between;
-    max-width: 1200px;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-width: 1000px;
     margin: 0 auto;
-    background-color: rgba(0, 0, 0, 0.8); /* Darker background for contrast */
-    padding: 40px;
-    border-radius: 15px; /* Slightly larger border radius */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column; /* Switch to vertical layout on smaller screens */
-    }
-}
-
+/* Contact Details */
 .details {
-    flex: 1;
-    color: #fff;
-    margin-right: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    max-width: 450px;
+    /* width: 45%; */
+        height: 400px;
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-content: stretch;
+        justify-content: center;
 }
 
 .title {
-    font-size: 2.5rem; /* Larger title for emphasis */
-    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: #2c3e50;
     margin-bottom: 10px;
-    color: #ffffff;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Subtle text shadow */
-}
-
-.tagline {
-    font-size: 1.2rem; /* Slightly larger tagline */
-    font-family: 'Roboto', sans-serif;
-    margin-bottom: 20px;
-    color: #00f400;
 }
 
 .description {
-    font-size: 0.8rem; /* Increase font size for better readability */
+    font-size: 14px;
     line-height: 1.6;
-    margin-bottom: 20px;
-    font-family: 'Georgia', serif;
+    color: #7f8c8d;
+    margin-bottom: 15px;
 }
 
-.info p {
-    margin: 8px 0;
+.info {
+    font-size: 14px;
+    color: #34495e;
+    margin-top: 20px;
 }
 
+.info strong {
+    color: #2c3e50;
+}
+
+/* Contact Form */
 .form {
-    flex: 1;
-    background: #fff;
-    padding: 30px; /* Increase padding for better spacing */
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Softer shadow for a modern look */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
 }
 
 .formTitle {
-    font-size: 1.8rem; /* Larger form title */
-    margin-bottom: 20px;
-    color: #333;
-    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.successMessage {
+    font-size: 14px;
+    color: #27ae60;
+    margin-bottom: 15px;
+}
+
+.errorMessage {
+    font-size: 14px;
+    color: #e74c3c;
+    margin-bottom: 15px;
 }
 
 .input,
 .textarea {
-    width: calc(100% - 20px);
-    margin-bottom: 15px;
-    padding: 15px; /* Increased padding for comfort */
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 10px;
     border: 1px solid #ddd;
-    border-radius: 8px; /* More rounded corners */
-    font-family: 'Arial', sans-serif;
-    transition: border 0.3s ease; /* Smooth transition for focus effect */
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    transition: border-color 0.3s ease;
 }
 
 .input:focus,
 .textarea:focus {
-    border: 1px solid #0383c5; /* Change border color on focus */
-    outline: none; /* Remove default outline */
+    border-color: #3498db;
+    outline: none;
+}
+
+.textarea {
+    min-height: 100px;
+    resize: vertical;
 }
 
 .button {
     width: 100%;
-    padding: 15px;
-    background-color: #0383c5;
+    padding: 12px;
+    background-color: #3498db;
     color: #fff;
+    font-size: 16px;
     border: none;
-    border-radius: 8px; /* More rounded corners */
-    font-size: 1rem;
+    border-radius: 4px;
     cursor: pointer;
-    font-family: 'Arial', sans-serif;
-    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    transition: background-color 0.3s ease;
 }
 
 .button:hover {
-    background-color: #0275b8; /* Darker shade on hover */
+    background-color: #2980b9;
 }
 
-.successMessage {
-    color: green;
-    margin-bottom: 10px;
-    font-weight: bold; /* Emphasize success message */
+.button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
 }
 
-.errorMessage {
-    color: red;
-    margin-bottom: 10px;
-    font-weight: bold; /* Emphasize error message */
-}
-
-
-
+/* Thank You Popup */
 .thankYouPopup {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
-  }
-  
-  .thankYouContent {
-    background: white;
-    padding: 20px;
+    z-index: 999;
+}
+
+.thankYouContent {
+    background-color: #fff;
+    padding: 30px;
     border-radius: 8px;
     text-align: center;
-    width: 300px;
-  }
-  
-  .thankYouContent h2 {
-    margin-bottom: 10px;
-  }
-  
-  .thankYouContent p {
-    margin-bottom: 20px;
-  }
-  
-  .thankYouContent button {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
+.thankYouContent h2 {
+    font-size: 28px;
+    color: #27ae60;
+}
+
+.thankYouContent p {
+    font-size: 16px;
+    color: #7f8c8d;
+}
+
+.thankYouContent button {
     padding: 10px 20px;
-    background: #007bff;
-    color: white;
+    background-color: #3498db;
+    color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
-  }
-  
-  .thankYouContent button:hover {
-    background: #0056b3;
-  }
-  
+    margin-top: 20px;
+}
+
+.thankYouContent button:hover {
+    background-color: #2980b9;
+}
+
+/* Responsive Styles */
+@media (min-width: 768px) {
+    .container {
+        flex-direction: row;
+        gap: 30px;
+    }
+
+    .details,
+    .form {
+        width: 45%;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .details,
+    .form {
+        max-width: 100%;
+    }
+}

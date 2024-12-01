@@ -12,8 +12,8 @@ const FloorPlans = () => {
       try {
         const response = await fetch(API.FLOOR_PLANS());
         const data = await response.json();
-        setFloorPlansData(data.Floor_plans);
-        setHeading(data.page[0]?.heading || 'Floor Plans');
+        setFloorPlansData(data.Floor_plans || []);
+        setHeading(data.page[0]?.heading || 'Explore Our Floor Plans');
       } catch (error) {
         console.error('Error fetching floor plans data:', error);
       }
@@ -31,29 +31,30 @@ const FloorPlans = () => {
   };
 
   return (
-    <div className={styles.floorplansContainer}>
-      <div className={styles.floorplansHeader}>
-        <h2 className={styles.floorplansHeading}>{heading}</h2>
-      </div>
-      <div className={styles.floorplansGrid}>
+    <div className={styles.floorPlansWrapper}>
+      <header className={styles.header}>
+        <h1 className={styles.luxuryHeading}>{heading}</h1>
+        <p className={styles.subtitle}>Discover the thoughtfully designed layouts tailored to your lifestyle.</p>
+      </header>
+
+      <div className={styles.carousel}>
         {floorPlansData.map(plan => (
-          <div key={plan.id} className={styles.floorplanItem}>
-            <img 
-              src={plan.layout_image} 
-              alt={plan.layout_name} 
-              className={styles.floorplanImage}
-              onClick={() => handleImageClick(plan.layout_image)}
-            />
-            <div className={styles.layoutName}>{plan.layout_name}</div>
+          <div key={plan.id} className={styles.card} onClick={() => handleImageClick(plan.layout_image)}>
+            <div className={styles.imageContainer}>
+              <img src={plan.layout_image} alt={plan.layout_name} className={styles.image} />
+            </div>
+            <div className={styles.cardFooter}>
+              <h3 className={styles.planName}>{plan.layout_name}</h3>
+            </div>
           </div>
         ))}
       </div>
 
       {selectedImage && (
-        <div className={styles.fullscreenOverlay} onClick={closeModal}>
-          <div className={styles.fullscreenContent}>
-            <img src={selectedImage} alt="Fullscreen" className={styles.fullscreenImage} />
-            <button className={styles.closeButton} onClick={closeModal}>×</button>
+        <div className={styles.modal} onClick={closeModal}>
+          <div className={styles.modalContent}>
+            <img src={selectedImage} alt="Floor Plan" className={styles.modalImage} />
+            <button className={styles.closeButton} onClick={closeModal} aria-label="Close">×</button>
           </div>
         </div>
       )}

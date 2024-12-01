@@ -16,7 +16,7 @@
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 700;
-    border-bottom: 2px solid #27ae60;
+    border-bottom: 2px solid #4b79a1;
     padding-bottom: 10px;
 }
 
@@ -34,7 +34,7 @@
 
 .property_description h2, 
 .property_description h3 {
-    color: #27ae60;
+    color: #4b79a1;
     font-weight: bold;
     margin-top: 25px;
     font-size: 22px;
@@ -54,7 +54,7 @@
     display: block;
     margin: 30px auto 0;
     padding: 12px 25px;
-    background-color: #27ae60;
+    background-color: #4b79a1;
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -66,7 +66,7 @@
 }
 
 .read_more_btn:hover {
-    background-color: #1e8449;
+    background-color: #4b79a1;
     transform: translateY(-2px);
 }
 
@@ -106,3 +106,32 @@
         font-size: 14px;
     }
 }
+
+
+/* Universal Header Style */
+.luxuryHeading {
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-align: center;
+    color: #2e3b4e; /* Rich, elegant color */
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px; /* Slightly increased letter-spacing for sophistication */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle shadow for a 3D effect */
+    background: linear-gradient(90deg, #4b79a1, #283e51); /* Gradient for a unique feel */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /* Gradient applies to the text */
+    position: relative;
+  }
+  
+  /* Optional: Add an underline effect */
+  .luxuryHeading::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: #4b79a1; /* Matches the heading color scheme */
+    margin: 10px auto 0;
+    border-radius: 2px;
+  }
+  

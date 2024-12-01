@@ -1,24 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { API } from '../../../../Config'; // Adjust the path to your config.js file
-import styles from '../css/LocationMap.module.css'; // Ensure the path is correct
+import { API } from '../../../../Config';
+import styles from '../css/LocationMap.module.css';
 
 const LocationMap = () => {
   const [mapData, setMapData] = useState({ heading: '', subheading: '', map: '' });
-  const [heading, setHeading] = useState("");
-
-  useEffect(() => {
-    const fetchLocationData = async () => {
-      try {
-        const response = await fetch(API.LOCATION_ADVANTAGES());
-        const data = await response.json();
-        setHeading(data.page[0]?.heading || 'Location Advantages');
-      } catch (error) {
-        console.error('Error fetching location advantages data:', error);
-      }
-    };
-
-    fetchLocationData();
-  }, []);
 
   useEffect(() => {
     const fetchMapData = async () => {
@@ -40,8 +25,8 @@ const LocationMap = () => {
 
   return (
     <div id="location" className={styles.locationMapContainer}>
-      <h2>{mapData.heading} </h2>
-      {mapData.subheading && <h4>{mapData.subheading}</h4>}
+      <h2 className={styles.luxuryHeading}>{mapData.heading}</h2>
+      {mapData.subheading && <h4 className={styles.subheading}>{mapData.subheading}</h4>}
       <div className={styles.locationMap} dangerouslySetInnerHTML={{ __html: mapData.map }}></div>
     </div>
   );

@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { API } from '../../../../Config'; // Adjust the path
 import styles from '../css/LocationHighlights.module.css'; // Ensure the path is correct
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 
 const LocationHighlights = () => {
   const [locationData, setLocationData] = useState([]);
   const [heading, setHeading] = useState('');
+  const [visibleItems, setVisibleItems] = useState(8); // Initially show 6 items
 
   useEffect(() => {
     const fetchLocationData = async () => {
@@ -26,26 +22,18 @@ const LocationHighlights = () => {
     fetchLocationData();
   }, []);
 
+  const handleSeeMore = () => {
+    setVisibleItems((prev) => prev + 8); // Increase by 6 on each click
+  };
+
   return (
     <div className={styles.locationHighlightsContainer}>
-      <h2 className={styles.heading}>{heading}</h2>
+      <h2 className={styles.luxuryHeading}>{heading}</h2>
       {locationData.length > 0 ? (
-        <Swiper
-          modules={[Navigation, Pagination, Autoplay]}
-          navigation
-          pagination={{ clickable: true }}
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
-          loop
-          breakpoints={{
-            320: { slidesPerView: 1, spaceBetween: 10 },
-            768: { slidesPerView: 2, spaceBetween: 20 },
-            1024: { slidesPerView: 3, spaceBetween: 30 },
-          }}
-          className={styles.slider}
-        >
-          {locationData.map((item) => (
-            <SwiperSlide key={item.id} className={styles.slide}>
-              <div className={styles.slideContent}>
+        <>
+          <div className={styles.locationGrid}>
+            {locationData.slice(0, visibleItems).map((item) => (
+              <div key={item.id} className={styles.locationCard}>
                 <div className={styles.imageContainer}>
                   <img src={item.location_image} alt={item.location} className={styles.image} />
                 </div>
@@ -55,9 +43,14 @@ const LocationHighlights = () => {
                   <p className={styles.description}>{item.description}</p>
                 </div>
               </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+            ))}
+          </div>
+          {visibleItems < locationData.length && (
+            <button onClick={handleSeeMore} className={styles.seeMoreButton}>
+              See More
+            </button>
+          )}
+        </>
       ) : (
         <p className={styles.loadingText}>Loading location highlights...</p>
       )}

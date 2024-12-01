@@ -52,13 +52,13 @@ const MahareraInformation = () => {
 
   return (
     <div className={styles.maharera_info_container}>
-      <h2 className={styles.heading}>Maharera Information</h2>
+      <h2 className={styles.luxuryHeading}>Maharera Information</h2>
       <div className={styles.maharera_grid}>
         {reraData.map((reraItem, index) => (
           <div key={index} className={styles.rera_info_section}>
             <div className={styles.rera_info_left}>
               {reraItem.rera_url ? (
-                <QRCodeCanvas value={reraItem.rera_url} size={150} />
+                <QRCodeCanvas value={reraItem.rera_url} size={100} />
               ) : (
                 <div className={styles.no_qr}>No QR URL available</div>
               )}

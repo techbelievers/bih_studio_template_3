@@ -1,10 +1,10 @@
 .video_container {
   padding: 60px 40px;
   text-align: center;
-  background-color: #ffffff; /* Soft off-white background */
+  /* background-color: #ffffff00; */
   box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.05); /* Subtle inner shadow for depth */
   border-radius: 15px;
-  max-width: 1200px;
+  max-width: 100%;
   margin: auto;
 }
 
@@ -36,8 +36,8 @@
 
 .video_item {
   width: 100%;
-  max-width: 1000px;
-  height: 315px; /* Fixed aspect ratio */
+  max-width: 100%;
+  height: 500px; /* Fixed aspect ratio */
   background-color: #ffffff;
   border-radius: 12px;
   overflow: hidden;
@@ -94,3 +94,34 @@
     width: 95%;
   }
 }
+
+
+
+
+/* Universal Header Style */
+.luxuryHeading {
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+  color: #2e3b4e; /* Rich, elegant color */
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px; /* Slightly increased letter-spacing for sophistication */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle shadow for a 3D effect */
+  background: linear-gradient(90deg, #4b79a1, #283e51); /* Gradient for a unique feel */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; /* Gradient applies to the text */
+  position: relative;
+}
+
+/* Optional: Add an underline effect */
+.luxuryHeading::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: #4b79a1; /* Matches the heading color scheme */
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+

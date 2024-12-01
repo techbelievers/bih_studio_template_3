@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
-import styles from "../css/UnitLayout.module.css"; // Scoped CSS
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import styles from "../css/UnitLayout.module.css";
 import { API } from "../../../../Config";
 
 const UnitLayout = () => {
   const [unitLayoutData, setUnitLayoutData] = useState([]);
-  const [selectedUnit, setSelectedUnit] = useState("2BHK");
+  const [heading, setHeading] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [heading, setHeading] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalImage, setModalImage] = useState("");
 
   useEffect(() => {
     fetchUnitLayoutData();
@@ -18,8 +22,8 @@ const UnitLayout = () => {
       const response = await fetch(API.UNIT_LAYOUT());
       const data = await response.json();
       setUnitLayoutData(data.unit_layout);
-      setLoading(false);
       setHeading(data.page[0].heading);
+      setLoading(false);
     } catch (err) {
       console.error("Error fetching unit layout data:", err);
       setError("Failed to load unit layout data");
@@ -27,42 +31,72 @@ const UnitLayout = () => {
     }
   };
 
-  const handleUnitClick = (unitName) => {
-    setSelectedUnit(unitName);
+  const openModal = (image) => {
+    setModalImage(image);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setModalImage("");
   };
 
   if (loading) return <div className={styles.loader}>Loading...</div>;
   if (error) return <div className={styles.error}>{error}</div>;
 
-  const selectedUnitData = unitLayoutData.find(
-    (unit) => unit.layout_name === selectedUnit
-  );
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    arrows: true,
+  };
 
   return (
     <div id="layouts" className={styles.unitLayout}>
-      <h2 className={styles.unitLayoutHeading}>{heading}</h2>
-      <div className={styles.unitButtons}>
-        {unitLayoutData.map((unit) => (
-          <button
-            key={unit.id}
-            className={`${styles.unitButton} ${selectedUnit === unit.layout_name ? styles.active : ""}`}
-            onClick={() => handleUnitClick(unit.layout_name)}
-          >
-            {unit.layout_name}
-          </button>
-        ))}
+      <div className={styles.header}>
+        <h2 className={styles.luxuryHeading}>{heading}</h2>
+        <p className={styles.description}>
+          Explore our beautiful unit layouts crafted for every lifestyle.
+        </p>
       </div>
-      {selectedUnitData && (
-        <div className={styles.unitContent}>
-          <img
-            src={selectedUnitData.layout_image}
-            alt={`Layout for ${selectedUnitData.layout_name}`}
-            className={styles.unitImage}
-          />
-          <div className={styles.unitDetails}>
-            <h3>{selectedUnitData.unit_layout_heading}</h3>
-            <p>Carpet Area: {selectedUnitData.unit_layout_carpet_area}</p>
-            <p>Price: ₹{selectedUnitData.unit_layout_price}</p>
+      <Slider {...settings} className={styles.sliderContainer}>
+        {unitLayoutData.map((unit) => (
+          <div key={unit.id} className={styles.slide}>
+            <div className={styles.unitDetailsContainer}>
+              <div className={styles.detailsRight}>
+                <img
+                  src={unit.layout_image}
+                  alt={`Layout for ${unit.layout_name}`}
+                  className={styles.unitImage}
+                  onClick={() => openModal(unit.layout_image)}
+                />
+              </div>
+              <div className={styles.detailsLeft}>
+                <h3 className={styles.unitTitle}>{unit.layout_name}</h3>
+                <p className={styles.detail}>
+                  <strong>Carpet Area:</strong> {unit.unit_layout_carpet_area}
+                </p>
+                <p className={styles.detail}>
+                  <strong>Price:</strong> ₹{unit.unit_layout_price}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </Slider>
+
+      {/* Modal for Image */}
+      {isModalOpen && (
+        <div className={styles.modalOverlay} onClick={closeModal}>
+          <div className={styles.modalContent}>
+            <img src={modalImage} alt="Modal" className={styles.modalImage} />
+            <button className={styles.closeButton} onClick={closeModal}>
+              &times;
+            </button>
           </div>
         </div>
       )}

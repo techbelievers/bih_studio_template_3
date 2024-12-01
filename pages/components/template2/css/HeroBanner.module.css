@@ -14,12 +14,24 @@
 
 .heroContent {
   z-index: 10;
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 100px;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 10px;
 }
+
+@media (max-width: 768px) {
+  .heroContent {
+    z-index: 10;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+  }
+}
+
 
 .heroText h1 {
   font-size: 3rem;

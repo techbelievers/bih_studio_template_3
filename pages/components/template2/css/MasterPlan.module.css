@@ -1,73 +1,109 @@
-/* MasterPlan.module.css */
-
-/* Wrapper for Template1 */
-.masterplanContainer {
-  padding: 20px;
-  top: 20px;
+/* Master Plan Section */
+.masterPlanSection {
+  padding: 50px 20px;
+  background: linear-gradient(to bottom, #f9f9f9, #ffffff);
   text-align: center;
 }
 
-.masterplanHeader {
-  margin-bottom: 30px;
+/* Header Section */
+.header {
+  margin-bottom: 40px;
 }
 
-.masterplanHeading {
-  text-align: center;
-  font-size: 30px;
-  margin-bottom: 20px;
-  color: #28a745; /* Dark, elegant color */
-  font-family: 'Playfair Display', serif; /* Luxurious, elegant serif font */
-  font-weight: 700; /* Bold weight for emphasis */
-  letter-spacing: 1.2px; /* Slightly increased letter spacing */
-  text-transform: capitalize; /* Capitalize for a refined look */
+.heading {
+  font-size: 2.5rem;
+  color: #333;
+  font-family: 'Playfair Display', serif;
+  text-transform: capitalize;
+  margin-bottom: 10px;
 }
 
-/* Grid container for master plans */
-.masterplanGrid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+.subheading {
+  font-size: 1rem;
+  color: #555;
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* Grid for Master Plan Cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
+  padding: 0 20px;
 }
 
-/* Individual master plan item */
-.masterplanItem {
-  width: 100%;
-  max-width: 80%;
+/* Card Styles */
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Image Container */
+.imageContainer {
   position: relative;
   overflow: hidden;
-  border-radius: 8px;
-  background-color: #f5f5f5;
 }
 
-.masterplanImage {
+.cardImage {
   width: 100%;
-  height: 400px; /* Adjust height based on your design needs */
-  object-fit: cover; /* Cover image while maintaining aspect ratio */
+  height: 400px;
+  object-fit: cover;
   transition: transform 0.3s ease;
-  cursor: pointer;
 }
 
-.masterplanItem:hover .masterplanImage {
+.card:hover .cardImage {
   transform: scale(1.05);
 }
 
-/* Master plan name styles */
-.masterplanName {
+/* Overlay for Hover Effect */
+.overlay {
   position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 18px;
-  text-align: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
 }
 
-/* Fullscreen overlay */
-.fullscreenOverlay {
+.card:hover .overlay {
+  opacity: 1;
+}
+
+.viewDetails {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Card Content */
+.cardContent {
+  padding: 15px;
+  text-align: left;
+}
+
+.cardTitle {
+  font-size: 1.2rem;
+  color: #333;
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* Modal */
+.modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -80,16 +116,16 @@
   z-index: 1000;
 }
 
-.fullscreenContent {
+.modalContent {
   position: relative;
   max-width: 90%;
   max-height: 90%;
+  overflow: hidden;
 }
 
-.fullscreenImage {
+.modalImage {
   width: 100%;
   height: auto;
-  max-width: 100%;
   max-height: 100%;
   object-fit: contain;
   border-radius: 8px;
@@ -102,29 +138,54 @@
   background: #fff;
   border: none;
   border-radius: 50%;
-  padding: 10px;
-  cursor: pointer;
+  width: 40px;
+  height: 40px;
   font-size: 24px;
-  color: #000;
+  color: #333;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   transition: background 0.3s ease;
 }
 
 .closeButton:hover {
-  background: #f8f8f8;
+  background: #f1f1f1;
 }
 
-/* Mobile responsiveness */
+/* Mobile Styles */
 @media (max-width: 768px) {
-  .masterplanItem {
-    max-width: 500px;
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .cardImage {
+    height: 150px;
   }
 }
 
-@media (max-width: 480px) {
-  .masterplanItem {
-    max-width: 300px;
-  }
-  .masterplanImage {
-    height: auto; /* Adjust height based on your design needs */
-  }
+
+/* Universal Header Style */
+.luxuryHeading {
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+  color: #2e3b4e; /* Rich, elegant color */
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px; /* Slightly increased letter-spacing for sophistication */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle shadow for a 3D effect */
+  background: linear-gradient(90deg, #4b79a1, #283e51); /* Gradient for a unique feel */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; /* Gradient applies to the text */
+  position: relative;
+}
+
+/* Optional: Add an underline effect */
+.luxuryHeading::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: #4b79a1; /* Matches the heading color scheme */
+  margin: 10px auto 0;
+  border-radius: 2px;
 }

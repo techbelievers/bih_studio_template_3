@@ -70,9 +70,7 @@ const ContactUs = () => {
 
     const closeThankYou = () => {
         setSubmitSuccess(false);
-        // onClose();
-      };
-    
+    };
 
     return (
         <>
@@ -90,19 +88,17 @@ const ContactUs = () => {
             <div className={styles.container}>
                 {/* Contact Details */}
                 <div className={styles.details}>
-                    <h1 className={styles.title}>{data.contact_us.name}</h1>
+                    <h2 className={styles.title}>{data.contact_us.name}</h2>
                     <h2 className={styles.tagline}>We'd Love to Hear from You</h2>
                     <p className={styles.description} dangerouslySetInnerHTML={{ __html: data.contact_us.detail }}></p>
                     <div className={styles.info}>
-                        {/* <p><strong>Address:</strong> {data.contact_us.contact_address}</p> */}
                         <p><strong>Phone:</strong> {data.contact_us.contact_phone}</p>
-                        {/* <p><strong>Email:</strong> {data.contact_us.contact_email}</p> */}
                     </div>
                 </div>
 
                 {/* Contact Form */}
                 <div className={styles.form}>
-                    <h2 className={styles.formTitle}>Enquire Now</h2>
+                    <h2 className={styles.formTitle}>Get In Touch</h2>
                     {submitSuccess && <p className={styles.successMessage}>Your message has been sent successfully!</p>}
                     {submitError && <p className={styles.errorMessage}>{submitError}</p>}
                     <form onSubmit={handleSubmit}>

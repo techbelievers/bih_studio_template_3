@@ -1,8 +1,8 @@
 /* Container */
 .template1_gallery_container {
-  padding: 50px;
-  top: 10px;
-  margin-top: 20px;
+  padding: 10px;
+  /* top: 10px; */
+  margin-top: 10px;
   text-align: center;
   /* background-color: #101010; Darker background for a luxurious feel */
 }
@@ -22,7 +22,7 @@
 .template1_gallery_container h3 {
   font-size: 22px;
   margin-bottom: 30px;
-  color: #ffffff;
+  color: #4b79a1;
   font-family: 'Lora', serif;
   font-weight: 300;
   line-height: 1.6;
@@ -121,7 +121,7 @@
 
 /* Modal Caption */
 .template1_caption {
-  color: #fff;
+  color: #4b79a1;
   font-size: 18px;
   margin-top: 10px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
@@ -154,7 +154,7 @@
   }
 
   .template1_gallery_grid {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    /* grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); */
     gap: 10px;
   }
 }
@@ -162,7 +162,7 @@
 
 /* Universal Header Style */
 .luxuryHeading {
-  font-size: 2.8rem;
+  font-size: 1.6rem;
   font-weight: bold;
   text-align: center;
   color: #2e3b4e; /* Rich, elegant color */
