@@ -75,11 +75,11 @@
   transform: rotate(45deg) translateY(8px);
 }
 
-.line.open:nth-child(2) {
+.line.open:nth-child(3) {
   opacity: 0; /* Hide the middle line */
 }
 
-.line.open:nth-child(3) {
+.line.open:nth-child(2) {
   transform: rotate(-45deg) translateY(-8px);
 }
 
