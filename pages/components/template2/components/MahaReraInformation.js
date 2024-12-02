@@ -75,7 +75,7 @@ const MahareraInformation = () => {
                 {formatCompletionDate(reraItem.completion_date)}
               </div>
               <div className={styles.rera_info_item}>
-                <strong>Total Area:</strong> {reraItem.total_area} sqft
+                <strong>Total Area:</strong> {reraItem.total_area} Sq.M
               </div>
               <div className={styles.rera_info_item}>
                 <strong>Total Acre:</strong> {reraItem.total_acre}

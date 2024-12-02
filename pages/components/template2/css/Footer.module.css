@@ -96,7 +96,7 @@
   font-size: 0.9rem;
   margin: 0;
   margin-bottom: 15px;
-  text-align: justify;
+  /* text-align: justify; */
 }
 
 .footerCopyright {
@@ -140,6 +140,6 @@
   .footerDisclaimer {
     font-size: 0.85rem;
     margin-bottom: 20px;
-    text-align: justify;
+    /* text-align: justify; */
   }
 }
