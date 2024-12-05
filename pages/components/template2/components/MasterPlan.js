@@ -34,6 +34,10 @@ const ModernMasterPlan = () => {
   if (loading) return <div className={styles.loader}>Loading...</div>;
   if (error) return <div className={styles.error}>{error}</div>;
 
+  if (masterPlansData.length === 0) {
+    return null; // Render a message if data is empty
+ }
+ 
   return (
     <section className={styles.masterPlanSection}>
       <div className={styles.header}>
