@@ -6,6 +6,7 @@ import Loader from './components/Loader';
 // Import template components
 import Template1 from './components/template1/App';
 import Template2 from './components/template2/App';
+import Template3 from './components/template3/App';
 // import Template3 from './components/template3/Template3';
 
 const App = ({ propertyDetails }) => {
@@ -45,11 +46,14 @@ const App = ({ propertyDetails }) => {
 
   // Conditional rendering based on templateId
   switch (templateId) {
-    case "1":
+    case "3":
       return <Template1 propertyDetails={propertyDetails}/>;
       
-    case "2":
+    case "1":
       return <Template2 propertyDetails={propertyDetails} />;
+    
+    case "2":
+       return <Template3 propertyDetails={propertyDetails} />;
     // case 3:
     //   return <Template3 />;
     default:
@@ -75,6 +79,9 @@ export async function getServerSideProps(context) {
   try {
     const propertyResponse = await axios.get(API.PROPERTY_DETAILS(finalDomain));
     const propertyData = propertyResponse.data;
+
+
+
 
     console.log(propertyData); 
 

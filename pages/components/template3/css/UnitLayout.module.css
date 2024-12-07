@@ -1,13 +1,13 @@
 /* Container Styling */
 .unitLayout {
-  padding: 40px 15px; /* Adjust padding for smaller screens */
+  padding: 50px 20px;
   background: linear-gradient(to bottom, #ffffff, #f4f6f9);
   text-align: center;
 }
 
 /* Header Section */
 .luxuryHeading {
-  font-size: clamp(1.8rem, 4vw, 2.5rem); /* Responsive font size */
+  font-size: 2.5rem;
   font-weight: bold;
   color: #4b79a1;
   margin-bottom: 10px;
@@ -26,7 +26,7 @@
 /* Slider Styling */
 .sliderContainer {
   margin: 0 auto;
-  max-width: 100%;
+  max-width: 900px;
   position: relative;
 }
 
@@ -35,8 +35,8 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 20px;
-  padding: 15px;
+  gap: 30px;
+  padding: 20px;
   background: #fff;
   border-radius: 20px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
@@ -47,40 +47,35 @@
 .unitDetailsContainer {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 30px;
   justify-content: center;
   align-items: flex-start;
-  text-align: center; /* Center align for smaller screens */
 }
 
 .detailsLeft {
-  flex: 1;
-  max-width: 100%; /* Full width on mobile */
-  text-align: center; /* Center text on mobile */
+  max-width: 400px;
+  text-align: left;
 }
 
 .unitTitle {
-  font-size: clamp(1.5rem, 3vw, 1.8rem); /* Responsive font size */
+  font-size: 1.8rem;
   color: #4b79a1;
-  margin-bottom: 10px;
-  text-align: left;
+  margin-bottom: 15px;
 }
 
 .detail {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: #555;
-  margin-bottom: 8px;
-  text-align: left;
+  margin-bottom: 10px;
 }
 
 .detailsRight {
   flex: 1;
-  max-width: 100%;
 }
 
 .unitImage {
   width: 100%;
-  max-width: 400px; /* Scale down for smaller devices */
+  max-width: 500px;
   border-radius: 15px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
@@ -124,7 +119,7 @@
 
 .modalContent {
   position: relative;
-  max-width: 90%; /* Scale modal for smaller screens */
+  max-width: 90%;
   max-height: 80%;
   overflow: hidden;
 }
@@ -155,42 +150,38 @@
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
-  .sliderContainer {
-    max-width: 100%; /* Full-width slider on mobile */
-  }
-
-  .slide {
-    gap: 15px;
-    padding: 15px;
-  }
-
-  .unitDetailsContainer {
-    flex-direction: column; /* Stack details and image vertically */
-  }
-
-  .detailsLeft,
-  .detailsRight {
-    max-width: 100%; /* Full width for both sections */
-  }
-
   .detailsLeft {
-    margin-bottom: 20px; /* Add space between sections */
+    max-width: 100%;
   }
 
   .unitImage {
-    max-width: 100%; /* Full-width images */
-    height: auto;
+    max-width: 100%;
   }
+}
 
-  .luxuryHeading {
-    font-size: 1.8rem; /* Slightly smaller font size for mobile */
-  }
+/* Universal Header Style */
+.luxuryHeading {
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+  color: #2e3b4e; /* Rich, elegant color */
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px; /* Slightly increased letter-spacing for sophistication */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle shadow for a 3D effect */
+  background: linear-gradient(90deg, #4b79a1, #283e51); /* Gradient for a unique feel */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; /* Gradient applies to the text */
+  position: relative;
+}
 
-  .description {
-    font-size: 0.9rem; /* Smaller description text */
-  }
-
-  .modalImage {
-    max-width: 100%; /* Ensure modal images fit the screen */
-  }
+/* Optional: Add an underline effect */
+.luxuryHeading::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: #4b79a1; /* Matches the heading color scheme */
+  margin: 10px auto 0;
+  border-radius: 2px;
 }

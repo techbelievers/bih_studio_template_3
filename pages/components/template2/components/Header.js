@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { API } from '../../../../Config'; // Adjust the path as needed
-import styles from '../css/Header.module.css'; // Ensure correct path for CSS module
+import { API } from '../../../../Config';
+import styles from '../css/Header.module.css';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -10,7 +10,7 @@ const Header = () => {
   const [error, setError] = useState(null);
 
   const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
+    setMenuOpen((prev) => !prev);
   };
 
   useEffect(() => {
@@ -47,25 +47,27 @@ const Header = () => {
         />
       </div>
 
-      <nav className={`${styles.nav} ${menuOpen ? styles.open : ''}`}>
+      <button 
+        className={styles.hamburger} 
+        onClick={toggleMenu} 
+        aria-label={menuOpen ? "Close menu" : "Open menu"}
+      >
+        <span className={`${styles.line} ${menuOpen ? styles.open : ''}`}></span>
+        <span className={`${styles.line} ${menuOpen ? styles.open : ''}`}></span>
+        <span className={`${styles.line} ${menuOpen ? styles.open : ''}`}></span>
+      </button>
+
+      <nav className={`${styles.nav} ${menuOpen ? styles.navOpen : ''}`}>
         <ul className={styles.navLinks}>
-          <li><a href="#about">About</a></li>
-          <li><a href="#price">Price</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-          <li><a href="#amenities">Amenities</a></li>
-          <li><a href="#layouts">Layouts</a></li>
-          <li><a href="#location">Location</a></li>
-          <li><a href="#blogs">Blogs</a></li>
+          {['About', 'Price', 'Gallery', 'Amenities', 'Layouts', 'Location', 'Blogs'].map((item) => (
+            <li key={item}>
+              <a href={`#${item.toLowerCase()}`} onClick={() => setMenuOpen(false)}>
+                {item}
+              </a>
+            </li>
+          ))}
         </ul>
       </nav>
-
-
-
-      <div className={styles.hamburger} onClick={toggleMenu}>
-        <div className={`${styles.line} ${menuOpen ? styles.open : ''}`}></div>
-        <div className={`${styles.line} ${menuOpen ? styles.open : ''}`}></div>
-        <div className={`${styles.line} ${menuOpen ? styles.open : ''}`}></div>
-      </div>
     </header>
   );
 };

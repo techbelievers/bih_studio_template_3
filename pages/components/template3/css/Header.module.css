@@ -1,0 +1,170 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500;700&display=swap");
+
+/* General Header Styling */
+.header {
+  background-color: #000; /* Black for luxury */
+  color: #fff;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+/* Top Bar */
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 5%;
+  font-size: 0.9rem;
+  border-bottom: 1px solid #333;
+}
+
+.contactInfo span {
+  margin-right: 15px;
+  color: #e3f954; /* Gold accent */
+}
+
+.socialIcons a {
+  color: #fff;
+  margin-right: 10px;
+  transition: color 0.3s ease;
+}
+
+.socialIcons a:hover {
+  color: #e3f954;
+}
+
+/* Main Header */
+.mainHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 5%;
+}
+
+.logo {
+  max-height: 70px;
+}
+
+/* Navigation */
+.navLinks {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navLinks li {
+  margin-right: 20px;
+}
+
+.navLinks a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  font-family: "Roboto", sans-serif;
+  transition: color 0.3s ease;
+}
+
+.navLinks a:hover {
+  color: #e3f954;
+}
+
+/* Action Buttons */
+.actionButtons {
+  display: flex;
+  align-items: center;
+}
+
+.phoneButton {
+  background: none;
+  color: #e3f954;
+  border: 1px solid #e3f954;
+  padding: 8px 15px;
+  font-size: 0.9rem;
+  margin-right: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.phoneButton:hover {
+  background: #e3f954;
+  color: #000;
+}
+
+.ctaButton {
+  background-color: #e3f954;
+  color: #000;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.ctaButton:hover {
+  background-color: #d1e649;
+  transform: scale(1.05);
+}
+
+/* Hamburger Menu */
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+.hamburger .line {
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  margin: 5px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.open .line:nth-child(1) {
+  transform: rotate(45deg) translateY(8px);
+}
+
+.hamburger.open .line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open .line:nth-child(3) {
+  transform: rotate(-45deg) translateY(-8px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navLinks {
+    display: none;
+    flex-direction: column;
+    background: #000;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .navLinks.open {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .actionButtons {
+    display: none;
+  }
+
+  .navLinks li {
+    padding: 10px 0;
+  }
+
+  .navLinks a {
+    font-size: 1.2rem;
+  }
+}

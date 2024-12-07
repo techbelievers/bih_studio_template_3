@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500;700&display=swap');
+
+/* General Layout */
+.maharera_info_container {
+  font-family: 'Roboto', sans-serif;
+  background: #f9f9f9;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+  border-radius: 15px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.luxuryHeading {
+  font-family: 'Playfair Display', serif;
+  color: #222;
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Maharera Grid */
+.maharera_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+/* Card Styles */
+.rera_info_card {
+  background: #ffffff;
+  border: 1px solid #e3e3e3;
+  border-radius: 20px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.rera_info_card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Left Section */
+.rera_info_left {
+  flex: 1;
+  text-align: center;
+}
+
+.qrCode {
+  margin: 0 auto;
+}
+
+/* Right Section */
+.rera_info_right {
+  flex: 2;
+  padding-left: 1.5rem;
+}
+
+.rera_info_item {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: #555;
+}
+
+.rera_info_item strong {
+  color: #333;
+}
+
+/* States */
+.loading {
+  text-align: center;
+  color: #999;
+  font-size: 1.5rem;
+}
+
+.error {
+  text-align: center;
+  color: red;
+  font-size: 1.5rem;
+}
+
+.empty {
+  text-align: center;
+  color: #666;
+  font-size: 1.5rem;
+}

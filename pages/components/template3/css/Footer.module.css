@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500;700&display=swap");
+
+/* Footer Container */
+.footer {
+  background: #000; /* Black background */
+  padding: 40px 5%;
+  color: #fff; /* White text for contrast */
+  font-family: "Roboto", sans-serif;
+}
+
+/* Footer Top */
+.footerTop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #333; /* Subtle divider */
+}
+
+/* Logo Section */
+.footerLogo {
+  text-align: center;
+}
+
+.footerLogoImage {
+  max-width: 200px;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* Info Row */
+.footerInfoRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+  max-width: 800px;
+}
+
+/* Links and Social Icons */
+.footerHeading {
+  font-family: "Playfair Display", serif;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #e3f954; /* Luxury accent color */
+}
+
+.footerSocialIcons {
+  flex: 1;
+  text-align: center;
+  justify-content: center;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 10px;
+  text-align: center;
+  justify-content: center;
+}
+
+.socialIcon {
+  font-size: 1.5rem;
+  color: #fff;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.socialIcon:hover {
+  color: #e3f954;
+  transform: scale(1.2);
+}
+
+/* Contact Section */
+.footerContact {
+  flex: 1;
+  text-align: center;
+}
+
+.contactDetails {
+  font-size: 1.2rem;
+  margin: 5px 0;
+  color: #ddd; /* Subtle text color */
+}
+
+/* Footer Bottom */
+.footerBottom {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.footerDisclaimer {
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  color: #aaa;
+}
+
+.footerAgentRera {
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #ddd;
+}
+
+.footerCopyright {
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .footerInfoRow {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
