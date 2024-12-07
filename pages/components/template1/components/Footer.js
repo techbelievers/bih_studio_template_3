@@ -50,7 +50,7 @@ const Footer = () => {
                     </div>
 
                     <div className={styles.footerLogo}>
-                        <img src={`${g_setting.logo}`} alt="Company Logo" />
+                        <img src={g_setting.builder_logo === "default-logo-url" ? g_setting.logo : g_setting.builder_logo} alt="Company Logo" />
                         {/* {g_setting.footer_agent_rera && 
                             <p className={styles.footerAgentRera}>{g_setting.footer_agent_rera}</p>
                         } */}

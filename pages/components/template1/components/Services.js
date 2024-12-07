@@ -33,7 +33,7 @@ const Services = () => {
           {/* First box with logo */}
           <div className={`${styles.template1Card} ${styles.template1BusinessStrategy}`}>
             <div className={styles.template1Icon}>
-              <img src={headerData.logo} alt="Logo" style={{ maxWidth: '200px', borderRadius: '10px' }} />
+              <img src={headerData.builder_logo === "default-logo-url" ? headerData.logo : headerData.builder_logo}  alt="Logo" style={{ maxWidth: '200px', borderRadius: '10px' }} />
             </div>
             <h3>{headerData.builder_name}</h3>
           </div>

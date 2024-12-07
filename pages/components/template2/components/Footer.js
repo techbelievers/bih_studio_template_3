@@ -34,7 +34,7 @@ const Footer = () => {
             <div className={styles.footerContainer}>
                 <div className={styles.footerTop}>
                     <div className={styles.footerLogo}>
-                        <img src={`${g_setting.logo}`} alt="Company Logo" className={styles.footerLogoImage} />
+                        <img src={g_setting.builder_logo === "default-logo-url" ? g_setting.logo : g_setting.builder_logo} alt="Company Logo" className={styles.footerLogoImage} />
                         
                     </div>
 

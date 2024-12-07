@@ -39,7 +39,7 @@ const Services = () => {
             {/* Cards inside Hero Banner */}
             <div className={styles.heroCards}>
               <div className={styles.card}>
-                <img src={headerData.logo} alt="Logo" className={styles.logoImage} />
+                <img  src={headerData.builder_logo === "default-logo-url" ? headerData.logo : headerData.builder_logo} alt="Logo" className={styles.logoImage} />
                 <h3>{headerData.builder_name}</h3>
                 {/* <p>A leading real estate builder known for quality and customer satisfaction.</p> */}
               </div>
