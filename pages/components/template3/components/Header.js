@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { API } from "../../../../Config";
 import styles from "../css/Header.module.css";
+import EnquirePopup from './EnquirePopup';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [headerData, setHeaderData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev);
@@ -76,10 +78,11 @@ const Header = () => {
           <button className={styles.phoneButton}>
             {headerData.contact || "8181817136"}
           </button>
-          <a href="#contact" className={styles.ctaButton}>
+          <a  onClick={() => setIsPopupOpen(true)} href="#contact" className={styles.ctaButton}>
             Enquire Now
           </a>
         </div>
+        {isPopupOpen && <EnquirePopup onClose={() => setIsPopupOpen(false)} />}
 
         {/* Hamburger Menu */}
         <div className={styles.hamburger} onClick={toggleMenu}>

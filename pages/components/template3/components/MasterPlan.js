@@ -58,7 +58,7 @@ const RealEstateTabs = () => {
   };
 
   const tabs = [
-    {
+    masterPlans.length > 0 && {
       id: 0,
       label: "Master Plans",
       content: (
@@ -82,11 +82,18 @@ const RealEstateTabs = () => {
         </div>
       ),
     },
-    {
+    unitLayouts.length > 0 && {
       id: 1,
       label: "Unit Layouts",
       content: (
-        <Slider {...sliderSettings} className={styles.slider}>
+        <Slider
+          {...{
+            ...sliderSettings,
+            slidesToShow: Math.min(unitLayouts.length, 3), // Show only available slides
+            infinite: unitLayouts.length > 1, // Disable infinite scrolling if there's only 1 slide
+          }}
+          className={styles.slider}
+        >
           {unitLayouts.map((unit) => (
             <div key={unit.id} className={styles.unitSlide}>
               <div className={styles.unitLayoutContainer}>
@@ -110,8 +117,8 @@ const RealEstateTabs = () => {
           ))}
         </Slider>
       ),
-    },
-    {
+    },    
+    floorPlans.length > 0 && {
       id: 2,
       label: "Floor Plans",
       content: (
@@ -135,7 +142,7 @@ const RealEstateTabs = () => {
         </div>
       ),
     },
-  ];
+  ].filter(Boolean);
 
   if (loading) return <div className={styles.loader}>Loading...</div>;
   if (error) return <div className={styles.error}>{error}</div>;
@@ -193,5 +200,6 @@ const RealEstateTabs = () => {
     </div>
   );
 };
+
 
 export default RealEstateTabs;

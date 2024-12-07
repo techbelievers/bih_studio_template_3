@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import styles from "../css/HeroBanner.module.css";
 import { API } from "../../../../Config";
+import EnquirePopup from './EnquirePopup';
 
 const HeroBanner = () => {
   const [heroData, setHeroData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
 
   useEffect(() => {
     const fetchHeroData = async () => {
@@ -67,10 +70,15 @@ const HeroBanner = () => {
           <p className={styles.heroLocation}>{heroData.sublocation}</p>
           <p className={styles.heroLocation}>{heroData.location}</p>
           <p className={styles.heroDescription}>{heroData.description}</p>
-          <button className={styles.enquireButton}>Enquire Now</button>
+          <div onClick={() => setIsPopupOpen(true)}>
+                <a href="#contact-form" className={styles.enquireButton}>Enquire Now</a>
+              </div>
+          {/* <button  onClick={() => setIsPopupOpen(true)} className={styles.enquireButton}>Enquire Now</button> */}
         </div>
       </div>
+      {isPopupOpen && <EnquirePopup onClose={() => setIsPopupOpen(false)} />}
     </div>
+    
   );
 };
 
