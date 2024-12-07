@@ -22,6 +22,11 @@ const Services = () => {
 
   if (error) return <div>{error}</div>;
 
+
+  const sublocationDisplay = headerData && headerData.sublocation !== 'Default Sublocation'
+    ? headerData.sublocation
+    : '';
+
   return (
     <div className={styles.servicesContainer}>
       {headerData ? (
@@ -45,7 +50,7 @@ const Services = () => {
                   className={styles.locationIcon}
                 />
                 <div>
-                  <h3>{headerData.sublocation}</h3>
+                  <h3>{sublocationDisplay}</h3>
                   <h4>{headerData.location}</h4>
                 </div>
               </div>
