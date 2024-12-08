@@ -124,18 +124,18 @@ const ContactUs = () => {
               type="email"
               name="email_id"
               className={styles.input}
-              placeholder="Email*"
+              placeholder="Email"
               value={formData.email_id}
               onChange={handleChange}
-              required
+              
             />
             <textarea
               name="message"
               className={styles.textarea}
-              placeholder="Your Message*"
+              placeholder="Your Message"
               value={formData.message}
               onChange={handleChange}
-              required
+             
             ></textarea>
             <button
               type="submit"

@@ -27,7 +27,7 @@ const RealEstateGallery = () => {
   }
 
   return (
-    <div className={styles.galleryContainer}>
+    <div id="gallery" className={styles.galleryContainer}>
       <h2 className={styles.luxuryHeading}>{heading}</h2>
       <p className={styles.subheading}>{subheading}</p>
       <div className={styles.galleryGrid}>

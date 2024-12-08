@@ -50,7 +50,7 @@ const RealEstateTabs = () => {
   if (error) return <div className={styles.error}>{error}</div>;
 
   return (
-    <div className={styles.container}>
+    <div id="layouts" className={styles.container}>
       {/* Section Headers */}
       <div className={styles.sectionHeaders}>
         {sections.map((section, index) => (

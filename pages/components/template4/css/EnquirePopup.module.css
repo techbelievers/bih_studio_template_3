@@ -14,6 +14,7 @@
 }
 
 .enquirePopupContent {
+  position: relative; /* This ensures the close button is positioned relative to this container */
   background: #ffffff;
   width: 90%;
   max-width: 500px;
@@ -27,14 +28,22 @@
 
 .enquirePopupClose {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 10px; /* Adjust the distance from the top */
+  right: 10px; /* Adjust the distance from the right */
   background: none;
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
-  color: #666;
+  color: #666; /* Color of the close icon */
+  transition: color 0.3s ease;
 }
+
+.enquirePopupClose:hover {
+  color: #222; /* Darker color when hovered */
+}
+
+
+
 
 .enquirePopupLogo {
   width: 120px;
@@ -99,10 +108,11 @@
 }
 
 .thankYouContent {
-  background: #ffffff;
+  background: #000000;
   width: 90%;
   max-width: 400px;
   border-radius: 10px;
+  color: #ffffff;
   text-align: center;
   padding: 2rem;
   animation: fadeIn 0.3s ease-in-out;

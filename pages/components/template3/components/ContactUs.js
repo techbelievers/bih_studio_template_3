@@ -123,7 +123,7 @@ const ContactUs = () => {
               type="email"
               name="email_id"
               className={styles.input}
-              placeholder="Email*"
+              placeholder="Email"
               value={formData.email_id}
               onChange={handleChange}
             
@@ -131,7 +131,7 @@ const ContactUs = () => {
             <textarea
               name="message"
               className={styles.textarea}
-              placeholder="Your Message*"
+              placeholder="Your Message"
               value={formData.message}
               onChange={handleChange}
              

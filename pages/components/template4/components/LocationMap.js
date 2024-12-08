@@ -40,7 +40,7 @@ const CompactLocation = () => {
   };
 
   return (
-    <section className={styles.compactLocation}>
+    <section id="location" className={styles.compactLocation}>
       {/* Map and Highlights Header */}
       <div className={styles.header}>
         <h2 className={styles.heading}>{mapData.heading}</h2>

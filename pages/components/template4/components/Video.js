@@ -54,6 +54,10 @@ const Video = () => {
     };
   }, [videoData]);
 
+  if (videoData.length === 0) {
+    return null; // Render a message if data is empty
+ }
+
   return (
     <div className={styles.videoContainer}>
       <h2 className={styles.luxuryHeading}>{heading}</h2>

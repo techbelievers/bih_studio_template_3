@@ -4,12 +4,14 @@ import Link from "next/link";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { API } from "../../../../Config";
 import styles from "../css/Header.module.css";
+import EnquirePopup from './EnquirePopup';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [headerData, setHeaderData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -89,11 +91,15 @@ const Header = () => {
           >
             Call Us
           </a>
-          <Link href="#enquire" className={styles.enquireButton}>
+          <Link  onClick={() => setIsPopupOpen(true)} href="#enquire" className={styles.enquireButton}>
             Enquire Now
           </Link>
         </div>
+        {isPopupOpen && <EnquirePopup onClose={() => setIsPopupOpen(false)} />}
       </nav>
+
+
+
 
       {/* Mobile Hamburger Menu */}
       <div className={styles.hamburger} onClick={toggleMenu}>

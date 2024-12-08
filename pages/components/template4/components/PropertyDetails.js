@@ -17,7 +17,7 @@ const PropertyDetails = ({ propertyDetails, error }) => {
   }
 
   return (
-    <div className={styles.propertyDetailsContainer}>
+    <div id="about" className={styles.propertyDetailsContainer}>
       {/* Header */}
       <div className={styles.headerCard}>
         <h1 className={styles.propertyName}>{propertyDetails.property_name}</h1>

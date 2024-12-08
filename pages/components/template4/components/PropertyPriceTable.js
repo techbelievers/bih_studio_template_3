@@ -26,7 +26,7 @@ const PropertyPriceTable = () => {
   }, []);
 
   return (
-    <section className={styles.priceSection}>
+    <section id="price" className={styles.priceSection}>
       <div className={styles.clipPathBackground}></div>
       {error && <p className={styles.errorMessage}>{error}</p>}
 
