@@ -37,7 +37,7 @@ const HeroBannerWithVideo = () => {
       <div className={styles.videoWrapper}>
         <video
           className={styles.heroVideo}
-          src="https://todthetowerofdreams.com/images/TOD.mp4"
+          src={videoData[0].youtube_video_id}
           autoPlay
           muted
           loop
