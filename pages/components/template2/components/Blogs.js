@@ -58,6 +58,7 @@ const Blogs = () => {
             <div className={styles.blogContent}>
               <h3>{blog.post_title}</h3>
               <p>{truncateText(blog.post_content_short, 150)}</p>
+              <p>Posted On : {blog.created_at}</p>
               {/* <a href={`/blogs/${blog.post_slug}`} className={styles.readMore}>Read More</a> */}
               <Link href={`/blogs/${blog.post_slug}`} className={styles.readMore}>
                   Read More
