@@ -1,130 +1,73 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500;700&display=swap");
-
 .footer {
-  position: relative;
-  padding: 50px 20px 20px;
-  background-color: #101010;
+  background: #2b2b2b;
   color: #fff;
-  font-family: "Roboto", sans-serif;
-  overflow: hidden;
-  margin-bottom: 30px;
-}
-
-.clipPathBackground {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 300px;
-  background: linear-gradient(135deg, #ffcc00, #ffd966);
-  clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
-  z-index: -1;
+  padding: 2rem 1rem;
+  font-family: "Arial", sans-serif;
+  margin-bottom: 50px;
 }
 
 .footerContainer {
   max-width: 1200px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
   text-align: center;
 }
 
-.footerTop {
+/* Centered Row for Logo and Contact */
+.footerCenterRow {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 30px;
-  animation: fadeIn 1.5s ease;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .footerLogo {
-  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
 .footerLogoImage {
-  max-width: 250px;
-  border-radius: 10px;
-  margin: 0 auto;
-}
-
-.footerSocial {
-  flex: 1;
-}
-
-.footerHeading {
-  font-family: "Playfair Display", serif;
-  font-size: 24px;
-  margin-bottom: 10px;
-  color: #ffd966;
-}
-
-.socialLinks {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-}
-
-.socialIcon {
-  font-size: 20px;
-  color: #fff;
-  transition: transform 0.3s, color 0.3s;
-}
-
-.socialIcon:hover {
-  transform: scale(1.2);
-  color: #ffd966;
+  max-width: 150px;
+  height: auto;
 }
 
 .footerContact {
-  flex: 1;
+  text-align: center;
 }
 
-.contactDetails {
-  font-size: 16px;
-  margin-top: 10px;
+.contactDetails,
+.contactEmail {
+  font-size: 1rem;
+  margin: 0.2rem 0;
 }
 
+/* Bottom Section */
 .footerBottom {
-  font-size: 14px;
-  margin-top: 20px;
-  animation: fadeInUp 1.5s ease;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 1rem;
 }
 
+.footerDisclaimer,
+.footerAgentRera,
 .footerCopyright {
-  margin-top: 10px;
-  font-size: 12px;
-  color: #aaa;
+  font-size: 0.9rem;
+  margin: 0.3rem 0;
+  line-height: 1.4;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Privacy Policy Link */
+.privacyPolicy {
+  font-size: 0.9rem;
+  color: #ff5722;
+  text-decoration: none;
+  margin-top: 1rem;
+  display: inline-block;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-  .footerTop {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  .footerContact {
-    margin-top: 20px;
-  }
+.privacyPolicy:hover {
+  text-decoration: underline;
 }

@@ -26,25 +26,28 @@
   margin-top: 10px;
 }
 
-/* Slider Styling */
+/* Slider Wrapper */
 .sliderWrapper {
   display: flex;
   align-items: center;
   position: relative;
+  padding: 0 60px; /* Padding added to prevent overlap of scroll buttons */
 }
 
+/* Blogs Slider */
 .blogsSlider {
   display: flex;
   gap: 20px;
-  /* overflow-x: auto; */
+  overflow-x: auto; /* Enable horizontal scrolling */
   scroll-behavior: smooth;
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none; /* Firefox hides scrollbar */
 }
 
 .blogsSlider::-webkit-scrollbar {
   display: none; /* Chrome, Safari, and Edge */
 }
 
+/* Blog Card */
 .blogCard {
   flex: 0 0 auto;
   width: 300px;
@@ -52,15 +55,16 @@
   overflow: hidden;
   position: relative;
   background: #fff;
-  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1); */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .blogCard:hover {
   transform: translateY(-10px);
-  box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.2); */
 }
 
+/* Card Content */
 .cardContent {
   position: relative;
 }
@@ -115,23 +119,87 @@
   align-items: center;
   justify-content: center;
   transition: background 0.3s ease;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for better visibility */
 }
 
+/* Scroll Button Hover */
 .scrollButton:hover {
   background: #c2d348;
 }
 
+/* Left Button */
+.scrollButton:first-of-type {
+  left: -20px; /* Position left button outside cards */
+}
+
+/* Right Button */
+.scrollButton:last-of-type {
+  right: -20px; /* Position right button outside cards */
+}
+
 /* Responsive Design */
+@media (max-width: 1024px) {
+  .sliderWrapper {
+    padding: 0 40px; /* Reduce padding for smaller screens */
+  }
+
+  .scrollButton:first-of-type {
+    left: 5px; /* Adjust left button position for smaller screens */
+  }
+
+  .scrollButton:last-of-type {
+    right: 5px; /* Adjust right button position for smaller screens */
+  }
+}
+
 @media (max-width: 768px) {
   .blogsHeading {
     font-size: 2rem;
   }
 
+  .blogsSubheading {
+    font-size: 0.9rem;
+  }
+
   .blogsSlider {
-    gap: 10px;
+    gap: 10px; /* Reduce gap between cards on mobile */
+    padding: 0 20px; /* Add some padding to ensure cards fit on mobile */
   }
 
   .blogCard {
-    width: 250px;
+    width: 85%; /* Adjust card width for mobile */
+    min-width: 250px; /* Ensure smaller screens are handled */
+  }
+
+  .scrollButton {
+    width: 35px;
+    height: 35px;
+    font-size: 1.2rem;
+  }
+
+  .scrollButton:first-of-type {
+    left: 0;
+  }
+
+  .scrollButton:last-of-type {
+    right: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .blogsHeading {
+    font-size: 1.8rem;
+  }
+
+  .blogsSubheading {
+    font-size: 0.8rem;
+  }
+
+  .blogCard {
+    width: 90%; /* Further adjust card width for very small screens */
   }
 }

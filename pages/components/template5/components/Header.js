@@ -64,9 +64,10 @@ const Header = () => {
         </div>
 
         {/* Navigation */}
-        <nav
-          className={`${styles.navMenu} ${menuOpen ? styles.active : ""}`}
-        >
+        <nav className={`${styles.navMenu} ${menuOpen ? styles.active : ""}`}>
+          <button className={styles.closeMenuButton} onClick={closeMenu}>
+            {/* <FaTimes /> */}
+          </button>
           <ul className={styles.navLinks}>
             {["About", "Price", "Gallery", "Amenities", "Layouts", "Location", "Blogs"].map(
               (item) => (
@@ -84,7 +85,7 @@ const Header = () => {
 
           <div className={styles.cta}>
             <a
-              href={`tel:${headerData.contact || "+1234567890"}`}
+              href={`tel:${headerData.contact || "+918600020568"}`}
               className={styles.callButton}
             >
               Call Us
@@ -106,6 +107,14 @@ const Header = () => {
           {menuOpen ? <FaTimes className={styles.icon} /> : <FaBars className={styles.icon} />}
         </div>
       </div>
+
+      {/* Overlay for Menu */}
+      {menuOpen && (
+        <div
+          className={styles.overlay}
+          onClick={closeMenu} /* Close menu when clicking outside */
+        ></div>
+      )}
 
       {isPopupOpen && <EnquirePopup onClose={() => setIsPopupOpen(false)} />}
     </header>

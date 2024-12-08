@@ -1,15 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { API } from "../../../../Config";
 import styles from "../css/Footer.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFacebookF,
-  faTwitter,
-  faLinkedinIn,
-  faPinterest,
-  faYoutube,
-  faInstagram,
-} from "@fortawesome/free-brands-svg-icons";
 
 const Footer = () => {
   const [footerData, setFooterData] = useState(null);
@@ -37,14 +28,14 @@ const Footer = () => {
       <div className={styles.footer}>Error loading footer: {error.message}</div>
     );
 
-  const { social_icons, g_setting } = footerData;
+  const { g_setting } = footerData;
 
   return (
     <footer className={styles.footer}>
       <div className={styles.footerContainer}>
-        {/* Top Section */}
-        <div className={styles.footerTop}>
-          {/* Logo Section */}
+        {/* Centered Row with Logo and Contact */}
+        <div className={styles.footerCenterRow}>
+          {/* Logo */}
           <div className={styles.footerLogo}>
             <img
               src={`${g_setting.logo}`}
@@ -53,32 +44,10 @@ const Footer = () => {
             />
           </div>
 
-          {/* Follow Us and Contact Us */}
-          <div className={styles.footerInfoRow}>
-            {/* Social Icons */}
-            <div className={styles.footerSocialIcons}>
-              <h2 className={styles.footerHeading}>Follow Us</h2>
-              <div className={styles.socialLinks}>
-              {social_icons.map(icon => (
-                                    <a key={icon.id} href={icon.social_url} target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
-                                        <FontAwesomeIcon icon={
-                                            icon.social_icon === 'fab fa-facebook-f' ? faFacebookF : 
-                                            icon.social_icon === 'fab fa-twitter' ? faTwitter : 
-                                            icon.social_icon === 'fab fa-linkedin-in' ? faLinkedinIn : 
-                                            icon.social_icon === 'fab fa-instagram' ? faInstagram : 
-                                            icon.social_icon === 'fab fa-youtube' ? faYoutube : 
-                                            icon.social_icon === 'fab fa-pinterest-p' ? faPinterest : 
-                                                              faLinkedinIn} />
-                                    </a>
-                                ))}
-              </div>
-            </div>
-
-            {/* Contact Section */}
-            <div className={styles.footerContact}>
-              <h2 className={styles.footerHeading}>Contact Us</h2>
-              <p className={styles.contactDetails}>{g_setting.footer_phone}</p>
-            </div>
+          {/* Contact */}
+          <div className={styles.footerContact}>
+            <p className={styles.contactDetails}>{g_setting.footer_phone}</p>
+            {/* <p className={styles.contactEmail}>{g_setting.footer_email}</p> */}
           </div>
         </div>
 
@@ -91,12 +60,15 @@ const Footer = () => {
           )}
           {g_setting.footer_agent_rera && (
             <p className={styles.footerAgentRera}>
-              Agent MahaRera : {g_setting.footer_agent_rera}
+              Agent MahaRera: {g_setting.footer_agent_rera}
             </p>
           )}
           <p className={styles.footerCopyright}>
             {g_setting.footer_copyright}
           </p>
+          <a href="/privacy-policy" className={styles.privacyPolicy}>
+            Privacy Policy
+          </a>
         </div>
       </div>
     </footer>

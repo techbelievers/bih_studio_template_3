@@ -71,7 +71,7 @@ const Blogs = () => {
               <div className={styles.blogContent}>
                 <h3>{blog.post_title}</h3>
                 <p>{truncateText(blog.post_content_short, 150)}</p>
-                <p>Posted On : {blog.created_at}</p>
+                <p>Posted On : {new Date(blog.created_at).toISOString().split('T')[0]}</p>
                 <Link href={`/blogs/${blog.post_slug}`} legacyBehavior>
   <a className={styles.readMore}>Read More</a>
 </Link>

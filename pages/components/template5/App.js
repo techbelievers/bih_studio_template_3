@@ -40,14 +40,13 @@ function App({ propertyDetails }) {
             <ContactUs />
             <MasterPlan />
             <Gallery />
-            <Video />
+            {/* <Video /> */}
             {/* <UnitLayout /> */}
             {/* <FloorPlans /> */}
             <Amenities />   
             <LocationMap />
             {/* <LocationHighlights /> */}
             {/* <BankPartners /> */}
-       
             {/* <EMICalculator /> */}
             {/* <Blogs /> */}
             <FAQ />

@@ -28,6 +28,10 @@ const FAQ = () => {
     setActiveFAQ((prev) => (prev === id ? null : id));
   };
 
+  if (faqData.length === 0) {
+    return null; // Render a message if data is empty
+ }
+
   return (
     <section className={styles.faqSection}>
       <div className={styles.clipPathBackground}></div>

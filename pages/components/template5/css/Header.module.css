@@ -68,6 +68,20 @@
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
+
+.closeMenuButton {
+  position: absolute; /* Position it inside the menu */
+  top: 20px; /* Adjust based on your menu layout */
+  right: 20px; /* Adjust based on your menu layout */
+  width: 30px; /* Width of the cross */
+  height: 30px; /* Height of the cross */
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+
 .callButton {
   background-color: #007bff;
   color: #ffffff;
@@ -163,6 +177,35 @@
   .hamburger {
     display: block;
   }
+
+
+.closeMenuButton::before,
+.closeMenuButton::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 2px; /* Thickness of the cross lines */
+  background: #333; /* Color of the cross */
+  transform-origin: center;
+  transition: background 0.3s ease;
+}
+
+.closeMenuButton::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.closeMenuButton::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.closeMenuButton:hover::before,
+.closeMenuButton:hover::after {
+  background: #ff5722; /* Color on hover */
+}
+
+
 }
 
 @media (min-width: 769px) {
@@ -187,4 +230,6 @@
   .hamburger {
     display: none;
   }
+
+  
 }
