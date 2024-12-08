@@ -8,6 +8,7 @@ import Template1 from './components/template1/App';
 import Template2 from './components/template2/App';
 import Template3 from './components/template3/App';
 import Template4 from './components/template4/App';
+import Template5 from './components/template5/App';
 // import Template3 from './components/template3/Template3';
 
 const App = ({ propertyDetails }) => {
@@ -58,6 +59,9 @@ const App = ({ propertyDetails }) => {
 
     case "4":
        return <Template4 propertyDetails={propertyDetails} />;
+
+    case "5":
+       return <Template5 propertyDetails={propertyDetails} />;
     // case 3:
     //   return <Template3 />;
     default:
