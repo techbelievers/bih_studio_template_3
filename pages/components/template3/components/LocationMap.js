@@ -43,7 +43,7 @@ const LuxuriousLocation = () => {
   };
 
   return (
-    <section className={styles.luxuriousLocation}>
+    <section id="location" className={styles.luxuriousLocation}>
       {/* Location Map Section */}
       <div className={styles.mapSection}>
         <h2 className={styles.mapHeading}>{mapData.heading}</h2>

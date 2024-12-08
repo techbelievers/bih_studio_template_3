@@ -33,8 +33,7 @@
   /* For smaller screens */
   @media (max-width: 600px) {
     .adImage {
-      max-width: 100%; /* Adjusts to fit smaller devices */
-      border-radius: 0;
+      max-width: 90%; /* Adjusts to fit smaller devices */
     }
   }
   

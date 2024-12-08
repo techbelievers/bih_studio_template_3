@@ -31,10 +31,7 @@ const ContactUs = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e) => {
@@ -64,6 +61,7 @@ const ContactUs = () => {
   return (
     <section className={styles.contactUsSection}>
       <div className={styles.container}>
+        {/* Details Section */}
         <div className={styles.details}>
           <h2 className={styles.heading}>
             {data?.contact_us?.name || "Get in Touch"}
@@ -71,13 +69,16 @@ const ContactUs = () => {
           <p
             className={styles.description}
             dangerouslySetInnerHTML={{
-              __html: data?.contact_us?.detail || "We would love to hear from you!",
+              __html:
+                data?.contact_us?.detail || "We would love to hear from you!",
             }}
           ></p>
           <p className={styles.info}>
             <strong>Phone:</strong> {data?.contact_us?.contact_phone || "N/A"}
           </p>
         </div>
+
+        {/* Form Section */}
         <div className={styles.form}>
           <h2 className={styles.formHeading}>Contact Us</h2>
           {submitSuccess && (
@@ -126,7 +127,7 @@ const ContactUs = () => {
               placeholder="Email*"
               value={formData.email_id}
               onChange={handleChange}
-            
+              required
             />
             <textarea
               name="message"
@@ -134,7 +135,7 @@ const ContactUs = () => {
               placeholder="Your Message*"
               value={formData.message}
               onChange={handleChange}
-             
+              required
             ></textarea>
             <button
               type="submit"

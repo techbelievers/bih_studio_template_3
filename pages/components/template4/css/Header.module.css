@@ -1,0 +1,222 @@
+/* General Header Styling */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: #ffffff; /* Light background */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  font-family: "Playfair Display", serif;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Logo Styling */
+.logoContainer {
+  display: flex;
+  align-items: center;
+  z-index: 5;
+}
+
+.logo {
+  height: 60px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+}
+
+/* Navigation Menu */
+.navMenu {
+  display: flex;
+  gap: 20px;
+  z-index: 5;
+}
+
+.navMenu ul {
+  display: flex;
+  gap: 15px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navMenu li {
+  font-size: 16px;
+}
+
+.navMenu a {
+  text-decoration: none;
+  color: #333333;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navMenu a:hover {
+  color: #e3f954;
+}
+
+/* CTA Buttons */
+.cta {
+  display: flex;
+  gap: 10px;
+  z-index: 5;
+}
+
+.callButton,
+.enquireButton {
+  padding: 8px 15px;
+  border: none;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.callButton {
+  background: #e3fbb3;
+  color: #ffffff;
+}
+
+.callButton:hover {
+  background: #e3f954;
+  color: #bbdd76;
+}
+
+.enquireButton {
+  background: #e3f954;
+  color: #333333;
+}
+
+.enquireButton:hover {
+  background: #333333;
+  color: #e3f954;
+}
+
+/* Hamburger Menu for Mobile */
+.hamburger {
+  display: none;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.hamburger .icon {
+  font-size: 24px;
+  color: #333333;
+}
+
+/* Background Clip-Path */
+.clipPath {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #e3f954, #ffd966);
+  clip-path: polygon(0 0, 100% 0, 100% 30%, 0% 100%);
+  z-index: 0;
+  transition: transform 0.5s ease;
+}
+
+.header:hover .clipPath {
+  transform: scale(1.02);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .navMenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #ffffff;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 15px;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .navMenu.active {
+    transform: translateY(0);
+  }
+
+  .cta {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+
+
+/* General Header Styling (Unchanged for Desktop) */
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .navMenu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: #ffffff;
+    height: 100%;
+    width: 70%; /* Sidebar-like menu */
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 80px; /* Space for header height */
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+    transform: translateX(200%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 999; /* Make it appear above content */
+  }
+
+  .navMenu.active {
+    transform: translateX(50%); /* Slide-in effect */
+  }
+
+  .navMenu ul {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .navMenu li {
+    font-size: 18px;
+  }
+
+  .cta {
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+    display: flex; /* Ensure buttons are visible */
+  }
+
+  .hamburger {
+    display: block;
+    z-index: 1000;
+    cursor: pointer;
+  }
+
+  .clipPath {
+    display: none; /* Hide background effect for simplicity on mobile */
+  }
+
+  .navMenu a {
+    color: #333333;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+
+  .navMenu a:hover {
+    color: #e3f954;
+  }
+}

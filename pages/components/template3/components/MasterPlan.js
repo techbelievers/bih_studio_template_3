@@ -55,6 +55,15 @@ const RealEstateTabs = () => {
     autoplay: true,
     autoplaySpeed: 3000,
     arrows: true,
+    responsive: [
+      {
+        breakpoint: 768, // Breakpoint for mobile devices
+        settings: {
+          slidesToShow: 1, // Show 1 slide on devices with width <= 768px
+          infinite: unitLayouts.length > 1, // Only enable infinite if more than 1 slide
+        },
+      },
+    ],
   };
 
   const tabs = [
@@ -148,7 +157,7 @@ const RealEstateTabs = () => {
   if (error) return <div className={styles.error}>{error}</div>;
 
   return (
-    <div className={styles.tabContainer}>
+    <div id="layouts" className={styles.tabContainer}>
       {/* Tab Headers */}
       <div className={styles.tabHeader}>
         {tabs.map((tab, index) => (

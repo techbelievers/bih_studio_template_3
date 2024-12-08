@@ -67,9 +67,9 @@ const HeroBanner = () => {
       <div className={styles.heroContent}>
         <div className={styles.heroTextWrapper}>
           <h1 className={styles.heroHeading}>{heroData.heading}</h1>
-          <p className={styles.heroLocation}>{heroData.sublocation}</p>
+          <p className={styles.heroLocation}>{sublocationDisplay}</p>
           <p className={styles.heroLocation}>{heroData.location}</p>
-          <p className={styles.heroDescription}>{heroData.description}</p>
+          {/* <p className={styles.heroDescription}>{heroData.description}</p> */}
           <div onClick={() => setIsPopupOpen(true)}>
                 <a href="#contact-form" className={styles.enquireButton}>Enquire Now</a>
               </div>
