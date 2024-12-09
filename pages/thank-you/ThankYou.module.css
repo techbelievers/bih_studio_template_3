@@ -1,0 +1,85 @@
+/* Base Styles */
+.thankYouPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    position: relative;
+    background: #ffffff;
+    font-family: "Playfair Display", serif;
+    overflow: hidden;
+  }
+  
+  /* Clip-Path Background */
+  .clipPath {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #e3f954, #ffffff);
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%);
+    z-index: 0;
+  }
+  
+  /* Content Styles */
+  .content {
+    position: relative;
+    z-index: 10;
+    max-width: 600px;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .heading {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .subheading {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #666;
+    margin-bottom: 30px;
+  }
+  
+  /* Button Styles */
+  .goBackButton {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    background: #e3f954;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .goBackButton:hover {
+    background: #ffffff;
+    color: #e3f954;
+    border: 2px solid #e3f954;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .heading {
+      font-size: 2.5rem;
+    }
+  
+    .subheading {
+      font-size: 1.2rem;
+    }
+  
+    .goBackButton {
+      font-size: 1rem;
+      padding: 8px 16px;
+    }
+  }
+  

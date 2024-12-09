@@ -1,85 +1,125 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import axios from "axios";
 import styles from "../css/HeroBanner.module.css";
 import { API } from "../../../../Config";
 import EnquirePopup from "./EnquirePopup";
 
-const HeroBannerWithVideo = () => {
-  const [videoData, setVideoData] = useState(null);
-  const [heading, setHeading] = useState("");
-  const [subheading, setSubheading] = useState("");
+const HeroBannerWithIntegratedServices = () => {
+  const [heroData, setHeroData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isVideoLoading, setIsVideoLoading] = useState(true);
 
   useEffect(() => {
-    const fetchVideoData = async () => {
+    const fetchHeaderData = async () => {
       try {
-        const response = await fetch(API.VIDEO());
-        const data = await response.json();
+        const response = await axios.get(API.HEADER());
+        const data = response.data;
 
-        setVideoData(data.property_videos);
-        setHeading(data.page?.heading || "Discover Luxury Living");
-        setSubheading(data.page?.subheading || "Experience the elegance of modern homes.");
-      } catch (error) {
-        console.error("Error fetching video data:", error);
+        const isMobile = window.innerWidth < 768;
+        const heroImages = data.hero_banner_img;
+        const selectedMedia = isMobile
+          ? heroImages.mobile[0]
+          : heroImages.desktop[0];
+
+        const isVideo = selectedMedia.endsWith(".mp4");
+
+        setHeroData({
+          isVideo,
+          mediaUrl: selectedMedia,
+          heading: data.property_name,
+          description: data.hero_banner_subheading,
+          location: data.location,
+          sublocation: data.sublocation !== "Default Sublocation" ? data.sublocation : "",
+          builderName: data.builder_name,
+          builderLogo: data.logo,
+          propertyType: data.property_type_price_range_text,
+          propertyArea: data.property_area_min_max,
+          lastUpdated: data.property_last_updated,
+        });
+      } catch (err) {
+        setError("Failed to fetch header data");
+      } finally {
+        setLoading(false);
       }
     };
 
-    fetchVideoData();
+    fetchHeaderData();
   }, []);
 
-  if (!videoData) {
+  if (loading) {
     return <div className={styles.heroBanner}>Loading...</div>;
   }
 
-  return (
-    <div className={styles.heroBanner}>
-      {/* Video Background */}
-      <div className={styles.videoWrapper}>
-        <video
-          className={styles.heroVideo}
-          src={videoData[0].youtube_video_id}
-          // src="https://todthetowerofdreams.com/images/TOD.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-        ></video>
+  if (error) {
+    return (
+      <div className={styles.heroBanner}>
+        Error loading hero banner: {error}
       </div>
+    );
+  }
+
+  return (
+    <div
+      className={styles.heroBanner}
+      style={{
+        backgroundImage: heroData.isVideo && isVideoLoading
+          ? `url(${heroData.mediaUrl.replace(".mp4", ".jpg")})` // Fallback to an image during video loading
+          : heroData.isVideo
+          ? "none"
+          : `url(${heroData.mediaUrl})`,
+      }}
+    >
+      {/* Video or Image Background */}
+      {heroData.isVideo && (
+        <div className={styles.videoWrapper}>
+          {isVideoLoading && (
+            <div className={styles.videoLoader}>
+              <p>Bringing Your Experience....</p>
+            </div>
+          )}
+          <video
+            className={styles.heroVideo}
+            src={heroData.mediaUrl}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            onLoadedData={() => setIsVideoLoading(false)}
+          ></video>
+        </div>
+      )}
 
       <div className={styles.overlay}></div>
 
-      {/* Hero Content */}
-      {/* <div className={styles.heroContent}>
-        <motion.h1
-          className={styles.heading}
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          {heading}
-        </motion.h1>
-        <motion.p
-          className={styles.subheading}
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-        >
-          {subheading}
-        </motion.p>
-        <motion.button
-          className={styles.enquireButton}
-          onClick={() => setIsPopupOpen(true)}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          Enquire Now
-        </motion.button>
-      </div> */}
+      {/* Conditional Hero Content */}
+      {!heroData.isVideo && (
+        <div className={styles.heroContent}>
+          <motion.div
+            initial={{ opacity: 0, translateY: 30 }}
+            animate={{ opacity: 1, translateY: 0 }}
+            transition={{ duration: 1 }}
+          >
+            <h1 className={styles.heading}>{heroData.heading}</h1>
+            <p className={styles.location}>
+              {heroData.sublocation}, {heroData.location}
+            </p>
+            <button
+              onClick={() => setIsPopupOpen(true)}
+              className={styles.enquireButton}
+            >
+              Enquire Now
+            </button>
+          </motion.div>
+        </div>
+      )}
 
-      {/* Enquire Popup */}
       {isPopupOpen && <EnquirePopup onClose={() => setIsPopupOpen(false)} />}
     </div>
   );
 };
 
-export default HeroBannerWithVideo;
+export default HeroBannerWithIntegratedServices;

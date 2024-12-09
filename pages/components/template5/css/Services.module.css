@@ -52,7 +52,7 @@
 }
 
 .card img {
-  /* max-width: 100px;  */
+  max-width: 200px; 
   height: 100px;
   margin-bottom: 10px;
   transition: transform 0.3s ease;
