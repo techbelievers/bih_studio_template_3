@@ -46,7 +46,8 @@ const EnquirePopup = ({ onClose }) => {
       await axios.post(API.postContactUs, formData);
 
       // Redirect to Thank You Page after successful submission
-      router.push("/thank-you");
+      onClose();
+      window.location.replace("/thank-you");
     } catch (error) {
       console.log(error);
       setSubmitError("Failed to submit the form. Please try again.");
