@@ -51,7 +51,7 @@ const PropertyDetails = ({ propertyDetails, error }) => {
         {/* Call Now Button */}
         <button
           className={`${styles.callButton} ${styles.animatedButton}`}
-          onClick={() => (window.location.href = "tel:+1234567890")}
+          onClick={() => (window.location.href = "tel:+918600020568")}
         >
           <span className={styles.buttonIcon}>📞</span> Call Now
         </button>
