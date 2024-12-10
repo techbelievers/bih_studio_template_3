@@ -30,7 +30,7 @@ const HeroBannerWithIntegratedServices = () => {
           location: data.location,
           sublocation: data.sublocation !== "Default Sublocation" ? data.sublocation : "",
           builderName: data.builder_name,
-          builderLogo: data.logo,
+          builderLogo: data.builder_logo,
           propertyType: data.property_type_price_range_text,
           propertyArea: data.property_area_min_max,
           lastUpdated: data.property_last_updated,
