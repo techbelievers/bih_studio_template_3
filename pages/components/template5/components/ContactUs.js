@@ -47,6 +47,8 @@ const ContactUs = () => {
         phone_number: "",
         message: "",
       });
+
+      window.location.replace("/thank-you");
     } catch (error) {
       setSubmitError("Failed to submit the form. Please try again.");
     } finally {
