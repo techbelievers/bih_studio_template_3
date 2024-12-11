@@ -3,6 +3,7 @@ import styles from '../css/Services.module.css'; // Import the updated CSS modul
 import { API } from '../../../../Config'; // Corrected import for API configuration
 import axios from 'axios';
 
+
 const Services = () => {
   const [headerData, setHeaderData] = useState(null);
   const [error, setError] = useState(null);
@@ -45,7 +46,7 @@ const Services = () => {
               </div>
               <div className={styles.card}>
                 <img
-                  src="https://www.buyindiahomes.in/location2.png"
+                  src="https://www.buyindiahomes.in/location_ui2.png"
                   alt="Location Icon"
                   className={styles.locationIcon}
                 />

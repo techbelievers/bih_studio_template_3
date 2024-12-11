@@ -72,7 +72,7 @@ const Services = () => {
             >
               <div className={styles.cardContent}>
                 <img
-                  src="https://www.buyindiahomes.in/location2.png"
+                  src="https://www.buyindiahomes.in/location_ui3.png"
                   alt="Location Icon"
                   className={styles.locationIcon}
                 />
@@ -92,7 +92,7 @@ const Services = () => {
             >
               <div className={styles.cardContent}>
                 <img
-                  src="https://www.buyindiahomes.in/apartment_2.png"
+                  src="https://www.buyindiahomes.in/apartment_3.png"
                   alt="Property Icon"
                   className={styles.propertyIcon}
                 />
