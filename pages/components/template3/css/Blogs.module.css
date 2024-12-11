@@ -35,10 +35,10 @@
 .scrollButton {
   background: #4caf50;
   color: #fff;
-  font-size: 2rem;
+  font-size: 1rem;
   border: none;
   cursor: pointer;
-  padding: 0.5rem 1rem;
+  /* padding: 0.5rem 1rem; */
   transition: background 0.3s ease, transform 0.2s ease;
   z-index: 2;
 }
@@ -130,7 +130,7 @@
   }
 
   .blogCard {
-    width: 250px;
+    width: 270px;
   }
 
   .blogContent h3 {
