@@ -53,7 +53,7 @@ const Services = () => {
             >
               <div className={styles.cardContent}>
                 <img
-                  src={headerData.logo}
+                  src={headerData.builder_logo}
                   alt="Builder Logo"
                   className={styles.logoImage}
                 />
