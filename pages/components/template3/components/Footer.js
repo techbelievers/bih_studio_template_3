@@ -47,7 +47,7 @@ const Footer = () => {
           {/* Logo Section */}
           <div className={styles.footerLogo}>
             <img
-              src={`${g_setting.logo}`}
+              src={`${g_setting.builder_logo}`}
               alt="Company Logo"
               className={styles.footerLogoImage}
             />
