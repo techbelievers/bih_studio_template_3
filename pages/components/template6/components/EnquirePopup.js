@@ -93,7 +93,7 @@ const EnquirePopup = ({ onClose }) => {
                 className={styles.enquirePopupLogo}
               />
             )}
-            <h2 className={styles.propertyName}>{headerData.property_name}</h2>
+            {/* <h2 className={styles.propertyName}>{headerData.property_name}</h2> */}
             <h5 className={styles.enquireNowHeading}>Enquire Now</h5>
             {submitError && (
               <p className={styles.enquirePopupError}>{submitError}</p>
