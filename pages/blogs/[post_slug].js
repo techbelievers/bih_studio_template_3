@@ -1,6 +1,7 @@
 import React from 'react';
 import { API, DEFAULT_DOMAIN } from '../../Config'; // Adjust the path as needed
 import styles from './BlogDetail.module.css'; // Ensure the path is correct
+import Link from 'next/link';
 
 const BlogDetail = ({ blog, error }) => {
   if (error) {
@@ -9,12 +10,31 @@ const BlogDetail = ({ blog, error }) => {
 
   return (
     <div className={styles.blogDetailContainer}>
-      <h1 className={styles.blogTitle}>{blog.post_title}</h1>
-      <img src={blog.post_photo} alt={blog.post_title} className={styles.blogImage} />
-      <div className={styles.blogContent}>
-        <div dangerouslySetInnerHTML={{ __html: blog.post_content }} />
+      {/* Header Section */}
+      <div className={styles.blogHeader}>
+        <h1 className={styles.blogTitle}>{blog.post_title}</h1>
+        <p className={styles.postDate}>
+          Posted On: {new Date(blog.created_at).toISOString().split('T')[0]}
+        </p>
       </div>
-      <a href="/" className={styles.backLink}>Back to Blogs</a>
+
+      {/* Featured Image Section */}
+      <div className={styles.imageWrapper}>
+        <img src={blog.post_photo} alt={blog.post_title} className={styles.blogImage} />
+      </div>
+
+      {/* Content Section */}
+      <div className={styles.blogContent}>
+        <div
+          className={styles.content}
+          dangerouslySetInnerHTML={{ __html: blog.post_content }}
+        />
+      </div>
+
+      {/* Back Link */}
+      <Link href="/" legacyBehavior>
+        <a className={styles.backLink}>← Back to Blogs</a>
+      </Link>
     </div>
   );
 };
@@ -23,34 +43,32 @@ const BlogDetail = ({ blog, error }) => {
 export async function getServerSideProps(context) {
   const { post_slug } = context.params;
   try {
-    // console.log('BLOGS_DETAIL_domain : ', context);
     const { req } = context;
     const websiteDomain = req.headers['x-forwarded-host'] || DEFAULT_DOMAIN;
-  
-    // const finalDomain = '10.211.55.3';
+
     const finalDomain = websiteDomain === 'localhost:3000' ? DEFAULT_DOMAIN : websiteDomain;
     console.log('BLOGS_DETAIL_domain : ', finalDomain);
-    const response = await fetch(`${API.BLOGS_DETAIL(post_slug,finalDomain)}`); // Adjust your API endpoint here
+
+    const response = await fetch(`${API.BLOGS_DETAIL(post_slug, finalDomain)}`);
     if (!response.ok) {
       throw new Error('Failed to fetch blog details');
     }
     const data = await response.json();
 
-    // Assuming the API returns a single blog post object
-    const blog = data.blogs.find(blog => blog.post_slug === post_slug);
+    const blog = data.blogs.find((blog) => blog.post_slug === post_slug);
 
     if (!blog) {
       return {
-        notFound: true, // If blog post not found, return a 404 page
+        notFound: true,
       };
     }
 
     return {
-      props: { blog }, // Pass the blog data as props
+      props: { blog },
     };
   } catch (error) {
     return {
-      props: { error: error.message }, // Pass error message if fetching fails
+      props: { error: error.message },
     };
   }
 }

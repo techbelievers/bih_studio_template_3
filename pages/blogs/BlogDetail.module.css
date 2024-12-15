@@ -1,58 +1,115 @@
+/* Blog Detail Page Styles */
 .blogDetailContainer {
-    max-width: 800px; /* Restricts the width for better readability */
-    margin: 2rem auto; /* Centers the container */
-    padding: 1.5rem;
-    background: #ffffff; /* White background for contrast */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  padding: 50px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #f8f9fa;
+  font-family: "Lora", serif;
+  color: #2c3e50;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Header Section */
+.blogHeader {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.blogTitle {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #2c3e50;
+}
+
+.postDate {
+  font-size: 0.9rem;
+  color: #888;
+  font-style: italic;
+}
+
+/* Featured Image Section */
+.imageWrapper {
+  width: 100%;
+  margin: 20px 0;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.blogImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease-in-out;
+}
+
+.imageWrapper:hover .blogImage {
+  transform: scale(1.05);
+}
+
+/* Content Section */
+.blogContent {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #555;
+  margin: 20px 0;
+}
+
+.content {
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+.content p {
+  margin-bottom: 20px;
+}
+
+.content h2 {
+  font-size: 1.5rem;
+  margin: 20px 0 10px;
+  color: #2c3e50;
+}
+
+.content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 20px 0;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Back Link */
+.backLink {
+  display: inline-block;
+  font-size: 1rem;
+  color: #e63946;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+.backLink:hover {
+  color: #2c3e50;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .blogDetailContainer {
+    padding: 20px;
   }
-  
+
   .blogTitle {
-    font-size: 2.5rem; /* Large title for emphasis */
-    color: #333333; /* Dark gray for readability */
-    margin-bottom: 1rem; /* Space below the title */
+    font-size: 2rem;
   }
-  
-  .blogImage {
-    width: 100%; /* Responsive image */
-    height: auto; /* Maintain aspect ratio */
-    border-radius: 8px; /* Rounded corners */
-    margin-bottom: 1.5rem; /* Space below the image */
+
+  .postDate {
+    font-size: 0.8rem;
   }
-  
+
   .blogContent {
-    font-size: 1.125rem; /* Slightly larger text for better readability */
-    line-height: 1.6; /* Increased line height for better readability */
-    color: #555555; /* Medium gray for the content */
-    margin-bottom: 2rem; /* Space below the content */
+    font-size: 0.9rem;
   }
-  
-  .backLink {
-    display: inline-block; /* Block level for better spacing */
-    margin-top: 1.5rem; /* Space above the link */
-    padding: 0.75rem 1.5rem; /* Padding for clickable area */
-    background-color: #007bff; /* Bootstrap primary color */
-    color: white; /* White text color */
-    text-decoration: none; /* Remove underline */
-    border-radius: 5px; /* Rounded corners for the button */
-    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
-  }
-  
-  .backLink:hover {
-    background-color: #0056b3; /* Darker shade on hover */
-  }
-  
-  .loading {
-    font-size: 1.5rem; /* Larger text for loading state */
-    color: #007bff; /* Blue color to match the theme */
-    text-align: center; /* Center the loading text */
-    margin-top: 2rem; /* Space above */
-  }
-  
-  .error {
-    font-size: 1.5rem; /* Larger text for error messages */
-    color: #dc3545; /* Bootstrap danger color for errors */
-    text-align: center; /* Center the error message */
-    margin-top: 2rem; /* Space above */
-  }
-  
+}

@@ -1,5 +1,5 @@
 // pages/_app.js
-import './components/Loader.css'; // Ensure this file exists
+import './components/loader/Loader.module.css'; // Ensure this file exists
 import './index.css';
 import Head from 'next/head';
 import React from 'react';
@@ -8,7 +8,7 @@ import axios from 'axios';
 import { API, DEFAULT_DOMAIN } from '../Config';
 import App from 'next/app'; // Import the default App from Next.js
 
-const MyApp = ({ Component, pageProps, headerData, error ,propertyDetails , domain }) => {
+const MyApp = ({ Component, pageProps, headerData, error ,propertyDetails , domain ,slug}) => {
   // Show loading state until the header data is fetched
   if (!headerData && !error) {
     return <div>Loading...</div>; // Replace with your Loader component if needed
@@ -57,9 +57,18 @@ const MyApp = ({ Component, pageProps, headerData, error ,propertyDetails , doma
 
 
         {/* Conditionally add custom scripts */}
+  
+
+        {/* Inject raw HTML directly into Head */}
+      {/* {headerData.data.script_1 && (
+         <div dangerouslySetInnerHTML={{ __html: headerData.data.script_1 }} suppressHydrationWarning />
+      )} */}
+
+  
       {headerData.data.script_1 && (
-        <script dangerouslySetInnerHTML={{ __html: headerData.data.script_1 }} />
-      )}
+        <style dangerouslySetInnerHTML={{ __html: headerData.data.script_1 }} />
+      ) }
+
       {headerData.data.script_2 && (
         <script dangerouslySetInnerHTML={{ __html: headerData.data.script_2 }} />
       )}
@@ -94,25 +103,49 @@ const MyApp = ({ Component, pageProps, headerData, error ,propertyDetails , doma
 // Using getInitialProps to fetch data
 MyApp.getInitialProps = async (appContext) => {
   const appProps = await App.getInitialProps(appContext); // Use the imported App component
-
+  const { req , query} = appContext.ctx;
   let headerData = null;
   let propertyDetails = null;
   let error = null;
+  let flag = true;
+
+  console.log("query.slug", req.url);
+  let slug = null;
+  
+  // Ensure the rawSlug is extracted correctly
+  const rawSlug = query.slug || (req && req.url.replace(/\/$/, "").split('/').pop()); // Remove trailing slash if present
+  console.log("rawslug:", rawSlug);
+  
+  // Check if the URL contains '/properties' and extract the slug
+  if (req.url.includes('/properties')) {
+    slug = rawSlug && rawSlug.split('.json')[0].split('?')[0]; // Clean the slug
+    console.log("Cleaned slug:", slug);
+    flag =false;
+  }
+  
+  // If slug is null, fallback or set flag to false
+  if (!slug) {
+    console.log("No valid slug found for '/properties'.");
+  }
+  
   let domain = DEFAULT_DOMAIN; 
-  const { req } = appContext.ctx;
+ 
   // console.log('Default domain',API);
   const rawWebsiteDomain = req.headers['x-forwarded-host'] || (DEFAULT_DOMAIN);
   const websiteDomain = rawWebsiteDomain.startsWith('www.')
   ? rawWebsiteDomain.replace('www.', '')
   : rawWebsiteDomain;
 
+
   // const finalDomain = 'smp-amberwoodrahatani.com';
   const finalDomain = websiteDomain === 'localhost:3000' ? DEFAULT_DOMAIN : websiteDomain;
   domain = finalDomain
   // const finalDomain = websiteDomain;
   console.log('finaldomain : ', finalDomain);
+  
 
   try {
+    if (flag==true){
     const response = await axios.get(API.SEO_DETAIL(finalDomain));
     headerData = response.data;
 
@@ -125,6 +158,23 @@ MyApp.getInitialProps = async (appContext) => {
     } else {
       propertyDetails = propertyData.property_details;
     }
+  }
+  else{
+
+    const response = await axios.get(API.SEO_DETAIL_STUDIO(finalDomain , slug));
+    headerData = response.data;
+
+    const propertyResponse = await  axios.get(API.PROPERTY_DETAILS(finalDomain));
+    const propertyData = await propertyResponse.data;
+    // console.log(propertyDetails);
+
+    if (!propertyData || !propertyData.property_details) {
+      error = 'Property details not found.';
+    } else {
+      propertyDetails = propertyData.property_details;
+    }
+
+  }
 
     // const response = await axios.get(API.SEO_DETAIL(finalDomain), {
     //   headers: {
@@ -142,6 +192,7 @@ MyApp.getInitialProps = async (appContext) => {
     headerData,
     propertyDetails,
     domain,
+    slug,
     error,
   };
 };

@@ -48,3 +48,58 @@ code {
   clip: rect(1px, 1px, 1px, 1px); /* Visually hide but still in the DOM */
   overflow: hidden;
 }
+
+/* Base styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+}
+
+/* Smooth transitions for all elements */
+* {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Add animation to buttons and hover effects */
+button, a {
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+button:hover, a:hover {
+  transform: scale(1.05);
+  background-color: #ffd966;
+}
+
+/* Fade-in animation for sections */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease forwards;
+}
+
+/* Smooth reveal animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in {
+  animation: slideIn 1s ease forwards;
+}

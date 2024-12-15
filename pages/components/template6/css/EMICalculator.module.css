@@ -1,0 +1,134 @@
+/* Section Styling */
+.emiCalculatorSection {
+  padding: 60px 20px;
+  background: #f8f9fa;
+  font-family: "Playfair Display", serif; /* Luxurious Font */
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  text-align: center;
+}
+
+/* Title and Description */
+.title {
+  font-size: 2.5rem;
+  color: #e63946; /* Luxurious red theme */
+  margin-bottom: 10px;
+}
+
+.description {
+  font-size: 1rem;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+/* Input Fields */
+.formWrapper {
+  margin-bottom: 30px;
+}
+
+.inputGroup {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.input {
+  flex: 1;
+  min-width: 200px;
+  padding: 10px 15px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border 0.3s ease;
+}
+
+.input:focus {
+  border-color: #e63946;
+  outline: none;
+  box-shadow: 0px 4px 8px rgba(230, 57, 70, 0.2);
+}
+
+/* Button */
+.calculateButton {
+  background-color: #e63946;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 15px;
+}
+
+.calculateButton:hover {
+  background-color: #c72736;
+  box-shadow: 0px 5px 10px rgba(230, 57, 70, 0.4);
+}
+
+/* Results Wrapper */
+.resultsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.resultCard {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 15px 20px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  min-width: 200px;
+}
+
+.resultCard h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.resultCard p {
+  font-size: 1.5rem;
+  color: #e63946;
+  margin: 0;
+  font-weight: bold;
+}
+
+/* Doughnut Chart Container */
+.chartContainer {
+  width: 300px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+
+  .inputGroup {
+    flex-direction: column;
+  }
+
+  .resultsWrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .chartContainer {
+    width: 100%;
+  }
+}

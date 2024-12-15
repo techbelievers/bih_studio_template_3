@@ -11,25 +11,8 @@ if (ENVIRONMENT === "PRODUCTION") {
   DEFAULT_DOMAIN = "builderkonnect.com";  // Production domain
 } else {
   BASE_URL = 'https://www.buyindiahomes.in/api';  // Local development URL (you can use localhost if required)
-  DEFAULT_DOMAIN = "sylvanscapehinjewadi.com";  // Local domain (for consistency)
+  DEFAULT_DOMAIN = "megapolisshimmerhinjewadi.com";  // Local domain (for consistency)
 }
-
-
-
-// const getDomain = () => {
-//   // Check if window is available (i.e., client-side)
-
-//   if (ENVIRONMENT=="PRODUCTION"){
-//   if (typeof window !== 'undefined') {
-//     return window.location.hostname; // Get domain from client
-//   }
-//   // Default for server-side
-//   return DEFAULT_DOMAIN;
-//   }
-//   else{
-//     return DEFAULT_DOMAIN;
-//   }
-// };
 
 
 const getDomain = () => {
@@ -61,6 +44,41 @@ const getApiUrl = (endpoint) => {
   return `${BASE_URL}/${endpoint}?website=${WEBSITE_DOMAIN}`;
 };
 
+
+const getDataProject = (endpoint,domain,slug) => {
+  // const WEBSITE_DOMAIN = typeof window !== 'undefined' ? window.location.hostname : 'builderkonnect.com';
+  // const WEBSITE_DOMAIN = "10.211.55.3";
+  const WEBSITE_DOMAIN = domain;
+  // Log the endpoint and the website domain
+  console.log('API Endpoint:', endpoint);
+  console.log('Website Domain:', WEBSITE_DOMAIN);
+  console.log(`${BASE_URL}/${endpoint}?website=${WEBSITE_DOMAIN}&project=${slug}`);
+  return `${BASE_URL}/${endpoint}?website=${WEBSITE_DOMAIN}&project=${slug}`;
+};
+
+
+const getDataSlug = (endpoint,slug) => {
+  // const WEBSITE_DOMAIN = typeof window !== 'undefined' ? window.location.hostname : 'builderkonnect.com';
+  // const WEBSITE_DOMAIN = "10.211.55.3";
+  const WEBSITE_DOMAIN = getDomain();
+  // Log the endpoint and the website domain
+  console.log('API Endpoint:', endpoint);
+  console.log('Website Domain:', WEBSITE_DOMAIN);
+  console.log(`${BASE_URL}/${endpoint}?website=${WEBSITE_DOMAIN}&project=${slug}`);
+  return `${BASE_URL}/${endpoint}?website=${WEBSITE_DOMAIN}&project=${slug}`;
+};
+
+
+const getSeoDataSlug = (endpoint,domain,slug) => {
+  // const WEBSITE_DOMAIN = typeof window !== 'undefined' ? window.location.hostname : 'builderkonnect.com';
+  // const WEBSITE_DOMAIN = "10.211.55.3";
+  const WEBSITE_DOMAIN = getDomain();
+  // Log the endpoint and the website domain
+  console.log('API Endpoint:', endpoint);
+  console.log('Website Domain:', WEBSITE_DOMAIN);
+  console.log(`${BASE_URL}/${endpoint}?website=${domain}&project=${slug}`);
+  return `${BASE_URL}/${endpoint}?website=${domain}&project=${slug}`;
+};
 
 const getBlogData = (endpoint , domain) => {
   console.log('BLOGDAA');
@@ -137,8 +155,29 @@ const API = {
   ADVERTISEMENT: () => getApiUrl('advertisement'),
   FOOTER: () => getApiUrl('footer'),
   TEMPLATE: () => getApiUrl('template'),
+  GET_PROPERTIES: () => getApiUrl('get-properties'),
   SEO_DETAIL: (domain) => getSeoData('seo-detail',domain),
+
+  // Studio APIS
+  PROPERTY_DETAILS_STUDIO:(domain,slug) => getDataProject('propert-details',domain,slug),
+  GALLERY_STUDIO: (slug) => getDataSlug('gallary',slug),
+  MAHARERA_STUDIO: (slug) => getDataSlug('rera',slug),
+  VIDEO_STUDIO: (slug) => getDataSlug('video',slug),
+  AMENITIES_STUDIO: (slug) => getDataSlug('amenities',slug),
+  PROPERTY_PRICES_STUDIO: (slug) => getDataSlug('property-prices',slug),
+  UNIT_LAYOUT_STUDIO: (slug) => getDataSlug('unit-layout',slug),
+  FLOOR_PLANS_STUDIO: (slug) => getDataSlug('floor-layout',slug),
+  MASTER_LAYOUT_STUDIO: (slug) => getDataSlug('master-layout',slug),
+  LOCATION_MAP_STUDIO: (slug) => getDataSlug('location-map',slug),
+  LOCATION_ADVANTAGES_STUDIO: (slug) => getDataSlug('location-advantages',slug),
+  HEADER_STUDIO: (slug) => getDataSlug('header',slug),
+  SEO_DETAIL_STUDIO: (domain, slug) => getSeoDataSlug('seo-detail',domain ,slug),
+
+  // POST APIS
   postContactUs: `${BASE_URL}/contact?website=${WEBSITE_DOMAIN}`,
+
 };
+
+
 
 export  { API, WEBSITE_DOMAIN , DEFAULT_DOMAIN};

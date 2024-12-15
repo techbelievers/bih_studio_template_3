@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { API , DEFAULT_DOMAIN} from '../Config';
+import { API , DEFAULT_DOMAIN} from '../../Config';
 // import './index.css'
-import Loader from './components/loader/Loader';
+import Loader from '../components/loader/Loader';
 // Import template components
-import Template1 from './components/template1/App';
-import Template2 from './components/template2/App';
-import Template3 from './components/template3/App';
-import Template4 from './components/template4/App';
-import Template5 from './components/template5/App';
-import Template6 from './components/template6/App';
+// import Template1 from '../components/template1/';
+// import Template2 from '../components/template2/App';
+// import Template3 from '../components/template3/App';
+// import Template4 from '../components/template4/App';
+// import Template5 from '../components/template5/App';
+import Template6 from '../components/template6/Property';
 // import Template3 from './components/template3/Template3';
 
 const App = ({ propertyDetails }) => {
@@ -20,6 +20,14 @@ const App = ({ propertyDetails }) => {
   useEffect(() => {
     // Get current website domain dynamically
     // const website = window.location.hostname; // This will get the current domain name
+
+    // const Loader = () => {
+    //   return (
+    //     <div className="loader">
+    //       <div className="spinner"></div>
+    //     </div>
+    //   );
+    // };
 
     // Fetch templateId based on website parameter
     const fetchTemplateId = async () => {
@@ -42,23 +50,9 @@ const App = ({ propertyDetails }) => {
   // Conditional rendering based on templateId
   switch (templateId) {
     case "1":
-      return <Template1 propertyDetails={propertyDetails}/>;
-      
-    case "2":
-      return <Template2 propertyDetails={propertyDetails} />;
-    
-    case "3":
-       return <Template3 propertyDetails={propertyDetails} />;
-
-    case "4":
-       return <Template4 propertyDetails={propertyDetails} />;
-
-    case "5":
-       return <Template5 propertyDetails={propertyDetails} />;
-
-    case "6":
        return <Template6 propertyDetails={propertyDetails} />;
-
+    // case 3:
+    //   return <Template3 />;
     default:
       return <div>Template not found {templateId}</div>;
   }
@@ -68,7 +62,8 @@ const App = ({ propertyDetails }) => {
 //  getServerSideProps to fetch property details
 export async function getServerSideProps(context) {
   console.log("getServerSideProps - AppTemplate");
-  const { req } = context;
+  const { req  , params} = context;
+  const { property_slug } = params;
   const rawWebsiteDomain = req.headers['x-forwarded-host'] || DEFAULT_DOMAIN;
   const websiteDomain = rawWebsiteDomain.startsWith('www.') 
     ? rawWebsiteDomain.replace('www.', '') 
@@ -80,15 +75,18 @@ export async function getServerSideProps(context) {
   let error = null;
 
   try {
-    const propertyResponse = await axios.get(API.PROPERTY_DETAILS(finalDomain));
+    // console.log("property_slug2151");
+    console.log("slug : "+property_slug);
+    const propertyResponse = await axios.get(API.PROPERTY_DETAILS_STUDIO(finalDomain,property_slug));
     const propertyData = propertyResponse.data;
 
-    console.log(propertyData); 
+    // console.log(propertyData); 
 
     if (!propertyData || !propertyData.property_details) {
       error = 'Property details not found.';
     } else {
       propertyDetails = propertyData.property_details;
+    //   console.log(propertyDetails)
     }
   } catch (err) {
     error = `Failed to fetch property details: ${err.message} - ${API.PROPERTY_DETAILS(finalDomain)}`;
