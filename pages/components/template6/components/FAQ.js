@@ -29,7 +29,7 @@ const FAQ = () => {
   };
 
   return (
-    <section className={styles.faqSection}>
+    <section id="faq" className={styles.faqSection}>
       <div className={styles.container}>
         {/* Header */}
         <div className={styles.header}>

@@ -11,9 +11,8 @@ if (ENVIRONMENT === "PRODUCTION") {
   DEFAULT_DOMAIN = "builderkonnect.com";  // Production domain
 } else {
   BASE_URL = 'https://www.buyindiahomes.in/api';  // Local development URL (you can use localhost if required)
-  DEFAULT_DOMAIN = "megapolisshimmerhinjewadi.com";  // Local domain (for consistency)
+  DEFAULT_DOMAIN = "studioproject.com";  // Local domain (for consistency)
 }
-
 
 const getDomain = () => {
   // Check if window is available (i.e., client-side)

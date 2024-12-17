@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router"; // Import useRouter
 import axios from "axios";
 import Link from "next/link";
 import { FaBars, FaTimes } from "react-icons/fa";
@@ -12,6 +13,7 @@ const Header = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const router = useRouter(); // Initialize useRouter
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -45,6 +47,11 @@ const Header = () => {
     );
   }
 
+  // Check if the current page is a properties page
+  const isPropertiesPage = router.pathname.includes("/properties");
+  const isHomePage = router.pathname === "/" 
+  // const isHomePage = true;
+
   return (
     <header className={`${styles.header} ${menuOpen ? styles.menuOpen : ""}`}>
       {/* Logo Section */}
@@ -61,35 +68,50 @@ const Header = () => {
       {/* Navigation Menu */}
       <nav className={`${styles.navMenu} ${menuOpen ? styles.active : ""}`}>
         <ul>
-        <li>
+          <li>
             <a href="/">Home</a>
           </li>
-          <li>
-            <a href="#about">About</a>
-          </li>
-          <li>
-            <a href="#price">Price</a>
-          </li>
-          <li>
+          {isPropertiesPage && (
+            <>
+              <li>
+                <a href="#about">About</a>
+              </li>
+              <li>
+                <a href="#price">Price</a>
+              </li>
+              <li>
+                <a href="#amenities">Amenities</a>
+              </li>
+              <li>
+                <a href="#layouts">Layouts</a>
+              </li>
+              <li>
             <a href="#gallery">Gallery</a>
-          </li>
-          <li>
-            <a href="#amenities">Amenities</a>
-          </li>
-          <li>
-            <a href="#layouts">Layouts</a>
           </li>
           <li>
             <a href="#location">Location</a>
           </li>
+            </>
+          )}
+         {isHomePage &&(
+          <>
+           <li>
+            <a href="#properties">Properties</a>
+          </li>
           <li>
             <a href="#blogs">Blogs</a>
           </li>
+          <li>
+           <a href="#faq">FAQ</a>
+         </li>
+          </>
+         )}
         </ul>
+
         {/* CTA for Mobile */}
         <div className={styles.cta}>
           <a
-            href={`tel:${headerData.contact || "+1234567890"}`}
+            href={`tel:${headerData.contact || "+918181817136"}`}
             className={styles.callButton}
           >
             Call Us
