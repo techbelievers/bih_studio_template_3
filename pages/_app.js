@@ -100,91 +100,90 @@ const MyApp = ({ Component, pageProps, headerData, error ,propertyDetails , doma
   );
 };
 
-// Using getInitialProps to fetch data
+
+
 MyApp.getInitialProps = async (appContext) => {
-  const appProps = await App.getInitialProps(appContext); // Use the imported App component
-  const { req , query} = appContext.ctx;
+  const appProps = await App.getInitialProps(appContext);
+  const { req, query } = appContext.ctx;
+
   let headerData = null;
   let propertyDetails = null;
-  let error = null;
+  let error = null; 
   let flag = true;
 
-  console.log("query.slug", req.url);
+  console.log("query.slug", req?.url);
   let slug = null;
-  
-  // Ensure the rawSlug is extracted correctly
-  const rawSlug = query.slug || (req && req.url.replace(/\/$/, "").split('/').pop()); // Remove trailing slash if present
-  console.log("rawslug:", rawSlug);
-  
-  // Check if the URL contains '/properties' and extract the slug
-  if (req.url.includes('/properties')) {
-    slug = rawSlug && rawSlug.split('.json')[0].split('?')[0]; // Clean the slug
-    console.log("Cleaned slug:", slug);
-    flag =false;
-  }
-  
-  // If slug is null, fallback or set flag to false
-  if (!slug) {
-    console.log("No valid slug found for '/properties'.");
-  }
-  
-  let domain = DEFAULT_DOMAIN; 
- 
-  // console.log('Default domain',API);
-  const rawWebsiteDomain = req.headers['x-forwarded-host'] || (DEFAULT_DOMAIN);
-  const websiteDomain = rawWebsiteDomain.startsWith('www.')
-  ? rawWebsiteDomain.replace('www.', '')
-  : rawWebsiteDomain;
+  // Determine the domain
+  let domain = DEFAULT_DOMAIN;
 
+  const rawWebsiteDomain = req?.headers["x-forwarded-host"] || DEFAULT_DOMAIN;
+  const websiteDomain = rawWebsiteDomain.startsWith("www.")
+    ? rawWebsiteDomain.replace("www.", "")
+    : rawWebsiteDomain;
 
-  // const finalDomain = 'smp-amberwoodrahatani.com';
-  const finalDomain = websiteDomain === 'localhost:3000' ? DEFAULT_DOMAIN : websiteDomain;
-  domain = finalDomain
-  // const finalDomain = websiteDomain;
-  console.log('finaldomain : ', finalDomain);
-  
+  const finalDomain = websiteDomain === "localhost:3000" ? DEFAULT_DOMAIN : websiteDomain;
+  domain = finalDomain;
+  console.log("finaldomain : ", finalDomain);
+
 
   try {
-    if (flag==true){
-    const response = await axios.get(API.SEO_DETAIL(finalDomain));
-    headerData = response.data;
+    // Ensure the rawSlug is extracted correctly and sanitize it
+    const rawSlug = query.slug || (req && req.url.replace(/\/$/, "").split("/").pop()); // Remove trailing slash
+    console.log("rawslug:", rawSlug);
 
-    const propertyResponse = await  axios.get(API.PROPERTY_DETAILS(finalDomain));
-    const propertyData = await propertyResponse.data;
-    // console.log(propertyDetails);
-
-    if (!propertyData || !propertyData.property_details) {
-      error = 'Property details not found.';
-    } else {
-      propertyDetails = propertyData.property_details;
-    }
-  }
-  else{
-
-    const response = await axios.get(API.SEO_DETAIL_STUDIO(finalDomain , slug));
-    headerData = response.data;
-
-    const propertyResponse = await  axios.get(API.PROPERTY_DETAILS(finalDomain));
-    const propertyData = await propertyResponse.data;
-    // console.log(propertyDetails);
-
-    if (!propertyData || !propertyData.property_details) {
-      error = 'Property details not found.';
-    } else {
-      propertyDetails = propertyData.property_details;
+    // Validate and extract slug only if the URL contains '/properties'
+    if (req?.url.includes("/properties")) {
+      // Check if the slug matches the expected pattern (adjust regex as per your slug format)
+      const isValidSlug = /^[a-zA-Z0-9_-]+$/.test(rawSlug);
+      if (isValidSlug) {
+        slug = rawSlug && rawSlug.split(".json")[0].split("?")[0]; // Clean the slug
+        console.log("Cleaned slug:", slug);
+        flag = false;
+      } else {
+        console.warn("Invalid slug format:", rawSlug);
+      }
     }
 
-  }
+    if (!slug) {
+      console.log("No valid slug found for '/properties'.");
+    }
 
-    // const response = await axios.get(API.SEO_DETAIL(finalDomain), {
-    //   headers: {
-    //     'Cache-Control': 'no-cache', // Ensures data isn't cached
-    //   },
-    // });
     
- 
+   
+
+    // Fetch data based on the flag and slug
+    if (flag) {
+      const response = await axios.get(API.SEO_DETAIL(finalDomain));
+      headerData = response.data;
+
+      const propertyResponse = await axios.get(API.PROPERTY_DETAILS(finalDomain));
+      const propertyData = await propertyResponse.data;
+
+      if (!propertyData || !propertyData.property_details) {
+        error = "Property details not found.";
+      } else {
+        propertyDetails = propertyData.property_details;
+      }
+    } else {
+      if (slug) {
+        const response = await axios.get(API.SEO_DETAIL_STUDIO(finalDomain, slug));
+        headerData = response.data;
+
+        const propertyResponse = await axios.get(API.PROPERTY_DETAILS(finalDomain));
+        const propertyData = await propertyResponse.data;
+
+        if (!propertyData || !propertyData.property_details) {
+          error = "Property details not found.";
+        } else {
+          propertyDetails = propertyData.property_details;
+        }
+      } else {
+        console.warn("Skipping SEO fetch as slug is invalid.");
+      }
+    }
   } catch (err) {
     error = `Failed to fetch header data: ${err.message} - ${API.SEO_DETAIL(finalDomain)}`;
+    console.error(error);
   }
 
   return {
@@ -196,6 +195,7 @@ MyApp.getInitialProps = async (appContext) => {
     error,
   };
 };
+
 
 
 
