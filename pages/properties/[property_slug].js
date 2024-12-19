@@ -12,31 +12,31 @@ import Loader from '../components/loader/Loader';
 import Template6 from '../components/template6/Property';
 // import Template3 from './components/template3/Template3';
 
-const App = ({ propertyDetails }) => {
+const App = ({ propertyDetails , domain , templateid }) => {
   const [templateId, setTemplateId] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchTemplateId = async () => {
-      try {
-        const response = await axios.get(API.TEMPLATE());
-        setTemplateId(response.data.templateId); // Assuming API returns templateId
-      } catch (err) {
-        console.error("Failed to fetch template ID:", err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+//   useEffect(() => {
+//     const fetchTemplateId = async () => {
+//       try {
+//         const response = await axios.get(API.TEMPLATE_STUDIO(domain));
+//         setTemplateId(response.data.templateId); // Assuming API returns templateId
+//       } catch (err) {
+//         console.error("Failed to fetch template ID:", err.message);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
 
-    fetchTemplateId();
-  }, []);
+//     fetchTemplateId();
+//   }, []);
 
 
   if (error) return <div>{error}</div>;
 
   // Conditional rendering based on templateId
-  switch (templateId) {
+  switch (templateid) {
     case "6":
        return <Template6 propertyDetails={propertyDetails} />;
     // case 3:
@@ -59,6 +59,7 @@ export async function getServerSideProps(context) {
   const { property_slug } = context.params;
 
   console.log("property_slug 1111 : " , property_slug);
+  let domain = DEFAULT_DOMAIN;
   const rawWebsiteDomain = req.headers['x-forwarded-host'] || DEFAULT_DOMAIN;
   const websiteDomain = rawWebsiteDomain.startsWith('www.') 
     ? rawWebsiteDomain.replace('www.', '') 
@@ -68,8 +69,17 @@ export async function getServerSideProps(context) {
 
   let propertyDetails = null;
   let error = null;
+  let templateid = null;
+
+  domain = finalDomain;
+  console.log("finaldomain : ", finalDomain);
 
   try {
+
+    // template_id
+    const response = await axios.get(API.TEMPLATE_STUDIO(domain));
+    templateid = response.data.templateId
+
     // console.log("property_slug2151");
     console.log("slug : "+property_slug);
     const propertyResponse = await axios.get(API.PROPERTY_DETAILS_STUDIO(finalDomain,property_slug));
@@ -90,7 +100,10 @@ export async function getServerSideProps(context) {
   return {
     props: {
       propertyDetails,
+      domain,
+      templateid,
       error,
+      
     },
   };
 }
