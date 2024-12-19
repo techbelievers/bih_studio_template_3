@@ -32,7 +32,7 @@ const App = ({ propertyDetails }) => {
     fetchTemplateId();
   }, []);
 
-  if (loading) return <Loader />;
+
   if (error) return <div>{error}</div>;
 
   // Conditional rendering based on templateId
