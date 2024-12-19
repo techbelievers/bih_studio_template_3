@@ -12,7 +12,7 @@ import Loader from '../components/loader/Loader';
 import Template6 from '../components/template6/Property';
 // import Template3 from './components/template3/Template3';
 
-const App = ({ propertyDetails , domain , templateid }) => {
+const App = ({ propertyDetails , domain , templateid , headerData }) => {
   const [templateId, setTemplateId] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -38,7 +38,7 @@ const App = ({ propertyDetails , domain , templateid }) => {
   // Conditional rendering based on templateId
   switch (templateid) {
     case "6":
-       return <Template6 propertyDetails={propertyDetails} />;
+       return <Template6 propertyDetails={propertyDetails} headerData={headerData} />;
     // case 3:
     //   return <Template3 />;
     default:
@@ -70,6 +70,7 @@ export async function getServerSideProps(context) {
   let propertyDetails = null;
   let error = null;
   let templateid = null;
+  let headerData = null
 
   domain = finalDomain;
   console.log("finaldomain : ", finalDomain);
@@ -96,6 +97,13 @@ export async function getServerSideProps(context) {
       propertyDetails = propertyData.property_details;
     //   console.log(propertyDetails)
     }
+
+
+    const header_response = await axios.get(API.HEADER());
+    headerData = header_response.data;
+
+
+
   } catch (err) {
     error = `Failed to fetch property details: ${err.message} - ${API.PROPERTY_DETAILS(finalDomain)}`;
   }
@@ -105,6 +113,7 @@ export async function getServerSideProps(context) {
       propertyDetails,
       domain,
       templateid,
+      headerData,
       error,
       
     },
