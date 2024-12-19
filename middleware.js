@@ -8,6 +8,12 @@ export function middleware(req) {
   console.log(pathname)
   console.log('middleware : ',finalDomain);
   req.headers.set('x-website-domain', finalDomain);
+
+  if (pathname.startsWith("/_next") || pathname.startsWith("/favicon.ico")) {
+    return NextResponse.next(); // Pass through without modification
+  }
+
+  
   return NextResponse.next({
     request: {
       headers: req.headers,

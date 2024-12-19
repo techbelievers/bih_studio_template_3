@@ -7,9 +7,9 @@ import { API } from "../../../../Config";
 import styles from "../css/Header.module.css";
 import EnquirePopup from "./EnquirePopup";
 
-const Header = ({headerData}) => {
+const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  // const [headerData, setHeaderData] = useState({});
+  const [headerData, setHeaderData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -19,25 +19,25 @@ const Header = ({headerData}) => {
     setMenuOpen(!menuOpen);
   };
 
-  // useEffect(() => {
-  //   const fetchHeaderData = async () => {
-  //     try {
-  //       const response = await axios.get(API.HEADER());
-  //       setHeaderData(response.data);
-  //     } catch (error) {
-  //       console.error("Error fetching header data:", error);
-  //       setError(error);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchHeaderData = async () => {
+      try {
+        const response = await axios.get(API.HEADER());
+        setHeaderData(response.data);
+      } catch (error) {
+        console.error("Error fetching header data:", error);
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  //   fetchHeaderData();
-  // }, []);
+    fetchHeaderData();
+  }, []);
 
-  // if (loading) {
-  //   return <div className={styles.loading}>Loading...</div>;
-  // }
+  if (loading) {
+    return <div className={styles.loading}>Loading...</div>;
+  }
 
   if (error) {
     return (

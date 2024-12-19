@@ -25,13 +25,13 @@ import Properties from './components/Properties';
 // import BlogDetail from './components/BlogDetail';
 // import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-function App({ propertyDetails  , headerData}) {
+function App({ propertyDetails}) {
   return (
     // <Router basename="/AppTemplate">
     //   <Routes>
     //     <Route path="/" element={
           <div className="App">
-            <Header headerData={headerData}/>
+            <Header/>
             <HeroBanner propertyDetails={propertyDetails} slug={propertyDetails.property_slug}/>
             <PropertyPriceTable slug={propertyDetails.property_slug}/>
             {/* <MahareraInformation propertyDetails={propertyDetails} slug={propertyDetails.property_slug}/> */}

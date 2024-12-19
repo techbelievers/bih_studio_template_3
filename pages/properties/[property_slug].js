@@ -12,7 +12,7 @@ import Loader from '../components/loader/Loader';
 import Template6 from '../components/template6/Property';
 // import Template3 from './components/template3/Template3';
 
-const App = ({ propertyDetails , domain , templateid , headerData }) => {
+const App = ({ propertyDetails , domain , templateid  }) => {
   const [templateId, setTemplateId] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -38,7 +38,7 @@ const App = ({ propertyDetails , domain , templateid , headerData }) => {
   // Conditional rendering based on templateId
   switch (templateid) {
     case "6":
-       return <Template6 propertyDetails={propertyDetails} headerData={headerData} />;
+       return <Template6 propertyDetails={propertyDetails} />;
     // case 3:
     //   return <Template3 />;
     default:
@@ -99,9 +99,6 @@ export async function getServerSideProps(context) {
     }
 
 
-    const header_response = await axios.get(API.HEADER());
-    headerData = header_response.data;
-
 
 
   } catch (err) {
@@ -113,7 +110,6 @@ export async function getServerSideProps(context) {
       propertyDetails,
       domain,
       templateid,
-      headerData,
       error,
       
     },
