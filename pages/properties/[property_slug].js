@@ -49,7 +49,7 @@ const App = ({ propertyDetails , domain , templateid }) => {
 
 //  getServerSideProps to fetch property details
 export async function getServerSideProps(context) {
-  console.log("getServerSideProps - AppTemplate");
+  console.log("getServerSideProps - PropertyPage");
   const { req  , params} = context;
 
   console.log("context.param : ")
