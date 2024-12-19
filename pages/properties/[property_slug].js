@@ -63,7 +63,8 @@ const App = ({ propertyDetails }) => {
 export async function getServerSideProps(context) {
   console.log("getServerSideProps - AppTemplate");
   const { req  , params} = context;
-  const { property_slug } = params;
+//   const { property_slug } = params;
+  const { property_slug } = context.params;
   const rawWebsiteDomain = req.headers['x-forwarded-host'] || DEFAULT_DOMAIN;
   const websiteDomain = rawWebsiteDomain.startsWith('www.') 
     ? rawWebsiteDomain.replace('www.', '') 
