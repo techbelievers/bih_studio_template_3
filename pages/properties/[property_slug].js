@@ -18,25 +18,13 @@ const App = ({ propertyDetails }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Get current website domain dynamically
-    // const website = window.location.hostname; // This will get the current domain name
-
-    // const Loader = () => {
-    //   return (
-    //     <div className="loader">
-    //       <div className="spinner"></div>
-    //     </div>
-    //   );
-    // };
-
-    // Fetch templateId based on website parameter
     const fetchTemplateId = async () => {
       try {
         const response = await axios.get(API.TEMPLATE());
-        setTemplateId(response.data.templateId);  // Assuming API returns templateId
-        setLoading(false);
+        setTemplateId(response.data.templateId); // Assuming API returns templateId
       } catch (err) {
-        setError('Failed to fetch template data');
+        console.error("Failed to fetch template ID:", err.message);
+      } finally {
         setLoading(false);
       }
     };
@@ -63,8 +51,14 @@ const App = ({ propertyDetails }) => {
 export async function getServerSideProps(context) {
   console.log("getServerSideProps - AppTemplate");
   const { req  , params} = context;
+
+  console.log("context.param : ")
+  console.log(context.params)
+//   const { property_slug } = context.query;
 //   const { property_slug } = params;
   const { property_slug } = context.params;
+
+  console.log("property_slug 1111 : " , property_slug);
   const rawWebsiteDomain = req.headers['x-forwarded-host'] || DEFAULT_DOMAIN;
   const websiteDomain = rawWebsiteDomain.startsWith('www.') 
     ? rawWebsiteDomain.replace('www.', '') 
