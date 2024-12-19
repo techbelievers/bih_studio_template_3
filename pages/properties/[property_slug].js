@@ -80,6 +80,9 @@ export async function getServerSideProps(context) {
     const response = await axios.get(API.TEMPLATE_STUDIO(domain));
     templateid = response.data.templateId
 
+    console.log("templaet api res : ",response)
+    console.log("log.template.id : " ,templateid )
+
     // console.log("property_slug2151");
     console.log("slug : "+property_slug);
     const propertyResponse = await axios.get(API.PROPERTY_DETAILS_STUDIO(finalDomain,property_slug));
