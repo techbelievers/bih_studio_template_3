@@ -42,7 +42,7 @@ const App = ({ propertyDetails , domain , templateid }) => {
     // case 3:
     //   return <Template3 />;
     default:
-      return <div>Template not found {templateId}</div>;
+      return <div>Template not found {templateid}</div>;
   }
 };
 
