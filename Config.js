@@ -11,7 +11,7 @@ if (ENVIRONMENT === "PRODUCTION") {
   DEFAULT_DOMAIN = "builderkonnect.com";  // Production domain
 } else {
   BASE_URL = 'https://www.buyindiahomes.in/api';  // Local development URL (you can use localhost if required)
-  DEFAULT_DOMAIN = "studioproject.com";  // Local domain (for consistency)
+  DEFAULT_DOMAIN = "studioapartmentsinpune.com";  // Local domain (for consistency)
 }
 
 const getDomain = () => {
@@ -97,6 +97,15 @@ const getSeoData = (endpoint , domain) => {
   return `${BASE_URL}/${endpoint}?website=${domain}`;
 };
 
+
+const getStudiotemplate = (endpoint , domain) => {
+  console.log('SEODATA');
+  console.log('API Endpoint:', endpoint);
+  console.log('Website Domain:', domain);
+  console.log(`${BASE_URL}/${endpoint}?website=${domain}`);
+  return `${BASE_URL}/${endpoint}?website=${domain}`;
+};
+
 const getPropertyData = (endpoint , domain) => {
   console.log('PropertyData');
   console.log('API Endpoint:', endpoint);
@@ -171,6 +180,7 @@ const API = {
   LOCATION_ADVANTAGES_STUDIO: (slug) => getDataSlug('location-advantages',slug),
   HEADER_STUDIO: (slug) => getDataSlug('header',slug),
   SEO_DETAIL_STUDIO: (domain, slug) => getSeoDataSlug('seo-detail',domain ,slug),
+  TEMPLATE_STUDIO: (domain) => getStudiotemplate('template',domain),
 
   // POST APIS
   postContactUs: `${BASE_URL}/contact?website=${WEBSITE_DOMAIN}`,
