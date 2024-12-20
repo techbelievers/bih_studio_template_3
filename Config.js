@@ -74,7 +74,7 @@ const getSeoDataSlug = (endpoint,domain,slug) => {
   const WEBSITE_DOMAIN = getDomain();
   // Log the endpoint and the website domain
   console.log('API Endpoint:', endpoint);
-  console.log('Website Domain:', WEBSITE_DOMAIN);
+  console.log('Website Domain:', domain);
   console.log(`${BASE_URL}/${endpoint}?website=${domain}&project=${slug}`);
   return `${BASE_URL}/${endpoint}?website=${domain}&project=${slug}`;
 };
@@ -178,7 +178,7 @@ const API = {
   MASTER_LAYOUT_STUDIO: (slug) => getDataSlug('master-layout',slug),
   LOCATION_MAP_STUDIO: (slug) => getDataSlug('location-map',slug),
   LOCATION_ADVANTAGES_STUDIO: (slug) => getDataSlug('location-advantages',slug),
-  HEADER_STUDIO: (slug) => getDataSlug('header',slug),
+  HEADER_STUDIO: (domain ,slug) => getSeoDataSlug('header',domain , slug),
   SEO_DETAIL_STUDIO: (domain, slug) => getSeoDataSlug('seo-detail',domain ,slug),
   TEMPLATE_STUDIO: (domain) => getStudiotemplate('template',domain),
 
