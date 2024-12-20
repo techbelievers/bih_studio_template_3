@@ -99,7 +99,7 @@ export async function getServerSideProps(context) {
     }
 
 
-    const header_response = await axios.get(API.HEADER());
+    const header_response = await axios.get(API.HEADER_STUDIO(property_slug));
     headerData = header_response.data;
     console.log("headerData : " , headerData);
 
