@@ -137,6 +137,7 @@ MyApp.getInitialProps = async (appContext) => {
       const isValidSlug = /^[a-zA-Z0-9_-]+$/.test(rawSlug);
       if (isValidSlug) {
         slug = rawSlug && rawSlug.split(".json")[0].split("?")[0]; // Clean the slug
+        
         console.log("Cleaned slug:", slug);
         flag = false;
       } else {
@@ -149,8 +150,6 @@ MyApp.getInitialProps = async (appContext) => {
     }
 
     
-   
-
     // Fetch data based on the flag and slug
     if (flag) {
       const response = await axios.get(API.SEO_DETAIL(finalDomain));

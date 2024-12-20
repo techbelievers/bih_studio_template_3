@@ -25,7 +25,7 @@ import Properties from './components/Properties';
 // import BlogDetail from './components/BlogDetail';
 // import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-function App({ propertyDetails }) {
+function App({ propertyDetails  }) {
   return (
     // <Router basename="/AppTemplate">
     //   <Routes>

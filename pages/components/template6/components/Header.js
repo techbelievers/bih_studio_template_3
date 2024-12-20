@@ -7,9 +7,9 @@ import { API } from "../../../../Config";
 import styles from "../css/Header.module.css";
 import EnquirePopup from "./EnquirePopup";
 
-const Header = () => {
+const Header = ({headerData: initialHeaderData}) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [headerData, setHeaderData] = useState({});
+  const [headerData, setHeaderData] = useState(initialHeaderData || {}); 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -136,5 +136,17 @@ const Header = () => {
     </header>
   );
 };
+
+// export const getServerSideProps = async () => {
+//   let headerData = {};
+//   try {
+//     const response = await axios.get(API.HEADER());
+//     headerData = response.data;
+//   } catch (error) {
+//     console.error("Error fetching header data:", error);
+//   }
+//   return { props: { getServerSideProps } };
+// };
+
 
 export default Header;
