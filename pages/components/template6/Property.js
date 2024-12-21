@@ -6,7 +6,7 @@ import Services from './components/Services';
 import MahareraInformation from './detail-components/Maharera/MahaReraInformation';
 import Gallery from './detail-components/gallery/Gallery';
 import PropertyPriceTable from './detail-components/property-price/PropertyPriceTable';
-import PropertyDetails from './detail-components/property-details/PropertyDetails';
+// import PropertyDetails from './detail-components/property-details/PropertyDetails';
 import UnitLayout from './components/UnitLayout';
 import FloorPlans from './components/FloorPlans';
 import MasterPlan from './detail-components/plans/MasterPlan';
@@ -22,6 +22,11 @@ import ContactUs from './components/ContactUs';
 import Adverties from './components/Advertisements';
 import FloatingButtons from './components/FloatingButtons';
 import Properties from './components/Properties';
+import dynamic from 'next/dynamic';
+
+const PropertyDetails = dynamic(() => import('./detail-components/property-details/PropertyDetails'), {
+    ssr: false,
+  });
 
 // import BlogDetail from './components/BlogDetail';
 // import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
