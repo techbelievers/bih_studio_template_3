@@ -3,6 +3,7 @@ import axios from 'axios';
 import { API , DEFAULT_DOMAIN} from '../../Config';
 // import './index.css'
 import Loader from '../components/loader/Loader';
+import Header from './Header';
 // Import template components
 // import Template1 from '../components/template1/';
 // import Template2 from '../components/template2/App';
@@ -10,6 +11,7 @@ import Loader from '../components/loader/Loader';
 // import Template4 from '../components/template4/App';
 // import Template5 from '../components/template5/App';
 import Template6 from '../components/template6/Property';
+import Head from 'next/head';
 // import Template3 from './components/template3/Template3';
 
 const App = ({ propertyDetails , domain , templateid , headerData }) => {
@@ -38,7 +40,7 @@ const App = ({ propertyDetails , domain , templateid , headerData }) => {
   // Conditional rendering based on templateId
   switch (templateid) {
     case "6":
-       return <Template6 propertyDetails={propertyDetails}  headerData={headerData}/>;
+       return <Header headerData={headerData}/>;
     // case 3:
     //   return <Template3 />;
     default:
