@@ -10,7 +10,7 @@ import Gallery from './detail-components/gallery/Gallery';
 import LocationMap from './detail-components/location/LocationMap';
 import FloatingButtons from './components/FloatingButtons';
 import dynamic from 'next/dynamic';
-import { API, DEFAULT_DOMAIN } from '../../Config';
+import { API, DEFAULT_DOMAIN } from '../../../Config';
 
 // Dynamically import PropertyDetails with SSR disabled
 const PropertyDetails = dynamic(() => import('./detail-components/property-details/PropertyDetails'), {
