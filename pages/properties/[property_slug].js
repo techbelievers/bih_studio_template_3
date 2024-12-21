@@ -39,7 +39,7 @@ const App = ({ propertyDetails , domain , templateid , headerData ,galleryData }
   // Conditional rendering based on templateId
   switch (templateid) {
     case "6":
-        console.log("property Details befor etemp 6 : " ,{propertyDetails} );
+        // console.log("property Details befor etemp 6 : " ,{propertyDetails} );
        return <Template6 propertyDetails={propertyDetails}  headerData={headerData}
        galleryData={galleryData}/>;
     // case 3:
@@ -93,7 +93,7 @@ export async function getServerSideProps(context) {
     const propertyResponse = await axios.get(API.PROPERTY_DETAILS_STUDIO(finalDomain,property_slug));
     const propertyData = propertyResponse.data;
 
-    console.log("PropertyData : " , propertyData.property_details);
+    // console.log("PropertyData : " , propertyData.property_details);
     // console.log(propertyData); 
 
     if (!propertyData || !propertyData.property_details) {
@@ -108,7 +108,6 @@ export async function getServerSideProps(context) {
     console.log("headerData : " , headerData);
 
 
-
   const gallery_response = await axios.get(API.GALLERY_STUDIO(domain, property_slug));
   const gallery_photos = gallery_response.data?.property_photos;
 
@@ -119,6 +118,8 @@ export async function getServerSideProps(context) {
     console.error("Unexpected data format for gallery photos:", gallery_photos);
     galleryData = []; // Fallback to an empty array if the data is not an array
   }
+
+  console.log("galleryData : " , galleryData);
 
 
   } catch (err) {

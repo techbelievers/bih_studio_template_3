@@ -68,7 +68,7 @@ const getDataSlug = (endpoint,slug) => {
 };
 
 
-const getSeoDataSlug = (endpoint,domain,slug) => {
+const getDomainDataSlug = (endpoint,domain,slug) => {
   // const WEBSITE_DOMAIN = typeof window !== 'undefined' ? window.location.hostname : 'builderkonnect.com';
   // const WEBSITE_DOMAIN = "10.211.55.3";
   const WEBSITE_DOMAIN = getDomain();
@@ -168,7 +168,7 @@ const API = {
 
   // Studio APIS
   PROPERTY_DETAILS_STUDIO:(domain,slug) => getDataProject('propert-details',domain,slug),
-  GALLERY_STUDIO: (slug) => getDataSlug('gallary',slug),
+  GALLERY_STUDIO: (domain , slug) => getDomainDataSlug('gallary',domain,slug),
   MAHARERA_STUDIO: (slug) => getDataSlug('rera',slug),
   VIDEO_STUDIO: (slug) => getDataSlug('video',slug),
   AMENITIES_STUDIO: (slug) => getDataSlug('amenities',slug),
@@ -178,8 +178,8 @@ const API = {
   MASTER_LAYOUT_STUDIO: (slug) => getDataSlug('master-layout',slug),
   LOCATION_MAP_STUDIO: (slug) => getDataSlug('location-map',slug),
   LOCATION_ADVANTAGES_STUDIO: (slug) => getDataSlug('location-advantages',slug),
-  HEADER_STUDIO: (domain ,slug) => getSeoDataSlug('header',domain , slug),
-  SEO_DETAIL_STUDIO: (domain, slug) => getSeoDataSlug('seo-detail',domain ,slug),
+  HEADER_STUDIO: (domain ,slug) => getDomainDataSlug('header',domain , slug),
+  SEO_DETAIL_STUDIO: (domain, slug) => getDomainDataSlug('seo-detail',domain ,slug),
   TEMPLATE_STUDIO: (domain) => getStudiotemplate('template',domain),
 
   // POST APIS
