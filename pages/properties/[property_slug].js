@@ -108,7 +108,7 @@ export async function getServerSideProps(context) {
 
 
 
-    const galalry_response = await axios.get(API.GALLERY_STUDIO(slug));
+    const galalry_response = await axios.get(API.GALLERY_STUDIO(property_slug));
     galleryData = galalry_response.data;
 
 
