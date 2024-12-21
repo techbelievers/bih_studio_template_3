@@ -23,6 +23,7 @@ const nextConfig = {
   trailingSlash: true,
   experimental: {
     workerThreads: false,
+    reactRoot: true,
     cpus: 1, // Limit to 2 CPUs
   },
   swcMinify: false,
