@@ -10,24 +10,25 @@ import Gallery from './detail-components/gallery/Gallery';
 import LocationMap from './detail-components/location/LocationMap';
 import FloatingButtons from './components/FloatingButtons';
 import dynamic from 'next/dynamic';
+import { API, DEFAULT_DOMAIN } from '../../Config';
 
 // Dynamically import PropertyDetails with SSR disabled
 const PropertyDetails = dynamic(() => import('./detail-components/property-details/PropertyDetails'), {
   ssr: false,
 });
 
-// Default domain for fallback
-const DEFAULT_DOMAIN = 'buyindiahomes.in';
+// // Default domain for fallback
+// const DEFAULT_DOMAIN = 'buyindiahomes.in';
 
-// API endpoints
-const API = {
-  PROPERTY_DETAILS_STUDIO: (domain, slug) =>
-    `https://${domain}/api/properties/${slug}/details`,
-  HEADER_STUDIO: (domain, slug) =>
-    `https://${domain}/api/header/${slug}`,
-  GALLERY_STUDIO: (domain, slug) =>
-    `https://${domain}/api/gallery/${slug}`,
-};
+// // API endpoints
+// const API = {
+//   PROPERTY_DETAILS_STUDIO: (domain, slug) =>
+//     `https://${domain}/api/properties/${slug}/details`,
+//   HEADER_STUDIO: (domain, slug) =>
+//     `https://${domain}/api/header/${slug}`,
+//   GALLERY_STUDIO: (domain, slug) =>
+//     `https://${domain}/api/gallery/${slug}`,
+// };
 
 function App({ propertyDetails, headerData, galleryData }) {
   if (!propertyDetails || !propertyDetails.property_slug) {
