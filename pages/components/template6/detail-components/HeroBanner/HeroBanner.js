@@ -5,8 +5,10 @@ import { motion } from "framer-motion";
 import { API } from "../../../../../Config";
 import styles from "./HeroBanner.module.css";
 import styles_rera from "../../../../components/template6/detail-components/Maharera/Maharera.module.css";
+import dynamic from "next/dynamic";
 
 
+  
 const GalleryWithEnquiry = ({ propertyDetails, slug , galleryData  , servicesData:intialServiceData}) => {
 //   const [galleryData, setGalleryData] = useState([initialGalleryData || {}]);
   const [formData, setFormData] = useState({
@@ -34,35 +36,35 @@ const GalleryWithEnquiry = ({ propertyDetails, slug , galleryData  , servicesDat
 //   }, [slug]);
 
   // Fetch Services Data
-  useEffect(() => {
-    const fetchServicesData = async () => {
-      try {
-        const response = await axios.get(API.HEADER_STUDIO(slug));
-        setServicesData(response.data);
-      } catch (error) {
-        console.error("Error fetching services data:", error);
-      }
-    };
-    fetchServicesData();
-  }, []);
+//   useEffect(() => {
+//     const fetchServicesData = async () => {
+//       try {
+//         const response = await axios.get(API.HEADER_STUDIO(slug));
+//         setServicesData(response.data);
+//       } catch (error) {
+//         console.error("Error fetching services data:", error);
+//       }
+//     };
+//     fetchServicesData();
+//   }, []);
 
   // Fetch Maharera Data
-  useEffect(() => {
-    const fetchReraData = async () => {
-      try {
-        const response = await fetch(API.MAHARERA_STUDIO(slug));
-        const data = await response.json();
-        if (!response.ok) throw new Error("Failed to fetch data");
-        setReraData(data.rera || []);
-      } catch (err) {
-        setReraError(err.message);
-      } finally {
-        setReraLoading(false);
-      }
-    };
+//   useEffect(() => {
+//     const fetchReraData = async () => {
+//       try {
+//         const response = await fetch(API.MAHARERA_STUDIO(slug));
+//         const data = await response.json();
+//         if (!response.ok) throw new Error("Failed to fetch data");
+//         setReraData(data.rera || []);
+//       } catch (err) {
+//         setReraError(err.message);
+//       } finally {
+//         setReraLoading(false);
+//       }
+//     };
 
-    fetchReraData();
-  }, [slug]);
+//     fetchReraData();
+//   }, [slug]);
 
   // Form Handlers
   const handleInputChange = (e) => {
