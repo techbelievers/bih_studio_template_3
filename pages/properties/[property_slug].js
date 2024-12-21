@@ -38,6 +38,7 @@ const App = ({ propertyDetails , domain , templateid , headerData }) => {
   // Conditional rendering based on templateId
   switch (templateid) {
     case "6":
+        console.log("property Details befor etemp 6 : " ,{propertyDetails} );
        return <Template6 propertyDetails={propertyDetails}  headerData={headerData}/>;
     // case 3:
     //   return <Template3 />;
@@ -89,6 +90,7 @@ export async function getServerSideProps(context) {
     const propertyResponse = await axios.get(API.PROPERTY_DETAILS_STUDIO(finalDomain,property_slug));
     const propertyData = propertyResponse.data;
 
+    console.log("PropertyData : " , propertyData.property_details);
     // console.log(propertyData); 
 
     if (!propertyData || !propertyData.property_details) {
