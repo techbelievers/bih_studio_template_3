@@ -53,7 +53,7 @@ const App = ({ initialDomain, initialPropertySlug }) => {
     fetchData();
   }, [initialDomain, initialPropertySlug]);
 
-  if (loading) return <Loader />;
+//   if (loading) return <Loader />;
   if (error) return <div>{error}</div>;
 
   switch (templateId) {
@@ -80,6 +80,8 @@ App.getInitialProps = async (context) => {
   const websiteDomain = rawWebsiteDomain.startsWith('www.')
     ? rawWebsiteDomain.replace('www.', '')
     : rawWebsiteDomain;
+
+    console.log("website domain : ", websiteDomain);
 
   return {
     initialDomain: websiteDomain,
