@@ -7,8 +7,8 @@ import styles from "./HeroBanner.module.css";
 import styles_rera from "../../../../components/template6/detail-components/Maharera/Maharera.module.css";
 
 
-const GalleryWithEnquiry = ({ propertyDetails, slug , galleryData:initialGalleryData }) => {
-  const [galleryData, setGalleryData] = useState([initialGalleryData || {}]);
+const GalleryWithEnquiry = ({ propertyDetails, slug , galleryData  , servicesData:intialServiceData}) => {
+//   const [galleryData, setGalleryData] = useState([initialGalleryData || {}]);
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -20,18 +20,18 @@ const GalleryWithEnquiry = ({ propertyDetails, slug , galleryData:initialGallery
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [modalImage, setModalImage] = useState(null); // For modal
-  const [servicesData, setServicesData] = useState(null); // Services Data
+  const [servicesData, setServicesData] = useState(intialServiceData || {}); // Services Data
   const [reraData, setReraData] = useState([]);
   const [reraLoading, setReraLoading] = useState(true);
   const [reraError, setReraError] = useState(null);
 
   // Fetch Gallery Data
-  useEffect(() => {
-    fetch(API.GALLERY_STUDIO(slug))
-      .then((response) => response.json())
-      .then((data) => setGalleryData(data.property_photos || []))
-      .catch((error) => console.error("Error fetching gallery data:", error));
-  }, [slug]);
+//   useEffect(() => {
+//     fetch(API.GALLERY_STUDIO(slug))
+//       .then((response) => response.json())
+//       .then((data) => setGalleryData(data.property_photos || []))
+//       .catch((error) => console.error("Error fetching gallery data:", error));
+//   }, [slug]);
 
   // Fetch Services Data
   useEffect(() => {

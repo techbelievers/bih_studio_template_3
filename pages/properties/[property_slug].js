@@ -16,6 +16,7 @@ const App = ({ propertyDetails , domain , templateid , headerData ,galleryData }
   const [templateId, setTemplateId] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+//   const [galleryData, setGalleryData] = useState([]);
 
 //   useEffect(() => {
 //     const fetchTemplateId = async () => {
@@ -108,8 +109,16 @@ export async function getServerSideProps(context) {
 
 
 
-    const galalry_response = await axios.get(API.GALLERY_STUDIO(property_slug));
-    galleryData = galalry_response.data;
+  const gallery_response = await axios.get(API.GALLERY_STUDIO(domain, property_slug));
+  const gallery_photos = gallery_response.data?.property_photos;
+
+  // Validate that gallery_photos is an array
+  if (Array.isArray(gallery_photos)) {
+    galleryData = gallery_photos;
+  } else {
+    console.error("Unexpected data format for gallery photos:", gallery_photos);
+    galleryData = []; // Fallback to an empty array if the data is not an array
+  }
 
 
   } catch (err) {
