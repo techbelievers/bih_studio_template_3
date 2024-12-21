@@ -12,7 +12,7 @@ import Loader from '../components/loader/Loader';
 import Template6 from '../components/template6/Property';
 // import Template3 from './components/template3/Template3';
 
-const App = ({ propertyDetails , domain , templateid , headerData }) => {
+const App = ({ propertyDetails , domain , templateid , headerData ,galleryData }) => {
   const [templateId, setTemplateId] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -39,7 +39,8 @@ const App = ({ propertyDetails , domain , templateid , headerData }) => {
   switch (templateid) {
     case "6":
         console.log("property Details befor etemp 6 : " ,{propertyDetails} );
-       return <Template6 propertyDetails={propertyDetails}  headerData={headerData}/>;
+       return <Template6 propertyDetails={propertyDetails}  headerData={headerData}
+       galleryData={galleryData}/>;
     // case 3:
     //   return <Template3 />;
     default:
@@ -72,6 +73,7 @@ export async function getServerSideProps(context) {
   let error = null;
   let templateid = null;
   let headerData = null
+  let galleryData = null;
 
   domain = finalDomain;
   console.log("finaldomain : ", finalDomain);
@@ -100,10 +102,14 @@ export async function getServerSideProps(context) {
     //   console.log(propertyDetails)
     }
 
-
     const header_response = await axios.get(API.HEADER_STUDIO(domain ,property_slug));
     headerData = header_response.data;
     console.log("headerData : " , headerData);
+
+
+
+    const galalry_response = await axios.get(API.GALLERY_STUDIO(slug));
+    galleryData = galalry_response.data;
 
 
   } catch (err) {
@@ -116,6 +122,7 @@ export async function getServerSideProps(context) {
       domain,
       templateid,
       headerData,
+      galleryData,
       error,
       
     },

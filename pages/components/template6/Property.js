@@ -25,14 +25,14 @@ import Properties from './components/Properties';
 // import BlogDetail from './components/BlogDetail';
 // import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-function App({ propertyDetails , headerData}) {
+function App({ propertyDetails , headerData , galleryData}) {
   return (
     // <Router basename="/AppTemplate">
     //   <Routes>
     //     <Route path="/" element={
           <div className="App">
             <Header headerData={headerData}/>
-            <HeroBanner propertyDetails={propertyDetails} slug={propertyDetails.property_slug}/>
+            <HeroBanner propertyDetails={propertyDetails} slug={propertyDetails.property_slug} galleryData={galleryData}/>
             <PropertyPriceTable slug={propertyDetails.property_slug}/>
             {/* <MahareraInformation propertyDetails={propertyDetails} slug={propertyDetails.property_slug}/> */}
             <PropertyDetails propertyDetails={propertyDetails} />

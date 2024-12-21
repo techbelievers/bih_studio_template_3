@@ -7,8 +7,8 @@ import styles from "./HeroBanner.module.css";
 import styles_rera from "../../../../components/template6/detail-components/Maharera/Maharera.module.css";
 
 
-const GalleryWithEnquiry = ({ propertyDetails, slug }) => {
-  const [galleryData, setGalleryData] = useState([]);
+const GalleryWithEnquiry = ({ propertyDetails, slug , galleryData:initialGalleryData }) => {
+  const [galleryData, setGalleryData] = useState([initialGalleryData || {}]);
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
