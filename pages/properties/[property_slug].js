@@ -23,6 +23,7 @@ const App = ({ initialDomain, initialPropertySlug }) => {
         // Fetch templateId
         const templateResponse = await axios.get(API.TEMPLATE_STUDIO(finalDomain));
         setTemplateId(templateResponse.data.templateId);
+        console.log("Template ID : " , templateResponse);
 
         // Fetch property details
         const propertyResponse = await axios.get(
