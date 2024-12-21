@@ -23,6 +23,7 @@ const Header = ({headerData: initialHeaderData}) => {
     const fetchHeaderData = async () => {
       try {
         const response = await axios.get(API.HEADER());
+        console.log("calling from header.js - HEADER() ");
         setHeaderData(response.data);
       } catch (error) {
         console.error("Error fetching header data:", error);
@@ -35,9 +36,9 @@ const Header = ({headerData: initialHeaderData}) => {
     fetchHeaderData();
   }, []);
 
-  // if (loading) {
-  //   return <div className={styles.loading}>Header Loading...</div>;
-  // }
+  if (loading) {
+    return <div className={styles.loading}>Header Loading...</div>;
+  }
 
   if (error) {
     return (

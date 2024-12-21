@@ -131,7 +131,5 @@
     grid-template-columns: 1fr;
   }
 
-  .card {
-    /* flex: 1 1 100%; */
-  }
+
 }
