@@ -41,6 +41,7 @@ function App({ propertyDetails, headerData, galleryData }) {
         propertyDetails={propertyDetails}
         slug={propertyDetails.property_slug}
         galleryData={galleryData}
+        servicesData={headerData}
       />
       <PropertyPriceTable slug={propertyDetails.property_slug} />
       <PropertyDetails propertyDetails={propertyDetails} />
