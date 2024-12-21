@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import Header from './components/Header';
 import HeroBanner from './detail-components/HeroBanner/HeroBanner';
 import Footer from './components/Footer';
@@ -8,61 +9,51 @@ import Amenities from './detail-components/amenities/Amenities';
 import Gallery from './detail-components/gallery/Gallery';
 import LocationMap from './detail-components/location/LocationMap';
 import FloatingButtons from './components/FloatingButtons';
-// import PropertyDetails from './detail-components/property-details/PropertyDetails';
+import dynamic from 'next/dynamic';
 
 // Dynamically import PropertyDetails with SSR disabled
-import dynamic from 'next/dynamic';
 const PropertyDetails = dynamic(() => import('./detail-components/property-details/PropertyDetails'), {
   ssr: false,
 });
 
+// Default domain for fallback
+const DEFAULT_DOMAIN = 'buyindiahomes.in';
+
+// API endpoints
+const API = {
+  PROPERTY_DETAILS_STUDIO: (domain, slug) =>
+    `https://${domain}/api/properties/${slug}/details`,
+  HEADER_STUDIO: (domain, slug) =>
+    `https://${domain}/api/header/${slug}`,
+  GALLERY_STUDIO: (domain, slug) =>
+    `https://${domain}/api/gallery/${slug}`,
+};
+
 function App({ propertyDetails, headerData, galleryData }) {
-  // Validate required props
   if (!propertyDetails || !propertyDetails.property_slug) {
     return <div>Error: Property details are missing or invalid.</div>;
   }
 
   return (
     <div className="App">
-      {/* Header */}
       <Header headerData={headerData} />
-
-      {/* Hero Banner */}
-      <HeroBanner 
-        propertyDetails={propertyDetails} 
-        slug={propertyDetails.property_slug} 
-        galleryData={galleryData} 
-        servicesData = {headerData}
+      <HeroBanner
+        propertyDetails={propertyDetails}
+        slug={propertyDetails.property_slug}
+        galleryData={galleryData}
       />
-
-      {/* Property Price Table */}
       <PropertyPriceTable slug={propertyDetails.property_slug} />
-
-      {/* Property Details */}
       <PropertyDetails propertyDetails={propertyDetails} />
-
-      {/* Master Plan */}
       <MasterPlan slug={propertyDetails.property_slug} />
-
-      {/* Amenities */}
       <Amenities slug={propertyDetails.property_slug} />
-
-      {/* Gallery */}
       <Gallery slug={propertyDetails.property_slug} />
-
-      {/* Location Map */}
       <LocationMap slug={propertyDetails.property_slug} />
-
-      {/* Footer */}
       <Footer />
-
-      {/* Floating Buttons */}
       <FloatingButtons />
     </div>
   );
 }
 
-// Fetch data in getInitialProps
 App.getInitialProps = async (context) => {
   const { req, query } = context;
   const property_slug = query?.property_slug || '';
@@ -73,7 +64,6 @@ App.getInitialProps = async (context) => {
   let error = null;
 
   try {
-    // Fetch domain from headers
     const rawWebsiteDomain = req?.headers['x-forwarded-host'] || 'localhost:3000';
     const websiteDomain = rawWebsiteDomain.startsWith('www.')
       ? rawWebsiteDomain.replace('www.', '')
