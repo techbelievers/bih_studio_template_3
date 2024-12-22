@@ -1,5 +1,5 @@
 const nextConfig = {
-  webpack: (config , { buildId, dev, isServer, defaultLoaders, webpack }) => {
+  webpack: (config ) => {
     config.module.rules.push({
       test: /\.js$/,
       exclude: /node_modules/,
@@ -17,10 +17,10 @@ const nextConfig = {
         },
       },
     });
-    if (!isServer) {
-      config.output.filename = 'static/chunks/pages/properties/[property_slug]_[contenthash].js';
-      config.output.chunkFilename = 'static/chunks/pages/properties/[property_slug]_[contenthash].js';
-    }
+    // if (!isServer) {
+    //   config.output.filename = 'static/chunks/pages/properties/[property_slug]_[contenthash].js';
+    //   config.output.chunkFilename = 'static/chunks/pages/properties/[property_slug]_[contenthash].js';
+    // }
     return config;
   },
   // assetPrefix: '',
