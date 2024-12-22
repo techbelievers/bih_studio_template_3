@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Head from 'next/head';
 import { API } from '../Config';
-import AppTemplate from './AppTemplate';
+import AppTemplate from '.';
 
 const withMetaTags = (WrappedComponent) => {
   return class extends React.Component {

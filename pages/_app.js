@@ -3,7 +3,7 @@ import './components/loader/Loader.module.css'; // Ensure this file exists
 import './index.css';
 import Head from 'next/head';
 import React from 'react';
-import AppTemplate from './AppTemplate';
+import AppTemplate from '.';
 import axios from 'axios';
 import { API, DEFAULT_DOMAIN } from '../Config';
 import App from 'next/app'; // Import the default App from Next.js
