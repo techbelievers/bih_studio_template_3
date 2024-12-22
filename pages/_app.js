@@ -132,11 +132,11 @@ MyApp.getInitialProps = async (appContext) => {
     console.log("rawslug:", rawSlug);
 
     // Validate and extract slug only if the URL contains '/properties'
-    if (req?.url.includes("/properties")) {
+    if (req?.url.includes("/propertiesl")) {
       // Check if the slug matches the expected pattern (adjust regex as per your slug format)
       // const isValidSlug = /^[a-zA-Z0-9_-]+$/.test(rawSlug);
       // if (isValidSlug) {
-        slug = rawSlug && rawSlug.split(".json")[0].split("?")[0]; // Clean the slug
+        // slug = rawSlug && rawSlug.split(".json")[0].split("?")[0]; // Clean the slug
         
         console.log("Cleaned slug:", slug);
         flag = false;
