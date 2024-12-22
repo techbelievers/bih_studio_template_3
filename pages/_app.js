@@ -1,6 +1,6 @@
 // pages/_app.js
 import './components/loader/Loader.module.css'; // Ensure this file exists
-// import './index.css';
+import './index.css';
 import Head from 'next/head';
 import React from 'react';
 import AppTemplate from './AppTemplate';
@@ -11,7 +11,7 @@ import App from 'next/app'; // Import the default App from Next.js
 const MyApp = ({ Component, pageProps, headerData, error ,propertyDetails , domain ,slug}) => {
   // Show loading state until the header data is fetched
   if (!headerData && !error) {
-    return <div>Loading...</div>; // Replace with your Loader component if needed
+    return <div>Loading...App</div>; // Replace with your Loader component if needed
   }
 
   if (error) {
