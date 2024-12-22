@@ -18,8 +18,8 @@ const nextConfig = {
       },
     });
     if (!isServer) {
-      config.output.filename = 'static/chunks/pages/properties/[property_slug]_[buildId].js';
-      config.output.chunkFilename = 'static/chunks/pages/properties/[property_slug]_[buildId].js';
+      config.output.filename = 'static/chunks/pages/properties/[property_slug]_[contenthash].js';
+      config.output.chunkFilename = 'static/chunks/pages/properties/[property_slug]_[contenthash].js';
     }
     return config;
   },
