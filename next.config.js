@@ -1,5 +1,5 @@
 const nextConfig = {
-  webpack: (config) => {
+  webpack: (config , { buildId, dev, isServer, defaultLoaders, webpack }) => {
     config.module.rules.push({
       test: /\.js$/,
       exclude: /node_modules/,
@@ -17,6 +17,10 @@ const nextConfig = {
         },
       },
     });
+    if (!isServer) {
+      config.output.filename = 'static/chunks/pages/properties/[property_slug].js';
+      config.output.chunkFilename = 'static/chunks/pages/properties/[property_slug].js';
+    }
     return config;
   },
   // assetPrefix: '',
