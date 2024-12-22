@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { API } from "../../../../../Config";
+import { API } from "../../../../Config";
 import styles from "./HeroBanner.module.css";
 
 const GalleryWithEnquiry = ({ propertyDetails, slug }) => {
