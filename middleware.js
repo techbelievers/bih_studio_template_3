@@ -9,11 +9,15 @@ export function middleware(req) {
   console.log('middleware : ',finalDomain);
   req.headers.set('x-website-domain', finalDomain);
 
-  if (pathname.startsWith("/_next") || pathname.startsWith("/favicon.ico")) {
-    return NextResponse.next(); // Pass through without modification
+  // if (pathname.startsWith("/_next") || pathname.startsWith("/favicon.ico")) {
+  //   return NextResponse.next(); 
+  // }
+  
+  if (req.nextUrl.pathname.startsWith('/_next/static')) {
+    return; // Allow access to static files
   }
 
-  
+
   return NextResponse.next({
     request: {
       headers: req.headers,
