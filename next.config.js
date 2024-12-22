@@ -20,8 +20,8 @@ const nextConfig = {
     return config;
   },
   assetPrefix: '',
-  trailingSlash: false,
-  reactStrictMode: true,
+  trailingSlash: true,
+  // reactStrictMode: true,
   experimental: {
     workerThreads: false,
     reactRoot: true,
