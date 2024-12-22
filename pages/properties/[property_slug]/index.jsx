@@ -5,6 +5,7 @@ import Loader from '../../components/loader/Loader';
 import Template6 from '../Property';
 
 
+
 const App = ({ templateId, propertyDetails, headerData, galleryData, error }) => {
   if (error) return <div>{error}</div>;
 
@@ -22,6 +23,7 @@ const App = ({ templateId, propertyDetails, headerData, galleryData, error }) =>
       return <div>Template not found: {templateId}</div>;
   }
 };
+
 
 App.getInitialProps = async (context) => {
   const { req, query, params } = context;
