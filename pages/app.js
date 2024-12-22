@@ -1,6 +1,6 @@
 // pages/_app.js
 import './components/loader/Loader.module.css'; // Ensure this file exists
-import './index.css';
+// import './index.css';
 import Head from 'next/head';
 import React from 'react';
 import AppTemplate from './AppTemplate';
