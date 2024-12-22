@@ -25,7 +25,7 @@ const nextConfig = {
   },
   // assetPrefix: '',
   trailingSlash: true,
-  // reactStrictMode: true,
+  reactStrictMode: false,
   experimental: {
     workerThreads: false,
     reactRoot: true,
