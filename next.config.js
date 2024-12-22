@@ -19,7 +19,7 @@ const nextConfig = {
     });
     return config;
   },
-  assetPrefix: '',
+  // assetPrefix: '',
   trailingSlash: true,
   // reactStrictMode: true,
   experimental: {
