@@ -111,7 +111,7 @@ MyApp.getInitialProps = async (appContext) => {
   let error = null; 
   let flag = true;
 
-  console.log("query.slug", req?.url);
+  console.log("query.slug", query?.property_slug);
   let slug = null;
   // Determine the domain
   let domain = DEFAULT_DOMAIN;
@@ -128,7 +128,7 @@ MyApp.getInitialProps = async (appContext) => {
 
   try {
     // Ensure the rawSlug is extracted correctly and sanitize it
-    const rawSlug = query.slug || (req && req.url.replace(/\/$/, "").split("/").pop()); // Remove trailing slash
+    const rawSlug = query.property_slug || (req && req.url.replace(/\/$/, "").split("/").pop()); // Remove trailing slash
     console.log("rawslug:", rawSlug);
 
     // Validate and extract slug only if the URL contains '/properties'
