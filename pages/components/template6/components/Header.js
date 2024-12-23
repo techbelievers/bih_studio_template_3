@@ -49,8 +49,8 @@ const Header = ({headerData: initialHeaderData}) => {
 
   // Check if the current page is a properties page
   const isPropertiesPage = router.pathname.includes("/properties");
-  const isHomePage = router.pathname === "/" 
-  // const isHomePage = true;
+  // const isHomePage = router.pathname === "/" 
+  const isHomePage = true;
 
   return (
     <header className={`${styles.header} ${menuOpen ? styles.menuOpen : ""}`}>
@@ -93,7 +93,7 @@ const Header = ({headerData: initialHeaderData}) => {
           </li>
             </>
           )}
-         {isHomePage &&(
+         {isHomePage && !isPropertiesPage &&(
           <>
            <li>
             <a href="#properties">Properties</a>

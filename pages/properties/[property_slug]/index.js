@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { API, DEFAULT_DOMAIN } from '../../../Config';
 import Loader from '../../components/loader/Loader';
-import Template6 from '../Property';
+import Template6 from '../../components/template6/Property';
 
 
 

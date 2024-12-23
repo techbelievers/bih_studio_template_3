@@ -9,8 +9,8 @@ import dynamic from "next/dynamic";
 
 
   
-const GalleryWithEnquiry = ({ propertyDetails, slug , galleryData  , servicesData:intialServiceData}) => {
-//   const [galleryData, setGalleryData] = useState([initialGalleryData || {}]);
+const GalleryWithEnquiry = ({ propertyDetails, slug  , servicesData:intialServiceData}) => {
+    const [galleryData, setGalleryData] = useState([]);
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -28,12 +28,12 @@ const GalleryWithEnquiry = ({ propertyDetails, slug , galleryData  , servicesDat
   const [reraError, setReraError] = useState(null);
 
   // Fetch Gallery Data
-//   useEffect(() => {
-//     fetch(API.GALLERY_STUDIO(slug))
-//       .then((response) => response.json())
-//       .then((data) => setGalleryData(data.property_photos || []))
-//       .catch((error) => console.error("Error fetching gallery data:", error));
-//   }, [slug]);
+  useEffect(() => {
+    fetch(API.GALLERY_STUDIO(slug))
+      .then((response) => response.json())
+      .then((data) => setGalleryData(data.property_photos || []))
+      .catch((error) => console.error("Error fetching gallery data:", error));
+  }, [slug]);
 
   // Fetch Services Data
   useEffect(() => {
@@ -85,6 +85,7 @@ const GalleryWithEnquiry = ({ propertyDetails, slug , galleryData  , servicesDat
         phone_number: "",
         message: "",
       });
+      window.location.replace("/thank-you");
     } catch (error) {
       setSubmitError("Failed to submit the form. Please try again.");
     } finally {
@@ -275,15 +276,7 @@ const GalleryWithEnquiry = ({ propertyDetails, slug , galleryData  , servicesDat
               required
             />
           </div>
-          <input
-            type="email"
-            name="email_id"
-            placeholder="Email"
-            value={formData.email_id}
-            onChange={handleInputChange}
-            className={styles.input}
-            required
-          />
+         
           <input
             type="tel"
             name="phone_number"
@@ -293,13 +286,22 @@ const GalleryWithEnquiry = ({ propertyDetails, slug , galleryData  , servicesDat
             className={styles.input}
             required
           />
+           <input
+            type="email"
+            name="email_id"
+            placeholder="Email"
+            value={formData.email_id}
+            onChange={handleInputChange}
+            className={styles.input}
+            
+          />
           <textarea
             name="message"
             placeholder="Your Message"
             value={formData.message}
             onChange={handleInputChange}
             className={styles.textarea}
-            required
+            
           ></textarea>
           <button
             type="submit"

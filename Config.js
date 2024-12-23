@@ -168,7 +168,7 @@ const API = {
 
   // Studio APIS
   PROPERTY_DETAILS_STUDIO:(domain,slug) => getDataProject('propert-details',domain,slug),
-  GALLERY_STUDIO: (domain , slug) => getDomainDataSlug('gallary',domain,slug),
+  GALLERY_STUDIO: ( slug) => getDataSlug('gallary',slug),
   MAHARERA_STUDIO: (slug) => getDataSlug('rera',slug),
   VIDEO_STUDIO: (slug) => getDataSlug('video',slug),
   AMENITIES_STUDIO: (slug) => getDataSlug('amenities',slug),
@@ -181,6 +181,7 @@ const API = {
   HEADER_STUDIO: (domain ,slug) => getDomainDataSlug('header',domain , slug),
   SEO_DETAIL_STUDIO: (domain, slug) => getDomainDataSlug('seo-detail',domain ,slug),
   TEMPLATE_STUDIO: (domain) => getStudiotemplate('template',domain),
+  KNOW_YOUR_RETURNS_STUDIO: (slug) => getDataSlug('returns',slug),
 
   // POST APIS
   postContactUs: `${BASE_URL}/contact?website=${WEBSITE_DOMAIN}`,

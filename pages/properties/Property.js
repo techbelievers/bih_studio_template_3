@@ -31,6 +31,10 @@ import { API, DEFAULT_DOMAIN } from '../../Config';
 //     `https://${domain}/api/gallery/${slug}`,
 // };
 
+const handleReadMore = () => {
+  setIsExpanded(!isExpanded);
+};
+
 function App({ propertyDetails, headerData, galleryData }) {
   if (!propertyDetails || !propertyDetails.property_slug) {
     return <div>Error: Property details are missing or invalid.</div>;

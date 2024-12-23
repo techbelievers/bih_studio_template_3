@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Header from './components/Header';
 import HeroBanner from './detail-components/HeroBanner/HeroBanner';
+import Returns from './detail-components/returns/know-your-returns';
 import Footer from './components/Footer';
 import PropertyPriceTable from './detail-components/property-price/PropertyPriceTable';
 import MasterPlan from './detail-components/plans/MasterPlan';
@@ -45,7 +46,9 @@ function App({ propertyDetails, headerData, galleryData }) {
         servicesData={headerData}
       />
       <PropertyPriceTable slug={propertyDetails.property_slug} />
+      <Returns slug={propertyDetails.property_slug}/>
       <PropertyDetails propertyDetails={propertyDetails} />
+      
       <MasterPlan slug={propertyDetails.property_slug} />
       <Amenities slug={propertyDetails.property_slug} />
       <Gallery slug={propertyDetails.property_slug} />
