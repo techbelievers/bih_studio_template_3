@@ -29,7 +29,7 @@ const MahareraInformation = () => {
   if (loading) return <div className={styles.loading}>Loading...</div>;
   if (error) return <div className={styles.error}>Error: {error}</div>;
   if (reraData.length === 0)
-    return <div className={styles.empty}>No Maharera information available.</div>;
+    return null;
 
   const formatCompletionDate = (dateString) =>
     dateString

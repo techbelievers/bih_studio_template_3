@@ -37,7 +37,7 @@ const MahareraInformation = () => {
   }
 
   if (reraData.length === 0) {
-    return <div className={styles.empty}>No Maharera information available.</div>;
+    return null;
   }
 
   const formatCompletionDate = (dateString) => {

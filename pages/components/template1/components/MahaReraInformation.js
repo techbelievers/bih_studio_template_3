@@ -41,7 +41,7 @@ const MahareraInformation = () => {
 
   // Empty state
   if (reraData.length === 0) {
-    return <div>No Maharera information available.</div>;
+    return null;
   }
 
   const formatCompletionDate = (dateString) => {
