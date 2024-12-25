@@ -60,7 +60,7 @@
   color: #555;
   max-height: 900px;
   overflow: hidden;
-  text-align: justify;
+  /* text-align: justify; */
   transition: max-height 0.3s ease-in-out;
 }
 
