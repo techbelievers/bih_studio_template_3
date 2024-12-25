@@ -46,7 +46,7 @@ const Services = () => {
               </div>
               <div className={styles.card}>
                 <img
-                  src="https://www.buyindiahomes.in/location_ui2.png"
+                  src="https://www.buyindiahomes.in/icon_locations.png"
                   alt="Location Icon"
                   className={styles.locationIcon}
                 />
@@ -57,7 +57,7 @@ const Services = () => {
               </div>
               <div className={styles.card}>
                 <img
-                  src="https://www.buyindiahomes.in/apartment_2.png"
+                  src="https://www.buyindiahomes.in/icon_building.png"
                   alt="Property Icon"
                   className={styles.propertyIcon}
                 />
