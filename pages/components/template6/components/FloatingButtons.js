@@ -180,7 +180,6 @@ const FloatingButtons = (slug) => {
               placeholder="Your Message"
               value={formData.message}
               onChange={handleChange}
-              required
             ></textarea>
             <button type="submit" className={styles.submitButton}>
               Send Message
