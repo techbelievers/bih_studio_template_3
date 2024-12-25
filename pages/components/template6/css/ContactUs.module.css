@@ -40,9 +40,10 @@
 /* Form Section */
 .form {
   flex: 1;
-  min-width: 300px;
+  /* min-width: 300px; */
+  margin: 0  auto;;
   background: #fff;
-  padding: 30px;
+  padding: 50px;
   border: 2px solid #e63946;
   border-radius: 10px;
   box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
