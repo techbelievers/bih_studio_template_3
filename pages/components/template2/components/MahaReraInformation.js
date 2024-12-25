@@ -49,7 +49,9 @@ const MahareraInformation = () => {
     const date = new Date(dateString);
     return date.toLocaleString('default', { month: 'long', year: 'numeric' }); // Format: "Month Year"
   };
-
+  if (reraData.length === 0) {
+    return null; // Render a message if data is empty
+ }
   return (
     <div className={styles.maharera_info_container}>
       <h2 className={styles.luxuryHeading}>Maharera Information</h2>
