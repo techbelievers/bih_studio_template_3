@@ -10,6 +10,7 @@ import Template3 from './components/template3/App';
 import Template4 from './components/template4/App';
 import Template5 from './components/template5/App';
 import Template6 from './components/template6/App';
+import Template7 from './components/template7/App';
 // import Template3 from './components/template3/Template3';
 
 const App = ({ propertyDetails }) => {
@@ -58,6 +59,9 @@ const App = ({ propertyDetails }) => {
 
     case "6":
        return <Template6 propertyDetails={propertyDetails} />;
+      
+    case "7":
+      return <Template7 propertyDetails={propertyDetails} />;
 
     default:
       return <div>Template not found {templateId}</div>;

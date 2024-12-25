@@ -7,7 +7,7 @@ import { API } from "../../../../Config";
 import styles from "../css/Header.module.css";
 import EnquirePopup from "./EnquirePopup";
 
-const Header = ({headerData: initialHeaderData}) => {
+const Header = ({headerData: initialHeaderData , slug}) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [headerData, setHeaderData] = useState(initialHeaderData || {}); 
   const [loading, setLoading] = useState(true);
@@ -24,6 +24,7 @@ const Header = ({headerData: initialHeaderData}) => {
       try {
         const response = await axios.get(API.HEADER());
         setHeaderData(response.data);
+        
       } catch (error) {
         console.error("Error fetching header data:", error);
         setError(error);
@@ -123,7 +124,7 @@ const Header = ({headerData: initialHeaderData}) => {
             Enquire Now
           </button>
         </div>
-        {isPopupOpen && <EnquirePopup onClose={() => setIsPopupOpen(false)} />}
+        {isPopupOpen && <EnquirePopup onClose={() => setIsPopupOpen(false)} slug = {slug} />}
       </nav>
 
       {/* Mobile Hamburger Menu */}

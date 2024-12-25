@@ -1,48 +1,113 @@
+/* General Styles */
 .advertisementSection {
-  padding: 50px 20px;
-  background-color: #fff;
+  padding: 20px;
+  background-color: #f9f9f9;
   text-align: center;
-  font-family: "Playfair Display", serif; /* Luxurious Font */
 }
 
 .heading {
-  font-size: 2.5rem;
-  color: #e63946; /* Luxurious Red */
+  font-size: 1.8rem;
+  font-weight: bold;
   margin-bottom: 20px;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  animation: fadeIn 1s ease-in-out;
 }
 
-.adContainer {
+/* Slider Container */
+.sliderContainer {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+
+/* Slider */
+.slider {
+  display: flex;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  /* gap: 15px; Gap between slides */
+}
+
+/* Individual Slide */
+.slide {
+  flex: 1 0 100%; /* Default: 1 slide per row for mobile */
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
 }
 
 .adLink {
-  transition: all 0.3s ease;
-}
-
-.adLink:hover {
-  transform: scale(1.05);
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
 }
 
 .adImage {
   width: 100%;
-  max-width: 900px; /* Adjust as needed */
   height: auto;
   border-radius: 10px;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: scale(1);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
 .adImage:hover {
-  box-shadow: 0px 10px 30px rgba(230, 57, 70, 0.5); /* Luxurious Red Shadow */
+  transform: scale(1.05); /* Subtle zoom effect */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .adImage {
-    max-width: 100%;
+/* Media Query for Desktop */
+@media (min-width: 768px) {
+  .slide {
+    flex: 1 0 calc(33.333% - 15px); /* 3 slides per row */
+  }
+  .slider {
+    display: flex;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    gap: 15px; /* Gap between slides */
+  }
+}
+
+
+
+
+/* Pagination Dots */
+.dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  margin: 0 5px;
+  background-color: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.activeDot {
+  background-color: #333;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

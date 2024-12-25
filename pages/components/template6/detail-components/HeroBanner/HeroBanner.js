@@ -17,6 +17,7 @@ const GalleryWithEnquiry = ({ propertyDetails, slug  , servicesData:intialServic
     email_id: "",
     phone_number: "",
     message: "",
+    note:""
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -76,6 +77,7 @@ const GalleryWithEnquiry = ({ propertyDetails, slug  , servicesData:intialServic
     e.preventDefault();
     setIsSubmitting(true);
     try {
+        formData.note =slug;
       await axios.post(API.postContactUs, formData);
       setFormSubmitted(true);
       setFormData({
@@ -84,6 +86,7 @@ const GalleryWithEnquiry = ({ propertyDetails, slug  , servicesData:intialServic
         email_id: "",
         phone_number: "",
         message: "",
+        note:"",
       });
       window.location.replace("/thank-you");
     } catch (error) {
@@ -179,14 +182,19 @@ const GalleryWithEnquiry = ({ propertyDetails, slug  , servicesData:intialServic
         )}
 
         {/* Maharera Section */}
+        {reraData.length > 0 &&(
         <section className={styles_rera.mahareraSection}>
           <div className={styles_rera.sectionHeader}>
             <h2 className={styles_rera.mahareraHeading}>
               Maharera <span className={styles_rera.highlight}>Details</span>
+             
             </h2>
-            <p className={styles_rera.mahareraSubheading}>
+            MahaRERA: <a href="https://maharera.mahaonline.gov.in">https://maharera.mahaonline.gov.in</a>
+
+
+            {/* <p className={styles_rera.mahareraSubheading}>
               Ensuring transparency and trust in real estate projects.
-            </p>
+            </p> */}
           </div>
 
           <div
@@ -212,7 +220,7 @@ const GalleryWithEnquiry = ({ propertyDetails, slug  , servicesData:intialServic
                   <div className={styles_rera.cardBody}>
                     <ul className={styles_rera.detailsList}>
                       <li>
-                        <strong>ID:</strong> {rera.rera_id}
+                        <strong>Maharera Number:</strong> {rera.rera_id}
                       </li>
                       <li>
                         <strong>Completion:</strong> {formatCompletionDate(rera.completion_date)}
@@ -247,6 +255,7 @@ const GalleryWithEnquiry = ({ propertyDetails, slug  , servicesData:intialServic
             )}
           </div>
         </section>
+        )}
       </div>
 
       {/* Right Column: Contact Form */}

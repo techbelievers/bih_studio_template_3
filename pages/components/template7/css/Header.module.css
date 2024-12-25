@@ -1,0 +1,118 @@
+/* Header.module.css */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: linear-gradient(90deg, #CDC1FF, #F5EFFF);
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  /* margin-right: 30px; */
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 60px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+}
+
+.navMenu {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.navMenu ul {
+  display: flex;
+  gap: 20px;
+}
+
+.navMenu li a {
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: #333;
+  transition: color 0.3s ease-in-out;
+  font-family: 'Lora', serif;
+}
+
+.navMenu li a:hover {
+  color: #A294F9;
+}
+
+.cta {
+  display: flex;
+  gap: 15px;
+}
+
+.callButton,
+.enquireButton {
+  background: #A294F9;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+  font-family: 'Lora', serif;
+  margin-right: 30px;
+}
+
+.callButton:hover,
+.enquireButton:hover {
+  background: #CDC1FF;
+  transform: scale(1.1);
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+.icon {
+  font-size: 1.8rem;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, #E5D9F2, transparent);
+  z-index: -1;
+}
+
+@media (max-width: 768px) {
+  .navMenu {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: #F5EFFF;
+    flex-direction: column;
+    align-items: center;
+    display: none;
+  }
+
+  .navMenu.active {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}

@@ -37,8 +37,9 @@ function App({ propertyDetails, headerData, galleryData }) {
   }
 
   return (
+    console.log("SLUH PROEPRTY PAGE ",propertyDetails.property_slug),
     <div className="App">
-      <Header headerData={headerData} />
+      <Header headerData={headerData} slug={propertyDetails.property_slug}/>
       <HeroBanner
         propertyDetails={propertyDetails}
         slug={propertyDetails.property_slug}
@@ -54,7 +55,7 @@ function App({ propertyDetails, headerData, galleryData }) {
       <Gallery slug={propertyDetails.property_slug} />
       <LocationMap slug={propertyDetails.property_slug} />
       <Footer />
-      <FloatingButtons />
+      <FloatingButtons slug={propertyDetails.property_slug} />
     </div>
   );
 }

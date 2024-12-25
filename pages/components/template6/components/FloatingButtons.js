@@ -4,7 +4,7 @@ import { API } from "../../../../Config";
 import { FaWhatsapp, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 import styles from "../css/FloatingButtons.module.css";
 
-const FloatingButtons = () => {
+const FloatingButtons = (slug) => {
   const [footerData, setFooterData] = useState(null);
   const [isContactFormOpen, setIsContactFormOpen] = useState(false);
   const [isWhatsAppPopupOpen, setIsWhatsAppPopupOpen] = useState(false);
@@ -15,6 +15,7 @@ const FloatingButtons = () => {
     email_id: "",
     phone_number: "",
     message: "",
+    note:""
   });
 
   useEffect(() => {
@@ -50,6 +51,7 @@ const FloatingButtons = () => {
   const handleContactFormSubmit = async (e) => {
     e.preventDefault();
     try {
+      formData.note =slug.slug;
       await axios.post(API.postContactUs, formData);
       setFormData({
         first_name: "",
@@ -57,6 +59,7 @@ const FloatingButtons = () => {
         email_id: "",
         phone_number: "",
         message: "",
+        note:""
       });
       alert("Message sent successfully!");
       setIsContactFormOpen(false);

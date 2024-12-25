@@ -1,64 +1,49 @@
-import React from 'react';
+import React, { Suspense, lazy } from "react";
+import FloatingButtons from "./components/FloatingButtons"; // Critical component, not dynamically imported
 import Header from './components/Header';
 import HeroBanner from './components/HeroBanner';
-import Footer from './components/Footer';
-import Services from './components/Services';
-import MahareraInformation from './components/MahaReraInformation';
-import Gallery from './components/Gallery';
-import PropertyPriceTable from './components/PropertyPriceTable';
-import PropertyDetails from './components/PropertyDetails';
-import UnitLayout from './components/UnitLayout';
-import FloorPlans from './components/FloorPlans';
-import MasterPlan from './components/MasterPlan';
-import Amenities from './components/Amenities';
-import LocationMap from './components/LocationMap';
-import LocationHighlights from './components/LocationHighlights';
-import Video from './components/Video';
-import FAQ from './components/FAQ';
-import EMICalculator from './components/EMICalculator';
-import Blogs from './components/Blogs';
-import BankPartners from './components/BankPartners';
-import ContactUs from './components/ContactUs';
-import Adverties from './components/Advertisements';
-import FloatingButtons from './components/FloatingButtons';
-import Properties from './components/Properties';
-// import BlogDetail from './components/BlogDetail';
-// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// Dynamically import components
+const Footer = lazy(() => import("./components/Footer"));
+const Services = lazy(() => import("./components/Services"));
+const MahareraInformation = lazy(() => import("./components/MahaReraInformation"));
+const Gallery = lazy(() => import("./components/Gallery"));
+const PropertyPriceTable = lazy(() => import("./components/PropertyPriceTable"));
+const PropertyDetails = lazy(() => import("./components/PropertyDetails"));
+const UnitLayout = lazy(() => import("./components/UnitLayout"));
+const FloorPlans = lazy(() => import("./components/FloorPlans"));
+const MasterPlan = lazy(() => import("./components/MasterPlan"));
+const Amenities = lazy(() => import("./components/Amenities"));
+const LocationMap = lazy(() => import("./components/LocationMap"));
+const LocationHighlights = lazy(() => import("./components/LocationHighlights"));
+const Video = lazy(() => import("./components/Video"));
+const FAQ = lazy(() => import("./components/FAQ"));
+const EMICalculator = lazy(() => import("./components/EMICalculator"));
+const Blogs = lazy(() => import("./components/Blogs"));
+const BankPartners = lazy(() => import("./components/BankPartners"));
+const ContactUs = lazy(() => import("./components/ContactUs"));
+const Adverties = lazy(() => import("./components/Advertisements"));
+const Properties = lazy(() => import("./components/Properties"));
 
-function App({ propertyDetails  }) {
+function App({ propertyDetails }) {
   return (
-    // <Router basename="/AppTemplate">
-    //   <Routes>
-    //     <Route path="/" element={
-          <div className="App">
-            <Header />
-            <HeroBanner />
-            <Properties />
-            <Adverties/>
-            {/* <MahareraInformation /> */}
-            {/* <PropertyPriceTable /> */}
-            {/* <PropertyDetails propertyDetails={propertyDetails} /> */}
-            {/* <Gallery /> */}
-            {/* <MasterPlan /> */}
-            {/* <Video /> */}
-            {/* <UnitLayout /> */}
-            {/* <FloorPlans /> */}
-            {/* <Amenities /> */}
-            <ContactUs />
-            {/* <LocationMap /> */}
-            {/* <LocationHighlights /> */}
-            <BankPartners />
-            <EMICalculator />
-            <Blogs />
-            <FAQ />
-            <Footer />
-            <FloatingButtons />
-          </div>
-        // } />
-      //  <Route path="/blogs/:post_slug" component={BlogDetail} />
+    <div className="App">
+      {/* Use Suspense to handle fallback UI during component loading */}
+      <Suspense fallback={<div>Loading...</div>}>
+        <Header />
+        <HeroBanner />
+        <Properties />
+        <Adverties />
+        <ContactUs />
+        <BankPartners />
+        <EMICalculator />
+        <Blogs />
+        <FAQ />
+        <Footer />
+      </Suspense>
 
-      // </Routes>
-    // </Router>
+      {/* Always loaded */}
+      <FloatingButtons />
+    </div>
   );
 }
 

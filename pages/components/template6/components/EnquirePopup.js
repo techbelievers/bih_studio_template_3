@@ -3,13 +3,14 @@ import axios from "axios";
 import { API } from "../../../../Config";
 import styles from "../css/EnquirePopup.module.css";
 
-const EnquirePopup = ({ onClose }) => {
+const EnquirePopup = ({ onClose, slug}) => {
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
     email_id: "",
     phone_number: "",
     message: "",
+    note:""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
@@ -42,6 +43,7 @@ const EnquirePopup = ({ onClose }) => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
+      formData.note =slug;
       await axios.post(API.postContactUs, formData);
       setSubmitSuccess(true);
       setFormData({
@@ -50,6 +52,7 @@ const EnquirePopup = ({ onClose }) => {
         email_id: "",
         phone_number: "",
         message: "",
+        note:""
       });
     } catch (error) {
       console.log(error);

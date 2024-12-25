@@ -1,0 +1,48 @@
+.advertisementSection {
+  padding: 50px 20px;
+  background-color: #fff;
+  text-align: center;
+  font-family: "Playfair Display", serif; /* Luxurious Font */
+}
+
+.heading {
+  font-size: 2.5rem;
+  color: #e63946; /* Luxurious Red */
+  margin-bottom: 20px;
+}
+
+.adContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.adLink {
+  transition: all 0.3s ease;
+}
+
+.adLink:hover {
+  transform: scale(1.05);
+}
+
+.adImage {
+  width: 100%;
+  max-width: 900px; /* Adjust as needed */
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.adImage:hover {
+  box-shadow: 0px 10px 30px rgba(230, 57, 70, 0.5); /* Luxurious Red Shadow */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .adImage {
+    max-width: 100%;
+  }
+}

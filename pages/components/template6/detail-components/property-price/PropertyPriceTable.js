@@ -67,7 +67,7 @@ const PropertyPriceTable = ({slug}) => {
                   <span className={styles.price}>
                     {price.property_price} {price.price_unit}*
                   </span>{" "}
-                  - <span className={styles.priceTag}>{price.price_tag}</span>
+                  - <span>{price.price_tag}</span>
                 </td>
               </tr>
             ))}

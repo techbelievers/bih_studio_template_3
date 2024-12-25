@@ -182,6 +182,7 @@ const API = {
   SEO_DETAIL_STUDIO: (domain, slug) => getDomainDataSlug('seo-detail',domain ,slug),
   TEMPLATE_STUDIO: (domain) => getStudiotemplate('template',domain),
   KNOW_YOUR_RETURNS_STUDIO: (slug) => getDataSlug('returns',slug),
+  STUDIO_ADVERTISEMENT: () => getApiUrl('studio_advertisement'),
 
   // POST APIS
   postContactUs: `${BASE_URL}/contact?website=${WEBSITE_DOMAIN}`,

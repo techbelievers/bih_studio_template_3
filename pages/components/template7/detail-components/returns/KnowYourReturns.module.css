@@ -1,0 +1,104 @@
+/* General Section Styles */
+.returnsSection {
+  padding: 2rem;
+  background: #1d1d1d; /* Dark background */
+  color: #ffffff; /* White text for readability */
+  border-radius: 8px;
+  margin: 2rem auto;
+  max-width: 900px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Header Section */
+.contentWrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.sectionHeader {
+  margin-bottom: 1.5rem;
+}
+
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.logoArrow {
+  font-size: 1.5rem;
+  color: #e63946; /* Themed color */
+}
+
+.heading {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.highlight {
+  color: #e63946;
+  text-shadow: 0 2px 4px rgba(230, 57, 70, 0.8);
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.tab {
+  padding: 0.5rem 1.5rem;
+  background: #2d2d2d;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #e63946;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.tab:hover {
+  background: #e63946;
+  color: #ffffff;
+}
+
+.activeTab {
+  background: #e63946;
+  color: #ffffff;
+}
+
+/* Table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+  text-align: left;
+  background: #292929;
+  color: #ffffff;
+}
+
+.table th,
+.table td {
+  padding: 0.8rem 1rem;
+  border: 1px solid #444;
+}
+
+.table th {
+  background: #e63946;
+  color: white;
+}
+
+.table td {
+  font-weight: 500;
+}
+
+.emptyState {
+  font-size: 1.2rem;
+  color: #bbbbbb;
+  text-align: center;
+}

@@ -1,0 +1,175 @@
+/* Properties.module.css */
+.propertiesSection {
+  padding: 60px 20px;
+  background: linear-gradient(180deg, #F5EFFF, #E5D9F2);
+  color: #333;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.heading {
+  font-size: 2.5rem;
+  color: #A294F9;
+  font-family: 'Lora', serif;
+  margin-bottom: 10px;
+}
+
+.subheading {
+  font-size: 1.2rem;
+  color: #CDC1FF;
+  font-family: 'Lora', serif;
+}
+
+.propertiesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  animation: slideUp 1s ease-in-out;
+}
+
+.propertyCard {
+  background: white;
+  border: 2px solid #CDC1FF;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  animation: zoomIn 0.5s ease-in-out;
+}
+
+.propertyCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.cardImage img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.cardContent {
+  padding: 20px;
+}
+
+.propertyName {
+  font-size: 1.5rem;
+  color: #A294F9;
+  margin-bottom: 10px;
+  font-family: 'Lora', serif;
+}
+
+.builderName {
+  font-size: 1rem;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.propertyDetails p {
+  font-size: 1rem;
+  color: #333;
+  margin: 5px 0;
+}
+
+.lastUpdated {
+  font-size: 0.9rem;
+  color: #888;
+  margin-top: 20px;
+}
+
+.viewButton {
+  display: block;
+  width: 100%;
+  padding: 10px 20px;
+  background: #A294F9;
+  color: white;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Lora', serif;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.viewButton:hover {
+  background: #CDC1FF;
+  transform: scale(1.05);
+}
+
+.enquireButton {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #A294F9;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Lora', serif;
+  margin-top: 20px;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.enquireButton:hover {
+  background: #CDC1FF;
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .heading {
+    font-size: 2rem;
+  }
+
+  .subheading {
+    font-size: 1rem;
+  }
+
+  .propertyCard {
+    border-radius: 5px;
+  }
+
+  .cardContent {
+    padding: 15px;
+  }
+
+  .viewButton {
+    font-size: 1rem;
+    padding: 8px 15px;
+  }
+}
+
+/* Keyframes for animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,115 @@
+/* Floating Buttons */
+.floatingButtons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 1000;
+}
+
+.floatingButton {
+  width: 50px;
+  height: 50px;
+  background: #ffffff;
+  color: #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.floatingButton:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.whatsapp {
+  background: #25d366;
+  color: #ffffff;
+}
+
+.call {
+  background: #007bff;
+  color: #ffffff;
+}
+
+.enquire {
+  background: #e63946;
+  color: #ffffff;
+}
+
+/* WhatsApp Popup */
+.whatsappPopup,
+.contactFormPopup {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 300px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  z-index: 1001;
+  animation: slideIn 0.4s ease;
+}
+
+.popupHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.popupHeader h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.closeButton {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.textArea,
+.inputField {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.sendButton,
+.submitButton {
+  width: 100%;
+  padding: 10px;
+  background: #e63946;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.sendButton:hover,
+.submitButton:hover {
+  background: #d32f2f;
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

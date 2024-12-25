@@ -11,6 +11,7 @@ const ContactUs = () => {
     email_id: "",
     phone_number: "",
     message: "",
+    note:""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
@@ -46,6 +47,7 @@ const ContactUs = () => {
         email_id: "",
         phone_number: "",
         message: "",
+        note:""
       });
     } catch (error) {
       setSubmitError("Failed to submit the form. Please try again.");
