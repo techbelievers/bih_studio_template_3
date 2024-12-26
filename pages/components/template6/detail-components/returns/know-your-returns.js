@@ -85,18 +85,18 @@ const KnowYourReturns = ({ slug }) => {
                     <th>Unit Price (₹)</th>
                     <td>{filteredReturns[0].unit_price}</td>
                   </tr>
-                  <tr>
+                  {/* <tr>
                     <th>Net EMI (₹)</th>
                     <td>{filteredReturns[0].net_emi}</td>
-                  </tr>
+                  </tr> */}
                   <tr>
                     <th>Monthly Net Rent (₹)</th>
                     <td>{filteredReturns[0].monthly_net_emi}</td>
                   </tr>
-                  <tr>
+                  {/* <tr>
                     <th>Monthly Rent with GST (₹)</th>
                     <td>{filteredReturns[0].monthly_rent_with_gst}</td>
-                  </tr>
+                  </tr> */}
                   <tr>
                     <th>Net Rent Annually (₹)</th>
                     <td>{filteredReturns[0].net_rent_annually}</td>

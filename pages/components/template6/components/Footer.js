@@ -99,9 +99,10 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className={styles.footerBottom}>
           {g_setting.footer_disclamer && (
+          
             <p className={styles.footerDisclaimer}>
-              {g_setting.footer_disclamer}
-            </p>
+          <span>Disclaimer:</span><span className={styles.footerDisclaimer_desc}> This website serves as an informational portal managed by a Maharera-authorized real estate agent and is not an official site of the builder. The content provided here does not constitute an offer for any service. Property prices and availability are subject to change without prior notice, and all images are for representational purposes only. This content is intended for informational purposes only. For the most up-to-date information, accurate pricing, and property availability, please contact us directly using the details on our website. Unauthorized use of the content is strictly prohibited. All rights reserved.
+          </span> </p>
           )}
           {g_setting.footer_agent_rera && (
             <p className={styles.footerAgentRera}>

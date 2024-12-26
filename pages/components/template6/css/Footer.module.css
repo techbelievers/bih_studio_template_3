@@ -23,6 +23,12 @@
   border-bottom: 1px solid #333;
 }
 
+
+.footerDisclaimer_desc {
+  font-size: 12px; /* Smaller font size */
+}
+
+
 /* Logo Section */
 .logoSection {
   flex: 1;
