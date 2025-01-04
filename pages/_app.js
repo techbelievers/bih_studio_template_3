@@ -25,6 +25,8 @@ const MyApp = ({ Component, pageProps, headerData, error ,propertyDetails , doma
   const description = headerData.data.meta_description;
   const keywords =  headerData.data.keywords;
 
+
+
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "RealEstateListing",
@@ -35,6 +37,9 @@ const MyApp = ({ Component, pageProps, headerData, error ,propertyDetails , doma
     "builderName" : headerData.data.builder_name,
     "image": headerData.data.og_image || '',
   };
+
+
+
 
   return (
     <>
@@ -56,8 +61,49 @@ const MyApp = ({ Component, pageProps, headerData, error ,propertyDetails , doma
       />
 
 
+      {/* Google Tag (gtag.js) */}
+        {headerData?.data?.gtag_id && (
+          <>
+            <script async src={`https://www.googletagmanager.com/gtag/js?id=${headerData.data.gtag_id}`} />
+            <script dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${headerData.data.gtag_id}');
+              `,
+            }} />
+          </>
+        )}
+
+        {/* Event Snippet for WhatsApp Conversion */}
+          {headerData?.data?.whatsapp_gtag_id && (
+            <>
+              <script dangerouslySetInnerHTML={{
+                __html: `
+                  gtag('event', 'conversion', {'send_to': '${headerData.data.whatsapp_gtag_id}'});
+                `,
+              }} />
+            </>
+          )}
+
+
+
+          {/* Phone Conversion Tracking */}
+          {headerData?.data?.phone_conversation_id && headerData?.data?.phone_conversation_number && (
+            <>
+              <script dangerouslySetInnerHTML={{
+                __html: `
+                  gtag('config', '${headerData.data.phone_conversation_id}', {
+                    'phone_conversion_number': '${headerData.data.phone_conversation_number}'
+                  });
+                `,
+              }} />
+            </>
+          )}
+
+
         {/* Conditionally add custom scripts */}
-  
 
         {/* Inject raw HTML directly into Head */}
       {/* {headerData.data.script_1 && (
@@ -66,7 +112,7 @@ const MyApp = ({ Component, pageProps, headerData, error ,propertyDetails , doma
 
   
       {headerData.data.script_1 && (
-        <style dangerouslySetInnerHTML={{ __html: headerData.data.script_1 }} />
+        <script dangerouslySetInnerHTML={{ __html: headerData.data.script_1 }} />
       ) }
 
       {headerData.data.script_2 && (

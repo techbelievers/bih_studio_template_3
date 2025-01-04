@@ -269,7 +269,7 @@ const GalleryWithEnquiry = ({ propertyDetails, slug  , servicesData:intialServic
             <input
               type="text"
               name="first_name"
-              placeholder="First Name"
+              placeholder="First Name *"
               value={formData.first_name}
               onChange={handleInputChange}
               className={styles.input}
@@ -278,7 +278,7 @@ const GalleryWithEnquiry = ({ propertyDetails, slug  , servicesData:intialServic
             <input
               type="text"
               name="last_name"
-              placeholder="Last Name"
+              placeholder="Last Name *"
               value={formData.last_name}
               onChange={handleInputChange}
               className={styles.input}
@@ -289,7 +289,7 @@ const GalleryWithEnquiry = ({ propertyDetails, slug  , servicesData:intialServic
           <input
             type="tel"
             name="phone_number"
-            placeholder="Phone Number"
+            placeholder="Phone Number *"
             value={formData.phone_number}
             onChange={handleInputChange}
             className={styles.input}
