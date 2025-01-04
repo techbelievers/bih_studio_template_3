@@ -17,6 +17,8 @@ export const getServerSideProps = async ({ req ,res }) => {
   const finalDomain = websiteDomain === 'localhost:3000' ? DEFAULT_DOMAIN : websiteDomain;
 
   const response = await fetch(API.GET_BLOG(finalDomain)); 
+  const p_response = await fetch(API.GET_PROPERTIES());
+
 
   // Check if response is successful
   if (!response.ok) {
@@ -24,6 +26,7 @@ export const getServerSideProps = async ({ req ,res }) => {
   }
 
   const data = await response.json();
+  const p_data = await p_response.json();
   console.log('Response data:', data); // Log the response data
 
   // Ensure data has a 'blogs' array
@@ -50,6 +53,24 @@ export const getServerSideProps = async ({ req ,res }) => {
           return `
             <url>
               <loc>https://${websiteDomain}/blogs/${blog.post_slug}</loc>
+              <changefreq>weekly</changefreq>
+              <priority>0.8</priority>
+            </url>
+          `;
+        })
+        .join('')}
+
+      ${p_data.property_details
+        .map((property_details) => {
+          // You can adjust this part based on the actual structure of the blog object
+          if (!property_details.property_slug) {
+            console.error('Missing post_slug in blog:', blog);
+            return ''; // Skip properties without a property-slug
+          }
+
+          return `
+            <url>
+              <loc>https://${websiteDomain}/properties/${property_details.property_slug}</loc>
               <changefreq>weekly</changefreq>
               <priority>0.8</priority>
             </url>
