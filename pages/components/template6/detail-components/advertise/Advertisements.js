@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { API } from "../../../../Config";
-import styles from "../css/Advertisements.module.css";
+import { API } from "../../../../../Config";
+import styles from "./Advertisements.module.css";
 
-const Advertisements = () => {
+const Advertisements = ({slug}) => {
   const [ads, setAds] = useState([]);
   const [heading, setHeading] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -11,7 +11,7 @@ const Advertisements = () => {
   useEffect(() => {
     const fetchAdvertisements = async () => {
       try {
-        const response = await fetch(API.STUDIO_ADVERTISEMENT());
+        const response = await fetch(API.STUDIO_ADVERTISEMENT_SLUG(slug));
         const data = await response.json();
         const advertisements = data.advertisements || [];
         setAds(advertisements);

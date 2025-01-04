@@ -6,6 +6,7 @@ import Returns from './detail-components/returns/know-your-returns';
 import Footer from './components/Footer';
 import PropertyPriceTable from './detail-components/property-price/PropertyPriceTable';
 import MasterPlan from './detail-components/plans/MasterPlan';
+import Advertise from './detail-components/advertise/Advertisements';
 import Amenities from './detail-components/amenities/Amenities';
 import Gallery from './detail-components/gallery/Gallery';
 import LocationMap from './detail-components/location/LocationMap';
@@ -37,9 +38,11 @@ function App({ propertyDetails, headerData, galleryData }) {
   }
 
   return (
-    console.log("SLUH PROEPRTY PAGE ",propertyDetails.property_slug),
+    
     <div className="App">
-      <Header headerData={headerData} slug={propertyDetails.property_slug}/>
+      <Header 
+      headerData={headerData} 
+      slug={propertyDetails.property_slug}/>
       <HeroBanner
         propertyDetails={propertyDetails}
         slug={propertyDetails.property_slug}
@@ -49,7 +52,7 @@ function App({ propertyDetails, headerData, galleryData }) {
       <PropertyPriceTable slug={propertyDetails.property_slug} />
       <Returns slug={propertyDetails.property_slug}/>
       <PropertyDetails propertyDetails={propertyDetails} />
-      
+      <Advertise slug={propertyDetails.property_slug}/>
       <MasterPlan slug={propertyDetails.property_slug} />
       <Amenities slug={propertyDetails.property_slug} />
       <Gallery slug={propertyDetails.property_slug} />

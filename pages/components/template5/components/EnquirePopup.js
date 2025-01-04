@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { API } from "../../../../Config";
-import { useRouter } from "next/router"; // Import the useRouter hook
+import { useRouter } from "next/router"; 
 import styles from "../css/EnquirePopup.module.css";
 
 const EnquirePopup = ({ onClose }) => {
@@ -15,7 +15,7 @@ const EnquirePopup = ({ onClose }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [headerData, setHeaderData] = useState({});
-  const router = useRouter(); // Initialize the useRouter hook
+  const router = useRouter();
 
   useEffect(() => {
     const fetchHeaderData = async () => {
@@ -44,8 +44,6 @@ const EnquirePopup = ({ onClose }) => {
     setIsSubmitting(true);
     try {
       await axios.post(API.postContactUs, formData);
-
-      // Redirect to Thank You Page after successful submission
       onClose();
       window.location.replace("/thank-you");
     } catch (error) {
@@ -62,62 +60,64 @@ const EnquirePopup = ({ onClose }) => {
         <button className={styles.enquirePopupClose} onClick={onClose}>
           ×
         </button>
-        {headerData.logo && (
-          <img
-            src={headerData.logo}
-            alt="Builder Logo"
-            className={styles.enquirePopupLogo}
-          />
-        )}
-        <h2 className={styles.propertyName}>{headerData.property_name}</h2>
-        <h5 className={styles.enquireNowHeading}>Enquire Now</h5>
-        {submitError && <p className={styles.enquirePopupError}>{submitError}</p>}
-        <form onSubmit={handleSubmit} className={styles.enquireForm}>
-          <input
-            type="text"
-            name="first_name"
-            placeholder="First Name*"
-            value={formData.first_name}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="text"
-            name="last_name"
-            placeholder="Last Name*"
-            value={formData.last_name}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="tel"
-            name="phone_number"
-            placeholder="Phone Number*"
-            value={formData.phone_number}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="email"
-            name="email_id"
-            placeholder="Email"
-            value={formData.email_id}
-            onChange={handleChange}
-          />
-          <textarea
-            name="message"
-            placeholder="Your Message"
-            value={formData.message}
-            onChange={handleChange}
-          ></textarea>
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className={styles.submitButton}
-          >
-            {isSubmitting ? "Sending..." : "Send Message"}
-          </button>
-        </form>
+        <div className={styles.popupInnerContent}>
+          {headerData.logo && (
+            <img
+              src={headerData.logo}
+              alt="Builder Logo"
+              className={styles.enquirePopupLogo}
+            />
+          )}
+          <h2 className={styles.propertyName}>{headerData.property_name}</h2>
+          <h5 className={styles.enquireNowHeading}>Enquire Now</h5>
+          {submitError && <p className={styles.enquirePopupError}>{submitError}</p>}
+          <form onSubmit={handleSubmit} className={styles.enquireForm}>
+            <input
+              type="text"
+              name="first_name"
+              placeholder="First Name*"
+              value={formData.first_name}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="text"
+              name="last_name"
+              placeholder="Last Name*"
+              value={formData.last_name}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="tel"
+              name="phone_number"
+              placeholder="Phone Number*"
+              value={formData.phone_number}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="email"
+              name="email_id"
+              placeholder="Email"
+              value={formData.email_id}
+              onChange={handleChange}
+            />
+            <textarea
+              name="message"
+              placeholder="Your Message"
+              value={formData.message}
+              onChange={handleChange}
+            ></textarea>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className={styles.submitButton}
+            >
+              {isSubmitting ? "Sending..." : "Send Message"}
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
