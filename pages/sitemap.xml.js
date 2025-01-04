@@ -17,7 +17,7 @@ export const getServerSideProps = async ({ req ,res }) => {
   const finalDomain = websiteDomain === 'localhost:3000' ? DEFAULT_DOMAIN : websiteDomain;
 
   const response = await fetch(API.GET_BLOG(finalDomain)); 
-  const p_response = await fetch(API.GET_PROPERTIES());
+  const p_response = await fetch(API.GET_PROPERTIES_SITEMAP(finalDomain));
 
 
   // Check if response is successful

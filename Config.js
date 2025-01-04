@@ -164,6 +164,7 @@ const API = {
   FOOTER: () => getApiUrl('footer'),
   TEMPLATE: () => getApiUrl('template'),
   GET_PROPERTIES: () => getApiUrl('get-properties'),
+  GET_PROPERTIES_SITEMAP: (domain) => getBlogData('get-properties',domain),
   SEO_DETAIL: (domain) => getSeoData('seo-detail',domain),
 
   // Studio APIS
