@@ -63,7 +63,8 @@ export const getServerSideProps = async ({ req ,res }) => {
       ${p_data.property_details
         .map((property_details) => {
           // You can adjust this part based on the actual structure of the blog object
-          if (!property_details.property_slug) {
+          if (!property_details.property_slug || 
+            property_details.property_slug.includes('.com')) {
             console.error('Missing post_slug in blog:', property_details);
             return ''; // Skip properties without a property-slug
           }
