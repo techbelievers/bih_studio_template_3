@@ -2,26 +2,16 @@ import React from 'react';
 import Header from './components/Header';
 import HeroBanner from './detail-components/HeroBanner/HeroBanner';
 import Footer from './components/Footer';
-import Services from './components/Services';
-import MahareraInformation from './detail-components/Maharera/MahaReraInformation';
 import Gallery from './detail-components/gallery/Gallery';
 import PropertyPriceTable from './detail-components/property-price/PropertyPriceTable';
 // import PropertyDetails from './detail-components/property-details/PropertyDetails';
-import UnitLayout from './components/UnitLayout';
-import FloorPlans from './components/FloorPlans';
+
 import MasterPlan from './detail-components/plans/MasterPlan';
 import Amenities from './detail-components/amenities/Amenities';
 import LocationMap from './detail-components/location/LocationMap';
-import LocationHighlights from './components/LocationHighlights';
-import Video from './components/Video';
-import FAQ from './components/FAQ';
-import EMICalculator from './components/EMICalculator';
-import Blogs from './components/Blogs';
-import BankPartners from './components/BankPartners';
-import ContactUs from './components/ContactUs';
-import Adverties from './components/Advertisements';
+
 import FloatingButtons from './components/FloatingButtons';
-import Properties from './components/Properties';
+
 import dynamic from 'next/dynamic';
 
 const PropertyDetails = dynamic(() => import('./detail-components/property-details/PropertyDetails'), {
