@@ -1,7 +1,7 @@
 /* Section Styling */
 .emiCalculatorSection {
   padding: 60px 20px;
-  background: #f8f9fa;
+  background: #f0f4f8; /* Light Grayish Blue Background */
   font-family: "Playfair Display", serif; /* Luxurious Font */
 }
 
@@ -18,13 +18,13 @@
 /* Title and Description */
 .title {
   font-size: 2.5rem;
-  color: #e63946; /* Luxurious red theme */
+  color: #4A90E2; /* Elegant Blue */
   margin-bottom: 10px;
 }
 
 .description {
   font-size: 1rem;
-  color: #777;
+  color: #888; /* Medium Gray */
   margin-bottom: 20px;
 }
 
@@ -51,14 +51,14 @@
 }
 
 .input:focus {
-  border-color: #e63946;
+  border-color: #4A90E2; /* Elegant Blue on Focus */
   outline: none;
-  box-shadow: 0px 4px 8px rgba(230, 57, 70, 0.2);
+  box-shadow: 0px 4px 8px rgba(74, 144, 226, 0.2);
 }
 
 /* Button */
 .calculateButton {
-  background-color: #e63946;
+  background-color: #4A90E2; /* Elegant Blue */
   color: #fff;
   border: none;
   padding: 12px 20px;
@@ -70,8 +70,8 @@
 }
 
 .calculateButton:hover {
-  background-color: #c72736;
-  box-shadow: 0px 5px 10px rgba(230, 57, 70, 0.4);
+  background-color: #357ABD; /* Darker Blue */
+  box-shadow: 0px 5px 10px rgba(74, 144, 226, 0.4);
 }
 
 /* Results Wrapper */
@@ -95,13 +95,13 @@
 
 .resultCard h3 {
   font-size: 1.2rem;
-  color: #333;
+  color: #333; /* Dark Gray */
   margin-bottom: 10px;
 }
 
 .resultCard p {
   font-size: 1.5rem;
-  color: #e63946;
+  color: #4A90E2; /* Elegant Blue */
   margin: 0;
   font-weight: bold;
 }

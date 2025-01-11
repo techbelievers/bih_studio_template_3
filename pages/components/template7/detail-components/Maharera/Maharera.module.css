@@ -1,169 +1,113 @@
-/* General Section Styling */
-.mahareraSection {
-  position: relative;
-  padding: 30px 20px;
-  background-color: #f8f9fa;
-  overflow: hidden;
-}
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
 
-.clipBackground {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 30%;
-  /* background: #e63946; */
-  /* clip-path: polygon(100% 0, 100% 0, 100% 60%, 0 80%); */
-  z-index: 0;
-}
-
-.contentWrapper {
-  position: relative;
-  z-index: 1;
-  max-width: 1200px;
-  margin: 0 auto;
-  top: -30px;
+/* Section */
+.mahareraContainer {
+  background-color: #F8F9FA;
+  padding: 80px 20px;
+  text-align: center;
 }
 
 /* Header */
-.sectionHeader {
-  text-align: center;
-  margin-bottom: 40px;
+.header {
+  margin-bottom: 30px;
 }
 
 .heading {
-  font-size: 1.8rem;
+  font-family: "Inter", sans-serif;
+  font-size: 36px;
   font-weight: 700;
-  color: #2c3e50;
-  margin-bottom: 10px;
-  position: relative;
-  display: inline-block;
-  padding-bottom: 10px;
-}
-
-.heading::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 4px;
-  background-color: #e63946;
-  border-radius: 2px;
+  color: #1C3F60;
 }
 
 .highlight {
-  color: #e63946;
+  color: #4A90E2;
 }
 
-.subheading {
-  font-size: 1rem;
-  color: #555;
-  margin-top: 10px;
-  line-height: 1.5;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
+.link {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  color: #4A90E2;
+  margin-top: 5px;
 }
 
-/* Cards Container */
-.cardsContainer {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
+.link a {
+  color: #4A90E2;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.link a:hover {
+  text-decoration: underline;
+}
+
+/* Table */
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.reraTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Inter", sans-serif;
+  background: #FFFFFF;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.reraTable th {
+  background: #1C3F60;
+  color: #ffffff;
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+}
+
+.reraTable td {
+  padding: 12px;
+  color: #333;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Hover Effect */
+.reraTable tr:hover {
+  background: #EAF2FF;
+}
+
+/* QR Code Cell */
+.qrCodeCell {
+  text-align: center;
+}
+
+/* Loading & Error Messages */
+.loading, .error {
+  font-size: 16px;
+  font-weight: 600;
+  color: #FF4B4B;
   margin-top: 20px;
 }
 
-.singleCardContainer {
-  display: flex;
-  justify-content: center;
-  /* max-width: 500px; */
-}
-
-/* Card */
-.card {
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  /* max-width: 300px; */
-  min-width: 300px;
-}
-
-.card:hover {
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
-/* Card Header */
-.cardHeader {
-  background: linear-gradient(45deg, #e63946, #ff6b6b);
-  padding: 15px;
-  text-align: center;
-  color: #fff;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-}
-
-.phaseName {
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-
-/* Card Body */
-.cardBody {
-  padding: 15px;
-}
-
-.detailsList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-size: 0.9rem;
-  color: #555;
-}
-
-.detailsList li {
-  margin-bottom: 8px;
-}
-
-.detailsList li strong {
-  color: #2c3e50;
-}
-
-/* Card Footer */
-.cardFooter {
-  background: #f9f9f9;
-  padding: 10px;
-  text-align: center;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-}
-
-.qrCode {
-  width: 70px;
-  height: 70px;
-}
-
-.noQr {
-  font-size: 0.8rem;
-  color: #999;
-}
-
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 768px) {
   .heading {
-    font-size: 2rem;
+    font-size: 28px;
   }
 
-  .subheading {
-    font-size: 0.9rem;
+  .reraTable th,
+  .reraTable td {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .heading {
+    font-size: 24px;
   }
 
-  .cardsContainer {
-    grid-template-columns: 1fr;
+  .reraTable th,
+  .reraTable td {
+    font-size: 12px;
+    padding: 8px;
   }
 }

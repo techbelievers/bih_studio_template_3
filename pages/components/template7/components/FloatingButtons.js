@@ -4,7 +4,7 @@ import { API } from "../../../../Config";
 import { FaWhatsapp, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 import styles from "../css/FloatingButtons.module.css";
 
-const FloatingButtons = () => {
+const FloatingButtons = (slug) => {
   const [footerData, setFooterData] = useState(null);
   const [isContactFormOpen, setIsContactFormOpen] = useState(false);
   const [isWhatsAppPopupOpen, setIsWhatsAppPopupOpen] = useState(false);
@@ -15,6 +15,7 @@ const FloatingButtons = () => {
     email_id: "",
     phone_number: "",
     message: "",
+    note:""
   });
 
   useEffect(() => {
@@ -33,9 +34,11 @@ const FloatingButtons = () => {
   const handleSendWhatsApp = (e) => {
     e.preventDefault();
     if (whatsappMessage.trim()) {
-      const whatsappUrl = `https://wa.me/${footerData.g_setting.footer_phone}?text=${encodeURIComponent(
-        whatsappMessage
-      )}`;
+      const fullMessage = `Property Enquiry for: ${slug.slug}\n\nMessage: ${whatsappMessage}`;
+      const whatsappUrl = `https://wa.me/${footerData.g_setting.footer_phone}?text=${encodeURIComponent(fullMessage)}`;
+      // const whatsappUrl = `https://wa.me/${footerData.g_setting.footer_phone}?text=${encodeURIComponent(
+      //   whatsappMessage
+      // )}`;
       window.open(whatsappUrl, "_blank");
       setIsWhatsAppPopupOpen(false);
       setWhatsappMessage(""); // Reset the message
@@ -50,6 +53,7 @@ const FloatingButtons = () => {
   const handleContactFormSubmit = async (e) => {
     e.preventDefault();
     try {
+      formData.note =slug.slug;
       await axios.post(API.postContactUs, formData);
       setFormData({
         first_name: "",
@@ -57,6 +61,7 @@ const FloatingButtons = () => {
         email_id: "",
         phone_number: "",
         message: "",
+        note:""
       });
       alert("Message sent successfully!");
       setIsContactFormOpen(false);
@@ -177,7 +182,6 @@ const FloatingButtons = () => {
               placeholder="Your Message"
               value={formData.message}
               onChange={handleChange}
-              required
             ></textarea>
             <button type="submit" className={styles.submitButton}>
               Send Message

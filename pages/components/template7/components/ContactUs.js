@@ -60,100 +60,76 @@ const ContactUs = () => {
 
   return (
     <section className={styles.contactUsSection}>
-      <div className={styles.container}>
-        {/* Details Section */}
-        <div className={styles.details}>
-          <h2 className={styles.heading}>
-            {data?.contact_us?.name || "Get in Touch"}
-          </h2>
-          <p
-            className={styles.description}
-            dangerouslySetInnerHTML={{
-              __html:
-                data?.contact_us?.detail || "We would love to hear from you!",
-            }}
-          ></p>
-          <p className={styles.info}>
-            <strong>Phone:</strong> {data?.contact_us?.contact_phone || "N/A"}
-          </p>
-        </div>
+      {/* Hero Section */}
+      <div className={styles.heroBanner}>
+        <h1>Your Dream Property Awaits</h1>
+        <p>Get in touch with us today, and let’s make it a reality.</p>
+      </div>
 
-        {/* Form Section */}
-        <div className={styles.form}>
-          <h2 className={styles.formHeading}>Contact Us</h2>
-          {submitSuccess && (
-            <div className={styles.successMessage}>
-              Your message has been sent successfully!
-              <button onClick={closeThankYou} className={styles.closeButton}>
-                Close
-              </button>
-            </div>
-          )}
-          {submitError && <p className={styles.errorMessage}>{submitError}</p>}
-          <form onSubmit={handleSubmit}>
-            <div className={styles.inputGroup}>
-              <div className={styles.inputWrapper}>
-                <input
-                  type="text"
-                  name="first_name"
-                  className={styles.input}
-                  placeholder="First Name*"
-                  value={formData.first_name}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className={styles.inputWrapper}>
-                <input
-                  type="text"
-                  name="last_name"
-                  className={styles.input}
-                  placeholder="Last Name*"
-                  value={formData.last_name}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-            </div>
-            <div className={styles.inputWrapper}>
-              <input
-                type="tel"
-                name="phone_number"
-                className={styles.input}
-                placeholder="Phone Number*"
-                value={formData.phone_number}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className={styles.inputWrapper}>
-              <input
-                type="email"
-                name="email_id"
-                className={styles.input}
-                placeholder="Email"
-                value={formData.email_id}
-                onChange={handleChange}
-              />
-            </div>
-            <div className={styles.inputWrapper}>
-              <textarea
-                name="message"
-                className={styles.textarea}
-                placeholder="Your Message"
-                value={formData.message}
-                onChange={handleChange}
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              className={styles.submitButton}
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? "Sending..." : "Send Message"}
+      {/* Contact Form Section */}
+      <div className={styles.contactFormSection}>
+        <h2 className={styles.formHeading}>📩 Get in Touch</h2>
+        <p>Fill out the form below, and we’ll get back to you shortly.</p>
+        {submitSuccess && (
+          <div className={styles.successMessage}>
+            🎉 Your message has been sent successfully!
+            <button onClick={closeThankYou} className={styles.closeButton}>
+              Close
             </button>
-          </form>
-        </div>
+          </div>
+        )}
+        {submitError && <p className={styles.errorMessage}>{submitError}</p>}
+        <form onSubmit={handleSubmit} className={styles.contactForm}>
+          <div className={styles.inputGroup}>
+            <input
+              type="text"
+              name="first_name"
+              placeholder="First Name*"
+              value={formData.first_name}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="text"
+              name="last_name"
+              placeholder="Last Name*"
+              value={formData.last_name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className={styles.inputGroup}>
+            <input
+              type="tel"
+              name="phone_number"
+              placeholder="Phone Number*"
+              value={formData.phone_number}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="email"
+              name="email_id"
+              placeholder="Email"
+              value={formData.email_id}
+              onChange={handleChange}
+            />
+          </div>
+          <textarea
+            className={styles.textarea}
+            name="message"
+            placeholder="Your Message"
+            value={formData.message}
+            onChange={handleChange}
+          ></textarea>
+          <button
+            type="submit"
+            className={styles.submitButton}
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Sending..." : "Send Message"}
+          </button>
+        </form>
       </div>
     </section>
   );

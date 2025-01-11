@@ -14,7 +14,6 @@ const KnowYourReturns = ({ slug }) => {
       try {
         const response = await fetch(API.KNOW_YOUR_RETURNS_STUDIO(slug));
         const jsonData = await response.json();
-
         if (!response.ok) throw new Error("Failed to fetch data");
         setData(jsonData);
       } catch (err) {
@@ -37,25 +36,28 @@ const KnowYourReturns = ({ slug }) => {
 
   return (
     <section className={styles.returnsSection}>
-      <div className={styles.contentWrapper}>
-        {/* Header Section */}
-        <div className={styles.sectionHeader}>
-          <div className={styles.logoWrapper}>
-            <span className={styles.logoArrow}>▲</span>
-            <h2 className={styles.heading}>
-              Know Your <span className={styles.highlight}>RETURNS</span>
-            </h2>
-          </div>
-        </div>
+      <div className={styles.container}>
+        {/* Header */}
+        <motion.div 
+          className={styles.sectionHeader}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h2 className={styles.heading}>
+            <span className={styles.highlight}>Know Your</span> RETURNS
+          </h2>
+          <p className={styles.subheading}>
+            Maximize your investment with our detailed ROI analysis.
+          </p>
+        </motion.div>
 
         {/* Tabs */}
         <div className={styles.tabs}>
           {["Standard", "Premium"].map((tab) => (
             <motion.button
               key={tab}
-              className={`${styles.tab} ${
-                activeTab === tab ? styles.activeTab : ""
-              }`}
+              className={`${styles.tab} ${activeTab === tab ? styles.activeTab : ""}`}
               onClick={() => setActiveTab(tab)}
               whileHover={{ scale: 1.05 }}
             >
@@ -69,44 +71,26 @@ const KnowYourReturns = ({ slug }) => {
           <motion.div
             key={activeTab}
             className={styles.tabContent}
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            transition={{ duration: 0.3 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4 }}
           >
             {filteredReturns.length === 0 ? (
-              <div className={styles.emptyState}>
-                No data available for {activeTab} returns.
-              </div>
+              <div className={styles.emptyState}>No data available for {activeTab} returns.</div>
             ) : (
-              <table className={styles.table}>
-                <tbody>
-                  <tr>
-                    <th>Unit Price (₹)</th>
-                    <td>{filteredReturns[0].unit_price}</td>
-                  </tr>
-                  <tr>
-                    <th>Net EMI (₹)</th>
-                    <td>{filteredReturns[0].net_emi}</td>
-                  </tr>
-                  <tr>
-                    <th>Monthly Net Rent (₹)</th>
-                    <td>{filteredReturns[0].monthly_net_emi}</td>
-                  </tr>
-                  <tr>
-                    <th>Monthly Rent with GST (₹)</th>
-                    <td>{filteredReturns[0].monthly_rent_with_gst}</td>
-                  </tr>
-                  <tr>
-                    <th>Net Rent Annually (₹)</th>
-                    <td>{filteredReturns[0].net_rent_annually}</td>
-                  </tr>
-                  <tr>
-                    <th>ROI (on base price)</th>
-                    <td>{filteredReturns[0].roi}%</td>
-                  </tr>
-                </tbody>
-              </table>
+              <div className={styles.tableWrapper}>
+                <table className={styles.returnTable}>
+                  <tbody>
+                    <tr><th>Unit Price (₹)</th><td>{filteredReturns[0].unit_price}</td></tr>
+                    <tr><th>Net EMI (₹)</th><td>{filteredReturns[0].net_emi}</td></tr>
+                    <tr><th>Monthly Net Rent (₹)</th><td>{filteredReturns[0].monthly_net_emi}</td></tr>
+                    <tr><th>Monthly Rent with GST (₹)</th><td>{filteredReturns[0].monthly_rent_with_gst}</td></tr>
+                    <tr><th>Net Rent Annually (₹)</th><td>{filteredReturns[0].net_rent_annually}</td></tr>
+                    <tr><th>ROI (on base price)</th><td className={styles.roi}>{filteredReturns[0].roi}%</td></tr>
+                  </tbody>
+                </table>
+              </div>
             )}
           </motion.div>
         </AnimatePresence>

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { QRCodeCanvas } from "qrcode.react";
+import axios from "axios";
 import { motion } from "framer-motion";
 import styles from "./Maharera.module.css";
 import { API } from "../../../../../Config";
 
-const MahareraInformation = ({ propertyDetails, slug }) => {
+const MahareraSection = ({ slug }) => {
   const [reraData, setReraData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -26,85 +27,71 @@ const MahareraInformation = ({ propertyDetails, slug }) => {
     fetchReraData();
   }, [slug]);
 
-  if (loading) return <div className={styles.loading}>Loading...</div>;
-  if (error) return <div className={styles.error}>Error: {error}</div>;
-  if (reraData.length === 0)
-    return <div className={styles.empty}>No Maharera information available.</div>;
-
-  const formatCompletionDate = (dateString) =>
-    dateString
-      ? new Date(dateString).toLocaleString("default", { month: "long", year: "numeric" })
-      : "N/A";
+  if (loading) return <p className={styles.loading}>Loading Maharera Details...</p>;
+  if (error || !reraData.length) return <p className={styles.error}>No Maharera details available.</p>;
 
   return (
-    <section className={styles.mahareraSection}>
-      <div className={styles.clipBackground}></div>
-      <div className={styles.contentWrapper}>
-        <div className={styles.sectionHeader}>
-          <h2 className={styles.heading}>
-            Maharera <span className={styles.highlight}>Details</span>
-          </h2>
-          <p className={styles.subheading}>
-            Ensuring transparency and trust in real estate projects. Explore the latest updates and compliance details for our properties.
-          </p>
-        </div>
+    <section className={styles.mahareraContainer}>
+      <motion.div 
+        className={styles.header}
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <h2 className={styles.heading}>
+          Maha<span className={styles.highlight}>RERA</span> Details
+        </h2>
+        <p className={styles.link}>
+          MahaRERA:{" "}
+          <a href="https://maharera.mahaonline.gov.in" target="_blank" rel="noopener noreferrer">
+            https://maharera.mahaonline.gov.in
+          </a>
+        </p>
+      </motion.div>
 
-        <div
-          className={`${styles.cardsContainer} ${
-            reraData.length === 1 ? styles.singleCardContainer : ""
-          }`}
+      <div className={styles.tableWrapper}>
+        <motion.table 
+          className={styles.reraTable}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
         >
-          {reraData.map((rera, index) => (
-            <motion.div
-              key={index}
-              className={styles.card}
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className={styles.cardHeader}>
-                <h3 className={styles.phaseName}>{rera.phase_name}</h3>
-              </div>
-              <div className={styles.cardBody}>
-                <ul className={styles.detailsList}>
-                  <li>
-                    <strong>ID:</strong> {rera.rera_id}
-                  </li>
-                  <li>
-                    <strong>Completion:</strong> {formatCompletionDate(rera.completion_date)}
-                  </li>
-                  <li>
-                    <strong>Area:</strong> {rera.total_area} Sq.M
-                  </li>
-                  <li>
-                    <strong>Acre:</strong> {rera.total_acre}
-                  </li>
-                  <li>
-                    <strong>Towers:</strong> {rera.total_tower}
-                  </li>
-                  <li>
-                    <strong>Units:</strong> {rera.total_units}
-                  </li>
-                </ul>
-              </div>
-              <div className={styles.cardFooter}>
-                {rera.rera_url ? (
-                  <QRCodeCanvas
-                    value={rera.rera_url}
-                    size={70}
-                    className={styles.qrCode}
-                  />
-                ) : (
-                  <p className={styles.noQr}>No QR Code</p>
-                )}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+          <thead>
+            <tr>
+              <th>Project Name</th>
+              <th>RERA No</th>
+              <th>Completion</th>
+              <th>Area (Sq.M)</th>
+              <th>Acre</th>
+              <th>Towers</th>
+              <th>Units</th>
+              <th>QR Code</th>
+            </tr>
+          </thead>
+          <tbody>
+            {reraData.map((rera, index) => (
+              <motion.tr 
+                key={index}
+                whileHover={{ backgroundColor: "#F0F7FF", scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                <td>{rera.phase_name || "N/A"}</td>
+                <td>{rera.rera_id || "N/A"}</td>
+                <td>{rera.completion_date || "N/A"}</td>
+                <td>{rera.total_area || "N/A"}</td>
+                <td>{rera.total_acre || "N/A"}</td>
+                <td>{rera.total_tower || "N/A"}</td>
+                <td>{rera.total_units || "N/A"}</td>
+                <td className={styles.qrCodeCell}>
+                  {rera.rera_url && <QRCodeCanvas value={rera.rera_url} size={50} />}
+                </td>
+              </motion.tr>
+            ))}
+          </tbody>
+        </motion.table>
       </div>
     </section>
   );
 };
 
-export default MahareraInformation;
-
-
+export default MahareraSection;

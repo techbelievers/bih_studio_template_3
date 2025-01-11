@@ -59,7 +59,7 @@ const PropertiesSection = () => {
               boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.2)",
             }}
             transition={{ duration: 0.3 }}
-            onClick={() => (window.location.href = `/properties/${property.property_slug}`)}
+            onClick={() => (window.location.href = `/studios/${property.property_slug}`)}
           >
             <div className={styles.cardImage}>
               <img

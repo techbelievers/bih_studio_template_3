@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import styles from './PropertyDetails.module.css';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import styles from "./PropertyDetails.module.css";
 
 const PropertyDetails = ({ propertyDetails, error }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -17,37 +18,49 @@ const PropertyDetails = ({ propertyDetails, error }) => {
   }
 
   return (
-    <div id="about" className={styles.propertyDetailsContainer}>
-      {/* Clip Path Background */}
-      <div className={styles.clipPathBackground}></div>
+    <section id="about" className={styles.propertyDetailsContainer}>
+      {/* Background Overlay */}
+      <div className={styles.backgroundOverlay}></div>
 
       {/* Header */}
-      <div className={styles.headerCard}>
+      <motion.div 
+        className={styles.headerCard}
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         <h1 className={styles.heading}>{propertyDetails.property_name}</h1>
         <p className={styles.propertyTagline}>
-          {propertyDetails.tagline || 'Luxury Living at its Best'}
+          {propertyDetails.tagline || "Luxury Living at its Best"}
         </p>
-      </div>
+      </motion.div>
 
       {/* Description Section */}
-      <div className={styles.descriptionCard}>
+      <motion.div 
+        className={styles.descriptionCard}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
         <h2 className={styles.sectionHeading}>About the Property</h2>
         <div
-          className={`${styles.description} ${
-            isExpanded ? styles.expanded : ''
-          }`}
+          className={`${styles.description} ${isExpanded ? styles.expanded : ""}`}
           dangerouslySetInnerHTML={{
             __html: isExpanded
               ? propertyDetails.property_description
-              : `${propertyDetails.property_description.slice(0, 2000)}...`,
+              : `${propertyDetails.property_description.slice(0, 1000)}...`,
           }}
         />
-        <button className={styles.readMoreButton} onClick={handleReadMore}>
-          {isExpanded ? 'Read Less' : 'Read More'}
-        </button>
-      </div>
-    
-    </div>
+        <motion.button 
+          className={styles.readMoreButton} 
+          onClick={handleReadMore}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          {isExpanded ? "Read Less" : "Read More"}
+        </motion.button>
+      </motion.div>
+    </section>
   );
 };
 

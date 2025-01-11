@@ -1,10 +1,13 @@
-/* Properties.module.css */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+
+/* Properties Section */
 .propertiesSection {
   padding: 60px 20px;
-  background: linear-gradient(180deg, #F5EFFF, #E5D9F2);
-  color: #333;
+  background: linear-gradient(180deg, #1C3F60, #4A90E2); /* Deep Navy Blue to Royal Blue */
+  color: #F8F9FA; /* Light Silver White */
 }
 
+/* Header */
 .header {
   text-align: center;
   margin-bottom: 40px;
@@ -13,28 +16,31 @@
 
 .heading {
   font-size: 2.5rem;
-  color: #A294F9;
-  font-family: 'Lora', serif;
+  color: #A2D5F2; /* Cool Cyan */
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
   margin-bottom: 10px;
 }
 
 .subheading {
   font-size: 1.2rem;
-  color: #CDC1FF;
-  font-family: 'Lora', serif;
+  color: #F8F9FA; /* Light Silver White */
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
 }
 
+/* Properties Grid */
 .propertiesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 20px;
   animation: slideUp 1s ease-in-out;
 }
 
+/* Property Card */
 .propertyCard {
   background: white;
-  border: 2px solid #CDC1FF;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
@@ -46,29 +52,35 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
+/* Image */
 .cardImage img {
   width: 100%;
-  height: 200px;
+  height: 220px;
   object-fit: cover;
 }
 
+/* Card Content */
 .cardContent {
   padding: 20px;
 }
 
+/* Property Name */
 .propertyName {
-  font-size: 1.5rem;
-  color: #A294F9;
+  font-size: 1.6rem;
+  color: #4A90E2; /* Royal Blue */
   margin-bottom: 10px;
-  font-family: 'Lora', serif;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
 }
 
+/* Builder Name */
 .builderName {
   font-size: 1rem;
   color: #777;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
+/* Property Details */
 .propertyDetails p {
   font-size: 1rem;
   color: #333;
@@ -78,47 +90,32 @@
 .lastUpdated {
   font-size: 0.9rem;
   color: #888;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
+/* View Button */
 .viewButton {
   display: block;
   width: 100%;
-  padding: 10px 20px;
-  background: #A294F9;
+  padding: 12px 20px;
+  background: #4A90E2; /* Royal Blue */
   color: white;
   font-size: 1.1rem;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
-  font-family: 'Lora', serif;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
   transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .viewButton:hover {
-  background: #CDC1FF;
+  background: #A2D5F2; /* Cool Cyan */
+  color: #1C3F60; /* Deep Navy Blue */
   transform: scale(1.05);
 }
 
-.enquireButton {
-  display: inline-block;
-  padding: 10px 20px;
-  background: #A294F9;
-  color: white;
-  font-size: 1rem;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-family: 'Lora', serif;
-  margin-top: 20px;
-  transition: background 0.3s ease, transform 0.3s ease;
-}
-
-.enquireButton:hover {
-  background: #CDC1FF;
-  transform: scale(1.05);
-}
-
+/* Responsive Design */
 @media (max-width: 768px) {
   .heading {
     font-size: 2rem;
@@ -129,7 +126,7 @@
   }
 
   .propertyCard {
-    border-radius: 5px;
+    border-radius: 8px;
   }
 
   .cardContent {
@@ -138,38 +135,22 @@
 
   .viewButton {
     font-size: 1rem;
-    padding: 8px 15px;
+    padding: 10px 15px;
   }
 }
 
 /* Keyframes for animations */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes slideUp {
-  from {
-    transform: translateY(30px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 @keyframes zoomIn {
-  from {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }

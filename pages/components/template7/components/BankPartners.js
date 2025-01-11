@@ -24,41 +24,45 @@ const BankPartner = () => {
     fetchBankData();
   }, []);
 
-  useEffect(() => {
-    const scroll = () => {
-      if (scrollerRef.current) {
-        scrollerRef.current.scrollBy({
-          left: 1,
-          behavior: "smooth",
-        });
-      }
-    };
+  const scrollLeft = () => {
+    if (scrollerRef.current) {
+      scrollerRef.current.scrollBy({ left: -300, behavior: "smooth" });
+    }
+  };
 
-    const interval = setInterval(scroll, 30); // Adjust speed of scrolling
-    return () => clearInterval(interval); // Cleanup interval on component unmount
-  }, [bankData]);
+  const scrollRight = () => {
+    if (scrollerRef.current) {
+      scrollerRef.current.scrollBy({ left: 300, behavior: "smooth" });
+    }
+  };
 
   return (
     <section className={styles.bankPartnerSection}>
-      <div className={styles.contentWrapper}>
+      <div className={styles.header}>
         <h2 className={styles.heading}>{heading}</h2>
         <p className={styles.subheading}>{subheading}</p>
-        <div className={styles.scrollerWrapper} ref={scrollerRef}>
-          <div className={styles.bankScroller}>
-            {bankData.concat(bankData).map((bank, index) => (
-              <div key={`${bank.id}-${index}`} className={styles.bankCard}>
-                <div className={styles.logoContainer}>
-                  <img
-                    src={bank.property_bank_photo || "/default-bank.png"}
-                    alt={bank.bank_name}
-                    className={styles.bankLogo}
-                  />
-                </div>
-                <p className={styles.bankName}>{bank.bank_name}</p>
+      </div>
+      <div className={styles.carouselContainer}>
+        <button className={styles.scrollButton} onClick={scrollLeft}>
+          &#10094;
+        </button>
+        <div className={styles.bankScroller} ref={scrollerRef}>
+          {bankData.map((bank, index) => (
+            <div key={`${bank.id}-${index}`} className={styles.bankCard}>
+              <div className={styles.logoContainer}>
+                <img
+                  src={bank.property_bank_photo || "/default-bank.png"}
+                  alt={bank.bank_name}
+                  className={styles.bankLogo}
+                />
               </div>
-            ))}
-          </div>
+              <p className={styles.bankName}>{bank.bank_name}</p>
+            </div>
+          ))}
         </div>
+        <button className={styles.scrollButton} onClick={scrollRight}>
+          &#10095;
+        </button>
       </div>
     </section>
   );

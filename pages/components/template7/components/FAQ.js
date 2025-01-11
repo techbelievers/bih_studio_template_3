@@ -4,8 +4,8 @@ import styles from "../css/FAQ.module.css";
 
 const FAQ = () => {
   const [faqData, setFaqData] = useState([]);
-  const [heading, setHeading] = useState("");
-  const [subheading, setSubheading] = useState("");
+  const [heading, setHeading] = useState("Frequently Asked Questions");
+  const [subheading, setSubheading] = useState("Find answers to the most common questions.");
   const [activeFAQ, setActiveFAQ] = useState(null);
 
   useEffect(() => {
@@ -13,9 +13,11 @@ const FAQ = () => {
       try {
         const response = await fetch(API.FAQ());
         const data = await response.json();
-        setFaqData(data.faqs);
-        setHeading(data.page[0]?.heading || "FAQ");
-        setSubheading(data.page[0]?.subheading || "");
+        setFaqData(data.faqs || []);
+        if (data.page?.length > 0) {
+          setHeading(data.page[0].heading || "FAQ");
+          setSubheading(data.page[0].subheading || "");
+        }
       } catch (error) {
         console.error("Error fetching FAQ data:", error);
       }
@@ -37,38 +39,26 @@ const FAQ = () => {
           <p className={styles.subheading}>{subheading}</p>
         </div>
 
-        {/* FAQ Grid */}
-        <div className={styles.faqGrid}>
+        {/* FAQ List */}
+        <div className={styles.faqList}>
           {faqData.length > 0 ? (
             faqData.map((faq) => (
-              <div
-                key={faq.id}
-                className={`${styles.card} ${
-                  activeFAQ === faq.id ? styles.active : ""
-                }`}
-              >
-                <div
-                  className={styles.question}
-                  onClick={() => toggleFAQ(faq.id)}
-                >
+              <div key={faq.id} className={styles.faqItem}>
+                <div className={styles.question} onClick={() => toggleFAQ(faq.id)}>
                   {faq.faq_title}
-                  <span className={styles.icon}>
-                    {activeFAQ === faq.id ? "-" : "+"}
+                  <span className={`${styles.icon} ${activeFAQ === faq.id ? styles.active : ""}`}>
+                    {activeFAQ === faq.id ? "−" : "+"}
                   </span>
                 </div>
                 <div
                   className={styles.answer}
-                  style={{
-                    maxHeight: activeFAQ === faq.id ? "150px" : "0",
+                  style={{ 
+                    maxHeight: activeFAQ === faq.id ? "500px" : "0",
                     opacity: activeFAQ === faq.id ? 1 : 0,
-                    transition: "all 0.3s ease-in-out",
+                    padding: activeFAQ === faq.id ? "10px 15px" : "0 15px",
                   }}
                 >
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: faq.faq_content,
-                    }}
-                  ></p>
+                  <p dangerouslySetInnerHTML={{ __html: faq.faq_content }}></p>
                 </div>
               </div>
             ))

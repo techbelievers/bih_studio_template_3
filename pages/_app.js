@@ -88,7 +88,6 @@ const MyApp = ({ Component, pageProps, headerData, error ,propertyDetails , doma
           )}
 
 
-
           {/* Phone Conversion Tracking */}
           {headerData?.data?.phone_conversation_id && headerData?.data?.phone_conversation_number && (
             <>
@@ -106,9 +105,9 @@ const MyApp = ({ Component, pageProps, headerData, error ,propertyDetails , doma
         {/* Conditionally add custom scripts */}
 
         {/* Inject raw HTML directly into Head */}
-      {/* {headerData.data.script_1 && (
-         <div dangerouslySetInnerHTML={{ __html: headerData.data.script_1 }} suppressHydrationWarning />
-      )} */}
+        {/* {headerData.data.script_1 && (
+          <div dangerouslySetInnerHTML={{ __html: headerData.data.script_1 }} suppressHydrationWarning />
+        )} */}
 
   
       {headerData.data.script_1 && (
@@ -177,8 +176,8 @@ MyApp.getInitialProps = async (appContext) => {
     const rawSlug = query.property_slug || (req && req.url.replace(/\/$/, "").split("/").pop()); // Remove trailing slash
     console.log("rawslug:", rawSlug);
 
-    // Validate and extract slug only if the URL contains '/properties'
-    if (req?.url.includes("/properties")) {
+    // Validate and extract slug only if the URL contains '/studios'
+    if (req?.url.includes("/studios")) {
       // Check if the slug matches the expected pattern (adjust regex as per your slug format)
       // const isValidSlug = /^[a-zA-Z0-9_-]+$/.test(rawSlug);
       // if (isValidSlug) {
@@ -192,7 +191,7 @@ MyApp.getInitialProps = async (appContext) => {
     }
 
     if (!slug) {
-      console.log("No valid slug found for '/properties'.");
+      console.log("No valid slug found for '/studios'.");
     }
 
     

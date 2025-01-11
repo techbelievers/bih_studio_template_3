@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { API } from "../../../../../Config";
+import { motion } from "framer-motion";
 import styles from "./PropertyPriceTable.module.css";
 
-const PropertyPriceTable = ({slug}) => {
+const PropertyPriceTable = ({ slug }) => {
   const [propertyPrices, setPropertyPrices] = useState([]);
   const [heading, setHeading] = useState("");
   const [error, setError] = useState(null);
@@ -23,21 +24,29 @@ const PropertyPriceTable = ({slug}) => {
     };
 
     fetchPropertyPrices();
-  }, []);
+  }, [slug]);
 
   return (
     <section id="price" className={styles.priceSection}>
-      {/* <div className={styles.clipPathBackground}></div> */}
+      <div className={styles.backgroundOverlay}></div>
+
       {error && <p className={styles.errorMessage}>{error}</p>}
 
-      <div className={styles.headingContainer}>
-        <h2 className={styles.heading}>
-          {heading}
-        </h2>
-      </div>
+      <motion.div 
+        className={styles.headingContainer} 
+        initial={{ opacity: 0, y: -20 }} 
+        animate={{ opacity: 1, y: 0 }}
+      >
+        <h2 className={styles.heading}>{heading}</h2>
+      </motion.div>
 
       <div className={styles.priceTableContainer}>
-        <table className={styles.priceTable}>
+        <motion.table
+          className={styles.priceTable}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+        >
           <thead>
             <tr>
               <th>Type</th>
@@ -49,7 +58,11 @@ const PropertyPriceTable = ({slug}) => {
           </thead>
           <tbody>
             {propertyPrices.map((price) => (
-              <tr key={price.id}>
+              <motion.tr 
+                key={price.id} 
+                whileHover={{ backgroundColor: "#A2D5F2", scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
                 <td className={styles.noWrap}>
                   <span className={styles.typeIcon}>
                     <img
@@ -64,18 +77,21 @@ const PropertyPriceTable = ({slug}) => {
                 <td>{parseFloat(price.property_carpet_sqm).toFixed(2)}</td>
                 <td>{price.property_carpet_sqft}</td>
                 <td>
-                  <span className={styles.price}>
-                    {price.property_price} {price.price_unit}*
-                  </span>{" "}
-                  - <span className={styles.priceTag}>{price.price_tag}</span>
+                  <span className={styles.price}>{price.property_price} {price.price_unit}*</span> 
+                  <span className={styles.priceTag}>{price.price_tag}</span>
                 </td>
-              </tr>
+              </motion.tr>
             ))}
           </tbody>
-        </table>
-        <div className={styles.disclaimer}>
+        </motion.table>
+
+        <motion.div 
+          className={styles.disclaimer} 
+          initial={{ opacity: 0 }} 
+          animate={{ opacity: 1 }}
+        >
           *Prices are subject to change. Terms and conditions apply.
-        </div>
+        </motion.div>
       </div>
     </section>
   );

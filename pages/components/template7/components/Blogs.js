@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
-import { API } from "../../../../Config"; // Adjust the path as needed
-import styles from "../css/Blogs.module.css"; // Ensure the path is correct
+import React, { useState, useEffect } from "react";
+import { API } from "../../../../Config";
+import styles from "../css/Blogs.module.css";
 import Link from "next/link";
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
   const [heading, setHeading] = useState("");
   const [subheading, setSubheading] = useState("");
-  const sliderRef = useRef(null);
+  const [visibleBlogs, setVisibleBlogs] = useState(6); // Show 6 blogs initially
 
   useEffect(() => {
     const fetchBlogsData = async () => {
@@ -32,22 +32,8 @@ const Blogs = () => {
     return text;
   };
 
-  const scrollLeft = () => {
-    if (sliderRef.current) {
-      sliderRef.current.scrollBy({
-        left: -sliderRef.current.offsetWidth,
-        behavior: "smooth",
-      });
-    }
-  };
-
-  const scrollRight = () => {
-    if (sliderRef.current) {
-      sliderRef.current.scrollBy({
-        left: sliderRef.current.offsetWidth,
-        behavior: "smooth",
-      });
-    }
+  const loadMoreBlogs = () => {
+    setVisibleBlogs((prev) => prev + 3); // Load 3 more blogs on click
   };
 
   return (
@@ -56,50 +42,34 @@ const Blogs = () => {
         <h2 className={styles.blogsHeading}>{heading}</h2>
         <p className={styles.blogsSubheading}>{subheading}</p>
       </div>
-      <div
-        className={`${styles.sliderWrapper} ${
-          blogs.length < 3 ? styles.centerContent : ""
-        }`}
-      >
-        {blogs.length >= 3 && (
-          <button className={`${styles.scrollButton} ${styles.left}`} onClick={scrollLeft}>
-            &#10094;
-          </button>
-        )}
-        <div className={styles.blogsSlider} ref={sliderRef}>
-          {blogs.map((blog) => (
-            <div key={blog.post_slug} className={styles.blogCard}>
-              <div className={styles.cardContent}>
-                <div className={styles.imageWrapper}>
-                  <img
-                    src={blog.post_photo}
-                    alt={blog.post_title}
-                    className={styles.blogImage}
-                  />
-                </div>
-                <div className={styles.textOverlay}>
-                  <h3 className={styles.blogTitle}>{blog.post_title}</h3>
-                  <p className={styles.blogDescription}>
-                    {truncateText(blog.post_content_short, 100)}
-                  </p>
-                  <p className={styles.postDate}>
-                    Posted On:{" "}
-                    <span>{new Date(blog.created_at).toISOString().split("T")[0]}</span>
-                  </p>
-                  <Link href={`/blogs/${blog.post_slug}`} legacyBehavior>
-                    <a className={styles.readMore}>Read More</a>
-                  </Link>
-                </div>
-              </div>
+
+      <div className={styles.blogsGrid}>
+        {blogs.slice(0, visibleBlogs).map((blog) => (
+          <div key={blog.post_slug} className={styles.blogCard}>
+            <div className={styles.imageWrapper}>
+              <img src={blog.post_photo} alt={blog.post_title} className={styles.blogImage} />
             </div>
-          ))}
-        </div>
-        {blogs.length >= 3 && (
-          <button className={`${styles.scrollButton} ${styles.right}`} onClick={scrollRight}>
-            &#10095;
-          </button>
-        )}
+            <div className={styles.textOverlay}>
+              <h3 className={styles.blogTitle}>{blog.post_title}</h3>
+              <p className={styles.blogDescription}>{truncateText(blog.post_content_short, 100)}</p>
+              <p className={styles.postDate}>
+                Posted On: <span>{new Date(blog.created_at).toISOString().split("T")[0]}</span>
+              </p>
+              <Link href={`/blogs/${blog.post_slug}`} legacyBehavior>
+                <a className={styles.readMore}>Read More</a>
+              </Link>
+            </div>
+          </div>
+        ))}
       </div>
+
+      {visibleBlogs < blogs.length && (
+        <div className={styles.loadMoreWrapper}>
+          <button className={styles.loadMoreButton} onClick={loadMoreBlogs}>
+            Load More
+          </button>
+        </div>
+      )}
     </section>
   );
 };

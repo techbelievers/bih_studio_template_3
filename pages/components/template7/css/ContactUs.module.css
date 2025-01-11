@@ -1,58 +1,49 @@
-/* General Section Styles */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+
+/* Contact Us Section */
 .contactUsSection {
-  padding: 50px 20px;
-  background: #f8f9fa;
-  font-family: "Playfair Display", serif; /* Luxurious Font */
-}
-
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-/* Details Section */
-.details {
-  flex: 1;
-  min-width: 300px;
-  text-align: center;
-}
-
-.heading {
-  font-size: 2.5rem;
-  color: #e63946; /* Luxurious Red Theme */
-  margin-bottom: 15px;
-}
-
-.description {
-  font-size: 1.2rem;
-  color: #555;
-  margin-bottom: 20px;
-}
-
-.info {
-  font-size: 1rem;
+  font-family: "Inter", sans-serif;
   color: #333;
 }
 
-/* Form Section */
-.form {
-  flex: 1;
-  min-width: 300px;
-  background: #fff;
-  padding: 30px;
-  border: 2px solid #e63946;
-  border-radius: 10px;
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+/* Hero Section */
+.heroBanner {
+  text-align: center;
+  background: linear-gradient(135deg, #1C3F60, #4A90E2); /* Deep Navy to Royal Blue */
+  padding: 70px 20px;
+  color: #F8F9FA; /* Light Silver White */
+  animation: fadeIn 1s ease-in-out;
+}
+
+.heroBanner h1 {
+  font-size: 2.5em;
+  font-weight: 700;
+  margin-bottom: 10px;
+  animation: slideUp 1s ease-in-out;
+}
+
+.heroBanner p {
+  font-size: 1.2em;
+  color: #A2D5F2; /* Cool Cyan */
+}
+
+/* Contact Form */
+.contactFormSection {
+  background: #FFFFFF;
+  padding: 50px;
+  max-width: 700px;
+  margin: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  animation: fadeInUp 1s ease-in-out;
 }
 
 .formHeading {
   font-size: 2rem;
-  color: #333;
-  margin-bottom: 20px;
-  text-align: center;
+  color: #1C3F60; /* Deep Navy */
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
 .inputGroup {
@@ -61,91 +52,89 @@
   margin-bottom: 15px;
 }
 
-.inputWrapper {
+.inputGroup input,
+.textarea {
   width: 100%;
-  margin-bottom: 15px;
-}
-
-.input,
-.textarea {
-  width: 90%;
-  padding: 12px 15px;
+  padding: 12px;
+  border-radius: 6px;
   border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 1rem;
   transition: border-color 0.3s ease;
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.05);
+  font-size: 1rem;
 }
 
-.input:focus,
+.inputGroup input:focus,
 .textarea:focus {
-  border-color: #e63946;
-  outline: none;
-  box-shadow: 0px 3px 6px rgba(230, 57, 70, 0.3);
+  border-color: #4A90E2; /* Royal Blue */
 }
 
 .textarea {
-  min-height: 120px;
+  height: 120px;
   resize: none;
 }
 
+/* Submit Button */
 .submitButton {
-  width: 100%;
-  padding: 15px;
-  background: #e63946;
+  background: #4A90E2; /* Royal Blue */
   color: #fff;
+  padding: 12px 20px;
   border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  font-weight: bold;
-  text-transform: uppercase;
   cursor: pointer;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: 600;
   transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .submitButton:hover {
-  background: #c72736;
-  transform: translateY(-2px);
+  background: #A2D5F2; /* Cool Cyan */
+  color: #1C3F60; /* Deep Navy */
+  transform: scale(1.05);
 }
 
-.submitButton:disabled {
-  background: #ddd;
-  cursor: not-allowed;
-}
-
-/* Success and Error Messages */
+/* Success Message */
 .successMessage {
-  background: #eaf7e8;
-  color: #4caf50;
-  padding: 15px;
-  border: 2px solid #4caf50;
-  border-radius: 5px;
+  background: #D4EDDA;
+  color: #155724;
+  padding: 12px;
   margin-bottom: 15px;
-  text-align: center;
-}
-
-.errorMessage {
-  color: #e63946;
-  margin-bottom: 15px;
-  text-align: center;
+  border-radius: 6px;
+  font-weight: 600;
 }
 
 .closeButton {
-  background: none;
+  background: #A2D5F2;
+  color: #1C3F60;
   border: none;
-  color: #e63946;
-  font-size: 1rem;
+  padding: 6px 12px;
+  margin-left: 10px;
+  border-radius: 5px;
   cursor: pointer;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-  }
+.closeButton:hover {
+  background: #4A90E2;
+  color: #F8F9FA;
+}
 
-  .inputGroup {
-    flex-direction: column;
-    gap: 10px;
-  }
+/* Keyframes for animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .heroBanner h1 { font-size: 2rem; }
+  .heroBanner p { font-size: 1rem; }
+  .formHeading { font-size: 1.8rem; }
 }

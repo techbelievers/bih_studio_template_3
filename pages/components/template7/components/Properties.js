@@ -1,4 +1,3 @@
-// PropertiesSection.js
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
@@ -37,11 +36,7 @@ const PropertiesSection = () => {
   }
 
   if (error) {
-    return (
-      <div className={styles.propertiesSection}>
-        Error loading properties: {error}
-      </div>
-    );
+    return <div className={styles.propertiesSection}>Error: {error}</div>;
   }
 
   return (
@@ -60,7 +55,7 @@ const PropertiesSection = () => {
               boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.3)",
             }}
             transition={{ duration: 0.3 }}
-            onClick={() => (window.location.href = `/properties/${property.property_slug}`)}
+            onClick={() => (window.location.href = `/studios/${property.property_slug}`)}
           >
             <div className={styles.cardImage}>
               <img
@@ -72,15 +67,9 @@ const PropertiesSection = () => {
               <h3 className={styles.propertyName}>{property.property_name}</h3>
               <p className={styles.builderName}>By: {property.builder_name}</p>
               <div className={styles.propertyDetails}>
-                <p>
-                  <strong>Type:</strong> {property.property_type_price_range}
-                </p>
-                <p>
-                  <strong>Size:</strong> {property.property_price_range}
-                </p>
-                <p>
-                  <strong>Price:</strong> ₹{property.property_price} Lakhs
-                </p>
+                <p><strong>Type:</strong> {property.property_type_price_range}</p>
+                <p><strong>Size:</strong> {property.property_price_range}</p>
+                <p><strong>Price:</strong> ₹{property.property_price} Lakhs</p>
               </div>
               <p className={styles.lastUpdated}>
                 <em>Last Updated: {property.last_updated}</em>

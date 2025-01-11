@@ -1,139 +1,142 @@
-/* General Container */
-.showcaseContainer {
-  padding: 40px 20px;
-  background: #f9f9f9;
-  font-family: "Lora", serif; /* Luxurious font */
-}
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
 
-/* Section Headers */
-.heading {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #2c3e50;
+/* Gallery Section */
+.gallerySection {
+  background: #F8F9FA; /* Deep Navy Blue */
+  padding: 80px 20px;
   text-align: center;
-  margin-bottom: 10px;
-  position: relative;
 }
 
-.heading::after {
-  content: "";
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 4px;
-  background: #e63946;
-  border-radius: 2px;
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Heading */
+.heading {
+  font-family: "Inter", sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: #304d6b; /* Light Silver White */
+  margin-bottom: 10px;
 }
 
 .subheading {
-  font-size: 1rem;
-  color: #555;
-  text-align: center;
-  margin-bottom: 20px;
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  color: #000000; /* Cool Cyan */
+  font-weight: 400;
+  margin-bottom: 30px;
 }
 
-/* Gallery Grid */
-.galleryGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-}
-
-.galleryItem {
+/* Main Image Display */
+.mainImageContainer {
   position: relative;
-  cursor: pointer;
-  border-radius: 12px;
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.galleryItem:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-.imageWrapper {
-  width: 100%;
-  height: 250px;
-  overflow: hidden;
-}
-
-.image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.image:hover {
-  transform: scale(1.1);
-}
-
-.clipOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.2);
-  transition: opacity 0.3s ease;
-}
-
-/* Modal */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  border-radius: 15px;
+  border: 4px solid #4A90E2; /* Royal Blue */
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
 }
 
-.modalContent {
-  position: relative;
-  background: #fff;
-  padding: 20px;
-  border-radius: 12px;
-  max-width: 90%;
-}
-
-.modalImage {
+.mainImage {
   width: 100%;
-  max-width: 500px;
   height: auto;
+  display: block;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
 }
 
-.closeButton {
+/* Navigation Buttons */
+.prevButton,
+.nextButton {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  background: #e63946;
-  color: white;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 30px;
+  color: #F8F9FA; /* Light Silver White */
+  background: rgba(0, 0, 0, 0.4);
   border: none;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
   cursor: pointer;
-  font-size: 1.2rem;
+  padding: 10px;
+  transition: 0.3s;
+  z-index: 10;
 }
 
-/* Video Wrapper */
-.videoWrapper {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+.prevButton {
+  left: 10px;
 }
 
-.videoItem {
-  position: relative;
-  overflow: hidden;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+.nextButton {
+  right: 10px;
+}
+
+.prevButton:hover,
+.nextButton:hover {
+  background: #4A90E2; /* Royal Blue */
+  color: #F8F9FA;
+}
+
+/* Thumbnail Container */
+.thumbnailContainer {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+  overflow-x: auto;
+  padding: 10px 0;
+  border-radius: 10px;
+}
+
+.thumbnail {
+  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  border: 3px solid transparent;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.thumbnail:hover {
+  transform: scale(1.1);
+}
+
+.activeThumbnail {
+  border-color: #A2D5F2; /* Cool Cyan */
+  transform: scale(1.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .mainImageContainer {
+    max-width: 100%;
+  }
+
+  .prevButton,
+  .nextButton {
+    font-size: 25px;
+  }
+
+  .thumbnail {
+    width: 60px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 480px) {
+  .thumbnail {
+    width: 50px;
+    height: 40px;
+  }
+
+  .prevButton,
+  .nextButton {
+    font-size: 20px;
+  }
 }

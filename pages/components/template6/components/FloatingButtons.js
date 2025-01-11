@@ -34,9 +34,11 @@ const FloatingButtons = (slug) => {
   const handleSendWhatsApp = (e) => {
     e.preventDefault();
     if (whatsappMessage.trim()) {
-      const whatsappUrl = `https://wa.me/${footerData.g_setting.footer_phone}?text=${encodeURIComponent(
-        whatsappMessage
-      )}`;
+      const fullMessage = `Property Enquiry for: ${slug.slug}\n\nMessage: ${whatsappMessage}`;
+      const whatsappUrl = `https://wa.me/${footerData.g_setting.footer_phone}?text=${encodeURIComponent(fullMessage)}`;
+      // const whatsappUrl = `https://wa.me/${footerData.g_setting.footer_phone}?text=${encodeURIComponent(
+      //   whatsappMessage
+      // )}`;
       window.open(whatsappUrl, "_blank");
       setIsWhatsAppPopupOpen(false);
       setWhatsappMessage(""); // Reset the message

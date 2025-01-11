@@ -3,6 +3,7 @@ import axios from 'axios';
 import { API, DEFAULT_DOMAIN } from '../../../Config';
 import Loader from '../../components/loader/Loader';
 import Template6 from '../../components/template6/Property';
+import Template7 from '../../components/template7/Property';
 
 
 
@@ -14,6 +15,15 @@ const App = ({ templateId, propertyDetails, headerData, galleryData, error }) =>
     case '6':
       return (
         <Template6
+          propertyDetails={propertyDetails}
+          headerData={headerData}
+          galleryData={galleryData}
+        />
+      );
+
+      case '7':
+      return (
+        <Template7
           propertyDetails={propertyDetails}
           headerData={headerData}
           galleryData={galleryData}
