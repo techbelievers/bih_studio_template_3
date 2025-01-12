@@ -260,11 +260,7 @@ const GalleryWithEnquiry = ({ propertyDetails, slug  , servicesData:intialServic
 
       {/* Right Column: Contact Form */}
       <div className={styles.contactFormSection}>
-      <h2 className={styles.heading}>
-          {propertyDetails.property_name} - I'm Interested
-        </h2>
-        {/* Builder Logo */}
-  {servicesData.builder_logo && (
+      {servicesData.builder_logo && (
     <div className={styles.builderLogoContainer}>
       <img
         src={servicesData.builder_logo}
@@ -273,6 +269,11 @@ const GalleryWithEnquiry = ({ propertyDetails, slug  , servicesData:intialServic
       />
     </div>
   )}
+      <h2 className={styles.heading}>
+      I'm Interested in {propertyDetails.property_name}
+        </h2>
+        {/* Builder Logo */}
+ 
         {/* <p className={styles.subheading}>
           Contact us to learn more about these properties.
         </p> */}
