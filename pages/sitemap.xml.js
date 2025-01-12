@@ -71,7 +71,7 @@ export const getServerSideProps = async ({ req ,res }) => {
 
           return `
             <url>
-              <loc>https://${websiteDomain}/properties/${property_details.property_slug}</loc>
+              <loc>https://${websiteDomain}/studios/${property_details.property_slug}</loc>
               <changefreq>weekly</changefreq>
               <priority>0.8</priority>
             </url>
