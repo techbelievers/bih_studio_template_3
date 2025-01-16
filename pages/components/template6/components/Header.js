@@ -49,7 +49,7 @@ const Header = ({headerData: initialHeaderData , slug}) => {
   }
 
   // Check if the current page is a properties page
-  const isPropertiesPage = router.pathname.includes("/properties");
+  const isPropertiesPage = router.pathname.includes("/studios");
   // const isHomePage = router.pathname === "/" 
   const isHomePage = true;
 

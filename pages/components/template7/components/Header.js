@@ -33,7 +33,7 @@ const Header = ({ headerData: initialHeaderData }) => {
   }, []);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
-  const isPropertiesPage = router.pathname.includes("/properties");
+  const isPropertiesPage = router.pathname.includes("/studios");
   const isHomePage = router.pathname === "/";
 
   return (
