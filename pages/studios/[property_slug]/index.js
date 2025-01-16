@@ -12,7 +12,7 @@ const App = ({ templateId, propertyDetails, headerData, galleryData, error }) =>
 
   // Conditional rendering based on templateId
   switch (templateId) {
-    case '6':
+    case '63':
       return (
         <Template6
           propertyDetails={propertyDetails}
@@ -21,7 +21,7 @@ const App = ({ templateId, propertyDetails, headerData, galleryData, error }) =>
         />
       );
 
-      case '7':
+      case '6':
       return (
         <Template7
           propertyDetails={propertyDetails}

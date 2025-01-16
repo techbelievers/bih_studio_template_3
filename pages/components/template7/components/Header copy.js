@@ -33,7 +33,7 @@ const Header = ({ headerData: initialHeaderData }) => {
   }, []);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
-  const isPropertiesPage = router.pathname.includes("/properties");
+  const isPropertiesPage = router.pathname.includes("/studios");
   const isHomePage = router.pathname === "/";
 
   return (
@@ -95,51 +95,31 @@ const Header = ({ headerData: initialHeaderData }) => {
       </div>
 
       {/* Mobile Menu Animation */}
-    {/* Mobile Menu Animation */}
-    <AnimatePresence>
-  {menuOpen && (
-    <motion.div
-      className={styles.mobileMenu}
-      initial={{ x: "100%" }}
-      animate={{ x: 0 }}
-      exit={{ x: "100%" }}
-      transition={{ duration: 0.3 }}
-    >
-      {/* Close Button */}
-      <button className={styles.closeButton} onClick={toggleMenu}>
-        <FaTimes className={styles.closeIcon} />
-      </button>
-      <ul>
-        <li><a href="/">Home</a></li>
-        {isPropertiesPage && (
-          <>
-            <li><a href="#about">Properties</a></li>
-            <li><a href="#price">Price</a></li>
-            <li><a href="#amenities">Amenities</a></li>
-            <li><a href="#layouts">Layouts</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#location">Location</a></li>
-          </>
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            className={styles.mobileMenu}
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ duration: 0.3 }}
+          >
+            <ul>
+              <li><a href="/">Home</a></li>
+              {isPropertiesPage && (
+                <>
+                  <li><a href="#about">About</a></li>
+                  <li><a href="#price">Price</a></li>
+                  <li><a href="#amenities">Amenities</a></li>
+                  <li><a href="#layouts">Layouts</a></li>
+                  <li><a href="#gallery">Gallery</a></li>
+                  <li><a href="#location">Location</a></li>
+                </>
+              )}
+            </ul>
+          </motion.div>
         )}
-       {isHomePage && !isPropertiesPage &&(
-          <>
-           <li>
-            <a href="#properties">Properties</a>
-          </li>
-          <li>
-            <a href="#blogs">Blogs</a>
-          </li>
-          <li>
-           <a href="#faq">FAQ</a>
-         </li>
-          </>
-         )}
-      </ul>
-    </motion.div>
-  )}
-</AnimatePresence>
-
-
+      </AnimatePresence>
     </header>
   );
 };

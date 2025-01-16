@@ -42,7 +42,7 @@ function App({ propertyDetails }) {
       </Suspense>
 
       {/* Always loaded */}
-      <FloatingButtons />
+      <FloatingButtons  slug={propertyDetails.property_website}/>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { API } from "../../../../Config";
 import { FaWhatsapp, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 import styles from "../css/FloatingButtons.module.css";
 
-const FloatingButtons = (slug) => {
+const FloatingButtons = (slug , websiteDomain) => {
   const [footerData, setFooterData] = useState(null);
   const [isContactFormOpen, setIsContactFormOpen] = useState(false);
   const [isWhatsAppPopupOpen, setIsWhatsAppPopupOpen] = useState(false);
@@ -34,7 +34,9 @@ const FloatingButtons = (slug) => {
   const handleSendWhatsApp = (e) => {
     e.preventDefault();
     if (whatsappMessage.trim()) {
-      const fullMessage = `Property Enquiry for: ${slug.slug}\n\nMessage: ${whatsappMessage}`;
+      const domainName = websiteDomain.websiteDomain;
+      const slugValue = slug.slug && slug.slug !== "undefined" ? slug.slug : domainName;
+      const fullMessage = `Property Enquiry for: ${slugValue}\n\nMessage: ${whatsappMessage}`;
       const whatsappUrl = `https://wa.me/${footerData.g_setting.footer_phone}?text=${encodeURIComponent(fullMessage)}`;
       // const whatsappUrl = `https://wa.me/${footerData.g_setting.footer_phone}?text=${encodeURIComponent(
       //   whatsappMessage
