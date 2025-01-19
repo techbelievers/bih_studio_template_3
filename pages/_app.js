@@ -2,7 +2,8 @@
 import './components/loader/Loader.module.css'; // Ensure this file exists
 import './index.css';
 import Head from 'next/head';
-import React from 'react';
+// import React from 'react';
+import React, { useEffect, useState } from "react";
 import AppTemplate from './AppTemplate';
 import axios from 'axios';
 import { API, DEFAULT_DOMAIN } from '../Config';
@@ -10,6 +11,30 @@ import App from 'next/app'; // Import the default App from Next.js
 
 const MyApp = ({ Component, pageProps, headerData, error ,propertyDetails , domain ,slug}) => {
   // Show loading state until the header data is fetched
+
+  useEffect(() => {
+    // Disable right-click
+    const disableRightClick = (event) => {
+      event.preventDefault();
+    };
+
+    // Disable copy, cut, and paste
+    const disableCopyCut = (event) => {
+      event.preventDefault();
+    };
+
+    document.addEventListener('contextmenu', disableRightClick);
+    document.addEventListener('copy', disableCopyCut);
+    document.addEventListener('cut', disableCopyCut);
+
+    // Cleanup event listeners on unmount
+    return () => {
+      document.removeEventListener('contextmenu', disableRightClick);
+      document.removeEventListener('copy', disableCopyCut);
+      document.removeEventListener('cut', disableCopyCut);
+    };
+  }, []);
+
   if (!headerData && !error) {
     return <div>Loading...App</div>; // Replace with your Loader component if needed
   }
