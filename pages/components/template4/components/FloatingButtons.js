@@ -5,7 +5,7 @@ import { FaWhatsapp, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 import EnquirePopup from "./EnquirePopup";
 import styles from "../css/FloatingButtons.module.css";
 
-const FloatingButtons = () => {
+const FloatingButtons = ({name}) => {
   const [footerData, setFooterData] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
@@ -27,7 +27,7 @@ const FloatingButtons = () => {
         <div className={styles.bottomNav}>
           {/* WhatsApp Button */}
           <a
-            href={`https://wa.me/${footerData.g_setting.footer_phone}`}
+             href={`https://wa.me/${footerData.g_setting.footer_phone}?text=${encodeURIComponent(`I Am Interested in ${name}`)}`}
             className={`${styles.navButton} ${styles.whatsapp}`}
             target="_blank"
             rel="noopener noreferrer"

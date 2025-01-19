@@ -52,7 +52,7 @@ function App({ propertyDetails }) {
             <Blogs />
             <FAQ />
             <Footer />
-            <FloatingButtons />
+            <FloatingButtons name={propertyDetails.property_name} />
           </div>
         // } />
       //  <Route path="/blogs/:post_slug" component={BlogDetail} />

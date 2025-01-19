@@ -260,10 +260,10 @@ const GalleryWithEnquiry = ({ propertyDetails, slug  , servicesData:intialServic
 
       {/* Right Column: Contact Form */}
       <div className={styles.contactFormSection}>
-      {servicesData.builder_logo && (
+      {servicesData.property_builder_photo && (
     <div className={styles.builderLogoContainer}>
       <img
-        src={servicesData.builder_logo}
+        src={servicesData.property_builder_photo}
         alt={servicesData.builder_name}
         className={styles.builderLogo}
       />
