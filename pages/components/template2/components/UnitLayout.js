@@ -44,15 +44,26 @@ const UnitLayout = () => {
   if (loading) return <div className={styles.loader}>Loading...</div>;
   if (error) return <div className={styles.error}>{error}</div>;
 
+  // const settings = {
+  //   dots: true,
+  //   infinite: true,
+  //   speed: 500,
+  //   slidesToShow: 1,
+  //   slidesToScroll: 1,
+  //   autoplay: true,
+  //   autoplaySpeed: 3000,
+  //   arrows: true,
+  // };
+
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: unitLayoutData.length > 1, // Only enable infinite scrolling if more than 1 slide
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: unitLayoutData.length > 1, // Only autoplay if more than 1 slide
     autoplaySpeed: 3000,
-    arrows: true,
+    arrows: unitLayoutData.length > 1, // Show arrows only if more than 1 slide
   };
 
   return (
@@ -88,6 +99,8 @@ const UnitLayout = () => {
           </div>
         ))}
       </Slider>
+
+
 
       {/* Modal for Image */}
       {isModalOpen && (
