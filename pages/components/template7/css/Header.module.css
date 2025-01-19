@@ -37,6 +37,12 @@
   gap: 20px;
 }
 
+/* .navMenu li {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+} */
+
 .navMenu a {
   text-decoration: none;
   color: #F8F9FA;
@@ -97,6 +103,12 @@
 .mobileMenu ul {
   list-style: none;
   padding: 0;
+}
+
+
+.mobileMenu li {
+  list-style: none;
+  padding: 10px;
 }
 
 .mobileMenu a {
