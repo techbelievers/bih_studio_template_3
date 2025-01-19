@@ -77,7 +77,7 @@ const MyApp = ({ Component, pageProps, headerData, error ,propertyDetails , doma
         <meta property="og:description" content={headerData.data.og_description} />
         <meta property="og:image" content={headerData.data?.og_image || ''} />
         <meta property="og:type" content={headerData.data.og_type} />
-        <meta property="og:url" content={canonicalUrl} />
+        {/* <meta property="og:url" content={canonicalUrl} /> */}
         <link rel="canonical" href={canonicalUrl} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href={headerData.data.favicon} />
