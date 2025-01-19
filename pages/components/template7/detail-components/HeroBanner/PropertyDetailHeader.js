@@ -21,7 +21,19 @@ const PropertyDetails = ({ propertyDetails, servicesData }) => {
         transition={{ duration: 0.6 }}
       >
         {[
-          { icon: "🏗️", label: "Builder", value: servicesData?.builder_name || "Not Available" },
+          // { icon: "🏗️", label: "Builder", value: servicesData?.builder_name || "Not Available" },
+          {icon: servicesData?.property_builder_photo ? (
+            <img height={50}
+              src={servicesData.property_builder_photo}
+              alt="Builder Logo"
+              className={styles.builderImage}
+            />
+          ) : (
+            "🏗️" // Default emoji if no image is available
+          ),
+          label: "Builder",
+          value: servicesData?.builder_name || "Not Available",
+        },
           { icon: "📍", label: "Location", value: servicesData?.location || "Not Available" },
           { icon: "🏡", label: "Property Type", value: servicesData?.property_type_price_range_text || "Not Available" },
           { icon: "📏", label: "Area", value: servicesData?.property_area_min_max || "Not Available" },
