@@ -41,7 +41,11 @@ const ContactSection = ({slug}) => {
       setError("Failed to send message. Please try again.");
     }
   };
-
+  const closeThankYou = () => {
+    setSubmitSuccess(false);
+    onClose();
+  };
+  
   return (
     <section id="contact" className={styles.contactSection}>
       <div className={styles.container}>
