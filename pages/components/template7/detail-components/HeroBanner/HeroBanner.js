@@ -14,6 +14,7 @@ const HeroBanner = ({ propertyDetails, slug }) => {
     email_id: "",
     phone_number: "",
     message: "",
+    note:""
   });
 
   // Fetch Gallery Data from API
@@ -43,6 +44,7 @@ const HeroBanner = ({ propertyDetails, slug }) => {
   const handleContactFormSubmit = async (e) => {
     e.preventDefault();
     try {
+      formData.note =slug;
       await axios.post(API.postContactUs, formData);
       alert("Message sent successfully!");
       setIsContactFormOpen(false);
@@ -52,6 +54,7 @@ const HeroBanner = ({ propertyDetails, slug }) => {
         email_id: "",
         phone_number: "",
         message: "",
+        note:"",
       });
     } catch (error) {
       console.error("Error submitting contact form:", error);

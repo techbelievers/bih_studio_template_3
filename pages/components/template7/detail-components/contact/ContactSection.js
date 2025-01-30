@@ -51,7 +51,21 @@ const ContactSection = ({slug}) => {
         </p>
 
         {/* Success Message */}
-        {isSubmitted && <p className={styles.successMessage}>Message sent successfully!</p>}
+        {/* { && <p className={styles.successMessage}>Message sent successfully!</p>} */}
+        {isSubmitted && (
+        <div className={styles.thankYouPopup}>
+          <div className={styles.thankYouContent}>
+            <h2>Thank You!</h2>
+            <p>
+              Your message has been sent successfully. We will get back to you
+              shortly.
+            </p>
+            <button onClick={closeThankYou} className={styles.closeButton}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
         {error && <p className={styles.errorMessage}>{error}</p>}
 
         {/* Contact Form */}
@@ -102,7 +116,6 @@ const ContactSection = ({slug}) => {
             placeholder="Your Message"
             value={formData.message}
             onChange={handleChange}
-            required
             className={styles.textArea}
           ></textarea>
 
