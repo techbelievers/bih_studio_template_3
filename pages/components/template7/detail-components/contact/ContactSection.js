@@ -43,7 +43,7 @@ const ContactSection = ({slug}) => {
   };
   const closeThankYou = () => {
     setIsSubmitted(false);
-    onClose();
+    // onClose();
   };
 
   return (
