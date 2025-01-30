@@ -42,10 +42,10 @@ const ContactSection = ({slug}) => {
     }
   };
   const closeThankYou = () => {
-    setSubmitSuccess(false);
+    setIsSubmitted(false);
     onClose();
   };
-  
+
   return (
     <section id="contact" className={styles.contactSection}>
       <div className={styles.container}>
