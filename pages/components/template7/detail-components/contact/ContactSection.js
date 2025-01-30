@@ -26,6 +26,7 @@ const ContactSection = ({slug}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      formData.note =slug;
       await axios.post(API.postContactUs, formData);
       setIsSubmitted(true);
       setFormData({
@@ -34,7 +35,7 @@ const ContactSection = ({slug}) => {
         email_id: "",
         phone_number: "",
         message: "",
-        note: slug.slug
+        note: ""
       });
     } catch (error) {
       console.error("Error submitting contact form:", error);
