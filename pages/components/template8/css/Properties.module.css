@@ -1,0 +1,110 @@
+/* Properties.module.css */
+
+.propertiesSection {
+  padding: 50px 10%;
+  background: linear-gradient(135deg, #f5efff, #e5d9f2);
+  text-align: center;
+}
+
+.header {
+  margin-bottom: 40px;
+}
+
+.heading {
+  font-size: 2.5rem;
+  color: #a294f9;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.subheading {
+  font-size: 1.2rem;
+  color: #7b68ee;
+  margin-top: 10px;
+}
+
+.propertiesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  justify-content: center;
+}
+
+.propertyCard {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0px 10px 30px rgba(162, 148, 249, 0.2);
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.propertyCard:hover {
+  transform: scale(1.03);
+  box-shadow: 0px 15px 40px rgba(162, 148, 249, 0.3);
+}
+
+.cardImage img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.cardContent {
+  padding: 20px;
+  text-align: left;
+}
+
+.propertyName {
+  font-size: 1.5rem;
+  color: #5a4fcf;
+  font-weight: bold;
+}
+
+.builderName {
+  font-size: 1rem;
+  color: #7b68ee;
+  margin-top: 5px;
+}
+
+.propertyDetails {
+  margin: 15px 0;
+}
+
+.propertyDetails p {
+  margin: 5px 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.lastUpdated {
+  font-size: 0.9rem;
+  color: #888;
+  margin-top: 10px;
+}
+
+.viewButton {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  font-size: 1rem;
+  color: white;
+  background: linear-gradient(90deg, #a294f9, #7b68ee);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.viewButton:hover {
+  background: linear-gradient(90deg, #7b68ee, #5a4fcf);
+  transform: scale(1.05);
+}
+
+.loading,
+.error {
+  font-size: 1.2rem;
+  color: #5a4fcf;
+  text-align: center;
+  padding: 20px;
+}

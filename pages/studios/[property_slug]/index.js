@@ -4,6 +4,7 @@ import { API, DEFAULT_DOMAIN } from '../../../Config';
 import Loader from '../../components/loader/Loader';
 import Template6 from '../../components/template6/Property';
 import Template7 from '../../components/template7/Property';
+import Template8 from '../../components/template8/Property';
 
 
 
@@ -24,6 +25,15 @@ const App = ({ templateId, propertyDetails, headerData, galleryData, error }) =>
       case '7':
       return (
         <Template7
+          propertyDetails={propertyDetails}
+          headerData={headerData}
+          galleryData={galleryData}
+        />
+      );
+
+      case '8':
+      return (
+        <Template8
           propertyDetails={propertyDetails}
           headerData={headerData}
           galleryData={galleryData}

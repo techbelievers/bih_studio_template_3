@@ -1,0 +1,149 @@
+/* EnquirePopup.module.css */
+
+.enquirePopup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 450px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -55%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.enquirePopupClose {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #555;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.enquirePopupClose:hover {
+  color: #a294f9;
+}
+
+.enquirePopupLogo {
+  display: block;
+  max-width: 120px;
+  margin: 0 auto 10px;
+}
+
+.enquireNowHeading {
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.enquireForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.enquireForm input,
+.enquireForm textarea {
+  width: 95%;
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+.enquireForm input:focus,
+.enquireForm textarea:focus {
+  border-color: #a294f9;
+  outline: none;
+  box-shadow: 0 0 5px rgba(162, 148, 249, 0.5);
+}
+
+.enquireForm textarea {
+  resize: none;
+  min-height: 80px;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 12px;
+  background: #a294f9;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.submitButton:hover {
+  background: #8c82e0;
+}
+
+.submitButton:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.thankYouPopup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  padding: 25px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.thankYouContent h2 {
+  font-size: 22px;
+  color: #4CAF50;
+  margin-bottom: 10px;
+}
+
+.thankYouContent p {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.closeButton {
+  padding: 10px 20px;
+  font-size: 14px;
+  background: #a294f9;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.closeButton:hover {
+  background: #8c82e0;
+}

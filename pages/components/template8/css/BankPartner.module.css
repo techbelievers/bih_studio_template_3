@@ -1,0 +1,135 @@
+.bankPartnerSection {
+  width: 100%;
+  text-align: center;
+  padding: 40px 20px;
+  background: #f5efff; /* Matches your preferred color theme */
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+.heading {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #5a48a5; /* Luxurious color */
+  margin-bottom: 10px;
+}
+
+.subheading {
+  font-size: 1.2rem;
+  color: #7d6bb0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.carouselContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  max-width: 90%;
+  margin: auto;
+}
+
+.bankScroller {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 20px;
+  padding: 10px;
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+  -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+}
+
+/* Hide scrollbar for WebKit browsers */
+.bankScroller::-webkit-scrollbar {
+  display: none;
+}
+
+.bankCard {
+  flex: 0 0 auto;
+  width: 180px;
+  height: 220px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.bankCard:hover {
+  transform: scale(1.05);
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+}
+
+.bankLogo {
+  max-width: 100%;
+  max-height: 100px;
+  object-fit: contain;
+}
+
+.bankName {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #5a48a5;
+  margin-top: 10px;
+}
+
+.scrollButton {
+  background: #a294f9;
+  color: white;
+  border: none;
+  font-size: 24px;
+  padding: 10px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.scrollButton:hover {
+  background: #5a48a5;
+}
+
+.scrollButton:first-of-type {
+  left: -30px;
+}
+
+.scrollButton:last-of-type {
+  right: -30px;
+}
+
+/* Hide scroll buttons on smaller screens if scrolling is enabled */
+@media (max-width: 768px) {
+  .scrollButton {
+    display: none;
+  }
+
+  .bankScroller {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .bankCard {
+    width: 150px;
+    height: 200px;
+  }
+}
+
+.noData {
+  font-size: 1.2rem;
+  color: #7d6bb0;
+  text-align: center;
+  margin: 20px 0;
+}

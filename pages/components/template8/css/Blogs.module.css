@@ -1,0 +1,147 @@
+.blogsSection {
+  width: 100%;
+  padding: 60px 20px;
+  background: #f5efff; /* Matches your luxury theme */
+  text-align: center;
+}
+
+.header {
+  margin-bottom: 30px;
+}
+
+.heading {
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #5a48a5;
+  margin-bottom: 10px;
+}
+
+.subheading {
+  font-size: 1.2rem;
+  color: #7d6bb0;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.blogsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.blogCard {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.blogCard:hover {
+  transform: translateY(-5px);
+}
+
+.imageWrapper {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.blogImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+}
+
+.blogCard:hover .blogImage {
+  transform: scale(1.05);
+}
+
+.blogContent {
+  padding: 20px;
+  text-align: left;
+}
+
+.blogTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #5a48a5;
+  margin-bottom: 10px;
+}
+
+.blogDescription {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.postDate {
+  font-size: 0.9rem;
+  color: #7d6bb0;
+  margin-bottom: 10px;
+}
+
+.readMore {
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #a294f9;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.readMore:hover {
+  color: #5a48a5;
+}
+
+.loadMoreContainer {
+  margin-top: 30px;
+}
+
+.loadMoreButton {
+  background: #a294f9;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.loadMoreButton:hover {
+  background: #5a48a5;
+}
+
+@media (max-width: 768px) {
+  .heading {
+    font-size: 1.8rem;
+  }
+
+  .subheading {
+    font-size: 1rem;
+  }
+
+  .blogTitle {
+    font-size: 1.3rem;
+  }
+
+  .blogDescription {
+    font-size: 0.9rem;
+  }
+
+  .readMore {
+    font-size: 0.9rem;
+  }
+
+  .loadMoreButton {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+  }
+}

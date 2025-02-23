@@ -1,0 +1,105 @@
+/* Know Your Returns Section */
+.returnsSection {
+  padding: 60px 20px;
+  background: linear-gradient(to bottom, #F5EFFF, #E5D9F2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  max-width: 800px;
+  width: 100%;
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Section Header */
+.sectionHeader {
+  margin-bottom: 20px;
+}
+
+.heading {
+  font-size: 28px;
+  font-weight: 700;
+  color: #5A4FCF;
+}
+
+.highlight {
+  color: #A294F9;
+}
+
+.subheading {
+  font-size: 16px;
+  color: #666;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tab {
+  background: #CDC1FF;
+  color: #333;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.activeTab {
+  background: #5A4FCF;
+  color: white;
+  font-weight: bold;
+}
+
+.tab:hover {
+  background: #A294F9;
+}
+
+/* Table Styles */
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.returnTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.returnTable th,
+.returnTable td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.returnTable th {
+  background: #F5EFFF;
+  color: #333;
+}
+
+.returnTable tr:hover {
+  background: #F8F8FF;
+}
+
+.roi {
+  font-weight: bold;
+  color: #5A4FCF;
+}
+
+/* Loader & Error */
+.loader, .error, .empty {
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+  margin: 20px 0;
+}

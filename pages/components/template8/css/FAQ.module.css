@@ -1,0 +1,114 @@
+/* FAQ Section */
+.faqSection {
+  background: #f5efff; /* Light pastel background */
+  padding: 80px 20px;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.heading {
+  font-size: 32px;
+  font-weight: bold;
+  color: #4a3f7a; /* Luxurious deep purple */
+}
+
+.subheading {
+  font-size: 18px;
+  color: #7a6fa6; /* Softer purple shade */
+  margin-top: 10px;
+}
+
+/* FAQ Items */
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.faqItem {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.faqItem:hover {
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Question Button */
+.question {
+  width: 100%;
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #4a3f7a;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.question:hover {
+  background: #e5d9f2; /* Soft purple hover */
+  color: #322b5f;
+}
+
+.icon {
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
+.icon.active {
+  transform: rotate(180deg);
+}
+
+/* Answer */
+.answer {
+  padding: 0 18px;
+  font-size: 16px;
+  color: #5e5675;
+  line-height: 1.5;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.loading {
+  text-align: center;
+  font-size: 18px;
+  color: #7a6fa6;
+  margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .heading {
+    font-size: 28px;
+  }
+
+  .subheading {
+    font-size: 16px;
+  }
+
+  .question {
+    font-size: 16px;
+    padding: 14px;
+  }
+
+  .answer {
+    font-size: 15px;
+  }
+}
