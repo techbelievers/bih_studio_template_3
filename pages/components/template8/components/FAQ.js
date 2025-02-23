@@ -33,6 +33,9 @@ const FAQ = () => {
 
   return (
     <section id="faq" className={styles.faqSection}>
+      {/* Real Estate Themed Background */}
+      <div className={styles.clipPathBackground}></div>
+
       <div className={styles.container}>
         {/* Header */}
         <div className={styles.header}>
@@ -44,7 +47,11 @@ const FAQ = () => {
         <div className={styles.faqList}>
           {faqData.length > 0 ? (
             faqData.map((faq) => (
-              <div key={faq.id} className={styles.faqItem}>
+              <motion.div 
+                key={faq.id} 
+                className={styles.faqItem}
+                whileHover={{ scale: 1.02 }}
+              >
                 <button
                   className={styles.question}
                   onClick={() => toggleFAQ(faq.id)}
@@ -68,7 +75,7 @@ const FAQ = () => {
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </div>
+              </motion.div>
             ))
           ) : (
             <p className={styles.loading}>Loading FAQs...</p>

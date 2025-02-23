@@ -60,6 +60,7 @@ const PropertiesSection = () => {
                 alt={property.property_name}
               />
             </div>
+
             <div className={styles.cardContent}>
               <h3 className={styles.propertyName}>{property.property_name}</h3>
               <p className={styles.builderName}>By {property.builder_name}</p>

@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import { API } from "../../../../Config";
 import styles from "../css/Blogs.module.css";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
-  const [heading, setHeading] = useState("");
-  const [subheading, setSubheading] = useState("");
-  const [visibleBlogs, setVisibleBlogs] = useState(6); // Show 6 blogs initially
+  const [heading, setHeading] = useState("Latest Insights");
+  const [subheading, setSubheading] = useState("Stay updated with our latest blog posts.");
+  const [visibleBlogs, setVisibleBlogs] = useState(6);
 
   useEffect(() => {
     const fetchBlogsData = async () => {
@@ -30,11 +31,14 @@ const Blogs = () => {
   };
 
   const loadMoreBlogs = () => {
-    setVisibleBlogs((prev) => prev + 3); // Load 3 more blogs on click
+    setVisibleBlogs((prev) => prev + 3);
   };
 
   return (
     <section id="blogs" className={styles.blogsSection}>
+      {/* Real Estate Clip-Path Background */}
+      <div className={styles.clipPathBackground}></div>
+
       <div className={styles.header}>
         <h2 className={styles.heading}>{heading}</h2>
         <p className={styles.subheading}>{subheading}</p>
@@ -42,7 +46,11 @@ const Blogs = () => {
 
       <div className={styles.blogsGrid}>
         {blogs.slice(0, visibleBlogs).map((blog) => (
-          <div key={blog.post_slug} className={styles.blogCard}>
+          <motion.div 
+            key={blog.post_slug} 
+            className={styles.blogCard}
+            whileHover={{ scale: 1.02 }}
+          >
             <div className={styles.imageWrapper}>
               <img src={blog.post_photo || "/placeholder.jpg"} alt={blog.post_title} className={styles.blogImage} />
             </div>
@@ -56,15 +64,20 @@ const Blogs = () => {
                 <a className={styles.readMore}>Read More →</a>
               </Link>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
 
       {visibleBlogs < blogs.length && (
         <div className={styles.loadMoreContainer}>
-          <button className={styles.loadMoreButton} onClick={loadMoreBlogs}>
+          <motion.button 
+            className={styles.loadMoreButton} 
+            onClick={loadMoreBlogs}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
             Load More
-          </button>
+          </motion.button>
         </div>
       )}
     </section>

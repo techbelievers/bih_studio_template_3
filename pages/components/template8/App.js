@@ -39,7 +39,7 @@ function App({ propertyDetails  }) {
             {/* <LocationMap /> */}
             {/* <LocationHighlights /> */}
             <BankPartners />
-            <EMICalculator />
+            {/* <EMICalculator /> */}
             <Blogs />
             <FAQ />
             <Footer />

@@ -1,13 +1,24 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
+import { Doughnut } from "react-chartjs-2";
+import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
 import { API } from "../../../../Config";
 import styles from "../css/BankPartner.module.css";
 
-const BankPartner = () => {
+Chart.register(ArcElement, Tooltip, Legend);
+
+const BankEMI = () => {
+  // State for bank partners
   const [bankData, setBankData] = useState([]);
   const [heading, setHeading] = useState("");
   const [subheading, setSubHeading] = useState("");
-  const [showScroll, setShowScroll] = useState(false);
-  const scrollerRef = useRef(null);
+
+  // State for EMI Calculator
+  const [principal, setPrincipal] = useState("");
+  const [rate, setRate] = useState("");
+  const [time, setTime] = useState("");
+  const [emi, setEmi] = useState(0);
+  const [totalInterest, setTotalInterest] = useState(0);
+  const [totalPayment, setTotalPayment] = useState(0);
 
   useEffect(() => {
     const fetchBankData = async () => {
@@ -25,43 +36,49 @@ const BankPartner = () => {
     fetchBankData();
   }, []);
 
-  useEffect(() => {
-    if (scrollerRef.current) {
-      setShowScroll(scrollerRef.current.scrollWidth > scrollerRef.current.clientWidth);
-    }
-  }, [bankData]);
+  const calculateEMI = () => {
+    if (principal && rate && time) {
+      const monthlyRate = rate / 100 / 12;
+      const months = time * 12;
+      const emiValue =
+        (principal * monthlyRate * Math.pow(1 + monthlyRate, months)) /
+        (Math.pow(1 + monthlyRate, months) - 1);
+      const totalPayable = emiValue * months;
+      const totalInt = totalPayable - principal;
 
-  const scroll = (direction) => {
-    if (scrollerRef.current) {
-      const scrollAmount = scrollerRef.current.clientWidth / 2; // Adjust dynamically
-      scrollerRef.current.scrollBy({ left: direction * scrollAmount, behavior: "smooth" });
+      setEmi(emiValue.toFixed(2));
+      setTotalInterest(totalInt.toFixed(2));
+      setTotalPayment(totalPayable.toFixed(2));
     }
   };
 
+  const data = {
+    labels: ["Principal", "Total Interest"],
+    datasets: [
+      {
+        data: [principal, totalInterest],
+        backgroundColor: ["#e63946", "#f9a826"],
+        hoverBackgroundColor: ["#c72736", "#f58f20"],
+      },
+    ],
+  };
+
   return (
-    <section className={styles.bankPartnerSection}>
-      <div className={styles.header}>
+    <section className={styles.bankEMISection}>
+      {/* Bank Partners Section */}
+      <div className={styles.bankContainer}>
         <h2 className={styles.heading}>{heading}</h2>
         <p className={styles.subheading}>{subheading}</p>
-      </div>
-      <div className={styles.carouselContainer}>
-        {showScroll && (
-          <button className={styles.scrollButton} onClick={() => scroll(-1)} aria-label="Scroll left">
-            &#10094;
-          </button>
-        )}
-        <div className={styles.bankScroller} ref={scrollerRef}>
+        <div className={styles.bankGrid}>
           {bankData.length > 0 ? (
             bankData.map((bank, index) => (
               <div key={`${bank.id}-${index}`} className={styles.bankCard}>
-                <div className={styles.logoContainer}>
-                  <img
-                    src={bank.property_bank_photo || "/default-bank.png"}
-                    alt={bank.bank_name}
-                    className={styles.bankLogo}
-                    loading="lazy"
-                  />
-                </div>
+                <img
+                  src={bank.property_bank_photo || "/default-bank.png"}
+                  alt={bank.bank_name}
+                  className={styles.bankLogo}
+                  loading="lazy"
+                />
                 <p className={styles.bankName}>{bank.bank_name}</p>
               </div>
             ))
@@ -69,14 +86,61 @@ const BankPartner = () => {
             <p className={styles.noData}>No bank partners available</p>
           )}
         </div>
-        {showScroll && (
-          <button className={styles.scrollButton} onClick={() => scroll(1)} aria-label="Scroll right">
-            &#10095;
+      </div>
+
+      {/* EMI Calculator Section */}
+      <div className={styles.emiCalculator}>
+        <h2 className={styles.heading}>EMI Calculator</h2>
+        <p className={styles.subheading}>Plan your home loan with ease.</p>
+        <div className={styles.formWrapper}>
+          <input
+            type="number"
+            placeholder="Principal Amount (₹)"
+            value={principal}
+            onChange={(e) => setPrincipal(e.target.value)}
+            className={styles.input}
+          />
+          <input
+            type="number"
+            placeholder="Annual Interest Rate (%)"
+            value={rate}
+            onChange={(e) => setRate(e.target.value)}
+            className={styles.input}
+          />
+          <input
+            type="number"
+            placeholder="Loan Tenure (Years)"
+            value={time}
+            onChange={(e) => setTime(e.target.value)}
+            className={styles.input}
+          />
+          <button onClick={calculateEMI} className={styles.calculateButton}>
+            Calculate EMI
           </button>
+        </div>
+
+        {emi > 0 && (
+          <div className={styles.resultsWrapper}>
+            <div className={styles.resultCard}>
+              <h3>Monthly EMI</h3>
+              <p>₹{emi}</p>
+            </div>
+            <div className={styles.resultCard}>
+              <h3>Total Interest</h3>
+              <p>₹{totalInterest}</p>
+            </div>
+            <div className={styles.resultCard}>
+              <h3>Total Payment</h3>
+              <p>₹{totalPayment}</p>
+            </div>
+            <div className={styles.chartContainer}>
+              <Doughnut data={data} />
+            </div>
+          </div>
         )}
       </div>
     </section>
   );
 };
 
-export default BankPartner;
+export default BankEMI;

@@ -1,110 +1,152 @@
-/* Properties.module.css */
-
+/* Base Styles */
 .propertiesSection {
-  padding: 50px 10%;
-  background: linear-gradient(135deg, #f5efff, #e5d9f2);
-  text-align: center;
+  width: 90%;
+  padding: 10px 5%;
+  background: linear-gradient(135deg, #f5efff, #c6a6e9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .header {
+  text-align: center;
   margin-bottom: 40px;
 }
 
 .heading {
   font-size: 2.5rem;
-  color: #a294f9;
   font-weight: bold;
+  color: #5a4fcf;
   text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .subheading {
   font-size: 1.2rem;
-  color: #7b68ee;
+  color: #6f6f6f;
+  max-width: 600px;
   margin-top: 10px;
 }
 
+/* Properties Grid */
 .propertiesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 30px;
-  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
 }
 
+/* Property Card */
 .propertyCard {
-  background: white;
+  background: rgba(255, 255, 255, 0.15);
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0px 10px 30px rgba(162, 148, 249, 0.2);
-  transition: transform 0.3s ease-in-out;
-  cursor: pointer;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .propertyCard:hover {
-  transform: scale(1.03);
-  box-shadow: 0px 15px 40px rgba(162, 148, 249, 0.3);
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(162, 148, 249, 0.4);
+}
+
+/* Image */
+.cardImage {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 15px 15px 0 0;
 }
 
 .cardImage img {
   width: 100%;
-  height: 220px;
+  height: 100%;
   object-fit: cover;
+  transition: transform 0.4s ease-in-out;
 }
 
+.propertyCard:hover .cardImage img {
+  transform: scale(1.1);
+}
+
+/* Card Content */
 .cardContent {
   padding: 20px;
-  text-align: left;
+  text-align: center;
 }
 
 .propertyName {
   font-size: 1.5rem;
-  color: #5a4fcf;
-  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
 }
 
 .builderName {
   font-size: 1rem;
-  color: #7b68ee;
-  margin-top: 5px;
+  color: #777;
+  margin-bottom: 15px;
 }
 
+/* Property Details */
 .propertyDetails {
-  margin: 15px 0;
+  background: rgb(255, 255, 255);
+  padding: 15px;
+  border-radius: 10px;
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.95rem;
 }
 
 .propertyDetails p {
-  margin: 5px 0;
-  font-size: 1rem;
-  color: #333;
+  margin: 0;
+  color: #444;
 }
 
+/* Last Updated */
 .lastUpdated {
   font-size: 0.9rem;
-  color: #888;
-  margin-top: 10px;
+  color: #777;
+  margin-top: 15px;
 }
 
+/* View Button */
 .viewButton {
   width: 100%;
   padding: 12px;
-  margin-top: 15px;
-  font-size: 1rem;
-  color: white;
-  background: linear-gradient(90deg, #a294f9, #7b68ee);
+  background: linear-gradient(135deg, #a294f9, #5a4fcf);
   border: none;
   border-radius: 8px;
+  font-size: 1rem;
+  color: white;
   cursor: pointer;
-  transition: 0.3s;
+  transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+  margin-top: 15px;
 }
 
 .viewButton:hover {
-  background: linear-gradient(90deg, #7b68ee, #5a4fcf);
+  background: linear-gradient(135deg, #5a4fcf, #a294f9);
   transform: scale(1.05);
 }
 
-.loading,
-.error {
-  font-size: 1.2rem;
-  color: #5a4fcf;
-  text-align: center;
-  padding: 20px;
+.viewButton:active {
+  transform: scale(0.95);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .propertiesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .heading {
+    font-size: 2rem;
+  }
+
+  .subheading {
+    font-size: 1rem;
+  }
 }
