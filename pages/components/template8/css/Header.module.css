@@ -27,7 +27,10 @@
   list-style: none;
   display: flex;
   gap: 20px;
+
 }
+
+
 
 .navMenu ul li a {
   text-decoration: none;
@@ -35,6 +38,7 @@
   font-size: 16px;
   font-weight: 500;
   transition: color 0.3s;
+  
 }
 
 .navMenu ul li a:hover {
@@ -106,5 +110,9 @@
     background: #F5EFFF;
     padding: 20px;
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .mobileMenu li{
+    margin-top: 10px;
   }
 }

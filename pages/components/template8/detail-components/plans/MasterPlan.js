@@ -63,7 +63,7 @@ const RealEstateLayouts = ({ slug }) => {
   if (error) return <div className={styles.error}>{error}</div>;
 
   return (
-    <section className={styles.layoutsSection}>
+    <section id="layouts" className={styles.layoutsSection}>
       <h2 className={styles.sectionTitle}>Explore Real Estate Masterpieces</h2>
 
       {/* Category Filter (Only Shows Available Categories) */}
