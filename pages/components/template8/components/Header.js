@@ -27,9 +27,16 @@ const Header = ({ headerData: initialHeaderData }) => {
     fetchHeaderData();
   }, []);
 
-  const toggleMenu = () => setMenuOpen(!menuOpen);
+  const toggleMenu = () => {
+    setMenuOpen((prev) => !prev);
+  };
+
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
   const isPropertiesPage = router.pathname.includes("/studios");
-  const isHomePage = true; // Adjust logic based on actual usage
+  const isHomePage = router.pathname === "/";
 
   return (
     <header className={styles.header}>
@@ -44,30 +51,30 @@ const Header = ({ headerData: initialHeaderData }) => {
         </Link>
       </div>
 
-      {/* Navigation Menu */}
+      {/* Desktop Navigation */}
       <nav className={`${styles.navMenu} ${menuOpen ? styles.active : ""}`}>
         <ul>
-          <li><a href="/">Home</a></li>
+          <li><Link href="/">Home</Link></li>
           {isPropertiesPage && (
             <>
-              <li><a href="#about">About</a></li>
-              <li><a href="#price">Price</a></li>
-              <li><a href="#amenities">Amenities</a></li>
-              <li><a href="#layouts">Layouts</a></li>
-              <li><a href="#gallery">Gallery</a></li>
-              <li><a href="#location">Location</a></li>
+              <li><Link href="#about">About</Link></li>
+              <li><Link href="#price">Price</Link></li>
+              <li><Link href="#amenities">Amenities</Link></li>
+              <li><Link href="#layouts">Layouts</Link></li>
+              <li><Link href="#gallery">Gallery</Link></li>
+              <li><Link href="#location">Location</Link></li>
             </>
           )}
           {isHomePage && !isPropertiesPage && (
             <>
-              <li><a href="#properties">Properties</a></li>
-              <li><a href="#blogs">Blogs</a></li>
-              <li><a href="#faq">FAQ</a></li>
+              <li><Link href="#properties">Properties</Link></li>
+              <li><Link href="#blogs">Blogs</Link></li>
+              <li><Link href="#faq">FAQ</Link></li>
             </>
           )}
         </ul>
 
-        {/* Call & Enquire Buttons */}
+        {/* CTA Buttons */}
         <div className={styles.cta}>
           <a href={`tel:${headerData.contact || "+918181817136"}`} className={styles.callButton}>
             <FaPhoneAlt className={styles.phoneIcon} /> Call Us
@@ -81,15 +88,14 @@ const Header = ({ headerData: initialHeaderData }) => {
             Enquire Now
           </motion.button>
         </div>
-        {isPopupOpen && <EnquirePopup onClose={() => setIsPopupOpen(false)} />}
       </nav>
 
-      {/* Mobile Menu Button */}
+      {/* Hamburger Menu Button (Mobile) */}
       <div className={styles.hamburger} onClick={toggleMenu}>
         {menuOpen ? <FaTimes className={styles.icon} /> : <FaBars className={styles.icon} />}
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Navigation Menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -99,32 +105,35 @@ const Header = ({ headerData: initialHeaderData }) => {
             exit={{ x: "100%" }}
             transition={{ duration: 0.3 }}
           >
-            <button className={styles.closeButton} onClick={toggleMenu}>
+            <button className={styles.closeButton} onClick={closeMenu}>
               <FaTimes className={styles.closeIcon} />
             </button>
             <ul>
-              <li><a href="/">Home</a></li>
+              <li><Link href="/" onClick={closeMenu}>Home</Link></li>
               {isPropertiesPage && (
                 <>
-                  <li><a href="#about">About</a></li>
-                  <li><a href="#price">Price</a></li>
-                  <li><a href="#amenities">Amenities</a></li>
-                  <li><a href="#layouts">Layouts</a></li>
-                  <li><a href="#gallery">Gallery</a></li>
-                  <li><a href="#location">Location</a></li>
+                  <li><Link href="#about" onClick={closeMenu}>About</Link></li>
+                  <li><Link href="#price" onClick={closeMenu}>Price</Link></li>
+                  <li><Link href="#amenities" onClick={closeMenu}>Amenities</Link></li>
+                  <li><Link href="#layouts" onClick={closeMenu}>Layouts</Link></li>
+                  <li><Link href="#gallery" onClick={closeMenu}>Gallery</Link></li>
+                  <li><Link href="#location" onClick={closeMenu}>Location</Link></li>
                 </>
               )}
               {isHomePage && !isPropertiesPage && (
                 <>
-                  <li><a href="#properties">Properties</a></li>
-                  <li><a href="#blogs">Blogs</a></li>
-                  <li><a href="#faq">FAQ</a></li>
+                  <li><Link href="#properties" onClick={closeMenu}>Properties</Link></li>
+                  <li><Link href="#blogs" onClick={closeMenu}>Blogs</Link></li>
+                  <li><Link href="#faq" onClick={closeMenu}>FAQ</Link></li>
                 </>
               )}
             </ul>
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Enquiry Popup */}
+      {isPopupOpen && <EnquirePopup onClose={() => setIsPopupOpen(false)} />}
     </header>
   );
 };

@@ -1,95 +1,111 @@
 .locationSection {
-  padding: 60px 20px;
-  background-color: #f5efff;
-  text-align: center;
-}
-
-.mapWrapper {
-  max-width: 1200px;
-  margin: 0 auto;
-  background: white;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.heading {
-  font-size: 28px;
-  color: #4a3f91;
-  font-weight: 700;
-  margin-bottom: 20px;
-}
-
-.mapContainer {
   width: 100%;
-  height: 450px;
-  border-radius: 15px;
-  overflow: hidden;
+  text-align: center;
+  /* margin-top: 40px; */
+  /* padding: 20px 20px;   */
+  padding-top: 30px;
+  background: #f5efff;
+  margin-bottom: 20px;
+
 }
 
-.map {
+/* Circular Map - Updated */
+.mapWrapper {
+  position: relative;
+
+  width: 800px; /* Larger Circle */
+  height: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto; /* Centers the map */
+  background: #fff;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+  clip-path: circle(50%); /* Makes it a perfect circle */
+  overflow: visible; /* Ensure map buttons are not hidden */
+}
+
+/* Ensures Map Stays Visible Inside the Circle */
+.mapContainer {
+
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Fix Zoom Controls Visibility */
+.mapContainer iframe {
+  /* position: absolute; */
   width: 100%;
   height: 100%;
 }
 
-.highlightsSection {
-  max-width: 1200px;
-  margin: 40px auto;
-  padding: 30px;
-  background: white;
-  border-radius: 20px;
-  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+/* Responsive */
+@media (max-width: 1024px) {
+  .mapWrapper {
+    width: 500px;
+    height: 500px;
+  }
 }
 
-.tabs {
+@media (max-width: 768px) {
+  .mapWrapper {
+    width: 350px;
+    height: 350px;
+  }
+}
+
+
+
+/* SCROLLABLE LOCATION SECTION */
+.locationScrollWrapper {
+  position: relative;
+
+  margin-top: 40px;
+  padding: 20px;
+  background: #fff;
+  margin-left: 20px;
+  border-radius: 12px;
+  margin-right: 20px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.subHeading {
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+/* HORIZONTAL SCROLL CONTAINER */
+.scrollContainer {
   display: flex;
-  justify-content: center;
+  overflow-x: auto;
+  padding: 10px 0;
+  scroll-behavior: smooth;
   gap: 15px;
-  margin-bottom: 20px;
 }
 
-.tabButton {
-  padding: 10px 20px;
-  border: none;
-  background: #cdc1ff;
-  color: #4a3f91;
-  font-weight: 600;
-  font-size: 16px;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
+.scrollContainer::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
 }
 
-.tabButton:hover,
-.activeTab {
-  background: #a294f9;
-  color: white;
-}
-
-.groupItems {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
-
+/* LOCATION CARD */
 .locationCard {
+  flex: 0 0 auto;
+  width: 200px;
   background: white;
-  border-radius: 15px;
-  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+  margin-left: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  width: 280px;
-}
-
-.locationCard:hover {
-  transform: scale(1.05);
-  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 .imageWrapper {
   width: 100%;
-  height: 180px;
+  height: 150px;
   overflow: hidden;
 }
 
@@ -100,33 +116,39 @@
 }
 
 .textWrapper {
-  padding: 15px;
+  padding: 10px;
 }
 
 .locationName {
-  font-size: 18px;
-  font-weight: 600;
-  color: #4a3f91;
-  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #444;
 }
 
 .distance {
   font-size: 14px;
-  color: #666;
+  color: #777;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .tabs {
-    flex-direction: column;
-    align-items: center;
-  }
-  .tabButton {
-    width: 100%;
-    max-width: 200px;
-  }
-  .groupItems {
-    flex-direction: column;
-    align-items: center;
-  }
+/* SCROLL BUTTONS */
+.scrollLeft, .scrollRight {
+  position: absolute;
+  top: 50%;
+  /* transform: translateY(-50%); */
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.scrollLeft { left: -20px; }
+.scrollRight { right: -20px; }
+
+.scrollLeft:hover, .scrollRight:hover {
+  background: rgba(0, 0, 0, 0.8);
 }

@@ -38,7 +38,7 @@ const KnowYourReturns = ({ slug }) => {
     <section className={styles.returnsSection}>
       <div className={styles.container}>
         {/* Header */}
-        <motion.div 
+        {/* <motion.div 
           className={styles.sectionHeader}
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -50,7 +50,19 @@ const KnowYourReturns = ({ slug }) => {
           <p className={styles.subheading}>
             Maximize your investment with our detailed ROI analysis.
           </p>
-        </motion.div>
+        </motion.div> */}
+
+        <motion.div 
+  className={styles.sectionHeader}
+  initial={{ opacity: 0, y: -20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.5 }}
+>
+  <h2 className={styles.heading}>
+    <span className={styles.highlight}>Know Your</span> RETURNS
+  </h2>
+</motion.div>
+
 
         {/* Tabs */}
         <div className={styles.tabs}>

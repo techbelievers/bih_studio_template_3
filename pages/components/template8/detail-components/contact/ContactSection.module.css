@@ -1,125 +1,118 @@
-/* ContactSection.module.css */
 .contactSection {
-  background: url('/images/contact-bg.jpg') no-repeat center center/cover;
-  padding: 80px 0;
+  background: #111;
+  padding: 80px 20px;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .container {
-  max-width: 800px;
+  max-width: 900px;
   width: 100%;
 }
 
 .contactCard {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 12px;
-  padding: 30px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  background: #222;
+  padding: 50px;
+  border-radius: 0;
+  position: relative;
+  /* clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 10% 100%); */
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+  color: white;
   text-align: center;
 }
 
 .heading {
-  font-size: 28px;
-  color: #040303;
-  font-weight: 600;
-  margin-bottom: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  color: #f5efff;
 }
 
 .subheading {
   font-size: 16px;
-  color: #000000;
+  color: #a294f9;
   margin-bottom: 20px;
+}
+
+.thankYouMessage {
+  background: #333;
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+}
+
+.errorMessage {
+  color: #ff4d4d;
+  font-weight: bold;
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Two inputs in a row */
+.row {
+  display: flex;
+  gap: 15px;
 }
 
 .inputGroup {
   position: relative;
-  margin-bottom: 15px;
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
 
-.inputField {
-  width: 90%;
+.inputField, .textArea {
+  width: 100%;
   padding: 12px 40px;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  color: #000000;
+  border-radius: 0;
+  border: none;
   font-size: 16px;
   outline: none;
-  transition: 0.3s;
-}
-
-.inputField::placeholder {
-  color: rgba(32, 21, 21, 0.6);
-}
-
-.inputField:focus {
-  border-color: #A294F9;
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.icon {
-  position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: rgba(255, 255, 255, 0.7);
+  background: #333;
+  color: #fff;
+  transition: 0.3s ease-in-out;
 }
 
 .textArea {
-  width: 95%;
-  padding: 12px;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  color: #000000;
-  font-size: 16px;
-  outline: none;
-  min-height: 100px;
-  transition: 0.3s;
+  min-height: 120px;
+  padding: 15px;
+  resize: none;
 }
 
-.textArea::placeholder {
-  color: rgba(0, 0, 0, 0.6);
+/* Sharp edges effect */
+.inputField:focus, .textArea:focus {
+  background: #444;
+  border-left: 3px solid #a294f9;
 }
 
-.submitButton {
-  width: 100%;
-  background: linear-gradient(135deg, #A294F9, #CDC1FF);
-  border: none;
-  padding: 12px;
-  border-radius: 8px;
+/* Input Icons */
+.icon {
+  position: absolute;
+  left: 15px;
   font-size: 18px;
-  color: #fff;
+  color: #a294f9;
+}
+
+/* Submit Button */
+.submitButton {
+  background: #a294f9;
+  color: white;
+  font-size: 18px;
+  padding: 12px;
+  border: none;
+  border-radius: 0;
   cursor: pointer;
   transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 .submitButton:hover {
-  background: linear-gradient(135deg, #CDC1FF, #A294F9);
-  transform: translateY(-2px);
-}
-
-.thankYouMessage {
-  background: rgba(0, 255, 0, 0.1);
-  color: #fff;
-  padding: 10px;
-  border-radius: 8px;
-  margin-bottom: 15px;
-  text-align: center;
-}
-
-.errorMessage {
-  color: #ff6363;
-  font-size: 14px;
-  margin-bottom: 10px;
-}
-
-@media (max-width: 768px) {
-  .container {
-    max-width: 100%;
-    padding: 0 20px;
-  }
+  background: #cdc1ff;
+  color: #111;
 }

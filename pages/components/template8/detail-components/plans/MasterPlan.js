@@ -1,35 +1,44 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import styles from "./MasterPlan.module.css";
 import { API } from "../../../../../Config";
+import styles from "./MasterPlan.module.css";
 
-const RealEstateTabs = ({ slug }) => {
-  const [activeSection, setActiveSection] = useState(0);
-  const [masterPlans, setMasterPlans] = useState([]);
-  const [unitLayouts, setUnitLayouts] = useState([]);
-  const [floorPlans, setFloorPlans] = useState([]);
+const RealEstateLayouts = ({ slug }) => {
+  const [layouts, setLayouts] = useState([]);
+  const [filteredLayouts, setFilteredLayouts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [categories, setCategories] = useState([]);
   const [modalImage, setModalImage] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const masterPlanResponse = await fetch(API.MASTER_LAYOUT_STUDIO(slug));
-        const masterPlanData = await masterPlanResponse.json();
-        setMasterPlans(masterPlanData.master_layout);
+        const [masterPlanRes, unitLayoutRes, floorPlanRes] = await Promise.all([
+          fetch(API.MASTER_LAYOUT_STUDIO(slug)).then(res => res.json()),
+          fetch(API.UNIT_LAYOUT_STUDIO(slug)).then(res => res.json()),
+          fetch(API.FLOOR_PLANS_STUDIO(slug)).then(res => res.json()),
+        ]);
 
-        const unitLayoutResponse = await fetch(API.UNIT_LAYOUT_STUDIO(slug));
-        const unitLayoutData = await unitLayoutResponse.json();
-        setUnitLayouts(unitLayoutData.unit_layout);
+        const allLayouts = [
+          ...masterPlanRes.master_layout.map(item => ({ ...item, category: "Master Plan" })),
+          ...unitLayoutRes.unit_layout.map(item => ({ ...item, category: "Unit Layout" })),
+          ...floorPlanRes.Floor_plans.map(item => ({ ...item, category: "Floor Plan" })),
+        ];
 
-        const floorPlansResponse = await fetch(API.FLOOR_PLANS_STUDIO(slug));
-        const floorPlansData = await floorPlansResponse.json();
-        setFloorPlans(floorPlansData.Floor_plans || []);
+        // Extract categories that have data
+        const availableCategories = [
+          ...(masterPlanRes.master_layout.length ? ["Master Plan"] : []),
+          ...(unitLayoutRes.unit_layout.length ? ["Unit Layout"] : []),
+          ...(floorPlanRes.Floor_plans.length ? ["Floor Plan"] : []),
+        ];
 
+        setLayouts(allLayouts);
+        setFilteredLayouts(allLayouts);
+        setCategories(availableCategories);
         setLoading(false);
       } catch (err) {
-        console.error("Error fetching data:", err);
         setError("Failed to load data.");
         setLoading(false);
       }
@@ -38,11 +47,14 @@ const RealEstateTabs = ({ slug }) => {
     fetchData();
   }, [slug]);
 
-  const sections = [
-    masterPlans.length > 0 && { id: 0, label: "Master Plans", data: masterPlans },
-    unitLayouts.length > 0 && { id: 1, label: "Unit Layouts", data: unitLayouts },
-    floorPlans.length > 0 && { id: 2, label: "Floor Plans", data: floorPlans },
-  ].filter(Boolean);
+  const filterLayouts = (category) => {
+    if (category === "all") {
+      setFilteredLayouts(layouts);
+    } else {
+      setFilteredLayouts(layouts.filter(item => item.category === category));
+    }
+    setSelectedCategory(category);
+  };
 
   const openModal = (image) => setModalImage(image);
   const closeModal = () => setModalImage("");
@@ -51,74 +63,61 @@ const RealEstateTabs = ({ slug }) => {
   if (error) return <div className={styles.error}>{error}</div>;
 
   return (
-    <section id="layouts" className={styles.container}>
-      {/* Section Headers */}
-      <motion.div 
-        className={styles.sectionHeaders} 
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        {sections.map((section, index) => (
-          <button
-            key={section.id}
-            className={`${styles.sectionHeader} ${
-              activeSection === index ? styles.active : ""
-            }`}
-            onClick={() => setActiveSection(index)}
-          >
-            {section.label}
-          </button>
-        ))}
-      </motion.div>
+    <section className={styles.layoutsSection}>
+      <h2 className={styles.sectionTitle}>Explore Real Estate Masterpieces</h2>
 
-      {/* Section Content */}
-      <motion.div 
-        className={styles.gridContainer}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-      >
-        {sections[activeSection].data.map((item) => (
+      {/* Category Filter (Only Shows Available Categories) */}
+      {categories.length > 0 && (
+        <motion.div className={styles.filterContainer}>
+          {["all", ...categories].map((category) => (
+            <button
+              key={category}
+              className={`${styles.filterButton} ${selectedCategory === category ? styles.active : ""}`}
+              onClick={() => filterLayouts(category)}
+            >
+              {category}
+            </button>
+          ))}
+        </motion.div>
+      )}
+
+      {/* Masonry Grid with 3D Flip Cards */}
+      <motion.div className={styles.masonryGrid}>
+        {filteredLayouts.map((item) => (
           <motion.div
             key={item.id}
-            className={styles.card}
-            onClick={() => openModal(item.layout_image || item.photo)}
+            className={styles.flipCard}
             whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
+            onClick={() => openModal(item.layout_image || item.photo)}
           >
-            <div className={styles.imageContainer}>
-              <img
-                src={item.layout_image || item.photo}
-                alt={item.layout_name || "Plan"}
-                className={styles.image}
-              />
-              <div className={styles.overlay}>
-                <span className={styles.text}>
-                  {item.layout_name || "View Details"}
-                </span>
+            <div className={styles.flipCardInner}>
+              {/* Front Side with Image */}
+              <div className={styles.flipCardFront}>
+                <img
+                  src={item.layout_image || item.photo}
+                  alt={item.layout_name || "Layout"}
+                  className={styles.image}
+                />
+              </div>
+
+              {/* Back Side with Details */}
+              <div className={styles.flipCardBack}>
+                <h3>{item.layout_name}</h3>
+                <p>Category: {item.category}</p>
               </div>
             </div>
           </motion.div>
         ))}
       </motion.div>
 
-      {/* Modal with Close Button */}
+      {/* Modal for Full-Screen Preview */}
       <AnimatePresence>
         {modalImage && (
-          <motion.div 
-            className={styles.modal} 
-            onClick={closeModal}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-              <button className={styles.closeButton} onClick={closeModal}>
-                &times;
-              </button>
-              <img src={modalImage} alt="Full View" className={styles.modalImage} />
-            </div>
+          <motion.div className={styles.modal} onClick={closeModal} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <motion.div className={styles.modalContent} onClick={(e) => e.stopPropagation()} initial={{ scale: 0.8 }} animate={{ scale: 1 }}>
+              <button className={styles.closeButton} onClick={closeModal}>✖</button>
+              <img src={modalImage} alt="Preview" className={styles.modalImage} />
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -126,4 +125,4 @@ const RealEstateTabs = ({ slug }) => {
   );
 };
 
-export default RealEstateTabs;
+export default RealEstateLayouts;

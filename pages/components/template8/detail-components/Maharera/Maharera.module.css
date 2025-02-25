@@ -1,95 +1,192 @@
-/* Container */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+
 .mahareraContainer {
-  background: linear-gradient(135deg, #f5efff, #e5d9f2);
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
-  margin: 20px 0;
+  width: 90%;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #ffffff;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  font-family: "Poppins", sans-serif;
 }
 
-/* Header */
+/* Decorative Elements */
+.mahareraContainer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50px;
+  width: 100px;
+  height: 100px;
+  background: #a294f9;
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.mahareraContainer::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: -50px;
+  width: 100px;
+  height: 100px;
+  background: #f5efff;
+  clip-path: polygon(100% 100%, 0 100%, 100% 0);
+}
+
+/* HEADER */
 .header {
   text-align: center;
   margin-bottom: 20px;
 }
 
 .heading {
-  font-size: 26px;
-  font-weight: bold;
-  color: #4c3f91;
+  font-size: 28px;
+  font-weight: 600;
+  color: #333;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 8px;
 }
 
 .highlight {
   color: #a294f9;
 }
 
+/* LINK STYLES */
+.link {
+  font-size: 14px;
+  margin-top: 5px;
+}
+
 .link a {
+  color: #a294f9;
   text-decoration: none;
-  font-weight: 500;
-  color: #6a5acd;
-  transition: color 0.3s ease-in-out;
+  font-weight: bold;
 }
 
 .link a:hover {
-  color: #4c3f91;
+  text-decoration: underline;
 }
 
-/* Table */
+/* TABLE WRAPPER */
 .tableWrapper {
   overflow-x: auto;
-  border-radius: 10px;
-  background: white;
-  padding: 15px;
+  border-radius: 8px;
+  margin-top: 10px;
 }
 
+/* TABLE */
 .reraTable {
   width: 100%;
   border-collapse: collapse;
+  background: #ffffff;
 }
 
 .reraTable th,
 .reraTable td {
-  padding: 12px;
+  padding: 12px 16px;
   text-align: center;
-  font-size: 16px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 2px solid #e5d9f2;
 }
 
 .reraTable th {
   background: #a294f9;
-  color: white;
-  font-weight: bold;
-  border-radius: 0px 0px 0 0;
+  color: #ffffff;
+  text-transform: uppercase;
 }
 
 .reraTable tr:hover {
-  background: rgba(162, 148, 249, 0.15);
+  background: #f5efff;
   transition: 0.3s ease-in-out;
 }
 
-.reraTable tr:last-child td {
-  border-bottom: none;
-}
-
+/* QR CODE CELL */
 .qrCodeCell {
-  padding: 10px;
+  text-align: center;
 }
 
-.qrCodeCell canvas {
-  border-radius: 10px;
-  transition: transform 0.3s ease-in-out;
-}
-
-.qrCodeCell canvas:hover {
-  transform: scale(1.1);
-}
-
-/* Loading & Error */
+/* LOADING & ERROR MESSAGES */
 .loading,
 .error {
   text-align: center;
-  font-size: 18px;
-  font-weight: 500;
-  margin-top: 20px;
-  color: #4c3f91;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ff4d4d;
+  padding: 20px;
+}
+
+/* 🌟 RESPONSIVE DESIGN */
+@media (max-width: 1024px) {
+  .mahareraContainer {
+    padding: 20px;
+    margin: 30px auto;
+  }
+
+  .mahareraContainer::before,
+  .mahareraContainer::after {
+    width: 80px;
+    height: 80px;
+  }
+
+  .heading {
+    font-size: 24px;
+  }
+
+  .reraTable th, .reraTable td {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mahareraContainer {
+    padding: 15px;
+    margin: 20px auto;
+  }
+
+  .mahareraContainer::before,
+  .mahareraContainer::after {
+    width: 60px;
+    height: 60px;
+  }
+
+  .heading {
+    font-size: 22px;
+  }
+
+  .reraTable th, .reraTable td {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .link {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mahareraContainer {
+    width: 95%;
+    padding: 10px;
+  }
+
+  .mahareraContainer::before,
+  .mahareraContainer::after {
+    display: none; /* Hide the decorative elements on small screens */
+  }
+
+  .heading {
+    font-size: 20px;
+  }
+
+  .reraTable th, .reraTable td {
+    padding: 6px;
+    font-size: 12px;
+  }
+
+  .link {
+    font-size: 10px;
+  }
 }

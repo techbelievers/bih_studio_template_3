@@ -28,71 +28,56 @@ const PropertyPriceTable = ({ slug }) => {
 
   return (
     <section id="price" className={styles.priceSection}>
-      <div className={styles.backgroundOverlay}></div>
+      {/* Background Clip-path Design */}
+      <div className={styles.clipPath}></div>
 
       {error && <p className={styles.errorMessage}>{error}</p>}
 
-      <motion.div 
+      {/* <motion.div 
         className={styles.headingContainer} 
         initial={{ opacity: 0, y: -20 }} 
         animate={{ opacity: 1, y: 0 }}
       >
         <h2 className={styles.heading}>{heading}</h2>
-      </motion.div>
+      </motion.div> */}
 
-      <div className={styles.priceTableContainer}>
-        <motion.table
-          className={styles.priceTable}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-        >
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Tower</th>
-              <th>Carpet Area (SQ.M)</th>
-              <th>Carpet Area (SQ.FT)</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            {propertyPrices.map((price) => (
-              <motion.tr 
-                key={price.id} 
-                whileHover={{ backgroundColor: "#E5D9F2", scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-              >
-                <td className={styles.noWrap}>
-                  <span className={styles.typeIcon}>
-                    <img
-                      src="https://cdn-icons-png.flaticon.com/512/9428/9428563.png"
-                      alt="Property Type"
-                      className={styles.icon}
-                    />
-                  </span>
-                  {price.property_type}
-                </td>
-                <td>{price.property_tower}</td>
-                <td>{parseFloat(price.property_carpet_sqm).toFixed(2)}</td>
-                <td>{price.property_carpet_sqft}</td>
-                <td>
-                  <span className={styles.price}>{price.property_price} {price.price_unit}*</span> 
-                  <span className={styles.priceTag}>{price.price_tag}</span>
-                </td>
-              </motion.tr>
-            ))}
-          </tbody>
-        </motion.table>
+      <motion.div 
+  className={styles.headingContainer} 
+  initial={{ opacity: 0, y: -20 }} 
+  animate={{ opacity: 1, y: 0 }}
+>
+  <h2 className={styles.propertyPricesHeading}>Property Prices</h2>
+</motion.div>
 
-        <motion.div 
-          className={styles.disclaimer} 
-          initial={{ opacity: 0 }} 
-          animate={{ opacity: 1 }}
-        >
-          *Prices are subject to change. Terms and conditions apply.
-        </motion.div>
+
+      <div className={styles.priceCardContainer}>
+        {propertyPrices.map((price) => (
+          <motion.div 
+            key={price.id} 
+            className={styles.priceCard} 
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className={styles.cardHeader}>
+              <h3>{price.property_type}</h3>
+              <span className={styles.towerTag}>{price.property_tower}</span>
+            </div>
+            <div className={styles.cardBody}>
+              <p><strong>Carpet Area:</strong> {price.property_carpet_sqft} sq.ft ({price.property_carpet_sqm} sq.m)</p>
+              <p><strong>Price:</strong> <span className={styles.price}>{price.property_price} {price.price_unit}*</span></p>
+              <span className={styles.priceTag}>{price.price_tag}</span>
+            </div>
+          </motion.div>
+        ))}
       </div>
+
+      <motion.div 
+        className={styles.disclaimer} 
+        initial={{ opacity: 0 }} 
+        animate={{ opacity: 1 }}
+      >
+        *Prices are subject to change. Terms and conditions apply.
+      </motion.div>
     </section>
   );
 };

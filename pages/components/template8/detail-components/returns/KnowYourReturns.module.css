@@ -1,105 +1,133 @@
-/* Know Your Returns Section */
+/* 🔹 Section Styling */
 .returnsSection {
-  padding: 60px 20px;
-  background: linear-gradient(to bottom, #F5EFFF, #E5D9F2);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.container {
-  max-width: 800px;
-  width: 100%;
-  background: white;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #fefefe, #cdc1ff);
+  color: #333;
   text-align: center;
 }
 
-/* Section Header */
+/* 🔹 Container */
+.container {
+  max-width: 900px;
+  margin: auto;
+}
+
+/* 🔹 Header */
 .sectionHeader {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .heading {
-  font-size: 28px;
-  font-weight: 700;
-  color: #5A4FCF;
+  font-size: 2.8rem;
+  font-weight: bold;
+  color: #2a1f62; /* Dark purple for visibility */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
 }
 
 .highlight {
-  color: #A294F9;
+  color: #ff8c00; /* Golden Orange Accent */
 }
 
-.subheading {
-  font-size: 16px;
-  color: #666;
-}
-
-/* Tabs */
+/* 🔹 Tabs */
 .tabs {
   display: flex;
   justify-content: center;
-  gap: 10px;
   margin-bottom: 20px;
+  gap: 15px;
 }
 
 .tab {
-  background: #CDC1FF;
-  color: #333;
-  border: none;
-  padding: 10px 20px;
+  padding: 12px 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2a1f62;
+  border: 2px solid #6c5ce7;
   border-radius: 30px;
+  background: transparent;
   cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.activeTab {
-  background: #5A4FCF;
-  color: white;
-  font-weight: bold;
+  transition: all 0.3s ease-in-out;
 }
 
 .tab:hover {
-  background: #A294F9;
+  background: #6c5ce7;
+  color: white;
 }
 
-/* Table Styles */
+.activeTab {
+  background: #6c5ce7;
+  color: white;
+  box-shadow: 0px 5px 15px rgba(108, 92, 231, 0.4);
+}
+
+/* 🔹 Tab Content */
+.tabContent {
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* 🔹 Table Wrapper */
 .tableWrapper {
   overflow-x: auto;
+  margin-top: 20px;
 }
 
+/* 🔹 Styled Table */
 .returnTable {
   width: 100%;
   border-collapse: collapse;
-}
-
-.returnTable th,
-.returnTable td {
-  padding: 12px;
-  border-bottom: 1px solid #ddd;
-  text-align: left;
-}
-
-.returnTable th {
-  background: #F5EFFF;
+  font-size: 1rem;
   color: #333;
 }
 
-.returnTable tr:hover {
-  background: #F8F8FF;
+/* 🔹 Table Rows */
+.returnTable tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.returnTable th {
+  text-align: left;
+  padding: 12px 20px;
+  font-weight: 600;
+  color: #2a1f62;
+}
+
+.returnTable td {
+  text-align: right;
+  padding: 12px 20px;
+  font-weight: 500;
+}
+
+/* 🔹 ROI Styling (Glow Effect) */
 .roi {
+  font-size: 1.4rem;
   font-weight: bold;
-  color: #5A4FCF;
+  color: #ff8c00; /* Golden Orange */
+  text-shadow: 0px 0px 15px rgba(255, 140, 0, 0.6);
+  background: rgba(255, 140, 0, 0.1);
+  padding: 10px 15px;
+  border-radius: 8px;
+  display: inline-block;
 }
 
-/* Loader & Error */
-.loader, .error, .empty {
-  text-align: center;
-  font-size: 18px;
-  color: #666;
-  margin: 20px 0;
+/* 🔹 Responsive Design */
+@media (max-width: 768px) {
+  .heading {
+    font-size: 2rem;
+  }
+
+  .tab {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .returnTable th,
+  .returnTable td {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
 }

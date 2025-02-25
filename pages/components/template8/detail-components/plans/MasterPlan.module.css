@@ -1,150 +1,149 @@
-/* Container */
-.container {
-  padding: 40px 20px;
-  max-width: 1200px;
-  margin: auto;
+.layoutsSection {
+  padding: 50px;
+  background: linear-gradient(120deg, #f5efff, #cdc1ff);
   text-align: center;
+  border-radius: 15px;
 }
 
-/* Section Headers */
-.sectionHeaders {
+.sectionTitle {
+  font-size: 34px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+/* Filter Buttons */
+.filterContainer {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 10px;
   margin-bottom: 20px;
 }
 
-.sectionHeader {
-  padding: 12px 24px;
+.filterButton {
+  background: #fff;
+  border: 2px solid #a294f9;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
   font-size: 16px;
-  font-weight: 600;
-  border: none;
-  border-radius: 30px;
+  transition: 0.3s;
+}
+
+.filterButton.active, .filterButton:hover {
   background: #a294f9;
   color: #fff;
+}
+
+/* Masonry Grid */
+.masonryGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+/* 3D Flip Card */
+.flipCard {
+  perspective: 1000px;
+  width: 250px;
+  height: 250px;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
 }
 
-.sectionHeader:hover,
-.active {
-  background: #cdc1ff;
-  color: #333;
-}
-
-/* Grid Layout */
-.gridContainer {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-}
-
-/* Card */
-.card {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 12px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-.card:hover {
-  transform: scale(1.05);
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-/* Image Container */
-.imageContainer {
-  position: relative;
-  overflow: hidden;
-}
-
-.image {
+.flipCardInner {
   width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 12px;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
 }
 
-/* Overlay */
-.overlay {
+.flipCard:hover .flipCardInner {
+  transform: rotateY(180deg);
+}
+
+.flipCardFront, .flipCardBack {
   position: absolute;
-  bottom: 0;
   width: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  text-align: center;
-  padding: 10px;
-  font-weight: 600;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.flipCardFront {
+  background: #fff;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flipCardFront img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.flipCardBack {
+  background: #a294f9;
+  color: white;
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 /* Modal */
 .modal {
   position: fixed;
-  top: 0;
+  top: 10px;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.8);
   display: flex;
-  justify-content: center;
   align-items: center;
-  z-index: 1000;
-  animation: fadeIn 0.3s ease-in-out;
+  justify-content: center;
 }
 
 .modalContent {
   position: relative;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(15px);
-  padding: 20px;
-  border-radius: 12px;
+  background: #fff;
+  padding: 0;
+  border-radius: 10px;
   max-width: 80%;
+  max-height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Image */
 .modalImage {
-  max-width: 100%;
-  border-radius: 12px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  max-height: 90vh;
+  object-fit: contain;
 }
 
+/* Close Button */
 .closeButton {
   position: absolute;
   top: 10px;
-  right: 15px;
-  background: none;
-  border: none;
-  font-size: 24px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.6);
   color: white;
+  border: none;
+  font-size: 22px;
+  padding: 8px 12px;
+  border-radius: 50%;
   cursor: pointer;
-  transition: transform 0.2s ease-in-out;
+  transition: 0.3s ease;
 }
 
 .closeButton:hover {
-  transform: scale(1.2);
-}
-
-/* Loader */
-.loader {
-  text-align: center;
-  font-size: 18px;
-  font-weight: bold;
-  color: #666;
-}
-
-/* Error */
-.error {
-  text-align: center;
-  font-size: 18px;
-  color: red;
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  background: rgba(0, 0, 0, 0.8);
 }

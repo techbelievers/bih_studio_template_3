@@ -51,12 +51,12 @@ function App({ propertyDetails, headerData, galleryData }) {
         galleryData={galleryData}
         servicesData={headerData}
       />
-         <HeroBanner1
+         {/* <HeroBanner1
         propertyDetails={propertyDetails}
         slug={propertyDetails.property_slug}
         galleryData={galleryData}
         servicesData={headerData}
-      />
+      /> */}
       <MahaRera slug={propertyDetails.property_slug} />
       <PropertyPriceTable slug={propertyDetails.property_slug} />
       <Returns slug={propertyDetails.property_slug}/>

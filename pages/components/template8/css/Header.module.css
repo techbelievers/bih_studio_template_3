@@ -1,124 +1,110 @@
-/* Header Container */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(135deg, #1a1a2e, #16213e);
-  padding: 15px 30px;
-  color: white;
+  padding: 15px 20px;
+  background: #CDC1FF;
+  color: #333;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 1000;
 }
 
-/* Logo */
-.logoContainer img {
-  max-height: 50px;
+.logo {
+  height: 50px;
+  cursor: pointer;
 }
 
-/* Navigation Menu */
 .navMenu {
   display: flex;
   align-items: center;
+  margin-right: 10px;
 }
 
 .navMenu ul {
+  list-style: none;
   display: flex;
   gap: 20px;
-  list-style: none;
 }
 
 .navMenu ul li a {
-  color: #f5c518;
   text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s ease;
+  color: #333;
+  font-size: 16px;
+  font-weight: 500;
+  transition: color 0.3s;
 }
 
 .navMenu ul li a:hover {
-  color: #ffdd57;
+  color: #A294F9;
 }
 
-/* Call and Enquire Buttons */
 .cta {
   display: flex;
-  align-items: center;
   gap: 15px;
 }
 
-.callButton {
-  display: flex;
-  align-items: center;
-  background: #f5c518;
-  color: #1a1a2e;
-  padding: 8px 15px;
-  border-radius: 5px;
+.callButton, .enquireButton {
+  padding: 10px 18px;
+  border-radius: 25px;
   font-weight: bold;
-  margin-right: 10px;
-  margin-left: 10px;
-  text-decoration: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+  margin-right:10px;
+  
 }
 
-.phoneIcon {
-  margin-right: 8px;
+.callButton {
+  background: #F5EFFF;
+  color: #000;
+  border: 2px solid #A294F9;
+  /* margin-right: 10px; */
+  margin-left: 10px;
+}
+
+.callButton:hover {
+  background: #A294F9;
+  color: #fff;
 }
 
 .enquireButton {
-  background: #ffdd57;
+  background: #A294F9;
+  color: #fff;
   border: none;
-  padding: 8px 15px;
-  color: #1a1a2e;
-  border-radius: 5px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-right: 40px;
-  transition: transform 0.3s ease;
 }
 
 .enquireButton:hover {
-  transform: scale(1.05);
+  background: #E5D9F2;
+  color: #000;
 }
 
 /* Mobile Menu */
 .hamburger {
   display: none;
-  font-size: 24px;
-  cursor: pointer;
 }
 
-.mobileMenu {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 70%;
-  height: 100vh;
-  background: rgba(26, 26, 46, 0.9);
-  backdrop-filter: blur(10px);
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.mobileMenu ul {
-  list-style: none;
-  text-align: center;
-}
-
-.mobileMenu ul li a {
-  color: white;
-  font-size: 18px;
-  padding: 10px 0;
-  display: block;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .navMenu {
     display: none;
   }
+
   .hamburger {
     display: block;
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 30px;
+  }
+
+  .mobileMenu {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background: #F5EFFF;
+    padding: 20px;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
   }
 }

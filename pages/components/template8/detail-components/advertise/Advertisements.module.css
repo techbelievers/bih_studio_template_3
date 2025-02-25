@@ -1,145 +1,165 @@
-/* General Styles */
 .advertisementSection {
-  padding: 20px;
-  background-color: #f9f9f9;
   text-align: center;
+  padding: 40px 20px;
+  background: #F5EFFF;
 }
 
 .heading {
-  font-size: 1.8rem;
-  font-weight: bold;
+  font-size: 24px;
+  font-weight: 700;
   margin-bottom: 20px;
   color: #333;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  animation: fadeIn 1s ease-in-out;
 }
 
-/* Slider Container */
-.sliderContainer {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-  max-width: 1200px;
-  margin: 0 auto;
-  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
-  border-radius: 10px;
-  /* background-color: #ffffff; */
-}
-
-/* Slider */
-.slider {
-  display: flex;
-  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Individual Slide */
-.slide {
-  flex: 1 0 100%;
-  display: flex;
+/* GRID LAYOUT */
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
   justify-content: center;
-  align-items: center;
+  padding: 20px;
 }
 
-.adLink {
-  display: block;
-  width: 50%; /* Width halved */
-  height: 400px; /* Height doubled */
-  overflow: hidden;
-  border-radius: 10px;
+/* GRID ITEM */
+.gridItem {
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
 }
 
+.gridItem:hover {
+  transform: scale(1.05);
+}
+
+/* AD IMAGE */
 .adImage {
   width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* MODAL OVERLAY */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
-  /* object-fit: cover; */
-  transition: transform 0.5s ease, box-shadow 0.5s ease;
-}
-
-.adImage:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-}
-
-/* Arrow Buttons */
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 1.2rem;
-  cursor: pointer;
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
-  justify-content: center;
   align-items: center;
-  transition: background-color 0.3s ease;
-}
-
-.arrow:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-.arrow:first-of-type {
-  left: 10px;
-}
-
-.arrow:last-of-type {
-  right: 10px;
-}
-
-/* Pagination Dots */
-.dots {
-  display: flex;
   justify-content: center;
-  margin-top: 15px;
+  padding: 20px;
 }
 
-.dot {
-  width: 12px;
-  height: 12px;
-  margin: 0 5px;
-  background-color: #ccc;
-  border-radius: 50%;
+/* MODAL CONTENT */
+.modalContent {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  position: relative;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* CLOSE BUTTON */
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ff5e5e;
+  color: white;
+  border: none;
+  font-size: 16px;
+  padding: 5px 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  border-radius: 50%;
+  transition: 0.3s;
 }
 
-.activeDot {
-  background-color: #333;
+.closeButton:hover {
+  background: #ff0000;
 }
 
-/* Media Queries for Mobile */
+/* MODAL IMAGE */
+.modalImage {
+  width: 100%;
+  max-height: 300px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* VISIT BUTTON */
+.visitButton {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 15px;
+  background: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.visitButton:hover {
+  background: #0056b3;
+}
+
+/* 🌟 RESPONSIVE DESIGN */
 @media (max-width: 768px) {
-  .adLink {
-    width: 80%; /* Slightly larger width on mobile */
-    height: 300px; /* Adjusted height for mobile */
+  .gridContainer {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
   }
 
-  .heading {
-    font-size: 1.5rem;
+  .adImage {
+    max-width: 100%;
+    border-radius: 6px;
   }
 
-  .arrow {
-    width: 30px;
-    height: 30px;
-    font-size: 1rem;
+  .modalContent {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .modalImage {
+    max-height: 250px;
+  }
+
+  .visitButton {
+    padding: 8px 12px;
+    font-size: 14px;
   }
 }
 
-/* Animation */
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(-10px);
+@media (max-width: 480px) {
+  .heading {
+    font-size: 20px;
   }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
+
+  .gridContainer {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+
+  .adImage {
+    border-radius: 4px;
+  }
+
+  .modalContent {
+    padding: 10px;
+  }
+
+  .closeButton {
+    font-size: 14px;
+    padding: 4px 6px;
+  }
+
+  .visitButton {
+    padding: 6px 10px;
+    font-size: 12px;
   }
 }
