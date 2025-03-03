@@ -64,7 +64,7 @@ const LocationMap = ({ slug }) => {
               </div>
               <div className={styles.textWrapper}>
                 <h4 className={styles.locationName}>{item.location}</h4>
-                {/* <p className={styles.distance}>{item.distance} km away</p> */}
+                <p className={styles.distance}>{item.distance}</p>
               </div>
             </motion.div>
           ))}
