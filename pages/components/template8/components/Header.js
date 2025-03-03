@@ -36,7 +36,7 @@ const Header = ({ headerData: initialHeaderData }) => {
   };
 
   const isPropertiesPage = router.pathname.includes("/studios");
-  const isHomePage = router.pathname === "/";
+  const isHomePage = true;
 
   return (
     <header className={styles.header}>

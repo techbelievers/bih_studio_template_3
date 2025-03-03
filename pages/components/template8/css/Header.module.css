@@ -50,13 +50,24 @@
   gap: 15px;
 }
 
-.callButton, .enquireButton {
+.callButton{
   padding: 10px 18px;
   border-radius: 25px;
   font-weight: bold;
   cursor: pointer;
   transition: 0.3s ease;
-  margin-right: 10px;
+
+  margin-left:8px;
+}
+
+.enquireButton {
+  padding: 10px 18px;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+  margin-right: 12px;
+  margin-left:8px;
 }
 
 /* Call Button */
