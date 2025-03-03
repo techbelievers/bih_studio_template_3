@@ -1,7 +1,7 @@
 /* Section */
 .amenitiesSection {
   padding: 50px 20px;
-  background: linear-gradient(to bottom, #cdc1ff, #e5d9f2);
+  background: linear-gradient(to bottom, #def68e, #A8E06F);
   text-align: center;
 }
 
@@ -19,12 +19,12 @@
 .heading {
   font-size: 32px;
   font-weight: bold;
-  color: #333;
+  color: #000;
 }
 
 .subHeading {
   font-size: 18px;
-  color: #555;
+  color: #222;
 }
 
 /* Grid */
@@ -81,6 +81,7 @@
   font-size: 20px;
   font-weight: bold;
   margin-top: 10px;
+  color: #000;
 }
 
 /* Button */
@@ -91,15 +92,15 @@
   font-weight: bold;
   border: none;
   border-radius: 30px;
-  background: #a294f9;
+  background: #000;
   color: white;
   cursor: pointer;
   transition: background 0.3s ease-in-out;
 }
 
 .moreInfo:hover {
-  background: #cdc1ff;
-  color: #333;
+  background: #222;
+  color: #fff;
 }
 
 /* Fade-in Animation */

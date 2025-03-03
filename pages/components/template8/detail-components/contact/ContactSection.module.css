@@ -29,7 +29,7 @@
 
 .subheading {
   font-size: 16px;
-  color: #a294f9;
+  color: #8DB600;
   margin-bottom: 20px;
 }
 
@@ -85,7 +85,7 @@
 /* Sharp edges effect */
 .inputField:focus, .textArea:focus {
   background: #444;
-  border-left: 3px solid #a294f9;
+  border-left: 3px solid #8DB600;
 }
 
 /* Input Icons */
@@ -93,12 +93,12 @@
   position: absolute;
   left: 15px;
   font-size: 18px;
-  color: #a294f9;
+  color: #8DB600;
 }
 
 /* Submit Button */
 .submitButton {
-  background: #a294f9;
+  background: #8DB600;
   color: white;
   font-size: 18px;
   padding: 12px;

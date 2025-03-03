@@ -63,7 +63,8 @@ const PropertyPriceTable = ({ slug }) => {
               <span className={styles.towerTag}>{price.property_tower}</span>
             </div>
             <div className={styles.cardBody}>
-              <p><strong>Carpet Area:</strong> {price.property_carpet_sqft} sq.ft ({price.property_carpet_sqm} sq.m)</p>
+            <p><strong>Carpet Area:</strong> {price.property_carpet_sqft} sq.ft ({price.property_carpet_sqm.toFixed(2)} sq.m)</p>
+
               <p><strong>Price:</strong> <span className={styles.price}>{price.property_price} {price.price_unit}*</span></p>
               <span className={styles.priceTag}>{price.price_tag}</span>
             </div>

@@ -1,7 +1,7 @@
 /* Footer Container */
 .footer {
-  background: #4a3f7a; /* Luxurious deep purple */
-  color: white;
+  background: #000000; /* Black */
+  color: #8DB600; /* Apple Green */
   padding: 50px 20px;
   text-align: center;
 }
@@ -20,7 +20,7 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(141, 182, 0, 0.2); /* Apple Green with transparency */
   padding-bottom: 30px;
 }
 
@@ -37,12 +37,6 @@
 .socialLinks {
   flex: 1;
 }
-/* 
-h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
-  font-weight: 600;
-} */
 
 /* Social Icons */
 .icons {
@@ -53,12 +47,12 @@ h3 {
 
 .icon {
   font-size: 20px;
-  color: white;
+  color: #8DB600; /* Apple Green */
   transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .icon:hover {
-  color: #a294f9;
+  color: #C7E8A3; /* Lighter Apple Green */
   transform: scale(1.1);
 }
 
@@ -73,6 +67,38 @@ h3 {
 .footerAgentRera,
 .footerCopyright {
   margin-bottom: 5px;
+}
+
+/* Buttons */
+.callButton, .enquireButton {
+  padding: 10px 18px;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+  margin-right: 10px;
+}
+
+.callButton {
+  background: #8DB600; /* Apple Green */
+  color: #000000; /* Black */
+  border: 2px solid #8DB600;
+}
+
+.callButton:hover {
+  background: #C7E8A3; /* Lighter Apple Green */
+  color: #000000; /* Black */
+}
+
+.enquireButton {
+  background: #000000; /* Black */
+  color: #8DB600; /* Apple Green */
+  border: 2px solid #8DB600;
+}
+
+.enquireButton:hover {
+  background: #8DB600; /* Apple Green */
+  color: #000000; /* Black */
 }
 
 /* Responsive Design */

@@ -15,7 +15,7 @@ const Blogs = () => {
         const response = await fetch(API.BLOGS());
         const data = await response.json();
         setBlogs(data.blogs);
-        setHeading(data.blog_page?.name || "Blogs");
+        setHeading(data.blog_page?.name || "Blogs - Market Insights for Studio Homes");
         setSubheading(data.blog_page?.detail || "");
       } catch (error) {
         console.error("Error fetching blog data:", error);

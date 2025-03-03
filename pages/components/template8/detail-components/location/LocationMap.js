@@ -35,6 +35,7 @@ const LocationMap = ({ slug }) => {
 
   return (
     <section id="location" className={styles.locationSection}>
+       <h2 className={styles.heading}>{mapData.heading}</h2>
       {/* Fullscreen Map */}
       <motion.div 
   className={styles.mapWrapper}
@@ -42,7 +43,7 @@ const LocationMap = ({ slug }) => {
   animate={{ opacity: 1, scale: 1 }}
   transition={{ duration: 0.5 }}
 >
-  {/* <h2 className={styles.heading}>{mapData.heading}</h2> */}
+ 
   <div className={styles.mapContainer} dangerouslySetInnerHTML={{ __html: mapData.map }}></div>
 </motion.div>
 

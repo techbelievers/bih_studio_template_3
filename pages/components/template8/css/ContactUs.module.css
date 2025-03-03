@@ -3,7 +3,7 @@
   display: flex;
   width: 100%;
   height: 600px;
-  background: linear-gradient(135deg, #ffffff, #b0a3ff);
+  background: linear-gradient(135deg, #f3fed0, #8DB600);
 }
 
 /* Left Side - Image */
@@ -58,7 +58,7 @@
 
 .formTitle {
   font-size: 28px;
-  color: #836fff;
+  color: #000000;
   margin-bottom: 15px;
 }
 
@@ -72,7 +72,7 @@
 .inputGroup input, .textarea {
   width: 100%;
   padding: 12px;
-  border: 1px solid #A294F9;
+  border: 1px solid #8DB600;
   border-radius: 8px;
   font-size: 16px;
   transition: 0.3s;
@@ -80,7 +80,7 @@
 
 .inputGroup input:focus, .textarea:focus {
   outline: none;
-  border-color: #836FFF;
+  border-color: #8DB600;
 }
 
 /* Textarea */
@@ -92,7 +92,7 @@
 /* Submit Button */
 .submitButton {
   width: 100%;
-  background: linear-gradient(135deg, #A294F9, #836FFF);
+  background: linear-gradient(135deg, #000000, #8DB600);
   color: white;
   font-size: 18px;
   padding: 12px;
@@ -103,7 +103,7 @@
 }
 
 .submitButton:hover {
-  background: linear-gradient(135deg, #836FFF, #A294F9);
+  background: linear-gradient(135deg, #8DB600, #8DB600);
 }
 
 /* Success & Error Messages */

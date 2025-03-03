@@ -16,7 +16,7 @@ const Blogs = () => {
         const response = await fetch(API.BLOGS());
         const data = await response.json();
         setBlogs(data.blogs || []);
-        setHeading(data.blog_page?.name || "Latest Insights");
+        setHeading(data.blog_page?.name || "Latest Insights - Property Trends & Studio Apartments");
         setSubheading(data.blog_page?.detail || "Stay updated with our latest blog posts.");
       } catch (error) {
         console.error("Error fetching blog data:", error);

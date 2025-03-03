@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 50px;
   padding: 40px 5%;
-  background: #f5efff;
+  background: #8DB600;
 }
 
 /* Heading Styles */
@@ -78,7 +78,7 @@
 }
 
 .calculateButton {
-  background: #a294f9;
+  background: #8DB600;
   color: white;
   padding: 12px 20px;
   border: none;

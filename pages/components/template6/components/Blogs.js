@@ -16,7 +16,7 @@ const Blogs = () => {
         const response = await fetch(API.BLOGS());
         const data = await response.json();
         setBlogs(data.blogs);
-        setHeading(data.blog_page?.name || "Blogs");
+        setHeading(data.blog_page?.name || "Blogs - Studio Trends and Tips");
         setSubheading(data.blog_page?.detail || "");
         
         // Show the first 3 blogs initially

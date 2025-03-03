@@ -24,6 +24,14 @@ const ContactSection = ({ slug }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate phone number: must be exactly 10 digits
+    const phonePattern = /^\d{10}$/;
+    if (!phonePattern.test(formData.phone_number)) {
+      setError("Please enter a valid 10-digit phone number.");
+      return;
+    }
+
     try {
       formData.note = slug;
       await axios.post(API.postContactUs, formData);
@@ -36,6 +44,7 @@ const ContactSection = ({ slug }) => {
         message: "",
         note: ""
       });
+      setError(null);
     } catch (error) {
       console.error("Error submitting contact form:", error);
       setError("Failed to send message. Please try again.");

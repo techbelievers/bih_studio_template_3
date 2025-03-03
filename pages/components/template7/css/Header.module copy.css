@@ -117,24 +117,3 @@
 }
 
 
-/* Mobile Menu Close Button */
-.closeButton {
-  position: absolute;
-  top: 10px; /* Distance from the top */
-  right: 10px; /* Distance from the right */
-  background: transparent;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: #F8F9FA;
-  z-index: 10; /* Ensure it stays on top of other elements */
-}
-
-.closeButton:hover .closeIcon {
-  color: #A2D5F2;
-}
-
-.closeIcon {
-  font-size: 24px;
-  transition: color 0.3s ease-in-out;
-}

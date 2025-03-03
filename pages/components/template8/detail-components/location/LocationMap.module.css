@@ -4,10 +4,20 @@
   /* margin-top: 40px; */
   /* padding: 20px 20px;   */
   padding-top: 30px;
-  background: #f5efff;
+  background: #f6f6f6;
   margin-bottom: 20px;
 
 }
+
+.heading {
+  font-size: 28px;
+  font-weight: 600;
+  color: #000000;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 8px;
+}
+
 
 /* Circular Map - Updated */
 .mapWrapper {

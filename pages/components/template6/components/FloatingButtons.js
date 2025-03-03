@@ -38,9 +38,6 @@ const FloatingButtons = (slug , websiteDomain) => {
       const slugValue = slug.slug && slug.slug !== "undefined" ? slug.slug : domainName;
       const fullMessage = `Property Enquiry for: ${slugValue}\n\nMessage: ${whatsappMessage}`;
       const whatsappUrl = `https://wa.me/${footerData.g_setting.footer_phone}?text=${encodeURIComponent(fullMessage)}`;
-      // const whatsappUrl = `https://wa.me/${footerData.g_setting.footer_phone}?text=${encodeURIComponent(
-      //   whatsappMessage
-      // )}`;
       window.open(whatsappUrl, "_blank");
       setIsWhatsAppPopupOpen(false);
       setWhatsappMessage(""); // Reset the message

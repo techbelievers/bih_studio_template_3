@@ -1,10 +1,11 @@
+/* Header */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 20px;
-  background: #CDC1FF;
-  color: #333;
+  background: #8DB600; /* Fresh Green */
+  color: #000;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   position: fixed;
   width: 100%;
@@ -12,11 +13,13 @@
   z-index: 1000;
 }
 
+/* Logo */
 .logo {
   height: 50px;
   cursor: pointer;
 }
 
+/* Navigation Menu */
 .navMenu {
   display: flex;
   align-items: center;
@@ -27,24 +30,21 @@
   list-style: none;
   display: flex;
   gap: 20px;
-
 }
-
-
 
 .navMenu ul li a {
   text-decoration: none;
-  color: #333;
+  color: #000;
   font-size: 16px;
   font-weight: 500;
   transition: color 0.3s;
-  
 }
 
 .navMenu ul li a:hover {
-  color: #A294F9;
+  color: #A8E06F; /* Lighter Green */
 }
 
+/* Call to Action Buttons */
 .cta {
   display: flex;
   gap: 15px;
@@ -56,32 +56,31 @@
   font-weight: bold;
   cursor: pointer;
   transition: 0.3s ease;
-  margin-right:10px;
-  
+  margin-right: 10px;
 }
 
+/* Call Button */
 .callButton {
-  background: #F5EFFF;
+  background: #A8E06F; /* Light Green */
   color: #000;
-  border: 2px solid #A294F9;
-  /* margin-right: 10px; */
-  margin-left: 10px;
+  border: 2px solid #8DB600;
 }
 
 .callButton:hover {
-  background: #A294F9;
+  background: #000;
   color: #fff;
 }
 
+/* Enquire Button */
 .enquireButton {
-  background: #A294F9;
+  background: #000;
   color: #fff;
   border: none;
 }
 
 .enquireButton:hover {
-  background: #E5D9F2;
-  color: #000;
+  background: #222;
+  color: #fff;
 }
 
 /* Mobile Menu */
@@ -107,12 +106,12 @@
     top: 0;
     width: 250px;
     height: 100%;
-    background: #F5EFFF;
+    background: #A8E06F;
     padding: 20px;
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
   }
 
-  .mobileMenu li{
+  .mobileMenu li {
     margin-top: 10px;
   }
 }
