@@ -64,9 +64,9 @@ const HeroBanner = ({ propertyDetails, servicesData, slug }) => {
         {/* Right Side - Builder Logo + Information Box */}
         <div className={styles.infoSection}>
           {/* Builder Logo Above Details */}
-          {servicesData?.builder_logo && (
+          {servicesData?.property_builder_photo && (
             <div className={styles.builderLogoContainer}>
-              <img src={servicesData.builder_logo} alt="Builder Logo" className={styles.builderLogo} />
+              <img src={servicesData.property_builder_photo} alt="Builder Logo" className={styles.builderLogo} />
             </div>
           )}
 
