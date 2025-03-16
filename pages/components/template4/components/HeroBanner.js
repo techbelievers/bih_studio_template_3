@@ -74,8 +74,10 @@ const HeroBannerWithIntegratedServices = () => {
           {/* Main Heading */}
           <h1 className={styles.heading}>{heroData.heading}</h1>
           <p className={styles.location}>
-            {heroData.sublocation}, {heroData.location}
-          </p>
+  {heroData.sublocation ? `${heroData.sublocation}, ` : ''}
+  {heroData.location}
+</p>
+
           {/* <p className={styles.description}>{heroData.description}</p> */}
 
           {/* Service Cards Inside Hero */}

@@ -17,6 +17,7 @@ const PropertyDetails = ({ propertyDetails, error }) => {
   }
 
   return (
+    <>
     <div id="about" className={styles.propertyDetailsContainer}>
       {/* Title Section */}
       <div className={styles.headerCard}>
@@ -44,6 +45,22 @@ const PropertyDetails = ({ propertyDetails, error }) => {
         </button>
       </div>
     </div>
+    {propertyDetails.property_specification && propertyDetails.property_specification.trim() !== "" && (
+    <div id="about" className={styles.propertyDetailsContainer}>
+      {/* Render only when propertyDetails is loaded */}
+      {propertyDetails && (
+        <>
+          <h2 className={styles.propertyName}>About Builders</h2>
+          <div
+            className={styles.description}
+            dangerouslySetInnerHTML={{ __html: isExpanded ? propertyDetails.property_specification : `${propertyDetails.property_specification}` }}
+          />
+       
+        </>
+      )}
+    </div>
+    )}
+    </>
   );
 };
 

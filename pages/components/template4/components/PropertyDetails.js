@@ -44,33 +44,23 @@ const PropertyDetails = ({ propertyDetails, error }) => {
         </button>
       </div>
 
-      {/* Icon Section */}
-      {/* <div className={styles.realEstateIcons}>
-        <div className={styles.iconCard}>
-          <img
-            src="https://example.com/icon1.png"
-            alt="Icon 1"
-            className={styles.iconImage}
-          />
-          <p className={styles.iconLabel}>Prime Location</p>
-        </div>
-        <div className={styles.iconCard}>
-          <img
-            src="https://example.com/icon2.png"
-            alt="Icon 2"
-            className={styles.iconImage}
-          />
-          <p className={styles.iconLabel}>Spacious Interiors</p>
-        </div>
-        <div className={styles.iconCard}>
-          <img
-            src="https://example.com/icon3.png"
-            alt="Icon 3"
-            className={styles.iconImage}
-          />
-          <p className={styles.iconLabel}>World-Class Amenities</p>
-        </div>
-      </div> */}
+
+      {propertyDetails.property_specification && propertyDetails.property_specification.trim() !== "" && (
+      <div className={styles.descriptionCard}>
+        <h2 className={styles.sectionHeading}>About Builder</h2>
+        <div
+          className={`${styles.description} ${
+            isExpanded ? styles.expanded : ''
+          }`}
+          dangerouslySetInnerHTML={{
+            __html: isExpanded
+              ? propertyDetails.property_specification
+              : `${propertyDetails.property_specification}`,
+          }}
+        />
+      </div>
+      )}
+
     </div>
   );
 };

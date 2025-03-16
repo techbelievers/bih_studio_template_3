@@ -23,7 +23,7 @@ const Amenities = () => {
         console.error('Error fetching amenities data:', error);
       }
     };
-
+    
     fetchAmenitiesData();
   }, []);
 

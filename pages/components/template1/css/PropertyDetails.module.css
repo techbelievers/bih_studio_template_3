@@ -73,3 +73,22 @@
         padding: 8px 16px;
     }
 }
+
+
+.scrollable {
+    max-height: 300px; /* Adjust this value based on your design */
+    overflow-y: auto;
+    padding-right: 10px;
+    margin-top: 10px;
+  }
+  
+  /* Optional: Customize scrollbar appearance */
+  .scrollable::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .scrollable::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+  }
+  

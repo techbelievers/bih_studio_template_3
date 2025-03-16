@@ -47,35 +47,6 @@ const HeroBannerWithVideo = () => {
       </div>
 
       <div className={styles.overlay}></div>
-
-      {/* Hero Content */}
-      {/* <div className={styles.heroContent}>
-        <motion.h1
-          className={styles.heading}
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          {heading}
-        </motion.h1>
-        <motion.p
-          className={styles.subheading}
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-        >
-          {subheading}
-        </motion.p>
-        <motion.button
-          className={styles.enquireButton}
-          onClick={() => setIsPopupOpen(true)}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          Enquire Now
-        </motion.button>
-      </div> */}
-
       {/* Enquire Popup */}
       {isPopupOpen && <EnquirePopup onClose={() => setIsPopupOpen(false)} />}
     </div>

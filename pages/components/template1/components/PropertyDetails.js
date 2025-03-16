@@ -28,6 +28,8 @@ const PropertyDetails = ({ propertyDetails, error }) => {
   };
 
   return (
+    <>
+    
     <div id="about" className={styles.property_details_section}>
       <h2 className={styles.property_title}>{propertyDetails.property_name}</h2>
       <div
@@ -49,6 +51,23 @@ const PropertyDetails = ({ propertyDetails, error }) => {
       
     </div>
 
+    {propertyDetails.property_specification && propertyDetails.property_specification.trim() !== "" && (
+    <div id="about" className={styles.property_details_section}>
+      <h2 className={styles.property_title}>About Builders</h2>
+      <div
+        className={styles.property_description}
+        dangerouslySetInnerHTML={{
+          __html: isExpanded
+            ? propertyDetails.property_specification
+            : `${propertyDetails.property_specification}`,
+        }}
+      />
+  
+    </div>
+    )}
+
+
+    </>
   );
 };
 

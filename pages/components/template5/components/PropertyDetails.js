@@ -65,6 +65,23 @@ const PropertyDetails = ({ propertyDetails, error }) => {
         </button>
       </div>
 
+       {/* Description Section */}
+       {propertyDetails.property_specification && propertyDetails.property_specification.trim() !== "" && (
+       <div className={styles.descriptionCard}>
+        <h2 className={styles.sectionHeading}>About Builder</h2>
+        <div
+          className={`${styles.description} ${
+            isExpanded ? styles.expanded : ''
+          }`}
+          dangerouslySetInnerHTML={{
+            __html: isExpanded
+              ? propertyDetails.property_specification
+              : `${propertyDetails.property_specification}`,
+          }}
+        />
+      </div>
+       )}
+
       {/* Enquire Popup */}
       {isPopupOpen && <EnquirePopup onClose={() => setIsPopupOpen(false)} />}
     </div>

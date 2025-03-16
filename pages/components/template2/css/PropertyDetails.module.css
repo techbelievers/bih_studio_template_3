@@ -135,3 +135,20 @@
     border-radius: 2px;
   }
   
+  .scrollable {
+    max-height: 300px; /* Adjust height as needed */
+    overflow-y: auto;
+    padding-right: 10px;
+    margin-top: 10px;
+  }
+  
+  /* Optional scrollbar styling */
+  .scrollable::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .scrollable::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+  }
+  

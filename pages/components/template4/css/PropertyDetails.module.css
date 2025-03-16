@@ -206,3 +206,20 @@
     gap: 20px;
   }
 }
+
+
+.scrollableDescription {
+  max-height: 300px; /* adjust as needed */
+  overflow-y: auto;
+  padding-right: 8px; /* optional for scrollbar spacing */
+}
+
+/* Optional scrollbar styling for better UI */
+.scrollableDescription::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollableDescription::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}

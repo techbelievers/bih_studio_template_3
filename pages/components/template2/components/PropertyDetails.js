@@ -19,6 +19,7 @@ const PropertyDetails = ({ propertyDetails, error }) => {
   }
 
   return (
+    <>
     <div id="about" className={styles.property_details_section}>
       {/* Render only when propertyDetails is loaded */}
       {propertyDetails && (
@@ -34,6 +35,24 @@ const PropertyDetails = ({ propertyDetails, error }) => {
         </>
       )}
     </div>
+
+    {propertyDetails.property_specification && propertyDetails.property_specification.trim() !== "" && (
+    <div id="about" className={styles.property_details_section}>
+      {/* Render only when propertyDetails is loaded */}
+      {propertyDetails && (
+        <>
+          <h2 className={styles.luxuryHeading}>About Builders</h2>
+          <div
+            className={styles.property_description}
+            dangerouslySetInnerHTML={{ __html: isExpanded ? propertyDetails.property_specification : `${propertyDetails.property_specification}` }}
+          />
+       
+        </>
+      )}
+    </div>
+    )}
+
+    </>
   );
 };
 
