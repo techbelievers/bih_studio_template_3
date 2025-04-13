@@ -106,6 +106,12 @@
   overflow-y: auto;
   padding-right: 10px;
   margin-top: 10px;
+  background: #ffffff;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  padding: 1rem;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  
 }
 
 /* Optional custom scrollbar styling */

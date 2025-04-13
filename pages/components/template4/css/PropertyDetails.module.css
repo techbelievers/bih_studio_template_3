@@ -83,6 +83,17 @@
   border-left: 4px solid #ffcc00; /* Accent Line */
 }
 
+.descriptionCardabout {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  position: relative;
+  overflow: hidden;
+  border-left: 4px solid #ff8229; /* Accent Line */
+}
+
 .descriptionCard::before {
   content: '';
   position: absolute;

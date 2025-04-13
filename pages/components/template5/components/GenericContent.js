@@ -11,7 +11,7 @@ const PropertyDetails = ({ propertyDetails, error }) => {
   };
 
   if (!propertyDetails) {
-    return <div className={styles.loading}>Loading...</div>;
+    return <div className={styles.loading}> Loading...</div>;
   }
 
   if (error) {
@@ -26,15 +26,14 @@ const PropertyDetails = ({ propertyDetails, error }) => {
        <div className={styles.descriptionCard}>
         <h2 className={styles.sectionHeading}>Property Information</h2>
         <div
-          className={`${styles.description} ${
-            isExpanded ? styles.expanded : ''
-          }`}
-          dangerouslySetInnerHTML={{
-            __html: isExpanded
-              ? propertyDetails.property_information
-              : `${propertyDetails.property_information}`,
-          }}
-        />
+  className={`${styles.description} ${isExpanded ? styles.expanded : ''} ${styles.scrollableDescription}`}
+  dangerouslySetInnerHTML={{
+    __html: isExpanded
+      ? propertyDetails.property_information
+      : `${propertyDetails.property_information}`,
+  }}
+/>
+
       </div>
        )}
 

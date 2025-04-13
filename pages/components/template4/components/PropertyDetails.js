@@ -46,10 +46,10 @@ const PropertyDetails = ({ propertyDetails, error }) => {
 
 
       {propertyDetails.property_specification && propertyDetails.property_specification.trim() !== "" && (
-      <div className={styles.descriptionCard}>
+      <div className={styles.descriptionCardabout}>
         <h2 className={styles.sectionHeading}>About Builder</h2>
         <div
-          className={`${styles.description} ${
+          className={`${styles.scrollableDescription} ${
             isExpanded ? styles.expanded : ''
           }`}
           dangerouslySetInnerHTML={{

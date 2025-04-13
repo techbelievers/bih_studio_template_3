@@ -77,6 +77,13 @@
 
 .scrollable {
     max-height: 300px; /* Adjust this value based on your design */
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     overflow-y: auto;
     padding-right: 10px;
     margin-top: 10px;

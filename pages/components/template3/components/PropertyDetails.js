@@ -44,22 +44,32 @@ const PropertyDetails = ({ propertyDetails, error }) => {
           {isExpanded ? 'Read Less' : 'Read More'}
         </button>
       </div>
-    </div>
+   
+    
     {propertyDetails.property_specification && propertyDetails.property_specification.trim() !== "" && (
     <div id="about" className={styles.propertyDetailsContainer}>
+        <div className={styles.headerCard}>
+        <h2 className={styles.propertyName}>About Builders</h2>
+        <p className={styles.propertyTagline}>
+          {/* {propertyDetails.tagline || 'Discover Luxury'} */}
+        </p>
+      </div>
+      <div className={styles.scrollableDescription}>
       {/* Render only when propertyDetails is loaded */}
       {propertyDetails && (
         <>
-          <h2 className={styles.propertyName}>About Builders</h2>
           <div
-            className={styles.description}
+            className={styles.property_description}
             dangerouslySetInnerHTML={{ __html: isExpanded ? propertyDetails.property_specification : `${propertyDetails.property_specification}` }}
           />
        
         </>
       )}
     </div>
+    </div>
+
     )}
+         </div>
     </>
   );
 };

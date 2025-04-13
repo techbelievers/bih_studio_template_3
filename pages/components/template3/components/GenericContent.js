@@ -20,14 +20,20 @@ const PropertyDetails = ({ propertyDetails, error }) => {
 
   return (
     <div id="about" className={styles.propertyDetailsContainer}>
-   
+    <div className={styles.headerCard}>
+         <h2 className={styles.propertyName}>Property Information</h2>
+        <p className={styles.propertyTagline}>
+          {/* {propertyDetails.tagline || 'Discover Luxury'} */}
+        </p>
+      </div>
        {/* Description Section */}
     {propertyDetails.property_information && propertyDetails.property_information.trim() !== "" && (
-      <div id="about" className={styles.propertyDetailsContainer}>
+      <div id="about" className={styles.scrollableDescription}>
+        
         {/* Render only when propertyDetails is loaded */}
         {propertyDetails && (
           <>
-            <h2 className={styles.propertyName}>Property Information</h2>
+           
             <div
                 className={`${styles.description} ${styles.scrollableDescription}`}
               dangerouslySetInnerHTML={{ __html: isExpanded ? propertyDetails.property_information : `${propertyDetails.property_information}` }}

@@ -51,7 +51,7 @@ function App({ propertyDetails }) {
             {/* <EMICalculator /> */}
             {/* <Blogs /> */}
             <FAQ />
-            <GenericContent/>
+            <GenericContent propertyDetails={propertyDetails}/>
             <Footer />
             <FloatingButtons name={propertyDetails.property_name}/>
           </div>

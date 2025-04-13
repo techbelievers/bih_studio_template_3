@@ -43,7 +43,7 @@ const PropertyDetails = ({ propertyDetails, error }) => {
         <>
           <h2 className={styles.luxuryHeading}>About Builders</h2>
           <div
-            className={styles.property_description}
+            className={styles.scrollable}
             dangerouslySetInnerHTML={{ __html: isExpanded ? propertyDetails.property_specification : `${propertyDetails.property_specification}` }}
           />
        
