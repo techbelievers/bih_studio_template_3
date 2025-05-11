@@ -77,7 +77,9 @@ const ContactUs = () => {
               <input type="text" name="last_name" placeholder="Last Name*" value={formData.last_name} onChange={handleChange} required />
             </div>
             <div className={styles.inputGroup}>
-              <input type="tel" name="phone_number" placeholder="Phone Number*" value={formData.phone_number} onChange={handleChange} required />
+              <input type="tel" name="phone_number" placeholder="Phone Number*" value={formData.phone_number} onChange={handleChange} required maxLength={10}
+              pattern="\d{10}"
+              title="Phone number must be exactly 10 digits" />
               <input type="email" name="email_id" placeholder="Email" value={formData.email_id} onChange={handleChange} />
             </div>
             <textarea className={styles.textarea} name="message" placeholder="Your Message" value={formData.message} onChange={handleChange}></textarea>

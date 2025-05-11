@@ -121,6 +121,9 @@ const EnquirePopup = ({ onClose }) => {
                 value={formData.phone_number}
                 onChange={handleChange}
                 required
+                maxLength={10}
+              pattern="\d{10}"
+              title="Phone number must be exactly 10 digits"
               />
               <input
                 type="email"
