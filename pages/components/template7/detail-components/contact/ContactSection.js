@@ -105,6 +105,9 @@ const ContactSection = ({slug}) => {
               onChange={handleChange}
               required
               className={styles.inputField}
+              maxLength={10}
+              pattern="\d{10}"
+              title="Phone number must be exactly 10 digits"
             />
             <input
               type="email"
