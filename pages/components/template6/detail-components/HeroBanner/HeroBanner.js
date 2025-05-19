@@ -307,6 +307,9 @@ const GalleryWithEnquiry = ({ propertyDetails, slug  , servicesData:intialServic
             onChange={handleInputChange}
             className={styles.input}
             required
+            maxLength={10}
+              pattern="\d{10}"
+              title="Phone number must be exactly 10 digits"
           />
            <input
             type="email"

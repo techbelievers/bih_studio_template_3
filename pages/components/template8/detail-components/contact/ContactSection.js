@@ -106,8 +106,8 @@ const ContactSection = ({ slug }) => {
                   className={styles.inputField}
                   placeholder="Phone Number *"
                   maxLength={10}
-              pattern="\d{10}"
-              title="Phone number must be exactly 10 digits"
+                  pattern="\d{10}"
+                  title="Phone number must be exactly 10 digits"
                 />
               </div>
 

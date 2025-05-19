@@ -47,9 +47,9 @@ const Amenities = ({ slug }) => {
                   alt={amenity.amenity_name}
                   className={styles.image}
                 />
-                <div className={styles.overlay}>
+                {/* <div className={styles.overlay}>
                   <span className={styles.overlayText}>{amenity.amenity_name}</span>
-                </div>
+                </div> */}
               </div>
               <h3 className={styles.name}>{amenity.amenity_name}</h3>
               {/* <button className={styles.moreInfo}>Learn More</button> */}
