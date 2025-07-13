@@ -2,10 +2,18 @@ import React, { useState } from 'react';
 import styles from './PropertyDetails.module.css';
 
 const PropertyDetails = ({ propertyDetails, error }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [activeTab, setActiveTab] = useState('about');
+  const [expandedTabs, setExpandedTabs] = useState({
+    about: false,
+    builders: false,
+    info: false,
+  });
 
-  const handleReadMore = () => {
-    setIsExpanded(!isExpanded);
+  const handleReadMore = (tab) => {
+    setExpandedTabs((prev) => ({
+      ...prev,
+      [tab]: !prev[tab],
+    }));
   };
 
   if (!propertyDetails) {
@@ -29,24 +37,70 @@ const PropertyDetails = ({ propertyDetails, error }) => {
         </p>
       </div>
 
-      {/* Description Section */}
-      <div className={styles.descriptionCard}>
-        <h2 className={styles.sectionHeading}>About the Property</h2>
-        <div
-          className={`${styles.description} ${
-            isExpanded ? styles.expanded : ''
+      {/* Tabs */}
+      <div className={styles.tabHeaders}>
+        <button
+          className={`${styles.tabButton} ${
+            activeTab === 'about' ? styles.activeTab : ''
           }`}
-          dangerouslySetInnerHTML={{
-            __html: isExpanded
-              ? propertyDetails.property_description
-              : `${propertyDetails.property_description.slice(0, 2000)}...`,
-          }}
-        />
-        <button className={styles.readMoreButton} onClick={handleReadMore}>
-          {isExpanded ? 'Read Less' : 'Read More'}
+          onClick={() => setActiveTab('about')}
+        >
+          About the Property
+        </button>
+        <button
+          className={`${styles.tabButton} ${
+            activeTab === 'builders' ? styles.activeTab : ''
+          }`}
+          onClick={() => setActiveTab('builders')}
+        >
+          About the Builders
+        </button>
+        <button
+          className={`${styles.tabButton} ${
+            activeTab === 'info' ? styles.activeTab : ''
+          }`}
+          onClick={() => setActiveTab('info')}
+        >
+          Additional Information
         </button>
       </div>
-    
+
+      {/* Tab Content */}
+      <div className={styles.descriptionCard}>
+        <h2 className={styles.sectionHeading}>
+          {activeTab === 'about'
+            ? 'About the Property'
+            : activeTab === 'builders'
+            ? 'About the Builders'
+            : 'Additional Information'}
+        </h2>
+        <div
+          className={`${styles.description} ${
+            expandedTabs[activeTab] ? styles.expanded : ''
+          }`}
+          dangerouslySetInnerHTML={{
+            __html: expandedTabs[activeTab]
+              ? activeTab === 'about'
+                ? propertyDetails.property_description
+                : activeTab === 'builders'
+                ? propertyDetails.property_specification
+                : propertyDetails.property_information
+              : `${
+                  activeTab === 'about'
+                    ? propertyDetails.property_description.slice(0, 2000)
+                    : activeTab === 'builders'
+                    ? propertyDetails.property_specification.slice(0, 2000)
+                    : propertyDetails.property_information.slice(0, 2000)
+                }...`,
+          }}
+        />
+        <button
+          className={styles.readMoreButton}
+          onClick={() => handleReadMore(activeTab)}
+        >
+          {expandedTabs[activeTab] ? 'Read Less' : 'Read More'}
+        </button>
+      </div>
     </div>
   );
 };

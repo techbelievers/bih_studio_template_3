@@ -1,12 +1,19 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import styles from "./PropertyDetails.module.css";
+import React, { useState } from 'react';
+import styles from './PropertyDetails.module.css';
 
 const PropertyDetails = ({ propertyDetails, error }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [activeTab, setActiveTab] = useState('about');
+  const [expandedTabs, setExpandedTabs] = useState({
+    about: false,
+    builders: false,
+    info: false,
+  });
 
-  const handleReadMore = () => {
-    setIsExpanded(!isExpanded);
+  const handleReadMore = (tab) => {
+    setExpandedTabs((prev) => ({
+      ...prev,
+      [tab]: !prev[tab],
+    }));
   };
 
   if (!propertyDetails) {
@@ -18,49 +25,83 @@ const PropertyDetails = ({ propertyDetails, error }) => {
   }
 
   return (
-    <section id="about" className={styles.propertyDetailsContainer}>
-      {/* Background Overlay */}
-      <div className={styles.backgroundOverlay}></div>
+    <div id="about" className={styles.propertyDetailsContainer}>
+      {/* Clip Path Background */}
+      <div className={styles.clipPathBackground}></div>
 
       {/* Header */}
-      <motion.div 
-        className={styles.headerCard}
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
+      <div className={styles.headerCard}>
         <h1 className={styles.heading}>{propertyDetails.property_name}</h1>
         <p className={styles.propertyTagline}>
-          {propertyDetails.tagline || "Luxury Living at its Best"}
+          {propertyDetails.tagline || 'Luxury Living at its Best'}
         </p>
-      </motion.div>
+      </div>
 
-      {/* Description Section */}
-      <motion.div 
-        className={styles.descriptionCard}
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <h2 className={styles.sectionHeading}>About the Property</h2>
+      {/* Tabs */}
+      <div className={styles.tabHeaders}>
+        <button
+          className={`${styles.tabButton} ${
+            activeTab === 'about' ? styles.activeTab : ''
+          }`}
+          onClick={() => setActiveTab('about')}
+        >
+          About the Property
+        </button>
+        <button
+          className={`${styles.tabButton} ${
+            activeTab === 'builders' ? styles.activeTab : ''
+          }`}
+          onClick={() => setActiveTab('builders')}
+        >
+          About the Builders
+        </button>
+        <button
+          className={`${styles.tabButton} ${
+            activeTab === 'info' ? styles.activeTab : ''
+          }`}
+          onClick={() => setActiveTab('info')}
+        >
+          Additional Information
+        </button>
+      </div>
+
+      {/* Tab Content */}
+      <div className={styles.descriptionCard}>
+        <h2 className={styles.sectionHeading}>
+          {activeTab === 'about'
+            ? 'About the Property'
+            : activeTab === 'builders'
+            ? 'About the Builders'
+            : 'Additional Information'}
+        </h2>
         <div
-          className={`${styles.description} ${isExpanded ? styles.expanded : ""}`}
+          className={`${styles.description} ${
+            expandedTabs[activeTab] ? styles.expanded : ''
+          }`}
           dangerouslySetInnerHTML={{
-            __html: isExpanded
-              ? propertyDetails.property_description
-              : `${propertyDetails.property_description.slice(0, 1000)}...`,
+            __html: expandedTabs[activeTab]
+              ? activeTab === 'about'
+                ? propertyDetails.property_description
+                : activeTab === 'builders'
+                ? propertyDetails.property_specification
+                : propertyDetails.property_information
+              : `${
+                  activeTab === 'about'
+                    ? propertyDetails.property_description.slice(0, 2000)
+                    : activeTab === 'builders'
+                    ? propertyDetails.property_specification.slice(0, 2000)
+                    : propertyDetails.property_information.slice(0, 2000)
+                }...`,
           }}
         />
-        <motion.button 
-          className={styles.readMoreButton} 
-          onClick={handleReadMore}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+        <button
+          className={styles.readMoreButton}
+          onClick={() => handleReadMore(activeTab)}
         >
-          {isExpanded ? "Read Less" : "Read More"}
-        </motion.button>
-      </motion.div>
-    </section>
+          {expandedTabs[activeTab] ? 'Read Less' : 'Read More'}
+        </button>
+      </div>
+    </div>
   );
 };
 
