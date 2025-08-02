@@ -22,6 +22,7 @@ const Blogs = lazy(() => import("./components/Blogs"));
 const BankPartners = lazy(() => import("./components/BankPartners"));
 const ContactUs = lazy(() => import("./components/ContactUs"));
 const Adverties = lazy(() => import("./components/Advertisements"));
+
 const Properties = lazy(() => import("./components/Properties"));
 
 function App({ propertyDetails }) {
@@ -36,6 +37,7 @@ function App({ propertyDetails }) {
         <ContactUs />
         <BankPartners />
         <EMICalculator />
+        <PropertyDetails propertyDetails={propertyDetails}/>
         <Blogs />
         <FAQ />
         <Footer />

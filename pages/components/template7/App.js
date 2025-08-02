@@ -10,6 +10,7 @@ import ContactUs from './components/ContactUs';
 import Adverties from './components/Advertisements';
 import FloatingButtons from './components/FloatingButtons';
 import Properties from './components/Properties';
+import PropertyDetails from './components/PropertyDetails';
 
 
 // import BlogDetail from './components/BlogDetail';
@@ -40,6 +41,7 @@ function App({ propertyDetails  }) {
             {/* <LocationHighlights /> */}
             <BankPartners />
             <EMICalculator />
+            <PropertyDetails propertyDetails={propertyDetails}/>
             <Blogs />
             <FAQ />
             <Footer />
