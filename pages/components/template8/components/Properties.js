@@ -69,6 +69,7 @@ const PropertiesSection = () => {
                 <p><strong>Type:</strong> {property.property_type_price_range}</p>
                 <p><strong>Size:</strong> {property.property_price_range}</p>
                 <p><strong>Price:</strong> ₹{property.property_price} Lakhs</p>
+                <p><strong>Location:</strong> {property.sub_location}</p>
               </div>
 
               <p className={styles.lastUpdated}>Last Updated: {property.last_updated}</p>
