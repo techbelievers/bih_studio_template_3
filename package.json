@@ -1,66 +1,45 @@
 {
-  "name": "bih-web-ui-4",
+  "name": "bih-studios",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://stupidbasket.com/",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "prebuild": "node scripts/fetch-seo-data.js",
+    "build": "vite build",
+    "postbuild": "node scripts/prerender.js && node scripts/make-css-non-blocking.js",
+    "preview": "vite preview",
+    "lint": "eslint ."
+  },
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
+    "@tailwindcss/vite": "^4.0.12",
     "aos": "^2.3.4",
-    "autoprefixer": "^10.4.20",
-    "axios": "^1.7.7",
+    "axios": "^1.8.2",
     "chart.js": "^4.4.4",
-    "next": "^14.2.13",
-    "next-seo": "^6.6.0",
-    "postcss": "^8.4.47",
-    "qrcode.react": "^4.0.1",
-    "razzle": "^4.2.18",
+    "framer-motion": "^12.6.0",
+    "qrcode.react": "^4.2.0",
     "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.3.1",
-    "react-helmet": "^6.1.0",
+    "react-helmet-async": "^2.0.5",
     "react-icons": "^5.3.0",
-    "react-scripts": "5.0.1",
+    "react-router-dom": "^7.3.0",
     "react-slick": "^0.30.2",
-    "react-snap": "^1.23.0",
     "react-transition-group": "^4.4.5",
     "slick-carousel": "^1.8.1",
-    "swiper": "^11.1.15",
-    "tailwindcss": "^3.4.11",
-    "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "start:prod": "NODE_ENV=production node build/server.js",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d out -b production_v1.1"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "swiper": "^11.2.0",
+    "tailwindcss": "^4.0.12",
+    "vite-plugin-html": "^3.2.2"
   },
   "devDependencies": {
-    "babel-plugin-module-resolver": "^5.0.2",
-    "gh-pages": "^6.1.1"
+    "@rollup/plugin-terser": "^0.4.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "puppeteer": "^24.32.0",
+    "vite": "^6.2.0",
+    "vite-plugin-compression": "^0.5.1"
   }
 }

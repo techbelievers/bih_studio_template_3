@@ -1,0 +1,91 @@
+import React, { useState, useEffect, Suspense, lazy } from "react";
+import { Helmet } from "react-helmet-async";
+import axios from "axios";
+import { API, DEFAULT_DOMAIN } from "../../config.js";
+import Loader from "../components/loader/Loader";
+import FloatingButtons from "../components/template6/components/FloatingButtons";
+
+// Lazy load Template6
+const Template6 = lazy(() => import("../components/template6/App"));
+
+const HomePage = () => {
+  const [templateId, setTemplateId] = useState(null);
+  const [propertyDetails, setPropertyDetails] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [seoData, setSeoData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const domain = DEFAULT_DOMAIN;
+        
+        // Fetch SEO data
+        const seoResponse = await axios.get(API.SEO_DETAIL(domain));
+        setSeoData(seoResponse.data);
+
+        // Fetch template ID
+        const templateResponse = await axios.get(API.TEMPLATE());
+        setTemplateId(templateResponse.data.templateId || '6');
+
+        // Fetch property details
+        const propertyResponse = await axios.get(API.PROPERTY_DETAILS(domain));
+        const propertyData = propertyResponse.data;
+        
+        if (propertyData && propertyData.property_details) {
+          setPropertyDetails(propertyData.property_details);
+        } else {
+          setError('Property details not found.');
+        }
+      } catch (err) {
+        setError(`Failed to fetch data: ${err.message}`);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) return <Loader />;
+  if (error) return <div>{error}</div>;
+
+  const seo = seoData?.data || {};
+
+  return (
+    <>
+      <Helmet>
+        <title>{seo.title || 'Studio Apartments'}</title>
+        <meta name="description" content={seo.meta_description || ''} />
+        <meta name="keywords" content={seo.keywords || ''} />
+        <meta property="og:title" content={seo.og_title || seo.title || ''} />
+        <meta property="og:description" content={seo.og_description || seo.meta_description || ''} />
+        <meta property="og:image" content={seo.og_image || ''} />
+        <meta property="og:type" content={seo.og_type || 'website'} />
+        {seo.domain && <link rel="canonical" href={`https://${seo.domain}`} />}
+        <meta name="robots" content={seo.status === 'Active' ? 'index, follow' : 'noindex, nofollow'} />
+        {seo.favicon && <link rel="icon" href={seo.favicon} />}
+      </Helmet>
+
+      <main>
+        <h1 className="hidden-h1">{seo.title || 'Studio Apartments'}</h1>
+        <h2 className="hidden-h1">{seo.meta_description || ''}</h2>
+        
+        {templateId === '6' && (
+          <Suspense fallback={<Loader />}>
+            <Template6 propertyDetails={propertyDetails} />
+          </Suspense>
+        )}
+        
+        {templateId !== '6' && (
+          <div>Template not found: {templateId}</div>
+        )}
+      </main>
+      
+      <FloatingButtons slug={propertyDetails?.property_website || DEFAULT_DOMAIN} />
+    </>
+  );
+};
+
+export default HomePage;
+
