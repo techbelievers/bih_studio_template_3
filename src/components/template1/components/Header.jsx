@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { API } from "../../../../config.js";
 import styles from "../css/Header.module.css";
-import EnquirePopup from "./EnquirePopup";
+import EnquirePopup from "./EnquirePopup.jsx";
 
 const Header = ({headerData: initialHeaderData , slug}) => {
   const [menuOpen, setMenuOpen] = useState(false);

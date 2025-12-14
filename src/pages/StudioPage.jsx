@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet-async";
 import axios from "axios";
 import { API, DEFAULT_DOMAIN } from "../../config.js";
 import Loader from "../components/loader/Loader";
-import Template6 from "../components/template6/StudioTemplate";
+import Template1 from "../components/template1/StudioTemplate";
 
 const StudioPage = () => {
   const { property_slug } = useParams();
@@ -29,7 +29,7 @@ const StudioPage = () => {
 
         // Fetch Template ID
         const templateResponse = await axios.get(API.TEMPLATE_STUDIO(domain));
-        setTemplateId(templateResponse.data.templateId || '6');
+        setTemplateId(templateResponse.data.templateId || '1');
 
         // Fetch Property Details
         const propertyResponse = await axios.get(
@@ -119,9 +119,9 @@ const StudioPage = () => {
         <h1 className="hidden-h1">{seo.title || propertyDetails.property_name || 'Studio Property'}</h1>
         <h2 className="hidden-h1">{seo.meta_description || propertyDetails.seo_meta_description || propertyDetails.property_description || ''}</h2>
         
-        {templateId === '6' && (
+        {templateId === '1' && (
           <Suspense fallback={<Loader />}>
-            <Template6
+            <Template1
               propertyDetails={propertyDetails}
               headerData={headerData}
               galleryData={galleryData}
@@ -129,7 +129,7 @@ const StudioPage = () => {
           </Suspense>
         )}
         
-        {templateId !== '6' && (
+        {templateId !== '1' && (
           <div>Template not found: {templateId}</div>
         )}
       </main>

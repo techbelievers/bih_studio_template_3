@@ -3,10 +3,10 @@ import { Helmet } from "react-helmet-async";
 import axios from "axios";
 import { API, DEFAULT_DOMAIN } from "../../config.js";
 import Loader from "../components/loader/Loader";
-import FloatingButtons from "../components/template6/components/FloatingButtons";
+import FloatingButtons from "../components/template1/components/FloatingButtons.jsx";
 
-// Lazy load Template6
-const Template6 = lazy(() => import("../components/template6/App"));
+// Lazy load Template1
+const Template1 = lazy(() => import("../components/template1/App.jsx"));
 
 const HomePage = () => {
   const [templateId, setTemplateId] = useState(null);
@@ -26,7 +26,7 @@ const HomePage = () => {
 
         // Fetch template ID
         const templateResponse = await axios.get(API.TEMPLATE());
-        setTemplateId(templateResponse.data.templateId || '6');
+        setTemplateId(templateResponse.data.templateId || '1');
 
         // Fetch property details
         const propertyResponse = await axios.get(API.PROPERTY_DETAILS(domain));
@@ -71,13 +71,13 @@ const HomePage = () => {
         <h1 className="hidden-h1">{seo.title || 'Studio Apartments'}</h1>
         <h2 className="hidden-h1">{seo.meta_description || ''}</h2>
         
-        {templateId === '6' && (
+        {templateId === '1' && (
           <Suspense fallback={<Loader />}>
-            <Template6 propertyDetails={propertyDetails} />
+            <Template1 propertyDetails={propertyDetails} />
           </Suspense>
         )}
         
-        {templateId !== '6' && (
+        {templateId !== '1' && (
           <div>Template not found: {templateId}</div>
         )}
       </main>

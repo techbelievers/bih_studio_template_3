@@ -4,7 +4,7 @@ import { QRCodeCanvas } from "qrcode.react";
 import { motion } from "framer-motion";
 import { API } from "../../../../../config.js";
 import styles from "./HeroBanner.module.css";
-import styles_rera from "../../../../components/template6/detail-components/Maharera/Maharera.module.css";
+import styles_rera from "../Maharera/Maharera.module.css";
 
 
   
