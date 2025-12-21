@@ -3,6 +3,20 @@ import { createRoot, hydrateRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 
+// Hide initial loader once React is ready
+const hideInitialLoader = () => {
+  const loader = document.getElementById('initial-loader');
+  if (loader) {
+    loader.classList.add('hidden');
+    // Remove from DOM after transition completes
+    setTimeout(() => {
+      if (loader.parentNode) {
+        loader.parentNode.removeChild(loader);
+      }
+    }, 300);
+  }
+};
+
 const rootElement = document.getElementById('root')
 
 if (rootElement) {
@@ -28,6 +42,9 @@ if (rootElement) {
       if (window.snapSaveState) {
         window.snapSaveState();
       }
+      
+      // Hide loader after React app is rendered
+      hideInitialLoader();
     } catch (error) {
       rootElement.innerHTML = '';
       createRoot(rootElement).render(
@@ -35,6 +52,8 @@ if (rootElement) {
           <App />
         </StrictMode>
       );
+      // Hide loader even on error
+      hideInitialLoader();
     }
   };
   
