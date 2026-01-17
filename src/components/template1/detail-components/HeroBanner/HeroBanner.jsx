@@ -1,42 +1,49 @@
-import React, { useState, useEffect, lazy, Suspense } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { QRCodeCanvas } from "qrcode.react";
 import { motion } from "framer-motion";
 import { API } from "../../../../../config.js";
 import styles from "./HeroBanner.module.css";
-import styles_rera from "../Maharera/Maharera.module.css";
-
-
   
-const GalleryWithEnquiry = ({ propertyDetails, slug  , servicesData:intialServiceData}) => {
-    const [galleryData, setGalleryData] = useState([]);
+const HeroBanner = ({ propertyDetails, slug, servicesData: initialServiceData, galleryData: initialGalleryData }) => {
+  const [galleryData, setGalleryData] = useState(initialGalleryData || []);
+  const [servicesData, setServicesData] = useState(initialServiceData || {});
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
     email_id: "",
     phone_number: "",
     message: "",
-    note:""
+    note: ""
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
-  const [modalImage, setModalImage] = useState(null); // For modal
-  const [servicesData, setServicesData] = useState(intialServiceData || {}); // Services Data
-  const [reraData, setReraData] = useState([]);
-  const [reraLoading, setReraLoading] = useState(true);
-  const [reraError, setReraError] = useState(null);
+  const [mainImage, setMainImage] = useState(null);
 
   // Fetch Gallery Data
   useEffect(() => {
+    if (!initialGalleryData) {
     fetch(API.GALLERY_STUDIO(slug))
       .then((response) => response.json())
-      .then((data) => setGalleryData(data.property_photos || []))
+        .then((data) => {
+          const photos = data.property_photos || [];
+          setGalleryData(photos);
+          if (photos.length > 0) {
+            setMainImage(photos[0].photo);
+          }
+        })
       .catch((error) => console.error("Error fetching gallery data:", error));
-  }, [slug]);
+    } else {
+      setGalleryData(initialGalleryData);
+      if (initialGalleryData.length > 0) {
+        setMainImage(initialGalleryData[0].photo);
+      }
+    }
+  }, [slug, initialGalleryData]);
 
   // Fetch Services Data
   useEffect(() => {
+    if (!initialServiceData || Object.keys(initialServiceData).length === 0) {
     const fetchServicesData = async () => {
       try {
         const response = await axios.get(API.HEADER_STUDIO(slug));
@@ -46,25 +53,10 @@ const GalleryWithEnquiry = ({ propertyDetails, slug  , servicesData:intialServic
       }
     };
     fetchServicesData();
-  }, []);
-
-  // Fetch Maharera Data
-  useEffect(() => {
-    const fetchReraData = async () => {
-      try {
-        const response = await fetch(API.MAHARERA_STUDIO(slug));
-        const data = await response.json();
-        if (!response.ok) throw new Error("Failed to fetch data");
-        setReraData(data.rera || []);
-      } catch (err) {
-        setReraError(err.message);
-      } finally {
-        setReraLoading(false);
-      }
-    };
-
-    fetchReraData();
-  }, [slug]);
+    } else {
+      setServicesData(initialServiceData);
+    }
+  }, [slug, initialServiceData]);
 
   // Form Handlers
   const handleInputChange = (e) => {
@@ -76,7 +68,7 @@ const GalleryWithEnquiry = ({ propertyDetails, slug  , servicesData:intialServic
     e.preventDefault();
     setIsSubmitting(true);
     try {
-        formData.note =slug;
+      formData.note = slug;
       await axios.post(API.postContactUs, formData);
       setFormSubmitted(true);
       setFormData({
@@ -85,199 +77,144 @@ const GalleryWithEnquiry = ({ propertyDetails, slug  , servicesData:intialServic
         email_id: "",
         phone_number: "",
         message: "",
-        note:"",
+        note: ""
       });
+      setTimeout(() => {
       window.location.replace("/thank-you");
+      }, 1500);
     } catch (error) {
       setSubmitError("Failed to submit the form. Please try again.");
     } finally {
       setIsSubmitting(false);
-      setTimeout(() => setFormSubmitted(false), 3000);
     }
   };
 
-  const openModal = (image) => {
-    setModalImage(image);
-  };
+  if (!propertyDetails) {
+    return <div className={styles.loadingState}>Loading...</div>;
+  }
 
-  const closeModal = () => {
-    setModalImage(null);
-  };
-
-  const formatCompletionDate = (dateString) =>
-    dateString
-      ? new Date(dateString).toLocaleString("default", { month: "long", year: "numeric" })
-      : "N/A";
+  const heroImage = mainImage || propertyDetails.property_featured_photo || "/default-image.jpg";
 
   return (
-    <div className={styles.container}>
-      {/* Left Column: Gallery and Property Details */}
-      <div className={styles.leftColumn}>
-        {/* Gallery Section */}
-        <div className={styles.gallery}>
-          <h2 className={styles.heading}>{propertyDetails.property_name}</h2>
-          <p className={styles.subheading}>
-            {propertyDetails.seo_meta_description}
-          </p>
-          <div
-            className={`${styles.galleryGrid} ${
-              galleryData.length < 6 ? styles.centeredGrid : ""
-            }`}
-          >
-            {galleryData.map((photo, index) => (
-              <div
-                key={index}
-                className={styles.galleryItem}
-                onClick={() => openModal(photo.photo)}
-              >
-                <img
-                  src={photo.photo || "/placeholder-image.jpg"}
-                  alt={`Property ${index}`}
-                  className={styles.galleryImage}
-                />
-                <div className={styles.overlay}>
-                  <span className={styles.overlayText}>View</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Modal */}
-        {modalImage && (
-          <div className={styles.modal} onClick={closeModal}>
-            <div className={styles.modalContent}>
-              <img src={modalImage} alt="Enlarged View" className={styles.modalImage} />
-              <button className={styles.closeButton} onClick={closeModal}>
-                &times;
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* Property Details Section */}
-        {servicesData && (
-          <div className={styles.propertyDetails}>
-            <h2 className={styles.servicesHeading}>Explore Property Details</h2>
-            <div className={styles.servicesContent}>
-              <div className={styles.servicesRow}>
-                <strong>Builder:</strong> {servicesData.builder_name}
-              </div>
-              <div className={styles.servicesRow}>
-                <strong>Location:</strong> {servicesData.location}
-              </div>
-              <div className={styles.servicesRow}>
-                <strong>Property Type:</strong>{" "}
-                {servicesData.property_type_price_range_text}
-              </div>
-              <div className={styles.servicesRow}>
-                <strong>Area:</strong> {servicesData.property_area_min_max}
-              </div>
-              <div className={styles.servicesRow}>
-                <strong>Last Updated:</strong> {servicesData.property_last_updated}
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Maharera Section */}
-        {reraData.length > 0 &&(
-        <section className={styles_rera.mahareraSection}>
-          <div className={styles_rera.sectionHeader}>
-            <h2 className={styles_rera.mahareraHeading}>
-              Maharera <span className={styles_rera.highlight}>Details</span>
-             
-            </h2>
-            MahaRERA: <a href="https://maharera.mahaonline.gov.in">https://maharera.mahaonline.gov.in</a>
-
-
-            {/* <p className={styles_rera.mahareraSubheading}>
-              Ensuring transparency and trust in real estate projects.
-            </p> */}
-          </div>
-
-          <div
-            className={`${styles_rera.cardsContainer} ${
-              reraData.length === 1 ? styles_rera.singleCardContainer : ""
-            }`}
-          >
-            {reraLoading ? (
-              <div className={styles_rera.loading}>Loading...</div>
-            ) : reraError ? (
-              <div className={styles_rera.error}>Error: {reraError}</div>
-            ) : (
-              reraData.map((rera, index) => (
-                <motion.div
-                  key={index}
-                  className={styles_rera.card}
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className={styles_rera.cardHeader}>
-                    <h3 className={styles_rera.phaseName}>{rera.phase_name}</h3>
-                  </div>
-                  <div className={styles_rera.cardBody}>
-                    <ul className={styles_rera.detailsList}>
-                      <li>
-                        <strong>Maharera Number:</strong> {rera.rera_id}
-                      </li>
-                      <li>
-                        <strong>Completion:</strong> {formatCompletionDate(rera.completion_date)}
-                      </li>
-                      <li>
-                        <strong>Area:</strong> {rera.total_area} Sq.M
-                      </li>
-                      <li>
-                        <strong>Acre:</strong> {rera.total_acre}
-                      </li>
-                      <li>
-                        <strong>Towers:</strong> {rera.total_tower}
-                      </li>
-                      <li>
-                        <strong>Units:</strong> {rera.total_units}
-                      </li>
-                    </ul>
-                  </div>
-                  <div className={styles_rera.cardFooter}>
-                    {rera.rera_url ? (
-                      <QRCodeCanvas
-                        value={rera.rera_url}
-                        size={70}
-                        className={styles_rera.qrCode}
-                      />
-                    ) : (
-                      <p className={styles_rera.noQr}>No QR Code</p>
-                    )}
-                  </div>
-                </motion.div>
-              ))
-            )}
-          </div>
-        </section>
-        )}
+    <section className={styles.heroBanner}>
+      {/* Background Image with Overlay */}
+      <div className={styles.heroBackground}>
+        <div 
+          className={styles.heroImage}
+          style={{ backgroundImage: `url(${heroImage})` }}
+        ></div>
+        <div className={styles.heroOverlay}></div>
+        <div className={styles.decorativeShapes}></div>
       </div>
 
-      {/* Right Column: Contact Form */}
-      <div className={styles.contactFormSection}>
+      {/* Content Container */}
+      <div className={styles.heroContent}>
+        <div className={styles.contentGrid}>
+          {/* Left Side - Property Info */}
+          <motion.div 
+            className={styles.propertyInfo}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            {/* Badge */}
+            <div className={styles.heroBadge}>
+              <span className={styles.badgeIcon}>⭐</span>
+              <span>Premium Property</span>
+            </div>
+
+            {/* Property Name */}
+            <h1 className={styles.propertyName}>
+              {propertyDetails.property_name || "Luxury Living"}
+            </h1>
+
+            {/* Property Tagline */}
+            {propertyDetails.tagline && (
+              <p className={styles.propertyTagline}>
+                {propertyDetails.tagline}
+              </p>
+            )}
+
+            {/* Quick Info Cards */}
+            {servicesData && Object.keys(servicesData).length > 0 && (
+              <div className={styles.quickInfoGrid}>
+                {servicesData.location && (
+                  <div className={styles.infoCard}>
+                    <div className={styles.infoIcon}>📍</div>
+                    <div className={styles.infoContent}>
+                      <span className={styles.infoLabel}>Location</span>
+                      <span className={styles.infoValue}>{servicesData.location}</span>
+            </div>
+          </div>
+        )}
+                {servicesData.builder_name && (
+                  <div className={styles.infoCard}>
+                    <div className={styles.infoIcon}>🏗️</div>
+                    <div className={styles.infoContent}>
+                      <span className={styles.infoLabel}>Builder</span>
+                      <span className={styles.infoValue}>{servicesData.builder_name}</span>
+          </div>
+                  </div>
+                )}
+                {servicesData.property_type_price_range_text && (
+                  <div className={styles.infoCard}>
+                    <div className={styles.infoIcon}>🏠</div>
+                    <div className={styles.infoContent}>
+                      <span className={styles.infoLabel}>Type</span>
+                      <span className={styles.infoValue}>{servicesData.property_type_price_range_text}</span>
+                    </div>
+                  </div>
+                    )}
+                  </div>
+            )}
+
+            {/* CTA Buttons */}
+            <div className={styles.ctaButtons}>
+              <motion.a
+                href="#price"
+                className={styles.primaryCta}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span>View Pricing</span>
+                <span className={styles.ctaArrow}>→</span>
+              </motion.a>
+              <motion.a
+                href="#amenities"
+                className={styles.secondaryCta}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span>Explore Amenities</span>
+              </motion.a>
+          </div>
+          </motion.div>
+
+          {/* Right Side - Contact Form Card */}
+          <motion.div 
+            className={styles.contactCard}
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            {/* Builder Logo */}
       {servicesData.property_builder_photo && (
     <div className={styles.builderLogoContainer}>
       <img
         src={servicesData.property_builder_photo}
-        alt={servicesData.builder_name}
+                  alt={servicesData.builder_name || "Builder"}
         className={styles.builderLogo}
       />
     </div>
   )}
-      <h2 className={styles.heading}>
-      I'm Interested in {propertyDetails.property_name}
+
+            <h2 className={styles.formHeading}>
+              I'm Interested in<br />
+              <span className={styles.formHeadingAccent}>{propertyDetails.property_name}</span>
         </h2>
-        {/* Builder Logo */}
  
-        {/* <p className={styles.subheading}>
-          Contact us to learn more about these properties.
-        </p> */}
         <form className={styles.form} onSubmit={handleSubmit}>
-          <div className={styles.formGroup}>
+              <div className={styles.formRow}>
             <input
               type="text"
               name="first_name"
@@ -310,38 +247,66 @@ const GalleryWithEnquiry = ({ propertyDetails, slug  , servicesData:intialServic
               pattern="\d{10}"
               title="Phone number must be exactly 10 digits"
           />
+
            <input
             type="email"
             name="email_id"
-            placeholder="Email"
+                placeholder="Email Address"
             value={formData.email_id}
             onChange={handleInputChange}
             className={styles.input}
+              />
             
-          />
           <textarea
             name="message"
             placeholder="Your Message"
             value={formData.message}
             onChange={handleInputChange}
             className={styles.textarea}
+                rows="4"
+              ></textarea>
             
-          ></textarea>
           <button
             type="submit"
             className={styles.submitButton}
             disabled={isSubmitting}
           >
-            {isSubmitting ? "Sending..." : "Send Message"}
+                {isSubmitting ? (
+                  <span className={styles.buttonLoader}></span>
+                ) : (
+                  <>
+                    <span>Send Message</span>
+                    <span className={styles.buttonArrow}>→</span>
+                  </>
+                )}
           </button>
+
           {formSubmitted && (
-            <p className={styles.successMessage}>Thank you for your enquiry!</p>
-          )}
-          {submitError && <p className={styles.errorMessage}>{submitError}</p>}
+                <div className={styles.successMessage}>
+                  ✓ Thank you! We'll get back to you soon.
+                </div>
+              )}
+
+              {submitError && (
+                <div className={styles.errorMessage}>{submitError}</div>
+              )}
         </form>
+          </motion.div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <motion.div 
+          className={styles.scrollIndicator}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.5, duration: 0.6 }}
+        >
+          <span className={styles.scrollText}>Scroll to explore</span>
+          <div className={styles.scrollArrow}>↓</div>
+        </motion.div>
       </div>
-    </div>
+    </section>
   );
 };
 
-export default GalleryWithEnquiry;
+export default HeroBanner;

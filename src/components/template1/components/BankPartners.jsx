@@ -41,23 +41,62 @@ const BankPartner = () => {
   return (
     <section className={styles.bankPartnerSection}>
       <div className={styles.contentWrapper}>
-        <h2 className={styles.heading}>{heading}</h2>
-        <p className={styles.subheading}>{subheading}</p>
-        <div className={styles.scrollerWrapper} ref={scrollerRef}>
-          <div className={styles.bankScroller}>
-            {bankData.concat(bankData).map((bank, index) => (
-              <div key={`${bank.id}-${index}`} className={styles.bankCard}>
-                <div className={styles.logoContainer}>
-                  <img
-                    src={bank.property_bank_photo || "/default-bank.png"}
-                    alt={bank.bank_name}
-                    className={styles.bankLogo}
-                  />
-                </div>
-                <p className={styles.bankName}>{bank.bank_name}</p>
-              </div>
-            ))}
+        {/* Enhanced Header */}
+        <div className={styles.sectionHeader}>
+          <div className={styles.headerBadge}>
+            <span className={styles.badgeIcon}>🏦</span>
+            <span>Trusted Partners</span>
           </div>
+          <h2 className={styles.heading}>
+            <span className={styles.headingMain}>{heading}</span>
+          </h2>
+          {subheading && (
+            <p className={styles.subheading}>{subheading}</p>
+          )}
+          <div className={styles.headerDivider}></div>
+        </div>
+
+        {/* Enhanced Scrolling Container */}
+        <div className={styles.scrollerWrapper}>
+          <div className={styles.scrollerMask}></div>
+          <div className={styles.scrollerContainer} ref={scrollerRef}>
+            <div className={styles.bankScroller}>
+              {/* Render banks twice for seamless loop */}
+              {bankData.concat(bankData).map((bank, index) => (
+                <div 
+                  key={`${bank.id}-${index}`} 
+                  className={styles.bankCard}
+                >
+                  <div className={styles.cardInner}>
+                    <div className={styles.logoContainer}>
+                      <img
+                        src={bank.property_bank_photo || "/default-bank.png"}
+                        alt={bank.bank_name}
+                        className={styles.bankLogo}
+                      />
+                      <div className={styles.logoOverlay}>
+                        <span className={styles.checkIcon}>✓</span>
+                      </div>
+                    </div>
+                    <div className={styles.cardFooter}>
+                      <p className={styles.bankName}>{bank.bank_name}</p>
+                      <div className={styles.trustBadge}>
+                        <span>Verified</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className={styles.cardShine}></div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className={styles.scrollerMaskRight}></div>
+        </div>
+
+        {/* Trust Message */}
+        <div className={styles.trustMessage}>
+          <span className={styles.trustIcon}>🔒</span>
+          <span>All our banking partners are verified and RERA approved</span>
         </div>
       </div>
     </section>

@@ -34,8 +34,9 @@ const EMICalculator = () => {
     datasets: [
       {
         data: [principal, totalInterest],
-        backgroundColor: ["#e63946", "#f9a826"],
-        hoverBackgroundColor: ["#c72736", "#f58f20"],
+        backgroundColor: ["#4A90E2", "#D4AF37"],
+        hoverBackgroundColor: ["#2E7CD6", "#C19D2F"],
+        borderWidth: 0,
       },
     ],
   };
@@ -49,49 +50,144 @@ const EMICalculator = () => {
         </p>
         <div className={styles.formWrapper}>
           <div className={styles.inputGroup}>
-            <input
-              type="number"
-              placeholder="Principal Amount (₹)"
-              value={principal}
-              onChange={(e) => setPrincipal(e.target.value)}
-              className={styles.input}
-            />
-            <input
-              type="number"
-              placeholder="Annual Interest Rate (%)"
-              value={rate}
-              onChange={(e) => setRate(e.target.value)}
-              className={styles.input}
-            />
-            <input
-              type="number"
-              placeholder="Loan Tenure (Years)"
-              value={time}
-              onChange={(e) => setTime(e.target.value)}
-              className={styles.input}
-            />
+            <div className={styles.inputContainer}>
+              <label className={styles.inputLabel}>
+                <span className={styles.labelIcon}>💰</span>
+                Principal Amount
+              </label>
+              <div className={styles.inputWrapper}>
+                <span className={styles.currencySymbol}>₹</span>
+                <input
+                  type="number"
+                  placeholder="Enter loan amount"
+                  value={principal}
+                  onChange={(e) => setPrincipal(e.target.value)}
+                  className={styles.input}
+                  min="0"
+                />
+              </div>
+            </div>
+            <div className={styles.inputContainer}>
+              <label className={styles.inputLabel}>
+                <span className={styles.labelIcon}>📊</span>
+                Interest Rate (Annual)
+              </label>
+              <div className={styles.inputWrapper}>
+                <input
+                  type="number"
+                  placeholder="Enter interest rate"
+                  value={rate}
+                  onChange={(e) => setRate(e.target.value)}
+                  className={styles.input}
+                  min="0"
+                  max="30"
+                  step="0.1"
+                />
+                <span className={styles.percentSymbol}>%</span>
+              </div>
+            </div>
+            <div className={styles.inputContainer}>
+              <label className={styles.inputLabel}>
+                <span className={styles.labelIcon}>⏱️</span>
+                Loan Tenure
+              </label>
+              <div className={styles.inputWrapper}>
+                <input
+                  type="number"
+                  placeholder="Enter years"
+                  value={time}
+                  onChange={(e) => setTime(e.target.value)}
+                  className={styles.input}
+                  min="1"
+                  max="30"
+                />
+                <span className={styles.yearSymbol}>Years</span>
+              </div>
+            </div>
           </div>
-          <button onClick={calculateEMI} className={styles.calculateButton}>
-            Calculate EMI
+          <button 
+            onClick={calculateEMI} 
+            className={styles.calculateButton}
+            disabled={!principal || !rate || !time}
+          >
+            <span className={styles.buttonIcon}>🧮</span>
+            <span>Calculate EMI</span>
+            <span className={styles.buttonArrow}>→</span>
           </button>
         </div>
 
         {emi > 0 && (
           <div className={styles.resultsWrapper}>
-            <div className={styles.resultCard}>
-              <h3>Monthly EMI</h3>
-              <p>₹{emi}</p>
+            <div className={styles.resultsHeader}>
+              <h3 className={styles.resultsTitle}>Your Loan Breakdown</h3>
             </div>
-            <div className={styles.resultCard}>
-              <h3>Total Interest</h3>
-              <p>₹{totalInterest}</p>
-            </div>
-            <div className={styles.resultCard}>
-              <h3>Total Payment</h3>
-              <p>₹{totalPayment}</p>
+            <div className={styles.resultsGrid}>
+              <div className={styles.resultCard}>
+                <div className={styles.resultIcon}>📅</div>
+                <div className={styles.resultContent}>
+                  <h4 className={styles.resultLabel}>Monthly EMI</h4>
+                  <p className={styles.resultValue}>₹{parseFloat(emi).toLocaleString('en-IN')}</p>
+                  <span className={styles.resultSubtext}>Per month</span>
+                </div>
+              </div>
+              <div className={styles.resultCard}>
+                <div className={styles.resultIcon}>💵</div>
+                <div className={styles.resultContent}>
+                  <h4 className={styles.resultLabel}>Total Interest</h4>
+                  <p className={styles.resultValue}>₹{parseFloat(totalInterest).toLocaleString('en-IN')}</p>
+                  <span className={styles.resultSubtext}>Over {time} years</span>
+                </div>
+              </div>
+              <div className={styles.resultCard}>
+                <div className={styles.resultIcon}>💳</div>
+                <div className={styles.resultContent}>
+                  <h4 className={styles.resultLabel}>Total Payment</h4>
+                  <p className={styles.resultValue}>₹{parseFloat(totalPayment).toLocaleString('en-IN')}</p>
+                  <span className={styles.resultSubtext}>Principal + Interest</span>
+                </div>
+              </div>
             </div>
             <div className={styles.chartContainer}>
-              <Doughnut data={data} />
+              <div className={styles.chartHeader}>
+                <h4 className={styles.chartTitle}>Payment Breakdown</h4>
+                <p className={styles.chartSubtitle}>Visual representation of your loan</p>
+              </div>
+              <div className={styles.chartWrapper}>
+                <Doughnut 
+                  data={data}
+                  options={{
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                      legend: {
+                        position: 'bottom',
+                        labels: {
+                          padding: 20,
+                          font: {
+                            family: "'Inter', sans-serif",
+                            size: 14,
+                            weight: 600
+                          }
+                        }
+                      },
+                      tooltip: {
+                        callbacks: {
+                          label: function(context) {
+                            let label = context.label || '';
+                            if (label) {
+                              label += ': ₹';
+                            }
+                            if (context.parsed !== null) {
+                              label += context.parsed.toLocaleString('en-IN');
+                            }
+                            return label;
+                          }
+                        }
+                      }
+                    }
+                  }}
+                />
+              </div>
             </div>
           </div>
         )}

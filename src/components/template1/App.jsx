@@ -2,6 +2,8 @@ import React, { Suspense, lazy } from "react";
 import FloatingButtons from "./components/FloatingButtons"; // Critical component, not dynamically imported
 import Header from './components/Header';
 import HeroBanner from './components/HeroBanner';
+import Loader from "../loader/Loader";
+
 // Dynamically import components
 const Footer = lazy(() => import("./components/Footer"));
 const Services = lazy(() => import("./components/Services"));
@@ -25,11 +27,25 @@ const Adverties = lazy(() => import("./components/Advertisements"));
 
 const Properties = lazy(() => import("./components/Properties"));
 
+// Better Loading Fallback Component
+const LoadingFallback = () => (
+  <div style={{
+    minHeight: '400px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    background: 'linear-gradient(135deg, #F8F9FA 0%, #FFFFFF 100%)',
+    padding: '60px 20px'
+  }}>
+    <Loader />
+  </div>
+);
+
 function App({ propertyDetails }) {
   return (
     <div className="App">
       {/* Use Suspense to handle fallback UI during component loading */}
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<LoadingFallback />}>
         <Header />
         <HeroBanner />
         <Properties />
@@ -44,7 +60,7 @@ function App({ propertyDetails }) {
       </Suspense>
 
       {/* Always loaded */}
-      <FloatingButtons  slug={propertyDetails.property_website}/>
+      <FloatingButtons  slug={propertyDetails?.property_website}/>
     </div>
   );
 }

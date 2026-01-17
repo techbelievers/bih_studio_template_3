@@ -1,18 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500;700&display=swap');
-
 .propertyDetailsContainer {
   position: relative;
-  font-family: 'Roboto', sans-serif;
-  padding: 60px 5%;
-  /* background-color: #f9f9f9; */
-  border-radius: 15px;
-  /* box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); */
+  font-family: 'Inter', 'Open Sans', sans-serif;
+  padding: 80px 5%;
   max-width: 1200px;
   margin: auto;
   overflow: hidden;
-  color: #333;
+  color: #2C3E50;
   animation: fadeIn 1s ease-in-out;
-  /* margin-top: 80px; */
 }
 
 @keyframes fadeIn {
@@ -29,7 +23,7 @@
 /* Header Section */
 .headerCard {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   position: relative;
 }
 
@@ -39,17 +33,18 @@
   bottom: -20px;
   left: 50%;
   transform: translateX(-50%);
-  width: 60px;
+  width: 80px;
   height: 4px;
-  background-color: #e63946; /* Accent Color */
-  border-radius: 10px;
+  background: linear-gradient(90deg, #4A90E2, #2E7CD6);
+  border-radius: 2px;
 }
 
 .propertyName {
   font-family: 'Playfair Display', serif;
-  font-size: 2.5rem;
-  color: #333;
-  margin-bottom: 10px;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  color: #1A2332;
+  margin-bottom: 15px;
+  font-weight: 700;
   animation: slideIn 0.8s ease-in-out;
 }
 
@@ -65,22 +60,23 @@
 }
 
 .propertyTagline {
-  font-size: 1.2rem;
-  color: #555;
-  margin-top: -10px;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  color: #6C757D;
+  margin-top: -5px;
   font-style: italic;
+  font-family: 'Inter', sans-serif;
 }
 
 /* Description Section */
 .descriptionCard {
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
+  background: linear-gradient(to bottom, #FFFFFF 0%, #F8F9FA 100%);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  margin-top: 30px;
   position: relative;
   overflow: hidden;
-  border-left: 4px solid #e63946; /* Accent Line */
+  border: 1px solid #E9ECEF;
 }
 
 .descriptionCard::before {
@@ -89,15 +85,16 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 5px;
-  background: linear-gradient(90deg, #e63946, #b97177); /* Gradient Bar */
+  height: 4px;
+  background: linear-gradient(90deg, #4A90E2, #2E7CD6);
 }
 
 .sectionHeading {
   font-family: 'Playfair Display', serif;
-  font-size: 1.8rem;
-  color: #222;
-  margin-bottom: 20px;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  color: #1A2332;
+  margin-bottom: 25px;
+  font-weight: 600;
   animation: fadeInRight 0.8s ease-in-out;
 }
 
@@ -114,69 +111,102 @@
 
 .description {
   font-size: 1rem;
-  line-height: 1.6;
-  color: #555;
+  line-height: 1.8;
+  color: #495057;
   overflow: hidden;
   transition: max-height 0.5s ease;
-  max-height: 420px; /* Collapsed height */
+  max-height: 420px;
+  font-family: 'Inter', sans-serif;
 }
 
 .description.expanded {
-  max-height: none; /* Expand fully */
+  max-height: none;
 }
 
 /* Read More Button */
 .readMoreButton {
   display: inline-block;
-  margin: 20px auto 0;
-  padding: 12px 25px;
-  background-color: #e63946;
+  margin: 25px auto 0;
+  padding: 14px 30px;
+  background: linear-gradient(135deg, #4A90E2 0%, #2E7CD6 100%);
   color: #fff;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 1rem;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
-  box-shadow: 0px 4px 10px rgba(255, 204, 0, 0.4);
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+  transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif;
 }
 
 .readMoreButton:hover {
-  background-color: #e63946;
-  transform: translateY(-3px);
+  background: linear-gradient(135deg, #2E7CD6 0%, #1F5AA0 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
 }
 
 /* Icon Section (Real Estate Vibes) */
 .realEstateIcons {
   display: flex;
   justify-content: space-evenly;
-  margin-top: 30px;
+  margin-top: 40px;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .iconCard {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
+  background: #fff;
+  padding: 25px 20px;
+  border-radius: 12px;
   text-align: center;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid #E9ECEF;
+  flex: 1;
+  min-width: 150px;
+  position: relative;
+  overflow: hidden;
+}
+
+.iconCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #4A90E2, #2E7CD6);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .iconCard:hover {
-  transform: scale(1.05);
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(74, 144, 226, 0.2);
+  border-color: #4A90E2;
+}
+
+.iconCard:hover::before {
+  opacity: 1;
 }
 
 .iconImage {
   width: 50px;
   height: auto;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  transition: transform 0.3s ease;
+}
+
+.iconCard:hover .iconImage {
+  transform: scale(1.1);
 }
 
 .iconLabel {
-  font-size: 0.9rem;
-  color: #555;
-  font-weight: bold;
+  font-size: 0.95rem;
+  color: #2C3E50;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
 }
 
 /* Responsive Design */

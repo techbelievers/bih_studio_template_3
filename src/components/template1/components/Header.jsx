@@ -72,85 +72,173 @@ const Header = ({headerData: initialHeaderData , slug}) => {
 
   return (
     <header className={`${styles.header} ${menuOpen ? styles.menuOpen : ""}`}>
-      {/* Logo Section */}
-      <div className={styles.logoContainer}>
-        <Link to="/">
-          <img
-            src={headerData?.logo || headerData?.data?.logo || "/default-logo.png"}
-            alt="Real Estate Logo"
-            className={styles.logo}
-          />
-        </Link>
-      </div>
+      {/* Modern Split Layout */}
+      <div className={styles.headerWrapper}>
+        {/* Left Side - Logo with Tagline */}
+        <div className={styles.logoSection}>
+          <Link to="/" className={styles.logoLink}>
+            <div className={styles.logoContainer}>
+              <img
+                src={headerData?.logo || headerData?.data?.logo || "/default-logo.png"}
+                alt="Real Estate Logo"
+                className={styles.logo}
+              />
+              <div className={styles.logoBadge}>
+                <span className={styles.badgeText}>Premium</span>
+              </div>
+            </div>
+            <div className={styles.tagline}>
+              <span>Your Dream Home Awaits</span>
+            </div>
+          </Link>
+        </div>
 
-      {/* Navigation Menu */}
-      <nav className={`${styles.navMenu} ${menuOpen ? styles.active : ""}`}>
-        <ul>
-          <li>
-            <a href="/">Home</a>
-          </li>
-          {isPropertiesPage && (
-            <>
-              <li>
-                <a href="#about">About</a>
+        {/* Center - Navigation */}
+        <nav className={`${styles.navMenu} ${menuOpen ? styles.active : ""}`}>
+          <div className={styles.navInner}>
+            <ul className={styles.navList}>
+              <li className={styles.navItem}>
+                <a href="/" className={styles.navLink}>
+                  <span className={styles.linkIcon}>🏠</span>
+                  <span>Home</span>
+                </a>
               </li>
-              <li>
-                <a href="#price">Price</a>
-              </li>
-              <li>
-                <a href="#amenities">Amenities</a>
-              </li>
-              <li>
-                <a href="#layouts">Layouts</a>
-              </li>
-              <li>
-            <a href="#gallery">Gallery</a>
-          </li>
-          <li>
-            <a href="#location">Location</a>
-          </li>
-            </>
-          )}
-         {isHomePage && !isPropertiesPage &&(
-          <>
-           <li>
-            <a href="#properties">Properties</a>
-          </li>
-          <li>
-            <a href="#blogs">Blogs</a>
-          </li>
-          <li>
-           <a href="#faq">FAQ</a>
-         </li>
-          </>
-         )}
-        </ul>
+              {isPropertiesPage && (
+                <>
+                  <li className={styles.navItem}>
+                    <a href="#about" className={styles.navLink}>
+                      <span className={styles.linkIcon}>📋</span>
+                      <span>About</span>
+                    </a>
+                  </li>
+                  <li className={styles.navItem}>
+                    <a href="#price" className={styles.navLink}>
+                      <span className={styles.linkIcon}>💰</span>
+                      <span>Price</span>
+                    </a>
+                  </li>
+                  <li className={styles.navItem}>
+                    <a href="#amenities" className={styles.navLink}>
+                      <span className={styles.linkIcon}>✨</span>
+                      <span>Amenities</span>
+                    </a>
+                  </li>
+                  <li className={styles.navItem}>
+                    <a href="#layouts" className={styles.navLink}>
+                      <span className={styles.linkIcon}>📐</span>
+                      <span>Layouts</span>
+                    </a>
+                  </li>
+                  <li className={styles.navItem}>
+                    <a href="#gallery" className={styles.navLink}>
+                      <span className={styles.linkIcon}>📷</span>
+                      <span>Gallery</span>
+                    </a>
+                  </li>
+                  <li className={styles.navItem}>
+                    <a href="#location" className={styles.navLink}>
+                      <span className={styles.linkIcon}>📍</span>
+                      <span>Location</span>
+                    </a>
+                  </li>
+                </>
+              )}
+              {isHomePage && !isPropertiesPage && (
+                <>
+                  <li className={styles.navItem}>
+                    <a href="#properties" className={styles.navLink}>
+                      <span className={styles.linkIcon}>🏢</span>
+                      <span>Properties</span>
+                    </a>
+                  </li>
+                  <li className={styles.navItem}>
+                    <a href="#blogs" className={styles.navLink}>
+                      <span className={styles.linkIcon}>📰</span>
+                      <span>Blogs</span>
+                    </a>
+                  </li>
+                  <li className={styles.navItem}>
+                    <a href="#faq" className={styles.navLink}>
+                      <span className={styles.linkIcon}>❓</span>
+                      <span>FAQ</span>
+                    </a>
+                  </li>
+                </>
+              )}
+            </ul>
+          </div>
+        </nav>
 
-        {/* CTA for Mobile */}
-        <div className={styles.cta}>
+        {/* Right Side - CTA Buttons in Unique Layout */}
+        <div className={styles.ctaSection}>
           <a
             href={`tel:${headerData?.contact || headerData?.data?.contact || "+918181817136"}`}
-            className={styles.callButton}
+            className={styles.phoneCta}
           >
-            Call Us
+            <span className={styles.phoneIcon}>📞</span>
+            <div className={styles.phoneText}>
+              <span className={styles.phoneLabel}>Call Now</span>
+              <span className={styles.phoneNumber}>
+                {headerData?.contact || headerData?.data?.contact || "+91-81818-17136"}
+              </span>
+            </div>
           </a>
           <button
             onClick={() => setIsPopupOpen(true)}
-            className={styles.enquireButton}
+            className={styles.enquireCta}
           >
-            Enquire Now
+            <span>Enquire</span>
+            <span className={styles.arrowIcon}>→</span>
           </button>
         </div>
-        {isPopupOpen && <EnquirePopup onClose={() => setIsPopupOpen(false)} slug = {slug} />}
-      </nav>
 
-      {/* Mobile Hamburger Menu */}
-      <div className={styles.hamburger} onClick={toggleMenu}>
-        {menuOpen ? <FaTimes className={styles.icon} /> : <FaBars className={styles.icon} />}
+        {/* Mobile Hamburger */}
+        <div className={styles.hamburger} onClick={toggleMenu}>
+          <div className={styles.hamburgerInner}>
+            <span className={menuOpen ? styles.open : ""}></span>
+            <span className={menuOpen ? styles.open : ""}></span>
+            <span className={menuOpen ? styles.open : ""}></span>
+          </div>
+        </div>
       </div>
 
-      {/* Background Animation */}
-      <div className={styles.background}></div>
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <div className={styles.mobileMenu}>
+          <nav className={styles.mobileNav}>
+            <ul className={styles.mobileNavList}>
+              <li><a href="/" onClick={toggleMenu}>Home</a></li>
+              {isHomePage && !isPropertiesPage && (
+                <>
+                  <li><a href="#properties" onClick={toggleMenu}>Properties</a></li>
+                  <li><a href="#blogs" onClick={toggleMenu}>Blogs</a></li>
+                  <li><a href="#faq" onClick={toggleMenu}>FAQ</a></li>
+                </>
+              )}
+            </ul>
+            <div className={styles.mobileCta}>
+              <a
+                href={`tel:${headerData?.contact || headerData?.data?.contact || "+918181817136"}`}
+                className={styles.mobileCallButton}
+                onClick={toggleMenu}
+              >
+                📞 Call Us
+              </a>
+              <button
+                onClick={() => {
+                  setIsPopupOpen(true);
+                  toggleMenu();
+                }}
+                className={styles.mobileEnquireButton}
+              >
+                ✉️ Enquire Now
+              </button>
+            </div>
+          </nav>
+        </div>
+      )}
+
+      {isPopupOpen && <EnquirePopup onClose={() => setIsPopupOpen(false)} slug={slug} />}
     </header>
   );
 };

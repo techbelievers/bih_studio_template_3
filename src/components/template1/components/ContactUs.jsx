@@ -62,102 +62,208 @@ const ContactUs = () => {
 
   return (
     <section className={styles.contactUsSection}>
-      <div className={styles.container}>
-        {/* Details Section */}
-        <div className={styles.details}>
-          <h2 className={styles.heading}>
-            {data?.contact_us?.name || "Get in Touch"}
-          </h2>
-          <p
-            className={styles.description}
-            dangerouslySetInnerHTML={{
-              __html:
-                data?.contact_us?.detail || "We would love to hear from you!",
-            }}
-          ></p>
-          <p className={styles.info}>
-            <strong>Phone:</strong> {data?.contact_us?.contact_phone || "N/A"}
-          </p>
+      <div className={styles.contactContainer}>
+        {/* Left Side - Visual Info Section with Unique Design */}
+        <div className={styles.infoSection}>
+          <div className={styles.infoContent}>
+            {/* Badge */}
+            <div className={styles.sectionBadge}>
+              <span className={styles.badgeIcon}>💬</span>
+              <span>Contact Us</span>
+            </div>
+
+            {/* Heading */}
+            <h2 className={styles.heading}>
+              <span className={styles.headingMain}>
+                {data?.contact_us?.name || "Let's Start"}
+              </span>
+              <span className={styles.headingAccent}>a Conversation</span>
+            </h2>
+
+            {/* Description */}
+            <div
+              className={styles.description}
+              dangerouslySetInnerHTML={{
+                __html:
+                  data?.contact_us?.detail || "We would love to hear from you!",
+              }}
+            ></div>
+
+            {/* Contact Methods */}
+            <div className={styles.contactMethods}>
+              <div className={styles.contactMethod}>
+                <div className={styles.methodIcon}>📞</div>
+                <div className={styles.methodContent}>
+                  <span className={styles.methodLabel}>Call Us</span>
+                  <a
+                    href={`tel:${data?.contact_us?.contact_phone || "+918181817136"}`}
+                    className={styles.methodValue}
+                  >
+                    {data?.contact_us?.contact_phone || "+91-81818-17136"}
+                  </a>
+                </div>
+              </div>
+              <div className={styles.contactMethod}>
+                <div className={styles.methodIcon}>✉️</div>
+                <div className={styles.methodContent}>
+                  <span className={styles.methodLabel}>Email Us</span>
+                  <span className={styles.methodValue}>info@buyindiahomes.in</span>
+                </div>
+              </div>
+              <div className={styles.contactMethod}>
+                <div className={styles.methodIcon}>⏰</div>
+                <div className={styles.methodContent}>
+                  <span className={styles.methodLabel}>Business Hours</span>
+                  <span className={styles.methodValue}>Mon-Sat: 9AM - 7PM</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Trust Indicators */}
+            <div className={styles.trustIndicators}>
+              <div className={styles.trustItem}>
+                <span className={styles.trustIcon}>✓</span>
+                <span>100% Response Rate</span>
+              </div>
+              <div className={styles.trustItem}>
+                <span className={styles.trustIcon}>✓</span>
+                <span>24/7 Support</span>
+              </div>
+              <div className={styles.trustItem}>
+                <span className={styles.trustIcon}>✓</span>
+                <span>Quick Response</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Decorative Elements */}
+          <div className={styles.decorativeCircle1}></div>
+          <div className={styles.decorativeCircle2}></div>
+          <div className={styles.decorativeCircle3}></div>
         </div>
 
-        {/* Form Section */}
-        <div className={styles.form}>
-          <h2 className={styles.formHeading}>Contact Us</h2>
-          {submitSuccess && (
-            <div className={styles.successMessage}>
-              Your message has been sent successfully!
-              <button onClick={closeThankYou} className={styles.closeButton}>
-                Close
+        {/* Right Side - Form Section with Unique Design */}
+        <div className={styles.formSection}>
+          <div className={styles.formWrapper}>
+            {/* Form Header */}
+            <div className={styles.formHeader}>
+              <h3 className={styles.formTitle}>Send us a Message</h3>
+              <p className={styles.formSubtitle}>Fill in the form below and we'll get back to you</p>
+            </div>
+
+            {/* Success/Error Messages */}
+            {submitSuccess && (
+              <div className={styles.successMessage}>
+                <div className={styles.successIcon}>✓</div>
+                <div className={styles.successContent}>
+                  <strong>Success!</strong>
+                  <p>Your message has been sent successfully. We'll contact you soon!</p>
+                </div>
+                <button onClick={closeThankYou} className={styles.closeButton}>
+                  ×
+                </button>
+              </div>
+            )}
+            {submitError && (
+              <div className={styles.errorMessage}>
+                <span>⚠️</span>
+                <span>{submitError}</span>
+              </div>
+            )}
+
+            {/* Contact Form */}
+            <form onSubmit={handleSubmit} className={styles.contactForm}>
+              {/* Name Fields - Side by Side */}
+              <div className={styles.formRow}>
+                <div className={styles.inputGroup}>
+                  <label className={styles.label}>First Name *</label>
+                  <input
+                    type="text"
+                    name="first_name"
+                    className={styles.input}
+                    placeholder="John"
+                    value={formData.first_name}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className={styles.inputGroup}>
+                  <label className={styles.label}>Last Name *</label>
+                  <input
+                    type="text"
+                    name="last_name"
+                    className={styles.input}
+                    placeholder="Doe"
+                    value={formData.last_name}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* Phone Field */}
+              <div className={styles.inputGroup}>
+                <label className={styles.label}>Phone Number *</label>
+                <input
+                  type="tel"
+                  name="phone_number"
+                  className={styles.input}
+                  placeholder="+91 98765 43210"
+                  value={formData.phone_number}
+                  onChange={handleChange}
+                  required
+                  maxLength={10}
+                  pattern="\d{10}"
+                  title="Phone number must be exactly 10 digits"
+                />
+              </div>
+
+              {/* Email Field */}
+              <div className={styles.inputGroup}>
+                <label className={styles.label}>Email Address</label>
+                <input
+                  type="email"
+                  name="email_id"
+                  className={styles.input}
+                  placeholder="john.doe@example.com"
+                  value={formData.email_id}
+                  onChange={handleChange}
+                />
+              </div>
+
+              {/* Message Field */}
+              <div className={styles.inputGroup}>
+                <label className={styles.label}>Your Message</label>
+                <textarea
+                  name="message"
+                  className={styles.textarea}
+                  placeholder="Tell us about your requirements..."
+                  value={formData.message}
+                  onChange={handleChange}
+                  rows={5}
+                ></textarea>
+              </div>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                className={styles.submitButton}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                  <>
+                    <span className={styles.spinner}></span>
+                    <span>Sending...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Send Message</span>
+                    <span className={styles.submitArrow}>→</span>
+                  </>
+                )}
               </button>
-            </div>
-          )}
-          {submitError && <p className={styles.errorMessage}>{submitError}</p>}
-          <form onSubmit={handleSubmit}>
-            <div className={styles.inputGroup}>
-              <div className={styles.inputWrapper}>
-                <input
-                  type="text"
-                  name="first_name"
-                  className={styles.input}
-                  placeholder="First Name*"
-                  value={formData.first_name}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className={styles.inputWrapper}>
-                <input
-                  type="text"
-                  name="last_name"
-                  className={styles.input}
-                  placeholder="Last Name*"
-                  value={formData.last_name}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-            </div>
-            <div className={styles.inputWrapper}>
-              <input
-                type="tel"
-                name="phone_number"
-                className={styles.input}
-                placeholder="Phone Number*"
-                value={formData.phone_number}
-                onChange={handleChange}
-                required
-                maxLength={10}
-              pattern="\d{10}"
-              title="Phone number must be exactly 10 digits"
-              />
-            </div>
-            <div className={styles.inputWrapper}>
-              <input
-                type="email"
-                name="email_id"
-                className={styles.input}
-                placeholder="Email"
-                value={formData.email_id}
-                onChange={handleChange}
-              />
-            </div>
-            <div className={styles.inputWrapper}>
-              <textarea
-                name="message"
-                className={styles.textarea}
-                placeholder="Your Message"
-                value={formData.message}
-                onChange={handleChange}
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              className={styles.submitButton}
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? "Sending..." : "Send Message"}
-            </button>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </section>

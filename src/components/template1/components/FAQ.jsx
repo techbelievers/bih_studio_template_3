@@ -31,49 +31,73 @@ const FAQ = () => {
   return (
     <section id="faq" className={styles.faqSection}>
       <div className={styles.container}>
-        {/* Header */}
+        {/* Enhanced Header */}
         <div className={styles.header}>
-          <h2 className={styles.heading}>{heading}</h2>
-          <p className={styles.subheading}>{subheading}</p>
+          <div className={styles.headerBadge}>
+            <span className={styles.badgeIcon}>❓</span>
+            <span>Frequently Asked</span>
+          </div>
+          <h2 className={styles.heading}>
+            <span className={styles.headingMain}>{heading || "Questions"}</span>
+          </h2>
+          {subheading && (
+            <p className={styles.subheading}>{subheading}</p>
+          )}
+          <div className={styles.headerDivider}></div>
         </div>
 
-        {/* FAQ Grid */}
+        {/* Enhanced FAQ Grid */}
         <div className={styles.faqGrid}>
           {faqData.length > 0 ? (
-            faqData.map((faq) => (
+            faqData.map((faq, index) => (
               <div
                 key={faq.id}
                 className={`${styles.card} ${
                   activeFAQ === faq.id ? styles.active : ""
                 }`}
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div
                   className={styles.question}
                   onClick={() => toggleFAQ(faq.id)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      toggleFAQ(faq.id);
+                    }
+                  }}
                 >
-                  {faq.faq_title}
+                  <div className={styles.questionContent}>
+                    <span className={styles.questionIcon}>💡</span>
+                    <span className={styles.questionText}>{faq.faq_title}</span>
+                  </div>
                   <span className={styles.icon}>
-                    {activeFAQ === faq.id ? "-" : "+"}
+                    {activeFAQ === faq.id ? "−" : "+"}
                   </span>
                 </div>
                 <div
                   className={styles.answer}
                   style={{
-                    maxHeight: activeFAQ === faq.id ? "150px" : "0",
+                    maxHeight: activeFAQ === faq.id ? "500px" : "0",
                     opacity: activeFAQ === faq.id ? 1 : 0,
-                    transition: "all 0.3s ease-in-out",
+                    padding: activeFAQ === faq.id ? "20px 24px" : "0 24px",
                   }}
                 >
-                  <p
+                  <div
+                    className={styles.answerContent}
                     dangerouslySetInnerHTML={{
                       __html: faq.faq_content,
                     }}
-                  ></p>
+                  ></div>
                 </div>
               </div>
             ))
           ) : (
-            <p className={styles.loading}>Loading FAQs...</p>
+            <div className={styles.loadingState}>
+              <div className={styles.loadingSpinner}></div>
+              <p className={styles.loading}>Loading FAQs...</p>
+            </div>
           )}
         </div>
       </div>

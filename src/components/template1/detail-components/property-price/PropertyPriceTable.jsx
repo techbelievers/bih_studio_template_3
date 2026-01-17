@@ -27,56 +27,88 @@ const PropertyPriceTable = ({slug}) => {
 
   return (
     <section id="price" className={styles.priceSection}>
-      {/* <div className={styles.clipPathBackground}></div> */}
       {error && <p className={styles.errorMessage}>{error}</p>}
 
-      <div className={styles.headingContainer}>
+      {/* Unique Header Design */}
+      <div className={styles.headerContainer}>
+        <div className={styles.headerBadge}>
+          <span>💰</span>
+          <span>Pricing</span>
+        </div>
         <h2 className={styles.heading}>
-          {heading}
+          <span className={styles.headingAccent}>{heading}</span>
         </h2>
+        <div className={styles.headerDivider}></div>
       </div>
 
-      <div className={styles.priceTableContainer}>
-        <table className={styles.priceTable}>
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Tower</th>
-              <th>Carpet Area (SQ.M)</th>
-              <th>Carpet Area (SQ.FT)</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody>
+      {/* Card-Based Price Display */}
+      {propertyPrices.length > 0 ? (
+        <>
+          <div className={styles.priceCardsGrid}>
             {propertyPrices.map((price) => (
-              <tr key={price.id}>
-                <td className={styles.noWrap}>
-                  <span className={styles.typeIcon}>
-                    <img
-                      src="https://cdn-icons-png.flaticon.com/512/9428/9428563.png"
-                      alt="Property Type"
-                      className={styles.icon}
-                    />
-                  </span>
-                  {price.property_type}
-                </td>
-                <td>{price.property_tower}</td>
-                <td>{parseFloat(price.property_carpet_sqm).toFixed(2)}</td>
-                <td>{price.property_carpet_sqft}</td>
-                <td>
-                  <span className={styles.price}>
-                    {price.property_price} {price.price_unit}*
-                  </span>{" "}
-                  - <span>{price.price_tag}</span>
-                </td>
-              </tr>
+              <div key={price.id} className={styles.priceCard}>
+                <div className={styles.cardHeader}>
+                  <div className={styles.typeBadge}>
+                    <span className={styles.typeIcon}>
+                      <img
+                        src="https://cdn-icons-png.flaticon.com/512/9428/9428563.png"
+                        alt="Property Type"
+                        className={styles.icon}
+                      />
+                    </span>
+                    <span className={styles.typeText}>{price.property_type}</span>
+                  </div>
+                  {price.price_tag && (
+                    <div className={styles.priceTag}>
+                      {price.price_tag}
+                    </div>
+                  )}
+                </div>
+
+                <div className={styles.cardBody}>
+                  <div className={styles.priceHighlight}>
+                    <span className={styles.priceSymbol}>₹</span>
+                    <span className={styles.priceAmount}>{price.property_price}</span>
+                    <span className={styles.priceUnit}>{price.price_unit}*</span>
+                  </div>
+
+                  <div className={styles.detailsGrid}>
+                    <div className={styles.detailItem}>
+                      <span className={styles.detailLabel}>Tower</span>
+                      <span className={styles.detailValue}>{price.property_tower}</span>
+                    </div>
+                    <div className={styles.detailItem}>
+                      <span className={styles.detailLabel}>Area (Sq.M)</span>
+                      <span className={styles.detailValue}>
+                        {parseFloat(price.property_carpet_sqm).toFixed(2)}
+                      </span>
+                    </div>
+                    <div className={styles.detailItem}>
+                      <span className={styles.detailLabel}>Area (Sq.Ft)</span>
+                      <span className={styles.detailValue}>{price.property_carpet_sqft}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className={styles.cardFooter}>
+                  <button className={styles.enquireButton}>Enquire Now</button>
+                </div>
+              </div>
             ))}
-          </tbody>
-        </table>
-        <div className={styles.disclaimer}>
-          *Prices are subject to change. Terms and conditions apply.
-        </div>
-      </div>
+          </div>
+          <div className={styles.disclaimer}>
+            <span className={styles.disclaimerIcon}>⚠️</span>
+            <span>*Prices are subject to change. Terms and conditions apply.</span>
+          </div>
+        </>
+      ) : (
+        !error && (
+          <div className={styles.emptyState}>
+            <span className={styles.emptyIcon}>🏠</span>
+            <p>No pricing information available at the moment.</p>
+          </div>
+        )
+      )}
     </section>
   );
 };

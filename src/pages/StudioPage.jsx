@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import axios from "axios";
 import { API, DEFAULT_DOMAIN } from "../../config.js";
-import Loader from "../components/loader/Loader";
-import Template1 from "../components/template1/StudioTemplate";
+import Loader from "../components/loader/Loader.jsx";
+import Template1 from "../components/template1/StudioTemplate.jsx";
 
 const StudioPage = () => {
   const { property_slug } = useParams();

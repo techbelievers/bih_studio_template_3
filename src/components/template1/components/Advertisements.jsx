@@ -57,60 +57,106 @@ const Advertisements = () => {
 
   return (
     <section className={styles.advertisementSection}>
-      <h2 className={styles.heading}>{heading}</h2>
-      <div className={styles.sliderContainer}>
-        <button className={styles.arrow} onClick={handlePrev}>
-          &#9664;
-        </button>
-        <div
-          className={styles.slider}
-          style={{
-            transform: shouldEnableSlider
-              ? `translateX(-${currentIndex * 100}%)`
-              : "translateX(0)",
-          }}
-        >
-          {ads.map((ad, index) => (
-            <div
-              className={`${styles.slide} ${
-                shouldEnableSlider ? styles.animatedSlide : ""
-              }`}
-              key={index}
-            >
-              {ad.above_category_1 && (
-                <a
-                  href={ad.above_category_1_url || "#"}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.adLink}
-                >
-                  <img
-                    src={ad.above_category_1}
-                    alt={`Advertisement ${index + 1}`}
-                    className={styles.adImage}
-                  />
-                </a>
-              )}
-            </div>
-          ))}
+      {/* Enhanced Header */}
+      <div className={styles.sectionHeader}>
+        <div className={styles.headerBadge}>
+          <span className={styles.badgeIcon}>📢</span>
+          <span>Special Offers</span>
         </div>
-        <button className={styles.arrow} onClick={handleNext}>
-          &#9654;
-        </button>
+        <h2 className={styles.heading}>{heading || "Featured Advertisements"}</h2>
+        <div className={styles.headerDivider}></div>
       </div>
-      {shouldEnableSlider && (
-        <div className={styles.dots}>
-          {ads.map((_, index) => (
-            <span
-              key={index}
-              className={`${styles.dot} ${
-                index === currentIndex ? styles.activeDot : ""
-              }`}
-              onClick={() => setCurrentIndex(index)}
-            ></span>
-          ))}
+
+      {/* Enhanced Slider Container */}
+      <div className={styles.sliderWrapper}>
+        <div className={styles.sliderContainer}>
+          {/* Enhanced Navigation Buttons */}
+          {shouldEnableSlider && ads.length > 1 && (
+            <>
+              <button 
+                className={styles.arrow}
+                onClick={handlePrev}
+                aria-label="Previous advertisement"
+              >
+                <span className={styles.arrowIcon}>‹</span>
+              </button>
+              <button 
+                className={styles.arrow}
+                onClick={handleNext}
+                aria-label="Next advertisement"
+              >
+                <span className={styles.arrowIcon}>›</span>
+              </button>
+            </>
+          )}
+
+          {/* Enhanced Slider */}
+          <div className={styles.sliderInner}>
+            <div
+              className={styles.slider}
+              style={{
+                transform: shouldEnableSlider
+                  ? `translateX(-${currentIndex * 100}%)`
+                  : "translateX(0)",
+              }}
+            >
+              {ads.map((ad, index) => (
+                <div
+                  className={`${styles.slide} ${
+                    shouldEnableSlider ? styles.animatedSlide : ""
+                  }`}
+                  key={index}
+                >
+                  {ad.above_category_1 && (
+                    <a
+                      href={ad.above_category_1_url || "#"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.adLink}
+                    >
+                      <div className={styles.adImageWrapper}>
+                        <img
+                          src={ad.above_category_1}
+                          alt={`Advertisement ${index + 1}`}
+                          className={styles.adImage}
+                        />
+                        <div className={styles.adOverlay}>
+                          <span className={styles.viewAd}>View Offer →</span>
+                        </div>
+                      </div>
+                    </a>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-      )}
+
+        {/* Enhanced Dots Navigation */}
+        {shouldEnableSlider && ads.length > 1 && (
+          <div className={styles.dots}>
+            {ads.map((_, index) => (
+              <button
+                key={index}
+                className={`${styles.dot} ${
+                  index === currentIndex ? styles.activeDot : ""
+                }`}
+                onClick={() => setCurrentIndex(index)}
+                aria-label={`Go to slide ${index + 1}`}
+              ></button>
+            ))}
+          </div>
+        )}
+
+        {/* Slide Counter */}
+        {shouldEnableSlider && ads.length > 1 && (
+          <div className={styles.slideCounter}>
+            <span>{currentIndex + 1}</span>
+            <span className={styles.counterDivider}>/</span>
+            <span>{ads.length}</span>
+          </div>
+        )}
+      </div>
     </section>
   );
 };

@@ -31,31 +31,71 @@ const Footer = () => {
     fetchFooterData();
   }, []);
 
-  if (loading) return <div className={styles.footer}>Loading...</div>;
-  if (error)
+  if (loading) {
     return (
-      <div className={styles.footer}>Error loading footer: {error.message}</div>
+      <footer className={styles.footer}>
+        <div className={styles.footerContainer}>
+          <div className={styles.loadingState}>
+            <div className={styles.loadingSpinner}></div>
+            <p>Loading footer...</p>
+          </div>
+        </div>
+      </footer>
     );
+  }
+  
+  if (error) {
+    return (
+      <footer className={styles.footer}>
+        <div className={styles.footerContainer}>
+          <div className={styles.errorState}>
+            <p>Unable to load footer information</p>
+          </div>
+        </div>
+      </footer>
+    );
+  }
 
   const { social_icons, g_setting } = footerData;
 
   return (
     <footer className={styles.footer}>
       <div className={styles.footerContainer}>
-        {/* Top Section */}
+        {/* Top Section - Enhanced Layout */}
         <div className={styles.footerTop}>
-          {/* Logo */}
+          {/* Logo Section with Description */}
           <div className={styles.logoSection}>
             <img
               src={g_setting.builder_logo || "/default-logo.png"}
               alt="Company Logo"
               className={styles.footerLogo}
             />
+            <p className={styles.logoDescription}>
+              Your trusted partner in finding the perfect home. We make real estate dreams come true.
+            </p>
+            <div className={styles.trustBadge}>
+              <span className={styles.badgeIcon}>✓</span>
+              <span>RERA Certified</span>
+            </div>
           </div>
 
-          {/* Follow Us */}
+          {/* Quick Links Section */}
+          <div className={styles.quickLinksSection}>
+            <h3 className={styles.sectionTitle}>Quick Links</h3>
+            <ul className={styles.quickLinks}>
+              <li><a href="#properties">Properties</a></li>
+              <li><a href="#blogs">Blogs</a></li>
+              <li><a href="#faq">FAQ</a></li>
+              <li><a href="#contact">Contact Us</a></li>
+            </ul>
+          </div>
+
+          {/* Follow Us - Enhanced */}
           <div className={styles.socialSection}>
-            <h2 className={styles.footerTitle}>Follow Us</h2>
+            <h3 className={styles.sectionTitle}>Follow Us</h3>
+            <p className={styles.socialDescription}>
+              Stay connected with us on social media
+            </p>
             <div className={styles.socialLinks}>
               {social_icons.map((icon) => (
                 <a
@@ -64,6 +104,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.socialIcon}
+                  aria-label={`Follow us on ${icon.social_icon}`}
                 >
                   <FontAwesomeIcon
                     icon={
@@ -87,31 +128,68 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Contact Section */}
+          {/* Contact Section - Enhanced */}
           <div className={styles.contactSection}>
-            <h2 className={styles.footerTitle}>Contact Us</h2>
-            <p className={styles.contactDetails}>
-              {g_setting.footer_phone || "+91-9876543210"}
-            </p>
+            <h3 className={styles.sectionTitle}>Get In Touch</h3>
+            <div className={styles.contactMethods}>
+              <div className={styles.contactItem}>
+                <span className={styles.contactIcon}>📞</span>
+                <div className={styles.contactInfo}>
+                  <span className={styles.contactLabel}>Phone</span>
+                  <a href={`tel:${g_setting.footer_phone || "+919876543210"}`} className={styles.contactValue}>
+                    {g_setting.footer_phone || "+91-98765-43210"}
+                  </a>
+                </div>
+              </div>
+              <div className={styles.contactItem}>
+                <span className={styles.contactIcon}>✉️</span>
+                <div className={styles.contactInfo}>
+                  <span className={styles.contactLabel}>Email</span>
+                  <a href="mailto:info@buyindiahomes.in" className={styles.contactValue}>
+                    info@buyindiahomes.in
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Bottom Section */}
+        {/* Bottom Section - Enhanced */}
         <div className={styles.footerBottom}>
-          {g_setting.footer_disclamer && (
-          
-            <p className={styles.footerDisclaimer}>
-          <span>Disclaimer:</span><span className={styles.footerDisclaimer_desc}> This website serves as an informational portal managed by a Maharera-authorized real estate agent and is not an official site of the builder. The content provided here does not constitute an offer for any service. Property prices and availability are subject to change without prior notice, and all images are for representational purposes only. This content is intended for informational purposes only. For the most up-to-date information, accurate pricing, and property availability, please contact us directly using the details on our website. Unauthorized use of the content is strictly prohibited. All rights reserved.
-          </span> </p>
-          )}
-          {g_setting.footer_agent_rera && (
-            <p className={styles.footerAgentRera}>
-              Agent MahaRERA: {g_setting.footer_agent_rera}
-            </p>
-          )}
-          <p className={styles.footerCopyright}>
-            {g_setting.footer_copyright || "© 2024 Real Estate Company"}
-          </p>
+          <div className={styles.footerBottomContent}>
+            {g_setting.footer_agent_rera && (
+              <div className={styles.reraBadge}>
+                <span className={styles.reraIcon}>🏛️</span>
+                <div className={styles.reraInfo}>
+                  <span className={styles.reraLabel}>Agent MahaRERA</span>
+                  <span className={styles.reraNumber}>{g_setting.footer_agent_rera}</span>
+                </div>
+              </div>
+            )}
+            
+            {g_setting.footer_disclamer && (
+              <div className={styles.disclaimerWrapper}>
+                <div className={styles.disclaimerHeader}>
+                  <span className={styles.disclaimerIcon}>ℹ️</span>
+                  <strong className={styles.disclaimerTitle}>Disclaimer</strong>
+                </div>
+                <p className={styles.footerDisclaimer}>
+                  <span className={styles.footerDisclaimer_desc}>
+                    This website serves as an informational portal managed by a Maharera-authorized real estate agent and is not an official site of the builder. The content provided here does not constitute an offer for any service. Property prices and availability are subject to change without prior notice, and all images are for representational purposes only. This content is intended for informational purposes only. For the most up-to-date information, accurate pricing, and property availability, please contact us directly using the details on our website. Unauthorized use of the content is strictly prohibited. All rights reserved.
+                  </span>
+                </p>
+              </div>
+            )}
+            
+            <div className={styles.copyrightWrapper}>
+              <p className={styles.footerCopyright}>
+                {g_setting.footer_copyright || "© 2024 Real Estate Company. All rights reserved."}
+              </p>
+              <p className={styles.footerCredit}>
+                Designed with <span className={styles.heart}>♥</span> for home seekers
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

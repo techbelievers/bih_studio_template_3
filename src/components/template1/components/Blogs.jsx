@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { API } from "../../../../config.js";
 import styles from "../css/Blogs.module.css";
 import { Link } from "react-router-dom";
@@ -48,47 +49,77 @@ const Blogs = () => {
 
   return (
     <section id="blogs" className={styles.blogsContainer}>
+      {/* Enhanced Header */}
       <div className={styles.blogsHeader}>
-        <h2 className={styles.blogsHeading}>{heading}</h2>
-        <p className={styles.blogsSubheading}>{subheading}</p>
+        <div className={styles.headerBadge}>
+          <span className={styles.badgeIcon}>📰</span>
+          <span>Latest Insights</span>
+        </div>
+        <h2 className={styles.blogsHeading}>
+          <span className={styles.headingMain}>{heading}</span>
+        </h2>
+        {subheading && (
+          <p className={styles.blogsSubheading}>{subheading}</p>
+        )}
+        <div className={styles.headerDivider}></div>
       </div>
 
+      {/* Enhanced Blog Grid with Hover Effects */}
       <div className={styles.blogsGrid}>
-        {displayedBlogs.map((blog) => (
-          <div key={blog.post_slug} className={styles.blogCard}>
-            <div className={styles.cardContent}>
+        {displayedBlogs.map((blog, index) => (
+          <article 
+            key={blog.post_slug} 
+            className={styles.blogCard}
+            style={{ animationDelay: `${index * 0.1}s` }}
+          >
+            <Link to={`/blogs/${blog.post_slug}`} className={styles.blogLink}>
               <div className={styles.imageWrapper}>
                 <img
                   src={blog.post_photo}
                   alt={blog.post_title}
                   className={styles.blogImage}
                 />
+                <div className={styles.imageOverlay}>
+                  <div className={styles.readMoreBadge}>
+                    <span>Read Article</span>
+                    <span className={styles.arrowIcon}>→</span>
+                  </div>
+                </div>
+                <div className={styles.dateBadge}>
+                  <span className={styles.dateIcon}>📅</span>
+                  <span>{new Date(blog.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}</span>
+                </div>
               </div>
-              <div className={styles.textOverlay}>
+              <div className={styles.cardContent}>
                 <h3 className={styles.blogTitle}>{blog.post_title}</h3>
                 <p className={styles.blogDescription}>
-                  {truncateText(blog.post_content_short, 100)}
+                  {truncateText(blog.post_content_short, 120)}
                 </p>
-                <p className={styles.postDate}>
-                  Posted On:{" "}
-                  <span>{new Date(blog.created_at).toISOString().split("T")[0]}</span>
-                </p>
-                <Link to={`/blogs/${blog.post_slug}`} className={styles.readMore}>
-                  Read More
-                </Link>
+                <div className={styles.blogFooter}>
+                  <div className={styles.blogMeta}>
+                    <span className={styles.metaIcon}>⏱️</span>
+                    <span className={styles.readTime}>5 min read</span>
+                  </div>
+                  <div className={styles.readMoreLink}>
+                    <span>Read More</span>
+                    <span className={styles.linkArrow}>→</span>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            </Link>
+          </article>
         ))}
       </div>
 
+      {/* Enhanced Load More Button */}
       {hasMore && (
         <div className={styles.loadMoreContainer}>
           <button
             className={styles.loadMoreButton}
             onClick={loadMoreBlogs}
           >
-            Load More
+            <span>Load More Articles</span>
+            <span className={styles.loadMoreIcon}>↓</span>
           </button>
         </div>
       )}

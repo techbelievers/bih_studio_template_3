@@ -1,80 +1,150 @@
-/* Bank Partner Section */
+/* Enhanced Bank Partner Section */
 .bankPartnerSection {
-  padding: 60px 20px;
-  background: #f8f9fa;
-  font-family: "Lora", serif;
+  padding: 100px 40px;
+  background: linear-gradient(135deg, #FFFFFF 0%, #F8F9FA 100%);
+  font-family: 'Inter', 'Open Sans', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.bankPartnerSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 50% 30%, rgba(74, 144, 226, 0.04) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .contentWrapper {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Enhanced Section Header */
+.sectionHeader {
   text-align: center;
+  margin-bottom: 70px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.headerBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 22px;
+  background: linear-gradient(135deg, rgba(74, 144, 226, 0.1), rgba(46, 124, 214, 0.1));
+  border: 2px solid rgba(74, 144, 226, 0.3);
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #4A90E2;
+  margin-bottom: 25px;
+  font-family: 'Inter', sans-serif;
+}
+
+.badgeIcon {
+  font-size: 1.2rem;
 }
 
 .heading {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #2c3e50;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  font-family: 'Playfair Display', serif;
+}
+
+.headingMain {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 700;
+  color: #1A2332;
+  position: relative;
+  display: inline-block;
+  line-height: 1.2;
+}
+
+.headingMain::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, #4A90E2, #D4AF37, #4A90E2);
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+  border-radius: 2px;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
 .subheading {
-  font-size: 1rem;
-  color: #555;
-  margin-bottom: 30px;
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  color: #6C757D;
+  margin: 25px auto 0;
+  line-height: 1.7;
+  max-width: 700px;
 }
 
-/* Scroller Wrapper */
+.headerDivider {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #4A90E2, #D4AF37);
+  margin: 30px auto 0;
+  border-radius: 2px;
+}
+
+/* Enhanced Scroller Wrapper with Masks */
 .scrollerWrapper {
+  position: relative;
+  margin-bottom: 40px;
+  padding: 30px 0;
+}
+
+.scrollerMask,
+.scrollerMaskRight {
+  position: absolute;
+  top: 0;
+  width: 150px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.scrollerMask {
+  left: 0;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+}
+
+.scrollerMaskRight {
+  right: 0;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+}
+
+.scrollerContainer {
   overflow: hidden;
   position: relative;
-  display: flex;
-  justify-content: center;
+  padding: 20px 0;
 }
 
 .bankScroller {
   display: flex;
-  gap: 20px;
-  animation: scroll 30s linear infinite;
+  gap: 25px;
+  width: fit-content;
+  animation: scroll 40s linear infinite;
+  will-change: transform;
 }
 
-.bankCard {
-  flex: 0 0 150px;
-  background: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  padding: 15px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.bankCard:hover {
-  transform: scale(1.05);
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-.logoContainer {
-  width: 100%;
-  height: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.bankLogo {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
-
-.bankName {
-  font-size: 0.9rem;
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-/* Animation for continuous scroll */
 @keyframes scroll {
   from {
     transform: translateX(0);
@@ -84,17 +154,265 @@
   }
 }
 
+.scrollerContainer:hover .bankScroller {
+  animation-play-state: paused;
+}
+
+/* Enhanced Bank Card */
+.bankCard {
+  flex: 0 0 180px;
+  position: relative;
+  cursor: pointer;
+  perspective: 1000px;
+}
+
+.cardInner {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 25px 20px;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid #E9ECEF;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bankCard:hover .cardInner {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 40px rgba(74, 144, 226, 0.25);
+  border-color: #4A90E2;
+}
+
+.cardShine {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 70%
+  );
+  transform: rotate(45deg);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.bankCard:hover .cardShine {
+  opacity: 1;
+  animation: shine 1s ease-in-out;
+}
+
+@keyframes shine {
+  0% {
+    left: -50%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+
+/* Enhanced Logo Container */
+.logoContainer {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  position: relative;
+  background: rgba(74, 144, 226, 0.02);
+  border-radius: 12px;
+  padding: 15px;
+  transition: all 0.3s ease;
+}
+
+.bankCard:hover .logoContainer {
+  background: rgba(74, 144, 226, 0.08);
+}
+
+.bankLogo {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: grayscale(30%);
+  transition: all 0.4s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.bankCard:hover .bankLogo {
+  filter: grayscale(0%);
+  transform: scale(1.1);
+}
+
+.logoOverlay {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, #28A745, #20C997);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.3s ease;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(40, 167, 69, 0.4);
+}
+
+.bankCard:hover .logoOverlay {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.checkIcon {
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Enhanced Card Footer */
+.cardFooter {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.bankName {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1A2332;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.3;
+}
+
+.trustBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 12px;
+  background: linear-gradient(135deg, rgba(40, 167, 69, 0.1), rgba(40, 167, 69, 0.05));
+  border: 1px solid rgba(40, 167, 69, 0.3);
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #28A745;
+  font-family: 'Inter', sans-serif;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: all 0.3s ease;
+}
+
+.bankCard:hover .trustBadge {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Trust Message */
+.trustMessage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px 30px;
+  background: linear-gradient(135deg, rgba(74, 144, 226, 0.08), rgba(212, 175, 55, 0.08));
+  border: 2px solid rgba(74, 144, 226, 0.2);
+  border-radius: 12px;
+  max-width: 600px;
+  margin: 40px auto 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #2C3E50;
+  font-family: 'Inter', sans-serif;
+}
+
+.trustIcon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
 /* Responsive Design */
-@media (max-width: 768px) {
-  .heading {
-    font-size: 2rem;
+@media (max-width: 1024px) {
+  .bankPartnerSection {
+    padding: 80px 30px;
   }
 
-  .subheading {
-    font-size: 0.9rem;
+  .scrollerMask,
+  .scrollerMaskRight {
+    width: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bankPartnerSection {
+    padding: 70px 20px;
+  }
+
+  .sectionHeader {
+    margin-bottom: 50px;
   }
 
   .bankCard {
-    flex: 0 0 120px;
+    flex: 0 0 160px;
+  }
+
+  .cardInner {
+    padding: 20px 15px;
+  }
+
+  .logoContainer {
+    height: 80px;
+    padding: 12px;
+  }
+
+  .trustMessage {
+    padding: 18px 25px;
+    font-size: 0.9rem;
+  }
+
+  .scrollerMask,
+  .scrollerMaskRight {
+    width: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bankPartnerSection {
+    padding: 50px 15px;
+  }
+
+  .bankCard {
+    flex: 0 0 140px;
+  }
+
+  .cardInner {
+    padding: 18px 12px;
+  }
+
+  .logoContainer {
+    height: 70px;
+  }
+
+  .bankName {
+    font-size: 0.85rem;
+  }
+
+  .scrollerMask,
+  .scrollerMaskRight {
+    width: 50px;
   }
 }
