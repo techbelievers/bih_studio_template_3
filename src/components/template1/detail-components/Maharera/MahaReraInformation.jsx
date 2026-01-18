@@ -42,7 +42,7 @@ const MahareraInformation = ({ propertyDetails, slug }) => {
       <div className={styles.contentWrapper}>
         <div className={styles.sectionHeader}>
           <div className={styles.headerBadge}>
-            <span>🏛️</span>
+            <span className={styles.badgeIcon}>🏛️</span>
             <span>Compliance</span>
           </div>
           <h2 className={styles.heading}>
@@ -51,7 +51,7 @@ const MahareraInformation = ({ propertyDetails, slug }) => {
             </span>
           </h2>
           <p className={styles.subheading}>
-            Ensuring transparency and trust in real estate projects. Explore the latest updates and compliance details for our properties.
+            Ensuring transparency and trust in real estate projects
           </p>
           <div className={styles.headerDivider}></div>
         </div>
@@ -65,41 +65,65 @@ const MahareraInformation = ({ propertyDetails, slug }) => {
             <motion.div
               key={index}
               className={styles.card}
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ scale: 1.02, y: -4 }}
               transition={{ duration: 0.3 }}
             >
+              <div className={styles.cardTopBorder}></div>
               <div className={styles.cardHeader}>
                 <h3 className={styles.phaseName}>{rera.phase_name}</h3>
               </div>
               <div className={styles.cardBody}>
                 <ul className={styles.detailsList}>
-                  <li>
-                    <strong>ID:</strong> {rera.rera_id}
+                  <li className={styles.detailItem}>
+                    <div className={styles.detailContent}>
+                      <span className={styles.detailLabel}>Maharera ID</span>
+                      <span className={styles.detailValue}>{rera.rera_id}</span>
+                    </div>
                   </li>
-                  <li>
-                    <strong>Completion:</strong> {formatCompletionDate(rera.completion_date)}
+                  <li className={styles.detailItem}>
+                    <div className={styles.detailContent}>
+                      <span className={styles.detailLabel}>Completion</span>
+                      <span className={styles.detailValue}>{formatCompletionDate(rera.completion_date)}</span>
+                    </div>
                   </li>
-                  <li>
-                    <strong>Area:</strong> {rera.total_area} Sq.M
+                  <li className={styles.detailItem}>
+                    <div className={styles.detailContent}>
+                      <span className={styles.detailLabel}>Area</span>
+                      <span className={styles.detailValue}>{rera.total_area} Sq.M</span>
+                    </div>
                   </li>
-                  <li>
-                    <strong>Acre:</strong> {rera.total_acre}
+                  <li className={styles.detailItem}>
+                    <div className={styles.detailContent}>
+                      <span className={styles.detailLabel}>Acre</span>
+                      <span className={styles.detailValue}>{rera.total_acre}</span>
+                    </div>
                   </li>
-                  <li>
-                    <strong>Towers:</strong> {rera.total_tower}
+                  <li className={styles.detailItem}>
+                    <div className={styles.detailContent}>
+                      <span className={styles.detailLabel}>Towers</span>
+                      <span className={styles.detailValue}>{rera.total_tower}</span>
+                    </div>
                   </li>
-                  <li>
-                    <strong>Units:</strong> {rera.total_units}
+                  <li className={styles.detailItem}>
+                    <div className={styles.detailContent}>
+                      <span className={styles.detailLabel}>Units</span>
+                      <span className={styles.detailValue}>{rera.total_units}</span>
+                    </div>
                   </li>
                 </ul>
               </div>
               <div className={styles.cardFooter}>
                 {rera.rera_url ? (
-                  <QRCodeCanvas
-                    value={rera.rera_url}
-                    size={70}
-                    className={styles.qrCode}
-                  />
+                  <div className={styles.qrContainer}>
+                    <div className={styles.qrLabel}>
+                      <span>Scan to Verify</span>
+                    </div>
+                    <QRCodeCanvas
+                      value={rera.rera_url}
+                      size={60}
+                      className={styles.qrCode}
+                    />
+                  </div>
                 ) : (
                   <p className={styles.noQr}>No QR Code</p>
                 )}
