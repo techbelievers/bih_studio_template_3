@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { API } from "../../../../../config.js";
 import styles from "./HeroBanner.module.css";
   
@@ -18,7 +18,7 @@ const HeroBanner = ({ propertyDetails, slug, servicesData: initialServiceData, g
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
-  const [mainImage, setMainImage] = useState(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   // Fetch Gallery Data
   useEffect(() => {
@@ -28,18 +28,34 @@ const HeroBanner = ({ propertyDetails, slug, servicesData: initialServiceData, g
         .then((data) => {
           const photos = data.property_photos || [];
           setGalleryData(photos);
-          if (photos.length > 0) {
-            setMainImage(photos[0].photo);
-          }
         })
       .catch((error) => console.error("Error fetching gallery data:", error));
     } else {
       setGalleryData(initialGalleryData);
-      if (initialGalleryData.length > 0) {
-        setMainImage(initialGalleryData[0].photo);
-      }
     }
   }, [slug, initialGalleryData]);
+
+  // Auto-slide images
+  useEffect(() => {
+    if (galleryData.length > 1) {
+      const interval = setInterval(() => {
+        setCurrentImageIndex((prev) => (prev + 1) % galleryData.length);
+      }, 5000); // Change image every 5 seconds
+      return () => clearInterval(interval);
+    }
+  }, [galleryData.length]);
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % galleryData.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + galleryData.length) % galleryData.length);
+  };
+
+  const goToImage = (index) => {
+    setCurrentImageIndex(index);
+  };
 
   // Fetch Services Data
   useEffect(() => {
@@ -93,18 +109,52 @@ const HeroBanner = ({ propertyDetails, slug, servicesData: initialServiceData, g
     return <div className={styles.loadingState}>Loading...</div>;
   }
 
-  const heroImage = mainImage || propertyDetails.property_featured_photo || "/default-image.jpg";
+  // Prepare images array
+  const allImages = galleryData.length > 0 
+    ? galleryData.map(photo => photo.photo)
+    : [propertyDetails.property_featured_photo || "/default-image.jpg"];
 
   return (
     <section className={styles.heroBanner}>
-      {/* Background Image with Overlay */}
-      <div className={styles.heroBackground}>
-        <div 
-          className={styles.heroImage}
-          style={{ backgroundImage: `url(${heroImage})` }}
-        ></div>
-        <div className={styles.heroOverlay}></div>
-        <div className={styles.decorativeShapes}></div>
+      {/* Full-Width Image Slider */}
+      <div className={styles.imageSliderContainer}>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentImageIndex}
+            className={styles.sliderImage}
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.7 }}
+            style={{
+              backgroundImage: `url(${allImages[currentImageIndex]})`,
+            }}
+          >
+            <div className={styles.imageOverlayGradient}></div>
+          </motion.div>
+        </AnimatePresence>
+
+
+        {/* Image Dots Indicator */}
+        {allImages.length > 1 && (
+          <div className={styles.imageDots}>
+            {allImages.map((_, index) => (
+              <button
+                key={index}
+                className={`${styles.dot} ${index === currentImageIndex ? styles.activeDot : ''}`}
+                onClick={() => goToImage(index)}
+                aria-label={`Go to image ${index + 1}`}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* Image Counter */}
+        {allImages.length > 1 && (
+          <div className={styles.imageCounter}>
+            <span>{currentImageIndex + 1} / {allImages.length}</span>
+          </div>
+        )}
       </div>
 
       {/* Content Container */}
