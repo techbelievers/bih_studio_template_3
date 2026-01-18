@@ -96,7 +96,7 @@ const BankPartner = () => {
         {/* Trust Message */}
         <div className={styles.trustMessage}>
           <span className={styles.trustIcon}>🔒</span>
-          <span>All our banking partners are verified and RERA approved</span>
+          <span>All our banking partners are verified and MAHARERA approved</span>
         </div>
       </div>
     </section>

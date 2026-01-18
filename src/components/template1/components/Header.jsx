@@ -208,6 +208,16 @@ const Header = ({headerData: initialHeaderData , slug}) => {
           <nav className={styles.mobileNav}>
             <ul className={styles.mobileNavList}>
               <li><a href="/" onClick={toggleMenu}>Home</a></li>
+              {isPropertiesPage && (
+                <>
+                  <li><a href="#about" onClick={toggleMenu}>About</a></li>
+                  <li><a href="#price" onClick={toggleMenu}>Price</a></li>
+                  <li><a href="#amenities" onClick={toggleMenu}>Amenities</a></li>
+                  <li><a href="#layouts" onClick={toggleMenu}>Layouts</a></li>
+                  <li><a href="#gallery" onClick={toggleMenu}>Gallery</a></li>
+                  <li><a href="#location" onClick={toggleMenu}>Location</a></li>
+                </>
+              )}
               {isHomePage && !isPropertiesPage && (
                 <>
                   <li><a href="#properties" onClick={toggleMenu}>Properties</a></li>

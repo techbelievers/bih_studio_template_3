@@ -293,17 +293,6 @@ const HeroBanner = ({ propertyDetails, slug, servicesData: initialServiceData, g
         </form>
           </motion.div>
         </div>
-
-        {/* Scroll Indicator */}
-        <motion.div 
-          className={styles.scrollIndicator}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 0.6 }}
-        >
-          <span className={styles.scrollText}>Scroll to explore</span>
-          <div className={styles.scrollArrow}>↓</div>
-        </motion.div>
       </div>
     </section>
   );

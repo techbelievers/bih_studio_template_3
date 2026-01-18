@@ -18,7 +18,7 @@ const PrivacyPolicy = () => {
           <p>
             Buy India Homes Digital Pvt Ltd ("Buy India Homes Digital" or "We") is
             a registered agent under the Real Estate Regulatory Authority
-            (MAHARERA) with RERA No: A52100019166. Your privacy is our priority.
+            (MAHARERA) with MAHARERA No: A52100019166. Your privacy is our priority.
             This Privacy Policy provides an overview of the personal information
             we collect through our website, including sub-domains and microsites,
             the purposes for which we collect it, how we may share it, and the

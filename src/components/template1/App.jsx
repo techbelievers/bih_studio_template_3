@@ -27,6 +27,20 @@ const Adverties = lazy(() => import("./components/Advertisements"));
 
 const Properties = lazy(() => import("./components/Properties"));
 
+// Prefetch Properties component after page load
+if (typeof window !== 'undefined') {
+  // Use requestIdleCallback if available, otherwise setTimeout
+  if (window.requestIdleCallback) {
+    window.requestIdleCallback(() => {
+      import("./components/Properties");
+    }, { timeout: 2000 });
+  } else {
+    setTimeout(() => {
+      import("./components/Properties");
+    }, 100);
+  }
+}
+
 // Better Loading Fallback Component
 const LoadingFallback = () => (
   <div style={{
@@ -44,16 +58,25 @@ const LoadingFallback = () => (
 function App({ propertyDetails }) {
   return (
     <div className="App">
-      {/* Use Suspense to handle fallback UI during component loading */}
+      {/* Critical components - Load immediately */}
       <Suspense fallback={<LoadingFallback />}>
         <Header />
         <HeroBanner />
+      </Suspense>
+
+      {/* Properties - Separate Suspense for faster loading */}
+      <Suspense fallback={<div style={{ minHeight: '300px' }}></div>}>
         <Properties />
+      </Suspense>
+
+      {/* Other components - Can load in parallel */}
+      <Suspense fallback={<LoadingFallback />}>
         <Adverties />
         <ContactUs />
         <BankPartners />
         <EMICalculator />
         <PropertyDetails propertyDetails={propertyDetails}/>
+        <MahareraInformation />
         <Blogs />
         <FAQ />
         <Footer />

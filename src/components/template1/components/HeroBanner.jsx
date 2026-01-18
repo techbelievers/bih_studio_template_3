@@ -110,7 +110,7 @@ const HeroBanner = () => {
             >
               <div className={styles.pill}>
                 <span className={styles.pillIcon}>🏆</span>
-                <span>RERA Approved</span>
+                <span>MAHARERA Approved</span>
               </div>
               <div className={styles.pill}>
                 <span className={styles.pillIcon}>🔐</span>

@@ -76,6 +76,8 @@
   padding: 140px 40px 80px;
   max-width: 1600px;
   margin: 0 auto;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .contentGrid {
@@ -91,6 +93,7 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
+  margin-top: 40px;
 }
 
 .heroBadge {
@@ -529,110 +532,33 @@
 @media (max-width: 768px) {
   .heroBanner {
     min-height: auto;
+    padding-bottom: 60px;
   }
 
   .heroContent {
-    padding: 100px 20px 50px;
+    padding: 80px 20px 40px;
   }
 
   .contentGrid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 35px;
   }
 
   .propertyInfo {
     text-align: center;
     align-items: center;
-    gap: 25px;
-  }
-
-  .heroBadge {
-    font-size: 0.85rem;
-    padding: 10px 20px;
-  }
-
-  .propertyName {
-    font-size: clamp(2rem, 8vw, 2.8rem);
-    line-height: 1.2;
-  }
-
-  .propertyTagline {
-    font-size: clamp(1rem, 3vw, 1.3rem);
-    max-width: 100%;
-  }
-
-  .quickInfoGrid {
-    grid-template-columns: 1fr;
-    gap: 15px;
-    width: 100%;
-  }
-
-  .infoCard {
-    padding: 18px 15px;
-    justify-content: flex-start;
-  }
-
-  .infoIcon {
-    font-size: 1.5rem;
-  }
-
-  .infoLabel {
-    font-size: 0.8rem;
-  }
-
-  .infoValue {
-    font-size: 0.95rem;
-  }
-
-  .ctaButtons {
-    flex-direction: column;
-    width: 100%;
-    gap: 15px;
-  }
-
-  .primaryCta,
-  .secondaryCta {
-    width: 100%;
-    justify-content: center;
-    padding: 14px 28px;
-    font-size: 1rem;
-  }
-
-  .contactCard {
-    display: none;
-  }
-
-  .scrollIndicator {
-    bottom: 30px;
-  }
-
-  .scrollText {
-    font-size: 0.8rem;
-  }
-
-  .scrollArrow {
-    font-size: 1.3rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .heroContent {
-    padding: 90px 15px 40px;
-  }
-
-  .contentGrid {
-    gap: 35px;
-  }
-
-  .propertyInfo {
     gap: 20px;
+    width: 100%;
+    margin-top: 20px;
   }
 
   .heroBadge {
     font-size: 0.8rem;
     padding: 8px 18px;
     width: 100%;
+    max-width: 100%;
     justify-content: center;
+    box-sizing: border-box;
   }
 
   .badgeIcon {
@@ -640,55 +566,81 @@
   }
 
   .propertyName {
-    font-size: clamp(1.8rem, 10vw, 2.5rem);
-    line-height: 1.1;
+    font-size: clamp(1.75rem, 9vw, 2.5rem);
+    line-height: 1.2;
+    word-break: break-word;
+    padding: 0 10px;
   }
 
   .propertyTagline {
     font-size: clamp(0.95rem, 3.5vw, 1.2rem);
+    max-width: 100%;
+    padding: 0 10px;
     line-height: 1.5;
   }
 
   .quickInfoGrid {
+    grid-template-columns: 1fr;
     gap: 12px;
+    width: 100%;
+    max-width: 100%;
   }
 
   .infoCard {
-    padding: 15px 12px;
-    flex-direction: row;
-    align-items: center;
+    padding: 14px 16px;
+    justify-content: flex-start;
+    gap: 12px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .infoIcon {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     flex-shrink: 0;
   }
 
   .infoContent {
-    gap: 4px;
+    gap: 3px;
+    min-width: 0;
+    flex: 1;
   }
 
   .infoLabel {
     font-size: 0.75rem;
+    white-space: nowrap;
   }
 
   .infoValue {
     font-size: 0.9rem;
     word-break: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.4;
   }
 
   .ctaButtons {
+    flex-direction: column;
+    width: 100%;
     gap: 12px;
+    margin-top: 5px;
   }
 
   .primaryCta,
   .secondaryCta {
+    width: 100%;
+    justify-content: center;
     padding: 14px 24px;
     font-size: 0.95rem;
+    box-sizing: border-box;
+  }
+
+  .contactCard {
+    display: none;
   }
 
   .scrollIndicator {
     bottom: 25px;
+    position: relative;
+    margin-top: 20px;
   }
 
   .scrollText {
@@ -698,5 +650,133 @@
 
   .scrollArrow {
     font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroBanner {
+    min-height: auto;
+    padding-bottom: 50px;
+  }
+
+  .heroContent {
+    padding: 70px 15px 35px;
+  }
+
+  .contentGrid {
+    gap: 30px;
+  }
+
+  .propertyInfo {
+    gap: 18px;
+    padding: 0 5px;
+    margin-top: 15px;
+  }
+
+  .heroBadge {
+    font-size: 0.75rem;
+    padding: 8px 16px;
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .badgeIcon {
+    font-size: 0.95rem;
+  }
+
+  .propertyName {
+    font-size: clamp(1.6rem, 11vw, 2.2rem);
+    line-height: 1.15;
+    padding: 0 5px;
+    letter-spacing: -0.5px;
+  }
+
+  .propertyTagline {
+    font-size: clamp(0.9rem, 4vw, 1.1rem);
+    line-height: 1.5;
+    padding: 0 5px;
+  }
+
+  .quickInfoGrid {
+    gap: 10px;
+    width: 100%;
+  }
+
+  .infoCard {
+    padding: 12px 14px;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .infoIcon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .infoContent {
+    gap: 3px;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .infoLabel {
+    font-size: 0.7rem;
+    line-height: 1.2;
+  }
+
+  .infoValue {
+    font-size: 0.85rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.3;
+  }
+
+  .ctaButtons {
+    gap: 10px;
+    width: 100%;
+  }
+
+  .primaryCta,
+  .secondaryCta {
+    padding: 12px 20px;
+    font-size: 0.9rem;
+    width: 100%;
+  }
+
+  .scrollIndicator {
+    bottom: 20px;
+    position: relative;
+    margin-top: 15px;
+  }
+
+  .scrollText {
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+  }
+
+  .scrollArrow {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .heroContent {
+    padding: 60px 12px 30px;
+  }
+
+  .propertyName {
+    font-size: clamp(1.4rem, 12vw, 2rem);
+  }
+
+  .infoCard {
+    padding: 10px 12px;
+  }
+
+  .infoValue {
+    font-size: 0.8rem;
   }
 }

@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { API } from "../../../../../config.js";
 import styles from "./PropertyPriceTable.module.css";
+import EnquirePopup from "../../components/EnquirePopup.jsx";
 
 const PropertyPriceTable = ({slug}) => {
   const [propertyPrices, setPropertyPrices] = useState([]);
   const [heading, setHeading] = useState("");
   const [error, setError] = useState(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   useEffect(() => {
     const fetchPropertyPrices = async () => {
@@ -91,7 +93,12 @@ const PropertyPriceTable = ({slug}) => {
                 </div>
 
                 <div className={styles.cardFooter}>
-                  <button className={styles.enquireButton}>Enquire Now</button>
+                  <button 
+                    className={styles.enquireButton}
+                    onClick={() => setIsPopupOpen(true)}
+                  >
+                    Enquire Now
+                  </button>
                 </div>
               </div>
             ))}
@@ -108,6 +115,12 @@ const PropertyPriceTable = ({slug}) => {
             <p>No pricing information available at the moment.</p>
           </div>
         )
+      )}
+      {isPopupOpen && (
+        <EnquirePopup 
+          onClose={() => setIsPopupOpen(false)} 
+          slug={slug} 
+        />
       )}
     </section>
   );

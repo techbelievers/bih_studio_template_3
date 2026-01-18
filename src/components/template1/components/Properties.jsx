@@ -11,10 +11,14 @@ const PropertiesSection = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    // Prefetch data immediately when component mounts
     const fetchProperties = async () => {
       try {
-        const response = await axios.get(API.GET_PROPERTIES());
-        setProperties(response.data.property_details);
+        const response = await axios.get(API.GET_PROPERTIES(), {
+          // Add timeout to prevent hanging
+          timeout: 10000,
+        });
+        setProperties(response.data.property_details || []);
         if (response.data.page && response.data.page.length > 0) {
           setSectionInfo({
             heading: response.data.page[0].heading,
@@ -22,12 +26,14 @@ const PropertiesSection = () => {
           });
         }
       } catch (err) {
+        console.error("Error fetching properties:", err);
         setError("Failed to fetch properties");
       } finally {
         setLoading(false);
       }
     };
 
+    // Start fetching immediately, don't wait for intersection
     fetchProperties();
   }, []);
 

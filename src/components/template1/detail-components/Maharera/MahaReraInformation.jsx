@@ -41,12 +41,19 @@ const MahareraInformation = ({ propertyDetails, slug }) => {
       <div className={styles.clipBackground}></div>
       <div className={styles.contentWrapper}>
         <div className={styles.sectionHeader}>
+          <div className={styles.headerBadge}>
+            <span>🏛️</span>
+            <span>Compliance</span>
+          </div>
           <h2 className={styles.heading}>
-            Maharera <span className={styles.highlight}>Details</span>
+            <span className={styles.headingMain}>
+              Maharera <span className={styles.highlight}>Details</span>
+            </span>
           </h2>
           <p className={styles.subheading}>
             Ensuring transparency and trust in real estate projects. Explore the latest updates and compliance details for our properties.
           </p>
+          <div className={styles.headerDivider}></div>
         </div>
 
         <div
@@ -58,7 +65,7 @@ const MahareraInformation = ({ propertyDetails, slug }) => {
             <motion.div
               key={index}
               className={styles.card}
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
               <div className={styles.cardHeader}>

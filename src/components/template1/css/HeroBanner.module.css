@@ -20,6 +20,8 @@
   width: 100%;
   position: relative;
   z-index: 1;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 /* Left Side - Content */
@@ -407,46 +409,95 @@
   .heroContainer {
     padding: 30px 20px;
     gap: 30px;
+    grid-template-columns: 1fr;
+  }
+
+  .heroContent {
+    width: 100%;
+  }
+
+  .contentWrapper {
+    gap: 20px;
+    width: 100%;
+  }
+
+  .heroBadge {
+    font-size: 0.85rem;
+    padding: 8px 16px;
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
   }
 
   .heroImage {
     height: 300px;
     border-radius: 15px;
+    width: 100%;
+    order: -1;
+  }
+
+  .heading {
+    gap: 8px;
   }
 
   .headingLine1,
   .headingLine2 {
-    font-size: 2rem;
+    font-size: clamp(1.75rem, 8vw, 2.25rem);
+    line-height: 1.2;
   }
 
   .subheading {
+    font-size: clamp(0.95rem, 3vw, 1.1rem);
+    max-width: 100%;
+    line-height: 1.6;
+  }
+
+  .featurePills {
+    gap: 8px;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .pill {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+    flex: 1;
+    min-width: calc(50% - 4px);
+    justify-content: center;
+  }
+
+  .pillIcon {
     font-size: 1rem;
   }
 
   .ctaGroup {
     flex-direction: column;
+    width: 100%;
+    gap: 12px;
   }
 
   .primaryCta,
   .secondaryCta {
     width: 100%;
     justify-content: center;
-    padding: 16px 28px;
-  }
-
-  .featurePills {
-    gap: 8px;
-  }
-
-  .pill {
-    padding: 8px 14px;
-    font-size: 0.8rem;
+    padding: 14px 24px;
+    font-size: 0.95rem;
+    box-sizing: border-box;
   }
 
   .heroStats {
     justify-content: space-around;
     gap: 10px;
     padding: 20px 0;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .stat {
+    flex: 1;
+    min-width: 80px;
+    align-items: center;
+    text-align: center;
   }
 
   .statNumber {
@@ -454,7 +505,8 @@
   }
 
   .statLabel {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
+    text-align: center;
   }
 
   .statDivider {
@@ -467,13 +519,98 @@
 }
 
 @media (max-width: 480px) {
+  .heroBanner {
+    padding-top: 60px;
+  }
+
+  .heroContainer {
+    padding: 25px 15px;
+    gap: 25px;
+  }
+
+  .contentWrapper {
+    gap: 18px;
+  }
+
+  .heroBadge {
+    font-size: 0.75rem;
+    padding: 7px 14px;
+  }
+
   .heroImage {
     height: 250px;
+    border-radius: 12px;
+  }
+
+  .headingLine1,
+  .headingLine2 {
+    font-size: clamp(1.5rem, 10vw, 2rem);
+  }
+
+  .subheading {
+    font-size: clamp(0.9rem, 3.5vw, 1rem);
+  }
+
+  .featurePills {
+    gap: 6px;
+  }
+
+  .pill {
+    padding: 7px 12px;
+    font-size: 0.75rem;
+    min-width: calc(50% - 3px);
+  }
+
+  .pillIcon {
+    font-size: 0.9rem;
+  }
+
+  .primaryCta,
+  .secondaryCta {
+    padding: 12px 20px;
+    font-size: 0.9rem;
+  }
+
+  .heroStats {
+    gap: 8px;
+    padding: 15px 0;
+  }
+
+  .stat {
+    min-width: 70px;
+  }
+
+  .statNumber {
+    font-size: 1.3rem;
+  }
+
+  .statLabel {
+    font-size: 0.7rem;
   }
 
   .decorationCircle1,
   .decorationCircle2,
   .decorationCircle3 {
     display: none;
+  }
+}
+
+@media (max-width: 360px) {
+  .heroContainer {
+    padding: 20px 12px;
+  }
+
+  .headingLine1,
+  .headingLine2 {
+    font-size: clamp(1.3rem, 11vw, 1.8rem);
+  }
+
+  .pill {
+    font-size: 0.7rem;
+    padding: 6px 10px;
+  }
+
+  .statNumber {
+    font-size: 1.2rem;
   }
 }

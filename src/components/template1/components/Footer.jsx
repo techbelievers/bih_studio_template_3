@@ -75,7 +75,7 @@ const Footer = () => {
             </p>
             <div className={styles.trustBadge}>
               <span className={styles.badgeIcon}>✓</span>
-              <span>RERA Certified</span>
+              <span>MAHARERA Certified</span>
             </div>
           </div>
 

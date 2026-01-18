@@ -14,6 +14,7 @@ import Loader from '../loader/Loader';
 
 // Dynamically import PropertyDetails
 const PropertyDetails = lazy(() => import('./detail-components/property-details/PropertyDetails'));
+const MahareraInformation = lazy(() => import('./detail-components/Maharera/MahaReraInformation'));
 
 function StudioTemplate({ propertyDetails, headerData, galleryData }) {
   if (!propertyDetails || !propertyDetails.property_slug) {
@@ -32,6 +33,12 @@ function StudioTemplate({ propertyDetails, headerData, galleryData }) {
         galleryData={galleryData}
         servicesData={headerData}
       />
+      <Suspense fallback={<Loader />}>
+        <MahareraInformation 
+          propertyDetails={propertyDetails} 
+          slug={propertyDetails.property_slug} 
+        />
+      </Suspense>
       <PropertyPriceTable slug={propertyDetails.property_slug} />
       <Returns slug={propertyDetails.property_slug}/>
       <Suspense fallback={<Loader />}>
