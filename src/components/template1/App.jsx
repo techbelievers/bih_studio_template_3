@@ -76,7 +76,6 @@ function App({ propertyDetails }) {
         <BankPartners />
         <EMICalculator />
         <PropertyDetails propertyDetails={propertyDetails}/>
-        <MahareraInformation />
         <Blogs />
         <FAQ />
         <Footer />
