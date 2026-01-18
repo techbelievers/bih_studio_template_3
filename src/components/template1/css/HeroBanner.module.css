@@ -1,21 +1,22 @@
-/* Brand New Hero Banner - Split Screen Layout */
+/* Compact Modern Hero Banner with Real Estate Theme */
 .heroBanner {
   position: relative;
-  min-height: 100vh;
+  min-height: 85vh;
   display: flex;
   align-items: center;
-  background: linear-gradient(135deg, #F8F9FA 0%, #FFFFFF 50%, #F8F9FA 100%);
+  background: linear-gradient(135deg, #FFFFFF 0%, #F8F9FA 50%, #FFFFFF 100%);
   overflow: hidden;
-  padding-top: 80px;
+  padding-top: 90px;
+  padding-bottom: 40px;
 }
 
 .heroContainer {
-  max-width: 1400px;
+  max-width: 1300px;
   margin: 0 auto;
-  padding: 60px 40px;
+  padding: 40px 35px;
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 60px;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 50px;
   align-items: center;
   width: 100%;
   position: relative;
@@ -35,23 +36,24 @@
 .contentWrapper {
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 18px;
 }
 
 /* Badge */
 .heroBadge {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 20px;
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.1));
-  border: 2px solid rgba(212, 175, 55, 0.3);
+  gap: 8px;
+  padding: 8px 18px;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(212, 175, 55, 0.08));
+  border: 1.5px solid rgba(212, 175, 55, 0.25);
   border-radius: 50px;
   width: fit-content;
   font-family: 'Inter', sans-serif;
   font-weight: 600;
-  font-size: 0.9rem;
-  color: #1A2332;
+  font-size: 0.85rem;
+  color: #B8941F;
+  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.15);
 }
 
 .badgeIcon {
@@ -68,19 +70,19 @@
   font-family: 'Inter', sans-serif;
 }
 
-/* Heading - Multi-line Design */
+/* Heading - Compact Modern Design */
 .heading {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
   margin: 0;
   font-family: 'Playfair Display', serif;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.15;
 }
 
 .headingLine1 {
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-size: clamp(2rem, 5vw, 3.5rem);
   color: #1A2332;
   display: block;
   position: relative;
@@ -88,94 +90,97 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  letter-spacing: -0.5px;
 }
 
 .headingLine2 {
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-size: clamp(2rem, 5vw, 3.5rem);
   color: #4A90E2;
   display: block;
   font-weight: 800;
   position: relative;
+  letter-spacing: -0.5px;
 }
 
 .headingLine2::after {
   content: '';
   position: absolute;
-  bottom: -5px;
+  bottom: -3px;
   left: 0;
-  width: 100px;
-  height: 4px;
-  background: linear-gradient(90deg, #D4AF37, transparent);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #D4AF37, rgba(212, 175, 55, 0.3));
   border-radius: 2px;
 }
 
 /* Subheading */
 .subheading {
-  font-size: clamp(1.1rem, 2vw, 1.4rem);
-  color: #6C757D;
-  line-height: 1.7;
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  color: #5A6C7D;
+  line-height: 1.6;
   margin: 0;
   font-weight: 400;
   font-family: 'Inter', sans-serif;
-  max-width: 90%;
+  max-width: 95%;
 }
 
 /* Feature Pills */
 .featurePills {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 5px;
+}
+
+.pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #FFFFFF 0%, #FAFBFC 100%);
+  border: 1.5px solid #E9ECEF;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #2C3E50;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.pill:hover {
+  border-color: #4A90E2;
+  background: linear-gradient(135deg, rgba(74, 144, 226, 0.08), rgba(46, 124, 214, 0.08));
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.2);
+  color: #4A90E2;
+}
+
+.pillIcon {
+  font-size: 1rem;
+}
+
+/* CTA Group */
+.ctaGroup {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
   margin-top: 10px;
 }
 
-.pill {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 18px;
-  background: white;
-  border: 2px solid #E9ECEF;
-  border-radius: 25px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: #2C3E50;
-  font-family: 'Inter', sans-serif;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.pill:hover {
-  border-color: #4A90E2;
-  background: linear-gradient(135deg, rgba(74, 144, 226, 0.05), rgba(46, 124, 214, 0.05));
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.2);
-}
-
-.pillIcon {
-  font-size: 1.1rem;
-}
-
-/* CTA Group */
-.ctaGroup {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-  margin-top: 15px;
-}
-
 .primaryCta {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 18px 36px;
+  gap: 10px;
+  padding: 14px 28px;
   background: linear-gradient(135deg, #4A90E2 0%, #2E7CD6 100%);
   color: white;
   text-decoration: none;
-  border-radius: 12px;
-  font-size: 1.1rem;
+  border-radius: 10px;
+  font-size: 1rem;
   font-weight: 600;
   font-family: 'Inter', sans-serif;
-  box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
+  box-shadow: 0 4px 16px rgba(74, 144, 226, 0.35);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -212,17 +217,17 @@
 .secondaryCta {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 18px 36px;
+  gap: 8px;
+  padding: 14px 28px;
   background: white;
   color: #2C3E50;
   text-decoration: none;
-  border: 2px solid #E9ECEF;
-  border-radius: 12px;
-  font-size: 1.1rem;
+  border: 1.5px solid #E9ECEF;
+  border-radius: 10px;
+  font-size: 1rem;
   font-weight: 600;
   font-family: 'Inter', sans-serif;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
 }
 
@@ -236,24 +241,33 @@
   font-size: 1.3rem;
 }
 
-/* Hero Stats */
+/* Hero Stats with Real Estate Icons */
 .heroStats {
   display: flex;
   align-items: center;
-  gap: 20px;
-  padding: 25px 0;
-  margin-top: 20px;
-  border-top: 2px solid #E9ECEF;
+  gap: 16px;
+  padding: 20px 0 0;
+  margin-top: 15px;
+  border-top: 1.5px solid #E9ECEF;
 }
 
 .stat {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  align-items: flex-start;
+  gap: 4px;
+  flex: 1;
+  position: relative;
+}
+
+.statIcon {
+  font-size: 1.4rem;
+  margin-bottom: 2px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
 }
 
 .statNumber {
-  font-size: 2rem;
+  font-size: 1.75rem;
   font-weight: 700;
   color: #4A90E2;
   font-family: 'Playfair Display', serif;
@@ -261,25 +275,28 @@
 }
 
 .statLabel {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: #6C757D;
   font-weight: 500;
   font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
 }
 
 .statDivider {
-  width: 2px;
-  height: 40px;
+  width: 1.5px;
+  height: 35px;
   background: linear-gradient(180deg, transparent, #E9ECEF, transparent);
+  align-self: center;
 }
 
 /* Right Side - Image */
 .heroImage {
   position: relative;
-  height: 600px;
-  border-radius: 20px;
+  height: 520px;
+  border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
 }
 
 .imageBackground {
@@ -384,19 +401,36 @@
 
 /* Responsive Design */
 @media (max-width: 1024px) {
+  .heroBanner {
+    min-height: auto;
+    padding-bottom: 30px;
+  }
+
   .heroContainer {
     grid-template-columns: 1fr;
-    gap: 40px;
-    padding: 40px 30px;
+    gap: 35px;
+    padding: 35px 30px;
   }
 
   .heroImage {
-    height: 400px;
+    height: 380px;
     order: -1;
+  }
+
+  .contentWrapper {
+    gap: 16px;
   }
 
   .subheading {
     max-width: 100%;
+  }
+
+  .heroStats {
+    gap: 12px;
+  }
+
+  .statNumber {
+    font-size: 1.5rem;
   }
 }
 
@@ -404,11 +438,12 @@
   .heroBanner {
     padding-top: 70px;
     min-height: auto;
+    padding-bottom: 25px;
   }
 
   .heroContainer {
     padding: 30px 20px;
-    gap: 30px;
+    gap: 25px;
     grid-template-columns: 1fr;
   }
 
@@ -417,7 +452,7 @@
   }
 
   .contentWrapper {
-    gap: 20px;
+    gap: 16px;
     width: 100%;
   }
 
@@ -487,25 +522,29 @@
 
   .heroStats {
     justify-content: space-around;
-    gap: 10px;
-    padding: 20px 0;
+    gap: 8px;
+    padding: 18px 0 0;
     flex-wrap: wrap;
     width: 100%;
   }
 
   .stat {
     flex: 1;
-    min-width: 80px;
+    min-width: 75px;
     align-items: center;
     text-align: center;
   }
 
+  .statIcon {
+    font-size: 1.2rem;
+  }
+
   .statNumber {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 
   .statLabel {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     text-align: center;
   }
 

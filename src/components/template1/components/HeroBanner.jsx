@@ -149,7 +149,7 @@ const HeroBanner = () => {
               </motion.a>
             </motion.div>
 
-            {/* Stats */}
+            {/* Stats with Real Estate Icons */}
             <motion.div
               className={styles.heroStats}
               initial={{ opacity: 0 }}
@@ -157,16 +157,19 @@ const HeroBanner = () => {
               transition={{ delay: 1.3, duration: 0.6 }}
             >
               <div className={styles.stat}>
+                <span className={styles.statIcon}>👥</span>
                 <span className={styles.statNumber}>500+</span>
                 <span className={styles.statLabel}>Happy Clients</span>
               </div>
               <div className={styles.statDivider}></div>
               <div className={styles.stat}>
+                <span className={styles.statIcon}>🏢</span>
                 <span className={styles.statNumber}>50+</span>
                 <span className={styles.statLabel}>Projects</span>
               </div>
               <div className={styles.statDivider}></div>
               <div className={styles.stat}>
+                <span className={styles.statIcon}>⭐</span>
                 <span className={styles.statNumber}>100%</span>
                 <span className={styles.statLabel}>Satisfaction</span>
               </div>
