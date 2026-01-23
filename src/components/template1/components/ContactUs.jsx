@@ -61,7 +61,7 @@ const ContactUs = () => {
   };
 
   return (
-    <section className={styles.contactUsSection}>
+    <section id="contact" className={styles.contactUsSection}>
       <div className={styles.contactContainer}>
         {/* Left Side - Visual Info Section with Unique Design */}
         <div className={styles.infoSection}>
@@ -77,7 +77,7 @@ const ContactUs = () => {
               <span className={styles.headingMain}>
                 {data?.contact_us?.name || "Let's Start"}
               </span>
-              <span className={styles.headingAccent}>a Conversation</span>
+              {/* <span className={styles.headingAccent}>a Conversation</span> */}
             </h2>
 
             {/* Description */}
@@ -110,13 +110,7 @@ const ContactUs = () => {
                   <span className={styles.methodValue}>info@buyindiahomes.in</span>
                 </div>
               </div>
-              <div className={styles.contactMethod}>
-                <div className={styles.methodIcon}>⏰</div>
-                <div className={styles.methodContent}>
-                  <span className={styles.methodLabel}>Business Hours</span>
-                  <span className={styles.methodValue}>Mon-Sat: 9AM - 7PM</span>
-                </div>
-              </div>
+             
             </div>
 
             {/* Trust Indicators */}

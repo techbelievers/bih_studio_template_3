@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { API } from "../../../../config.js";
 import styles from "../css/Footer.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,9 +13,13 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 const Footer = () => {
+  const location = useLocation();
   const [footerData, setFooterData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  
+  // Check if we're on the home page
+  const isHomePage = location.pathname === "/";
 
   useEffect(() => {
     const fetchFooterData = async () => {
@@ -86,7 +91,7 @@ const Footer = () => {
               <li><a href="#properties">Properties</a></li>
               <li><a href="#blogs">Blogs</a></li>
               <li><a href="#faq">FAQ</a></li>
-              <li><a href="#contact">Contact Us</a></li>
+              {isHomePage && <li><a href="#contact">Contact Us</a></li>}
             </ul>
           </div>
 
@@ -186,7 +191,7 @@ const Footer = () => {
                 {g_setting.footer_copyright || "© 2024 Real Estate Company. All rights reserved."}
               </p>
               <p className={styles.footerCredit}>
-                Designed with <span className={styles.heart}>♥</span> for home seekers
+                Designed with <span className={styles.heart}>♥</span> for Properties seekers
               </p>
             </div>
           </div>

@@ -62,7 +62,7 @@
 }
 
 .postDate::before {
-  content: '📅';
+  /* content: '📅'; */
   font-size: 1rem;
 }
 

@@ -5,6 +5,10 @@
   font-family: var(--font-body);
   position: relative;
   overflow: hidden;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .container::before {
@@ -97,6 +101,11 @@
   gap: 30px;
   position: relative;
   z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-items: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .card {
@@ -110,6 +119,9 @@
   background: white;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
 .card::before {
@@ -342,6 +354,19 @@
   border: 1px solid #DC3545;
 }
 
+/* Desktop - Center Images */
+@media (min-width: 1025px) {
+  .gridContainer {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card {
+    max-width: 400px;
+  }
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
   .container {
@@ -351,6 +376,7 @@
   .gridContainer {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 25px;
+    max-width: 100%;
   }
 
   .imageContainer {

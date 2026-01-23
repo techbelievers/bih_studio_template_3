@@ -30,11 +30,16 @@
   margin-right: auto;
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .headerBadge {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   padding: 10px 22px;
   background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.1));
@@ -43,31 +48,36 @@
   font-size: 0.9rem;
   font-weight: 600;
   color: #1A2332;
-  margin-bottom: 25px;
+  margin-bottom: 24px;
   font-family: 'Inter', sans-serif;
+  width: fit-content;
 }
 
 .badgeIcon {
   font-size: 1.2rem;
+  display: inline-flex;
+  align-items: center;
 }
 
 .heading {
   font-size: clamp(2rem, 4vw, 2.75rem);
   font-weight: 700;
-  margin-bottom: 20px;
+  margin: 0 0 24px 0;
   color: #1A2332;
   font-family: 'Playfair Display', serif;
   letter-spacing: 0.5px;
   animation: fadeIn 1s ease-in-out;
   position: relative;
-  display: inline-block;
+  display: block;
   line-height: 1.2;
+  text-align: center;
+  width: 100%;
 }
 
 .heading::after {
   content: '';
   position: absolute;
-  bottom: -10px;
+  bottom: -12px;
   left: 50%;
   transform: translateX(-50%);
   width: 100px;
@@ -87,8 +97,9 @@
   width: 80px;
   height: 4px;
   background: linear-gradient(90deg, #4A90E2, #D4AF37);
-  margin: 30px auto 0;
+  margin: 24px auto 0;
   border-radius: 2px;
+  display: block;
 }
 
 /* Enhanced Slider Wrapper */
@@ -97,6 +108,13 @@
   margin: 0 auto;
   position: relative;
   z-index: 1;
+}
+
+/* Desktop - Allow larger images */
+@media (min-width: 1025px) {
+  .sliderWrapper {
+    max-width: 1400px;
+  }
 }
 
 .sliderContainer {
@@ -152,12 +170,19 @@
 .adLink {
   display: block;
   width: 100%;
-  height: 450px;
+  height: 600px;
   overflow: hidden;
   border-radius: 20px;
   position: relative;
   text-decoration: none;
   transition: all 0.3s ease;
+}
+
+/* Desktop - Larger size to show full image */
+@media (min-width: 1025px) {
+  .adLink {
+    height: 650px;
+  }
 }
 
 .adImageWrapper {
@@ -173,6 +198,14 @@
   height: 100%;
   object-fit: cover;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Desktop - Show more of the image */
+@media (min-width: 1025px) {
+  .adImage {
+    object-fit: cover;
+    object-position: center;
+  }
 }
 
 .adLink:hover .adImage {
@@ -218,6 +251,14 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
+}
+
+/* Desktop - Larger button text */
+@media (min-width: 1025px) {
+  .viewAd {
+    padding: 16px 40px;
+    font-size: 1.2rem;
+  }
 }
 
 .adLink:hover .viewAd {

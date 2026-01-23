@@ -123,7 +123,7 @@ const EMICalculator = () => {
             </div>
             <div className={styles.resultsGrid}>
               <div className={styles.resultCard}>
-                <div className={styles.resultIcon}>📅</div>
+                {/* <div className={styles.resultIcon}>📅</div> */}
                 <div className={styles.resultContent}>
                   <h4 className={styles.resultLabel}>Monthly EMI</h4>
                   <p className={styles.resultValue}>₹{parseFloat(emi).toLocaleString('en-IN')}</p>

@@ -82,7 +82,7 @@ const PropertiesSection = () => {
         </div>
         <h2 className={styles.heading}>
           <span className={styles.headingAccent}>{sectionInfo.heading || "Discover Your Dream"}</span>
-          <span className={styles.headingSubtext}>Home</span>
+          <span className={styles.headingSubtext}>Properties</span>
         </h2>
         {sectionInfo.subheading && (
           <p className={styles.subheading}>{sectionInfo.subheading}</p>
@@ -126,10 +126,7 @@ const PropertiesSection = () => {
                     <span className={styles.priceAmount}>{property.property_price}</span>
                     <span className={styles.priceUnit}>Lakhs</span>
                   </div>
-                  <div className={styles.quickView}>
-                    <span>👁️</span>
-                    <span>Quick View</span>
-                  </div>
+                
                 </div>
                 <div className={styles.cardGradient}></div>
               </div>

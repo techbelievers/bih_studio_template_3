@@ -86,7 +86,7 @@ const Blogs = () => {
                   </div>
                 </div>
                 <div className={styles.dateBadge}>
-                  <span className={styles.dateIcon}>📅</span>
+                  {/* <span className={styles.dateIcon}>📅</span> */}
                   <span>{new Date(blog.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}</span>
                 </div>
               </div>
