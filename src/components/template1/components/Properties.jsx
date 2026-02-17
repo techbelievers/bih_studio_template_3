@@ -123,7 +123,7 @@ const PropertiesSection = () => {
                 <div className={styles.imageOverlay}>
                   <div className={styles.priceBadge}>
                     <span className={styles.priceSymbol}>₹</span>
-                    <span className={styles.priceAmount}>{property.property_price}</span>
+                    <span className={styles.priceAmount}>{property.property_price} *</span>
                     <span className={styles.priceUnit}>Lakhs</span>
                   </div>
                 

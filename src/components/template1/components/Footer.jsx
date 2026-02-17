@@ -76,7 +76,7 @@ const Footer = () => {
               className={styles.footerLogo}
             />
             <p className={styles.logoDescription}>
-              Your trusted partner in finding the perfect home. We make real estate dreams come true.
+              Your trusted partner in finding the perfect studio. We make real estate dreams come true.
             </p>
             <div className={styles.trustBadge}>
               <span className={styles.badgeIcon}>✓</span>
@@ -146,7 +146,7 @@ const Footer = () => {
                   </a>
                 </div>
               </div>
-              <div className={styles.contactItem}>
+              {/* <div className={styles.contactItem}>
                 <span className={styles.contactIcon}>✉️</span>
                 <div className={styles.contactInfo}>
                   <span className={styles.contactLabel}>Email</span>
@@ -154,7 +154,7 @@ const Footer = () => {
                     info@buyindiahomes.in
                   </a>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

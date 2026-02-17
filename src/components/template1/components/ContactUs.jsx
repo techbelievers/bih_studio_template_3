@@ -103,13 +103,13 @@ const ContactUs = () => {
                   </a>
                 </div>
               </div>
-              <div className={styles.contactMethod}>
+              {/* <div className={styles.contactMethod}>
                 <div className={styles.methodIcon}>✉️</div>
                 <div className={styles.methodContent}>
                   <span className={styles.methodLabel}>Email Us</span>
                   <span className={styles.methodValue}>info@buyindiahomes.in</span>
                 </div>
-              </div>
+              </div> */}
              
             </div>
 
