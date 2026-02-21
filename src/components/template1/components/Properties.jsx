@@ -156,7 +156,7 @@ const PropertiesSection = () => {
                 {property.sub_location && (
                   <div className={styles.locationInfo}>
                     <span className={styles.locationIcon}>📍</span>
-                    <span className={styles.locationText}>{property.sub_location}</span>
+                    <span className={styles.locationText}>{property.property_location_name}</span>
                   </div>
                 )}
 

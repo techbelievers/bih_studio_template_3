@@ -1,94 +1,86 @@
 /* ============================================
-   BRAND NEW ENQUIRE POPUP DESIGN
-   Modern, Clean, Fully Responsive
+   ENQUIRE POPUP - Real Estate Redesign
+   Responsive: mobile-first, all devices
    ============================================ */
 
-/* Backdrop Overlay */
+/* Backdrop */
 .popupBackdrop {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(26, 35, 50, 0.75);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  inset: 0;
+  background: rgba(26, 35, 50, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   z-index: 999;
-  animation: backdropFadeIn 0.3s ease-out;
+  animation: fadeIn 0.25s ease-out;
 }
 
-@keyframes backdropFadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-/* Main Popup Container */
+/* Main Enquire Popup - centered in viewport, never overflow */
 .enquirePopup {
   position: fixed;
-  top: 0%;
+  top: 50%;
   left: 50%;
-  transform:  translate(-40%, 10%);
-  width: min(90%, 580px);
-  max-height: min(100vh, 700px);
-  background: #FFFFFF;
-  border-radius: 28px;
-  box-shadow: 
-    0 25px 80px rgba(0, 0, 0, 0.25),
-    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  transform: translate(-50%, -50%);
+  width: calc(100% - 32px);
+  max-width: 520px;
+  max-height: calc(100vh - 32px);
+  max-height: calc(100dvh - 32px);
+  margin: 0;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow:
+    0 24px 64px rgba(26, 35, 50, 0.28),
+    0 0 0 1px rgba(212, 175, 55, 0.12);
   z-index: 1000;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  animation: popupSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: popIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
   box-sizing: border-box;
 }
 
-@keyframes popupSlideIn {
+@keyframes popIn {
   from {
     opacity: 0;
-    transform:  translate(-40%, 10%) scale(0.96);
+    transform: translate(-50%, -50%) scale(0.92);
   }
   to {
     opacity: 1;
-    transform:  translate(-40%, 10%) scale(1);
+    transform: translate(-50%, -50%) scale(1);
   }
 }
 
-/* Gradient Top Border */
+/* Real estate accent bar */
 .enquirePopup::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 5px;
-  background: linear-gradient(90deg, #4A90E2 0%, #D4AF37 50%, #4A90E2 100%);
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #1A2332 0%, #B8860B 50%, #1A2332 100%);
   background-size: 200% 100%;
-  animation: gradientShift 4s ease infinite;
+  animation: shimmer 5s ease-in-out infinite;
   z-index: 1;
 }
 
-@keyframes gradientShift {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
+@keyframes shimmer {
+  0%, 100% { background-position: 100% 0; }
+  50% { background-position: 0% 0; }
 }
 
-/* Popup Content Container */
 .enquirePopupContent {
   display: flex;
   flex-direction: column;
   height: 100%;
+  min-height: 0;
   overflow-y: auto;
   overflow-x: hidden;
-  position: relative;
+  -webkit-overflow-scrolling: touch;
 }
 
 .enquirePopupContent::-webkit-scrollbar {
@@ -96,129 +88,111 @@
 }
 
 .enquirePopupContent::-webkit-scrollbar-track {
-  background: #F8F9FA;
+  background: #f1f3f5;
 }
 
 .enquirePopupContent::-webkit-scrollbar-thumb {
-  background: #CED4DA;
+  background: #B8860B;
   border-radius: 3px;
 }
 
-.enquirePopupContent::-webkit-scrollbar-thumb:hover {
-  background: #ADB5BD;
-}
-
-/* Header Section */
+/* Header */
 .popupHeader {
-  padding: 32px 32px 24px;
-  background: linear-gradient(135deg, #F8F9FA 0%, #FFFFFF 100%);
-  border-bottom: 1px solid #F0F0F0;
+  padding: 24px 20px 20px;
+  background: linear-gradient(180deg, #f8f9fa 0%, #fff 100%);
+  border-bottom: 1px solid #eee;
   position: relative;
   text-align: center;
+  flex-shrink: 0;
 }
 
 .logoContainer {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .enquirePopupLogo {
-  max-width: 110px;
-  max-height: 65px;
+  max-width: 100px;
+  max-height: 56px;
   object-fit: contain;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
 }
 
 .headerText {
-  margin-top: 4px;
+  margin-top: 0;
 }
 
 .enquireNowHeading {
-  font-size: clamp(1.875rem, 4.5vw, 2.5rem);
-  font-weight: 800;
-  background: linear-gradient(135deg, #1A2332 0%, #4A90E2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin: 0 0 8px 0;
-  font-family: 'Playfair Display', serif;
-  line-height: 1.2;
-  letter-spacing: -0.5px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1A2332;
+  margin: 0 0 6px 0;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
 }
 
 .popupSubtitle {
-  font-size: 0.95rem;
-  color: #6C757D;
+  font-size: 0.9rem;
+  color: #5c6b7a;
   margin: 0;
-  font-family: 'Inter', sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  line-height: 1.45;
 }
 
-/* Close Button */
+/* Close - top right, touch-friendly */
 .enquirePopupClose {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 40px;
-  height: 40px;
-  background: rgba(0, 0, 0, 0.04);
+  top: 16px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  background: rgba(26, 35, 50, 0.06);
   border: none;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background 0.2s, transform 0.2s;
   z-index: 10;
   padding: 0;
 }
 
 .enquirePopupClose:hover {
-  background: rgba(74, 144, 226, 0.1);
-  transform: scale(1.1) rotate(90deg);
+  background: rgba(184, 134, 11, 0.15);
 }
 
 .enquirePopupClose:active {
-  transform: scale(0.95);
+  transform: scale(0.96);
 }
 
 .enquirePopupClose svg {
   width: 20px;
   height: 20px;
-  color: #4A90E2;
-  stroke-width: 2.5;
+  color: #1A2332;
 }
 
-/* Error Message */
+/* Error */
 .enquirePopupError {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 16px 20px;
-  margin: 0 24px 20px;
-  background: linear-gradient(135deg, #FFF5F5 0%, #FFEBEE 100%);
-  border: 1.5px solid rgba(220, 53, 69, 0.3);
-  border-left: 4px solid #DC3545;
+  padding: 14px 18px;
+  margin: 0 20px 16px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
   border-radius: 12px;
-  color: #DC3545;
-  font-size: 0.9rem;
+  color: #b91c1c;
+  font-size: 0.875rem;
   font-weight: 500;
-  font-family: 'Inter', sans-serif;
-  animation: errorSlideDown 0.3s ease-out;
+  animation: slideDown 0.25s ease-out;
 }
 
-@keyframes errorSlideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .enquirePopupError svg {
@@ -227,154 +201,125 @@
   height: 20px;
 }
 
-/* Form Section */
+/* Form */
 .enquireForm {
-  /* display: flex; */
+  display: flex;
   flex-direction: column;
-  gap: 22px;
-  padding: 32px;
-  background: #FFFFFF;
+  gap: 18px;
+  padding: 24px 20px 28px;
+  flex: 1;
+  min-height: 0;
 }
 
-/* Form Row for Side-by-Side Fields */
 .formRow {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 18px;
+  gap: 14px;
 }
 
-/* Input Wrapper */
 .inputWrapper {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .inputLabel {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-weight: 600;
-  color: #2C3E50;
-  font-family: 'Inter', sans-serif;
+  color: #1A2332;
   margin: 0;
-  letter-spacing: 0.2px;
 }
 
-/* Form Inputs */
 .formInput,
 .formTextarea {
   width: 100%;
-  padding: 15px 18px;
-  border: 2px solid #E9ECEF;
-  border-radius: 14px;
-  font-size: 0.95rem;
-  font-family: 'Inter', sans-serif;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-sizing: border-box;
-  background: #FFFFFF;
-  color: #2C3E50;
+  padding: 14px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 1rem;
+  color: #1A2332;
+  background: #fff;
   outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
 }
 
 .formInput::placeholder,
 .formTextarea::placeholder {
-  color: #ADB5BD;
-  font-weight: 400;
-}
-
-.formInput:hover,
-.formTextarea:hover {
-  border-color: #CED4DA;
-  background: #FAFBFC;
+  color: #9ca3af;
 }
 
 .formInput:focus,
 .formTextarea:focus {
-  border-color: #4A90E2;
-  background: #FFFFFF;
-  box-shadow: 
-    0 0 0 4px rgba(74, 144, 226, 0.1),
-    0 2px 8px rgba(74, 144, 226, 0.08);
-  transform: translateY(-1px);
+  border-color: #B8860B;
+  box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.15);
 }
 
 .formTextarea {
-  min-height: 130px;
+  min-height: 100px;
   resize: vertical;
-  font-family: 'Inter', sans-serif;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
-/* Submit Button */
+/* Submit - real estate CTA */
 .submitButton {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 17px 32px;
-  background: linear-gradient(135deg, #4A90E2 0%, #2E7CD6 100%);
-  color: #FFFFFF;
+  padding: 16px 24px;
+  min-height: 52px;
+  background: linear-gradient(135deg, #1A2332 0%, #2d3d52 100%);
+  color: #fff;
   font-size: 1rem;
   font-weight: 700;
-  font-family: 'Inter', sans-serif;
   border: none;
-  border-radius: 14px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  margin-top: 6px;
-  box-shadow: 
-    0 4px 16px rgba(74, 144, 226, 0.35),
-    0 2px 4px rgba(74, 144, 226, 0.2);
-  width: 100%;
-  letter-spacing: 0.3px;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  margin-top: 4px;
+  box-shadow: 0 4px 14px rgba(26, 35, 50, 0.35);
 }
 
 .submitButton:hover:not(:disabled) {
-  background: linear-gradient(135deg, #2E7CD6 0%, #1F5AA0 100%);
-  transform: translateY(-2px);
-  box-shadow: 
-    0 6px 24px rgba(74, 144, 226, 0.45),
-    0 4px 8px rgba(74, 144, 226, 0.25);
+  background: linear-gradient(135deg, #2d3d52 0%, #1A2332 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(26, 35, 50, 0.4);
 }
 
 .submitButton:active:not(:disabled) {
   transform: translateY(0);
-  box-shadow: 
-    0 2px 8px rgba(74, 144, 226, 0.3),
-    0 1px 2px rgba(74, 144, 226, 0.2);
 }
 
 .submitButton:disabled {
-  background: #CED4DA;
+  background: #94a3b8;
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
-  opacity: 0.7;
+  opacity: 0.9;
 }
 
 .submitButton svg {
   width: 20px;
   height: 20px;
-  transition: transform 0.3s ease;
+  transition: transform 0.2s;
 }
 
 .submitButton:hover:not(:disabled) svg {
-  transform: translateX(4px);
+  transform: translateX(3px);
 }
 
-/* Loading Spinner */
 .spinner {
-  width: 18px;
-  height: 18px;
-  border: 2.5px solid rgba(255, 255, 255, 0.3);
-  border-top-color: #FFFFFF;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
   border-radius: 50%;
-  animation: spin 0.8s linear infinite;
+  animation: spin 0.7s linear infinite;
 }
 
 @keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+  to { transform: rotate(360deg); }
 }
 
 /* Thank You Popup */
@@ -383,16 +328,16 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: min(90%, 480px);
-  max-height: min(85vh, 500px);
-  background: #FFFFFF;
-  border-radius: 28px;
-  box-shadow: 
-    0 25px 80px rgba(0, 0, 0, 0.25),
-    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  width: calc(100% - 32px);
+  max-width: 420px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow:
+    0 24px 64px rgba(26, 35, 50, 0.28),
+    0 0 0 1px rgba(34, 197, 94, 0.2);
   z-index: 1000;
   overflow: hidden;
-  animation: popupSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: popIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
   box-sizing: border-box;
 }
 
@@ -401,16 +346,14 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 5px;
-  background: linear-gradient(90deg, #28A745 0%, #20C997 50%, #28A745 100%);
-  background-size: 200% 100%;
-  animation: gradientShift 4s ease infinite;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #16a34a 0%, #22c55e 100%);
   z-index: 1;
 }
 
 .thankYouContent {
-  padding: 48px 32px 36px;
+  padding: 40px 24px 32px;
   text-align: center;
   position: relative;
   display: flex;
@@ -420,359 +363,299 @@
 
 .thankYouClose {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 40px;
-  height: 40px;
-  background: rgba(0, 0, 0, 0.04);
+  top: 16px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  background: rgba(26, 35, 50, 0.06);
   border: none;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background 0.2s, transform 0.2s;
   z-index: 10;
   padding: 0;
 }
 
 .thankYouClose:hover {
-  background: rgba(74, 144, 226, 0.1);
-  transform: scale(1.1) rotate(90deg);
+  background: rgba(34, 197, 94, 0.12);
+}
+
+.thankYouClose:active {
+  transform: scale(0.96);
 }
 
 .thankYouClose svg {
   width: 20px;
   height: 20px;
-  color: #4A90E2;
-  stroke-width: 2.5;
+  color: #1A2332;
 }
 
 .successIcon {
-  margin-bottom: 24px;
-  animation: successScaleIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  margin-bottom: 20px;
+  animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-@keyframes successScaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.3) rotate(-180deg);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) rotate(0deg);
-  }
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.5); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 .successIcon svg {
-  width: 70px;
-  height: 70px;
+  width: 64px;
+  height: 64px;
 }
 
 .thankYouContent h2 {
-  font-size: clamp(1.875rem, 4.5vw, 2.5rem);
-  font-weight: 800;
-  background: linear-gradient(135deg, #1A2332 0%, #4A90E2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin: 0 0 16px 0;
-  font-family: 'Playfair Display', serif;
-  line-height: 1.2;
-  letter-spacing: -0.5px;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1A2332;
+  margin: 0 0 12px 0;
+  line-height: 1.25;
 }
 
 .thankYouContent p {
-  font-size: 1rem;
-  color: #6C757D;
-  margin: 0 0 32px 0;
-  line-height: 1.7;
-  font-family: 'Inter', sans-serif;
-  max-width: 380px;
-  font-weight: 400;
+  font-size: 0.9375rem;
+  color: #5c6b7a;
+  margin: 0 0 28px 0;
+  line-height: 1.6;
+  max-width: 320px;
 }
 
 .closeButton {
-  padding: 16px 40px;
-  background: linear-gradient(135deg, #4A90E2 0%, #2E7CD6 100%);
-  color: #FFFFFF;
+  padding: 16px 36px;
+  min-height: 52px;
+  background: linear-gradient(135deg, #1A2332 0%, #2d3d52 100%);
+  color: #fff;
   font-size: 1rem;
   font-weight: 700;
-  font-family: 'Inter', sans-serif;
   border: none;
-  border-radius: 14px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 
-    0 4px 16px rgba(74, 144, 226, 0.35),
-    0 2px 4px rgba(74, 144, 226, 0.2);
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 14px rgba(26, 35, 50, 0.35);
   width: 100%;
-  max-width: 220px;
-  letter-spacing: 0.3px;
+  max-width: 200px;
 }
 
 .closeButton:hover {
-  background: linear-gradient(135deg, #2E7CD6 0%, #1F5AA0 100%);
-  transform: translateY(-2px);
-  box-shadow: 
-    0 6px 24px rgba(74, 144, 226, 0.45),
-    0 4px 8px rgba(74, 144, 226, 0.25);
+  background: linear-gradient(135deg, #2d3d52 0%, #1A2332 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(26, 35, 50, 0.4);
 }
 
 .closeButton:active {
   transform: translateY(0);
-  box-shadow: 
-    0 2px 8px rgba(74, 144, 226, 0.3),
-    0 1px 2px rgba(74, 144, 226, 0.2);
 }
 
-/* ============================================
-   RESPONSIVE DESIGN
-   ============================================ */
+/* ----- Responsive ----- */
 
-/* Tablet - 768px and below */
-@media (max-width: 768px) {
-  .enquirePopup,
-  .thankYouPopup {
-    width: min(95%, 520px);
-    max-height: min(92vh, 650px);
+/* Tablet and up */
+@media (min-width: 600px) {
+  .enquirePopup {
+    width: min(92%, 540px);
+    max-height: 90vh;
     border-radius: 24px;
   }
 
   .popupHeader {
-    padding: 28px 24px 20px;
+    padding: 28px 28px 24px;
   }
 
   .enquirePopupLogo {
-    max-width: 90px;
-    max-height: 55px;
+    max-width: 110px;
+    max-height: 60px;
   }
 
   .enquireNowHeading {
-    font-size: 1.875rem;
+    font-size: 1.75rem;
   }
 
   .popupSubtitle {
-    font-size: 0.9rem;
-  }
-
-  .enquirePopupClose,
-  .thankYouClose {
-    top: 16px;
-    right: 16px;
-    width: 36px;
-    height: 36px;
-  }
-
-  .enquirePopupClose svg,
-  .thankYouClose svg {
-    width: 18px;
-    height: 18px;
-  }
-
-  .enquirePopupError {
-    margin: 0 20px 18px;
-    padding: 14px 18px;
-    font-size: 0.85rem;
+    font-size: 0.9375rem;
   }
 
   .enquireForm {
-    padding: 28px 24px;
+    padding: 28px 28px 32px;
     gap: 20px;
   }
 
   .formRow {
-    grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 18px;
   }
 
   .formInput,
   .formTextarea {
-    padding: 14px 16px;
-    font-size: 0.9rem;
-    border-radius: 12px;
+    padding: 15px 18px;
+    border-radius: 14px;
   }
 
   .formTextarea {
-    min-height: 110px;
+    min-height: 120px;
   }
 
   .submitButton {
-    padding: 16px 28px;
-    font-size: 0.95rem;
-    border-radius: 12px;
+    padding: 18px 28px;
+    border-radius: 14px;
+  }
+
+  .thankYouPopup {
+    max-width: 440px;
+    border-radius: 24px;
   }
 
   .thankYouContent {
-    padding: 40px 24px 32px;
+    padding: 48px 32px 36px;
   }
 
   .successIcon svg {
-    width: 60px;
-    height: 60px;
+    width: 72px;
+    height: 72px;
   }
 
   .thankYouContent h2 {
-    font-size: 1.875rem;
+    font-size: 2rem;
   }
 
   .thankYouContent p {
-    font-size: 0.95rem;
-    margin-bottom: 28px;
+    font-size: 1rem;
+    margin-bottom: 32px;
   }
 
   .closeButton {
-    padding: 14px 32px;
-    font-size: 0.95rem;
-    max-width: 100%;
+    padding: 18px 40px;
+    max-width: 220px;
+    border-radius: 14px;
   }
 }
 
-/* Mobile - 480px and below */
-@media (max-width: 480px) {
-  .popupBackdrop {
-    background: rgba(26, 35, 50, 0.85);
+/* Mobile: stack name fields, full-width popup on very small */
+@media (max-width: 599px) {
+  .formRow {
+    grid-template-columns: 1fr;
+    gap: 18px;
   }
+}
 
+@media (max-width: 480px) {
   .enquirePopup,
   .thankYouPopup {
     width: 100%;
-    max-height: 100vh;
-    border-radius: 0;
-    top: 0;
-    left: 0;
-    transform: none;
     max-width: 100%;
+    max-height: 100vh;
+    max-height: 100dvh;
+    border-radius: 0;
   }
 
   .popupHeader {
-    padding: 24px 20px 18px;
-  }
-
-  .enquirePopupLogo {
-    max-width: 75px;
-    max-height: 45px;
-  }
-
-  .enquireNowHeading {
-    font-size: 1.625rem;
-    margin-bottom: 6px;
-  }
-
-  .popupSubtitle {
-    font-size: 0.85rem;
+    padding: 20px 16px 18px;
+    padding-top: max(20px, env(safe-area-inset-top));
   }
 
   .enquirePopupClose,
   .thankYouClose {
-    top: 14px;
-    right: 14px;
-    width: 34px;
-    height: 34px;
+    top: max(14px, env(safe-area-inset-top));
+    right: max(14px, env(safe-area-inset-right));
   }
 
-  .enquirePopupClose svg,
-  .thankYouClose svg {
-    width: 16px;
-    height: 16px;
+  .enquirePopupLogo {
+    max-width: 88px;
+    max-height: 50px;
+  }
+
+  .enquireNowHeading {
+    font-size: 1.375rem;
+  }
+
+  .popupSubtitle {
+    font-size: 0.875rem;
   }
 
   .enquirePopupError {
-    margin: 0 16px 16px;
+    margin: 0 16px 14px;
     padding: 12px 16px;
-    font-size: 0.8rem;
-    gap: 10px;
-    border-radius: 10px;
-  }
-
-  .enquirePopupError svg {
-    width: 18px;
-    height: 18px;
+    font-size: 0.8125rem;
   }
 
   .enquireForm {
-    padding: 24px 20px;
-    gap: 18px;
-  }
-
-  .inputWrapper {
-    gap: 6px;
+    padding: 20px 16px 24px;
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
+    gap: 16px;
   }
 
   .inputLabel {
-    font-size: 0.8rem;
+    font-size: 0.8125rem;
   }
 
   .formInput,
   .formTextarea {
     padding: 13px 14px;
-    font-size: 0.875rem;
+    font-size: 16px; /* avoids zoom on iOS */
     border-radius: 10px;
   }
 
   .formTextarea {
-    min-height: 100px;
+    min-height: 96px;
   }
 
   .submitButton {
-    padding: 15px 24px;
-    font-size: 0.9rem;
+    padding: 15px 20px;
+    min-height: 48px;
+    font-size: 0.9375rem;
     border-radius: 10px;
-    margin-top: 4px;
   }
 
   .thankYouContent {
     padding: 36px 20px 28px;
-  }
-
-  .successIcon {
-    margin-bottom: 20px;
+    padding-top: max(36px, calc(env(safe-area-inset-top) + 20px));
+    padding-bottom: max(28px, env(safe-area-inset-bottom));
   }
 
   .successIcon svg {
-    width: 55px;
-    height: 55px;
+    width: 56px;
+    height: 56px;
   }
 
   .thankYouContent h2 {
-    font-size: 1.625rem;
-    margin-bottom: 12px;
+    font-size: 1.5rem;
   }
 
   .thankYouContent p {
     font-size: 0.9rem;
     margin-bottom: 24px;
-    line-height: 1.6;
   }
 
   .closeButton {
-    padding: 14px 28px;
-    font-size: 0.9rem;
+    padding: 15px 28px;
+    min-height: 48px;
+    font-size: 0.9375rem;
     border-radius: 10px;
     max-width: 100%;
   }
 }
 
-/* Small Mobile - 360px and below */
+/* Small phones */
 @media (max-width: 360px) {
   .popupHeader {
-    padding: 20px 16px 16px;
+    padding: 18px 14px 16px;
   }
 
   .enquireForm {
-    padding: 20px 16px;
-    gap: 16px;
+    padding: 18px 14px 22px;
+    gap: 14px;
   }
 
   .formInput,
   .formTextarea {
-    padding: 12px;
-    font-size: 0.85rem;
+    padding: 12px 14px;
   }
 
   .submitButton {
-    padding: 14px 20px;
-    font-size: 0.875rem;
+    padding: 14px 18px;
   }
 
   .thankYouContent {
@@ -780,26 +663,11 @@
   }
 }
 
-/* Prevent body scroll when popup is open */
-body.popupOpen {
-  overflow: hidden;
-}
-
-/* High DPI / Retina Display Optimizations */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .enquirePopup,
-  .thankYouPopup {
-    box-shadow: 
-      0 25px 80px rgba(0, 0, 0, 0.3),
-      0 0 0 0.5px rgba(255, 255, 255, 0.1) inset;
-  }
-}
-
-/* Reduced Motion Support */
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
+  .popupBackdrop,
   .enquirePopup,
   .thankYouPopup,
-  .popupBackdrop,
   .enquirePopupError,
   .successIcon {
     animation: none;

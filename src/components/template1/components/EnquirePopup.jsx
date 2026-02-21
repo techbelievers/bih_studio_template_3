@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import axios from "axios";
 import { API } from "../../../../config.js";
 import styles from "../css/EnquirePopup.module.css";
@@ -75,11 +76,11 @@ const EnquirePopup = ({ onClose, slug}) => {
     onClose();
   };
 
-  return (
+  const popupContent = (
     <>
       {/* Backdrop Overlay */}
-      <div className={styles.popupBackdrop} onClick={onClose}></div>
-      
+      <div className={styles.popupBackdrop} onClick={onClose} aria-hidden="true"></div>
+
       {submitSuccess && (
         <div className={styles.thankYouPopup}>
           <div className={styles.thankYouContent}>
@@ -96,8 +97,8 @@ const EnquirePopup = ({ onClose, slug}) => {
             </div>
             <h2>Thank You!</h2>
             <p>
-              Your message has been sent successfully. We will get back to you
-              shortly.
+              Your enquiry has been submitted. Our property expert will call you
+              shortly with the details.
             </p>
             <button onClick={closeThankYou} className={styles.closeButton}>
               Close
@@ -125,8 +126,8 @@ const EnquirePopup = ({ onClose, slug}) => {
                 </div>
               )}
               <div className={styles.headerText}>
-                <h5 className={styles.enquireNowHeading}>Enquire Now</h5>
-                <p className={styles.popupSubtitle}>Fill in your details and we'll get back to you soon</p>
+                <h5 className={styles.enquireNowHeading}>Request a Callback</h5>
+                <p className={styles.popupSubtitle}>Share your details and our property expert will get in touch</p>
               </div>
             </div>
 
@@ -207,7 +208,7 @@ const EnquirePopup = ({ onClose, slug}) => {
                 <textarea
                   id="message"
                   name="message"
-                  placeholder="Tell us about your requirements..."
+                  placeholder="e.g. 2 BHK, budget, preferred location..."
                   value={formData.message}
                   onChange={handleChange}
                   className={styles.formTextarea}
@@ -227,7 +228,7 @@ const EnquirePopup = ({ onClose, slug}) => {
                   </>
                 ) : (
                   <>
-                    <span>Send Message</span>
+                    <span>Submit Enquiry</span>
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
@@ -240,6 +241,8 @@ const EnquirePopup = ({ onClose, slug}) => {
       )}
     </>
   );
+
+  return createPortal(popupContent, document.body);
 };
 
 export default EnquirePopup;
