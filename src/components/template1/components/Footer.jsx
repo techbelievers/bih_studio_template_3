@@ -187,7 +187,7 @@ const Footer = () => {
             )}
             
             <div className={styles.copyrightWrapper}>
-              <p className={styles.footerCopyright}>
+              <p className={`${styles.footerCopyright} whitespace-pre-line`}>
                 {g_setting.footer_copyright || "© 2024 Real Estate Company. All rights reserved."}
               </p>
               <p className={styles.footerCredit}>
