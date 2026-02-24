@@ -98,7 +98,7 @@ const StudioPage = () => {
         {ogImage && <meta property="og:image" content={ogImage} />}
         <meta property="og:type" content={seo.og_type || 'website'} />
         <meta property="og:url" content={canonicalUrl} />
-        <link rel="canonical" href={canonicalUrl} />
+        {/* <link rel="canonical" href={canonicalUrl} /> */}
         <meta name="robots" content={seo.status === 'Active' ? 'index, follow' : 'index, follow'} />
         {seo.favicon && <link rel="icon" href={seo.favicon} />}
         

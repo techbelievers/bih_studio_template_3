@@ -152,11 +152,13 @@ const PropertiesSection = () => {
                   )}
                 </div>
 
-                {/* Location with Icon */}
-                {property.sub_location && (
+                {/* Location with Icon (sub_location first, then property_location_name) */}
+                {([property.sub_location, property.property_location_name].filter(Boolean).join(", ") || null) && (
                   <div className={styles.locationInfo}>
                     <span className={styles.locationIcon}>📍</span>
-                    <span className={styles.locationText}>{property.property_location_name}</span>
+                    <span className={styles.locationText}>
+                      {[property.sub_location, property.property_location_name].filter(Boolean).join(", ") || "—"}
+                    </span>
                   </div>
                 )}
 

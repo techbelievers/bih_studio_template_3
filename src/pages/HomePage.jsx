@@ -62,7 +62,7 @@ const HomePage = () => {
         <meta property="og:description" content={seo.og_description || seo.meta_description || ''} />
         <meta property="og:image" content={seo.og_image || ''} />
         <meta property="og:type" content={seo.og_type || 'website'} />
-        {seo.domain && <link rel="canonical" href={`https://${seo.domain}`} />}
+        {/* {seo.domain && <link rel="canonical" href={`https://${seo.domain}`} />} */}
         <meta name="robots" content={seo.status === 'Active' ? 'index, follow' : 'noindex, nofollow'} />
         {seo.favicon && <link rel="icon" href={seo.favicon} />}
       </Helmet>
