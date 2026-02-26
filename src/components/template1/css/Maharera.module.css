@@ -1,111 +1,87 @@
-/* Section Styles */
-.mahareraSection {
-  background: #ffffff; /* Clean white background */
-  padding: 10px 5%;
-  margin-bottom: 70px;
-  font-family: "Playfair Display", serif;
-  color: #333;
+.section {
+  padding: 4rem 1.5rem;
+  font-family: var(--font-body);
+  background: var(--color-bg-light);
 }
 
-.sectionHeader {
+.title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  color: var(--color-text-dark);
+  margin: 0 0 0.5rem;
   text-align: center;
-  margin-bottom: 50px;
 }
 
-.heading {
-  font-size: 2.8rem;
-  color: #333; /* Text color for heading */
-  font-weight: bold;
-  text-transform: uppercase;
+.titleAccent { color: var(--color-primary); }
+
+.sub {
+  text-align: center;
+  font-size: 0.9375rem;
+  color: var(--color-text-light);
+  margin: 0 0 2rem;
 }
 
-.heading span {
-  color: #ffcc00; /* Primary theme color */
-}
-
-.subheading {
-  font-size: 1.2rem;
-  color: #555;
-}
-
-/* Grid Layout */
 .grid {
+  max-width: 960px;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
 }
 
-/* Card Styles */
 .card {
-  background: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-bg-light);
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 1.5rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .card:hover {
-  box-shadow: 0 12px 25px rgba(255, 204, 0, 0.4); /* Highlight with theme color */
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow);
 }
 
-/* Card Header */
-.cardHeader {
-  background: linear-gradient(to bottom, #ffcc0084, #e6b800); /* Gradient with theme color */
+.qrWrap {
   text-align: center;
-  padding: 20px 0;
+  padding: 1rem 0;
+  background: var(--color-bg-light);
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
 }
 
-.qrCode {
-  margin: auto;
-}
+.qr { display: block; margin: 0 auto; }
 
 .noQr {
-  background: #ddd;
-  color: #555;
-  padding: 40px;
-  font-size: 1rem;
-  border-radius: 8px;
+  display: inline-block;
+  padding: 1rem 1.5rem;
+  font-size: 0.875rem;
+  color: var(--color-text-light);
+  background: var(--color-bg-card);
+  border-radius: var(--radius);
 }
 
-/* Card Body */
-.cardBody {
-  padding: 20px;
+.phase {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem;
+  color: var(--color-text-dark);
 }
 
-.phaseName {
-  font-size: 1.4rem;
-  font-weight: bold;
-  margin-bottom: 10px;
-  color: #ffcc00; /* Theme color for title */
-}
-
-.detailsList {
+.list {
   list-style: none;
   padding: 0;
   margin: 0;
+  font-size: 0.9375rem;
+  color: var(--color-text);
 }
 
-.detailsList li {
-  font-size: 0.95rem;
-  margin: 5px 0;
-  color: #333;
-}
+.list li { margin: 0.35rem 0; }
 
-.detailsList strong {
-  color: #444;
-}
+.list strong { color: var(--color-text-dark); }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .heading {
-    font-size: 2.4rem;
-  }
-
-  .subheading {
-    font-size: 1rem;
-  }
-
-  .grid {
-    grid-template-columns: 1fr;
-  }
-}
+.loading, .error, .empty { text-align: center; padding: 2rem; color: var(--color-text-light); }
+.error { color: #b91c1c; }

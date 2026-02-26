@@ -1,18 +1,25 @@
-/* CSS Variables for Real Estate Theme */
+/* CSS Variables - Soft minimal real estate theme */
 :root {
-  --color-primary: #4A90E2;
-  --color-primary-dark: #2E7CD6;
-  --color-primary-light: #5B9BD5;
-  --color-accent: #D4AF37;
-  --color-accent-dark: #C19D2F;
-  --color-text: #2C3E50;
-  --color-text-dark: #1A2332;
-  --color-text-light: #6C757D;
-  --color-bg: #FFFFFF;
-  --color-bg-light: #F8F9FA;
-  --color-success: #28A745;
-  --font-heading: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
-  --font-body: 'Inter', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --color-primary: #0F766E;
+  --color-primary-dark: #0D9488;
+  --color-primary-light: #14B8A6;
+  --color-accent: #D97706;
+  --color-accent-dark: #B45309;
+  --color-text: #44403C;
+  --color-text-dark: #1C1917;
+  --color-text-light: #78716C;
+  --color-bg: #FAFAF9;
+  --color-bg-light: #F5F5F4;
+  --color-bg-card: #FFFFFF;
+  --color-bg-dark: #1C1917;
+  --color-bg-dark-alt: #292524;
+  --color-success: #059669;
+  --font-heading: 'Fraunces', 'Georgia', serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --radius: 10px;
+  --radius-lg: 14px;
+  --shadow: 0 1px 3px 0 rgba(28, 25, 23, 0.08), 0 1px 2px -1px rgba(28, 25, 23, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(28, 25, 23, 0.06), 0 4px 6px -4px rgba(28, 25, 23, 0.04);
 }
 
 body {
@@ -31,7 +38,7 @@ code {
     monospace;
 }
 
-/* Loader.css */
+/* Loader - uses theme variables */
 .loader {
   display: flex;
   justify-content: center;
@@ -82,37 +89,37 @@ button, a {
   transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Real Estate Button Styles */
+/* Button Styles */
 .btn-primary {
   background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
   color: white;
   padding: 12px 32px;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius);
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 4px 6px -1px rgba(74, 144, 226, 0.3);
+  box-shadow: 0 4px 6px -1px rgba(15, 118, 110, 0.25);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px -1px rgba(74, 144, 226, 0.4);
+  box-shadow: 0 6px 12px -1px rgba(15, 118, 110, 0.35);
 }
 
 .btn-accent {
   background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
-  color: var(--color-text-dark);
+  color: white;
   padding: 12px 32px;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius);
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 4px 6px -1px rgba(212, 175, 55, 0.3);
+  box-shadow: 0 4px 6px -1px rgba(217, 119, 6, 0.25);
 }
 
 .btn-accent:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px -1px rgba(212, 175, 55, 0.4);
+  box-shadow: 0 6px 12px -1px rgba(217, 119, 6, 0.35);
 }
 
 @keyframes fadeIn {
@@ -145,7 +152,7 @@ button, a {
   animation: slideIn 1s ease forwards;
 }
 
-/* Real Estate Specific Utilities */
+/* Utilities */
 .text-heading {
   font-family: var(--font-heading);
   color: var(--color-text-dark);
@@ -157,19 +164,19 @@ button, a {
 }
 
 .bg-real-estate {
-  background: linear-gradient(135deg, #F8F9FA 0%, #FFFFFF 100%);
+  background: linear-gradient(135deg, var(--color-bg-light) 0%, var(--color-bg) 100%);
 }
 
 .card-real-estate {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  background: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card-real-estate:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-lg);
 }
 
 /* Link Styles */
@@ -182,4 +189,3 @@ a:hover {
   color: var(--color-primary-dark);
   text-decoration: underline;
 }
-

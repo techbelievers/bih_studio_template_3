@@ -1,179 +1,90 @@
-/* FloorPlans.module.css */
+.section {
+  padding: 4rem 1.5rem;
+  font-family: var(--font-body);
+  background: var(--color-bg-light);
+}
 
-/* Overall Wrapper */
-.floorPlansWrapper {
-  padding: 40px 20px;
-  background-color: #f8f9fa;
+.title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  color: var(--color-text-dark);
+  margin: 0 0 0.5rem;
   text-align: center;
 }
 
-/* Header Section */
-.header {
-  margin-bottom: 30px;
-}
-.title {
-  font-size: 36px;
-  font-family: 'Playfair Display', serif;
-  color: #212529;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-.subtitle {
-  font-size: 18px;
-  color: #6c757d;
+.sub {
+  text-align: center;
+  font-size: 0.9375rem;
+  color: var(--color-text-light);
+  margin: 0 0 2rem;
 }
 
-/* Carousel Layout - Center cards horizontally */
-.carousel {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 20px;
-  max-width: 1200px;
+.grid {
+  max-width: 960px;
   margin: 0 auto;
-  width: 100%;
-  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
 }
 
-/* Floor Plan Card */
 .card {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-bg-light);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  padding: 0;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  width: 100%;
-  max-width: 350px;
-  margin: 0 auto;
+  text-align: left;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow);
 }
 
-.imageContainer {
+.imgWrap {
+  aspect-ratio: 4/3;
   overflow: hidden;
-  border-radius: 12px 12px 0 0;
-}
-.image {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  transition: transform 0.3s ease;
+  background: var(--color-bg-light);
 }
 
-.card:hover .image {
-  transform: scale(1.1);
-}
+.img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-.cardFooter {
-  padding: 15px;
-}
-
-.planName {
-  font-size: 20px;
-  color: #495057;
+.name {
+  font-family: var(--font-heading);
+  font-size: 1rem;
   font-weight: 600;
-  text-transform: capitalize;
+  padding: 1rem;
+  margin: 0;
+  color: var(--color-text-dark);
 }
 
-/* Modal */
-.modal {
+.overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0,0,0,0.9);
   display: flex;
-  justify-content: center;
   align-items: center;
-  z-index: 1000;
+  justify-content: center;
+  padding: 2rem;
 }
 
-.modalContent {
-  position: relative;
-  max-width: 90%;
-  max-height: 90%;
-}
+.modal { position: relative; }
+.modal img { max-width: 100%; max-height: 85vh; object-fit: contain; border-radius: var(--radius); }
 
-.modalImage {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-}
-
-.closeButton {
+.close {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  background: #fff;
+  top: -2.5rem;
+  right: 0;
+  width: 40px;
+  height: 40px;
   border: none;
+  background: var(--color-bg-card);
+  color: var(--color-text);
+  font-size: 1.5rem;
   border-radius: 50%;
-  padding: 10px;
   cursor: pointer;
-  font-size: 20px;
-  color: #495057;
-}
-
-.closeButton:hover {
-  background: #f8f9fa;
-}
-
-
-/* Universal Header Style */
-.luxuryHeading {
-  font-size: 1.6rem;
-  font-weight: bold;
-  text-align: center;
-  color: #2e3b4e; /* Rich, elegant color */
-  margin-bottom: 30px;
-  text-transform: uppercase;
-  letter-spacing: 1.5px; /* Slightly increased letter-spacing for sophistication */
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle shadow for a 3D effect */
-  background: linear-gradient(90deg, #4b79a1, #283e51); /* Gradient for a unique feel */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; /* Gradient applies to the text */
-  position: relative;
-}
-
-/* Optional: Add an underline effect */
-.luxuryHeading::after {
-  content: '';
-  display: block;
-  width: 80px;
-  height: 4px;
-  background: #4b79a1; /* Matches the heading color scheme */
-  margin: 10px auto 0;
-  border-radius: 2px;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .carousel {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-    max-width: 100%;
-  }
-
-  .card {
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .carousel {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .card {
-    max-width: 100%;
-  }
-
-  .image {
-    height: 250px;
-  }
 }

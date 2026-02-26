@@ -16,11 +16,11 @@ const RealEstateTabs = ({slug}) => {
       try {
         const masterPlanResponse = await fetch(API.MASTER_LAYOUT_STUDIO(slug));
         const masterPlanData = await masterPlanResponse.json();
-        setMasterPlans(masterPlanData.master_layout);
+        setMasterPlans(masterPlanData.master_layout || []);
 
         const unitLayoutResponse = await fetch(API.UNIT_LAYOUT_STUDIO(slug));
         const unitLayoutData = await unitLayoutResponse.json();
-        setUnitLayouts(unitLayoutData.unit_layout);
+        setUnitLayouts(unitLayoutData.unit_layout || []);
 
         const floorPlansResponse = await fetch(API.FLOOR_PLANS_STUDIO(slug));
         const floorPlansData = await floorPlansResponse.json();
@@ -35,7 +35,7 @@ const RealEstateTabs = ({slug}) => {
     };
 
     fetchData();
-  }, []);
+  }, [slug]);
 
   const sections = [
     masterPlans.length > 0 && { id: 0, label: "Master Plans", data: masterPlans },
@@ -48,6 +48,10 @@ const RealEstateTabs = ({slug}) => {
 
   if (loading) return <div className={styles.loader}>Loading...</div>;
   if (error) return <div className={styles.error}>{error}</div>;
+  if (!sections.length) return null;
+
+  const currentSection = sections[activeSection];
+  const list = currentSection?.data ?? [];
 
   return (
     <div id="layouts" className={styles.container}>
@@ -68,7 +72,7 @@ const RealEstateTabs = ({slug}) => {
 
       {/* Section Content */}
       <div className={styles.gridContainer}>
-        {sections[activeSection].data.map((item) => (
+        {list.map((item) => (
           <div
             key={item.id}
             className={styles.card}

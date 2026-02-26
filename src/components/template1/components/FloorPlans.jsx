@@ -1,64 +1,47 @@
-import React, { useState, useEffect } from 'react';
-import { API } from '../../../../config.js';
-import styles from '../css/FloorPlans.module.css';
+import React, { useState, useEffect } from "react";
+import { API } from "../../../../config.js";
+import styles from "../css/FloorPlans.module.css";
 
 const FloorPlans = () => {
-  const [floorPlansData, setFloorPlansData] = useState([]);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [heading, setHeading] = useState('');
+  const [plans, setPlans] = useState([]);
+  const [heading, setHeading] = useState("");
+  const [modal, setModal] = useState(null);
 
   useEffect(() => {
-    const fetchFloorPlansData = async () => {
-      try {
-        const response = await fetch(API.FLOOR_PLANS());
-        const data = await response.json();
-        setFloorPlansData(data.Floor_plans || []);
-        setHeading(data.page[0]?.heading || 'Explore Our Floor Plans');
-      } catch (error) {
-        console.error('Error fetching floor plans data:', error);
-      }
-    };
-
-    fetchFloorPlansData();
+    fetch(API.FLOOR_PLANS())
+      .then((res) => res.json())
+      .then((data) => {
+        setPlans(data.Floor_plans || []);
+        setHeading(data.page?.[0]?.heading || "Floor plans");
+      })
+      .catch(console.error);
   }, []);
 
-  const handleImageClick = (image) => {
-    setSelectedImage(image);
-  };
-
-  const closeModal = () => {
-    setSelectedImage(null);
-  };
+  if (!plans.length) return null;
 
   return (
-    <div className={styles.floorPlansWrapper}>
-      <header className={styles.header}>
-        <h1 className={styles.luxuryHeading}>{heading}</h1>
-        <p className={styles.subtitle}>Discover the thoughtfully designed layouts tailored to your lifestyle.</p>
-      </header>
-
-      <div className={styles.carousel}>
-        {floorPlansData.map(plan => (
-          <div key={plan.id} className={styles.card} onClick={() => handleImageClick(plan.layout_image)}>
-            <div className={styles.imageContainer}>
-              <img src={plan.layout_image} alt={plan.layout_name} className={styles.image} />
+    <section className={styles.section}>
+      <h2 className={styles.title}>{heading}</h2>
+      <p className={styles.sub}>Thoughtfully designed layouts.</p>
+      <div className={styles.grid}>
+        {plans.map((plan) => (
+          <button key={plan.id} type="button" className={styles.card} onClick={() => setModal(plan.layout_image)}>
+            <div className={styles.imgWrap}>
+              <img src={plan.layout_image} alt={plan.layout_name} className={styles.img} />
             </div>
-            <div className={styles.cardFooter}>
-              <h3 className={styles.planName}>{plan.layout_name}</h3>
-            </div>
-          </div>
+            <h3 className={styles.name}>{plan.layout_name}</h3>
+          </button>
         ))}
       </div>
-
-      {selectedImage && (
-        <div className={styles.modal} onClick={closeModal}>
-          <div className={styles.modalContent}>
-            <img src={selectedImage} alt="Floor Plan" className={styles.modalImage} />
-            <button className={styles.closeButton} onClick={closeModal} aria-label="Close">×</button>
+      {modal && (
+        <div className={styles.overlay} onClick={() => setModal(null)}>
+          <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+            <img src={modal} alt="Floor plan" />
+            <button type="button" className={styles.close} onClick={() => setModal(null)} aria-label="Close">×</button>
           </div>
         </div>
       )}
-    </div>
+    </section>
   );
 };
 

@@ -40,6 +40,7 @@ const PropertyDetails = ({ propertyDetails, error }) => {
       {/* Tabs */}
       <div className={styles.tabHeaders}>
         <button
+          type="button"
           className={`${styles.tabButton} ${
             activeTab === 'about' ? styles.activeTab : ''
           }`}
@@ -48,6 +49,7 @@ const PropertyDetails = ({ propertyDetails, error }) => {
           About the Property
         </button>
         <button
+          type="button"
           className={`${styles.tabButton} ${
             activeTab === 'builders' ? styles.activeTab : ''
           }`}
@@ -56,6 +58,7 @@ const PropertyDetails = ({ propertyDetails, error }) => {
           About the Builders
         </button>
         <button
+          type="button"
           className={`${styles.tabButton} ${
             activeTab === 'info' ? styles.activeTab : ''
           }`}
@@ -79,19 +82,10 @@ const PropertyDetails = ({ propertyDetails, error }) => {
             expandedTabs[activeTab] ? styles.expanded : ''
           }`}
           dangerouslySetInnerHTML={{
-            __html: expandedTabs[activeTab]
-              ? activeTab === 'about'
-                ? propertyDetails.property_description
-                : activeTab === 'builders'
-                ? propertyDetails.property_specification
-                : propertyDetails.property_information
-              : `${
-                  activeTab === 'about'
-                    ? propertyDetails.property_description.slice(0, 2000)
-                    : activeTab === 'builders'
-                    ? propertyDetails.property_specification.slice(0, 2000)
-                    : propertyDetails.property_information.slice(0, 2000)
-                }...`,
+            __html: (() => {
+              const desc = activeTab === 'about' ? (propertyDetails.property_description || '') : activeTab === 'builders' ? (propertyDetails.property_specification || '') : (propertyDetails.property_information || '');
+              return expandedTabs[activeTab] ? desc : (desc.slice(0, 2000) + (desc.length > 2000 ? '...' : ''));
+            })(),
           }}
         />
         <button

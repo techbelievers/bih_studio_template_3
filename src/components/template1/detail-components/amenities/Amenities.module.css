@@ -1,150 +1,73 @@
-/* Brand New Amenities - Masonry Grid with Hover Effects */
+/* Amenities - property detail page redesign */
 .amenitiesSection {
-  padding: 100px 40px;
-  background: linear-gradient(180deg, #FFFFFF 0%, #F8F9FA 100%);
+  padding: 4rem 1.5rem;
+  background: var(--color-bg);
   font-family: var(--font-body);
-  position: relative;
-  overflow: hidden;
-}
-
-.amenitiesSection::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    radial-gradient(circle at 15% 35%, rgba(74, 144, 226, 0.04) 0%, transparent 50%),
-    radial-gradient(circle at 85% 65%, rgba(212, 175, 55, 0.04) 0%, transparent 50%);
-  pointer-events: none;
-  z-index: 0;
 }
 
 .container {
-  max-width: 1400px;
+  max-width: 1100px;
   margin: 0 auto;
-  position: relative;
-  z-index: 1;
 }
 
 .headingContainer {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 2rem;
 }
 
 .heading {
   font-family: var(--font-heading);
-  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 700;
   color: var(--color-text-dark);
-  margin-bottom: 20px;
-  position: relative;
-  display: inline-block;
-  background: linear-gradient(135deg, #1A2332 0%, #4A90E2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  line-height: 1.2;
-}
-
-.heading::after {
-  content: "";
-  position: absolute;
-  bottom: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 4px;
-  background: linear-gradient(90deg, #4A90E2, #D4AF37);
-  border-radius: 2px;
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
 }
 
 .subHeading {
-  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-size: 1rem;
   color: var(--color-text-light);
-  margin-top: 30px;
-  max-width: 700px;
+  margin: 0;
+  max-width: 520px;
   margin-left: auto;
   margin-right: auto;
-  line-height: 1.7;
-  font-family: var(--font-body);
 }
 
-/* Grid Layout - Masonry Style */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 30px;
-  grid-auto-rows: auto;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
 }
 
-/* Amenity Card */
 .card {
-  background: white;
-  border-radius: 20px;
+  background: var(--color-bg-card);
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(74, 144, 226, 0.1);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 5px;
-  background: linear-gradient(90deg, #4A90E2, #D4AF37, #4A90E2);
-  background-size: 200% 100%;
-  animation: shimmer 3s linear infinite;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 2;
-}
-
-.card:hover::before {
-  opacity: 1;
-}
-
-@keyframes shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--color-bg-light);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.2s;
 }
 
 .card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 12px 40px rgba(74, 144, 226, 0.25);
-  border-color: var(--color-primary);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(15, 118, 110, 0.12);
+  border-color: rgba(15, 118, 110, 0.25);
 }
 
 .imageWrapper {
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
-  background: linear-gradient(135deg, #F8F9FA 0%, #E9ECEF 100%);
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--color-bg-light);
 }
 
 .imageWrapper::after {
-  content: '';
+  content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(74, 144, 226, 0.6) 0%, rgba(212, 175, 55, 0.4) 100%);
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.35) 0%, transparent 50%);
   opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: 1;
+  transition: opacity 0.25s ease;
 }
 
 .card:hover .imageWrapper::after {
@@ -155,173 +78,50 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  z-index: 0;
+  display: block;
+  transition: transform 0.4s ease;
 }
 
 .card:hover .image {
-  transform: scale(1.2);
+  transform: scale(1.05);
 }
 
 .name {
-  font-family: var(--font-body);
-  font-size: 1.1rem;
+  font-family: var(--font-heading);
+  font-size: 1.0625rem;
   font-weight: 600;
-  color: var(--color-text-dark);
-  text-align: center;
-  padding: 20px 15px;
+  padding: 1.125rem 1.25rem;
   margin: 0;
-  background: white;
-  transition: all 0.3s ease;
-  position: relative;
-  z-index: 2;
-  line-height: 1.4;
+  color: var(--color-text-dark);
+  background: var(--color-bg-card);
+  transition: color 0.2s;
 }
 
 .card:hover .name {
   color: var(--color-primary);
-  background: linear-gradient(135deg, rgba(74, 144, 226, 0.05) 0%, rgba(212, 175, 55, 0.03) 100%);
 }
 
-/* Icon Badge (if needed for future enhancements) */
-.iconBadge {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  padding: 8px 12px;
-  border-radius: 25px;
-  font-size: 1.2rem;
-  z-index: 3;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-.card:hover .iconBadge {
-  opacity: 1;
-}
-
-/* Animations */
 .fadeIn {
   opacity: 0;
-  transform: translateY(30px);
-  animation: fadeInUp 0.6s ease forwards;
+  transform: translateY(12px);
+  animation: amenityFadeIn 0.5s ease forwards;
 }
 
-@keyframes fadeInUp {
+@keyframes amenityFadeIn {
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* Responsive Design */
-@media (max-width: 1200px) {
+@media (max-width: 640px) {
   .grid {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 25px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .amenitiesSection {
-    padding: 80px 30px;
-  }
-
-  .grid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 25px;
-  }
-}
-
-@media (max-width: 768px) {
-  .amenitiesSection {
-    padding: 70px 20px;
-  }
-
-  .headingContainer {
-    margin-bottom: 45px;
-  }
-
-  .heading {
-    font-size: clamp(2rem, 7vw, 2.5rem);
-  }
-
-  .heading::after {
-    width: 80px;
-    height: 3px;
-    bottom: -12px;
-  }
-
-  .subHeading {
-    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
-    margin-top: 25px;
-  }
-
-  .grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 18px;
-  }
-
-  .card {
-    border-radius: 18px;
-  }
-
-  .imageWrapper {
-    height: 160px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
   }
 
   .name {
-    font-size: clamp(0.9rem, 2.5vw, 1.05rem);
-    padding: 16px 12px;
-    line-height: 1.4;
-  }
-}
-
-@media (max-width: 480px) {
-  .amenitiesSection {
-    padding: 60px 15px;
-  }
-
-  .headingContainer {
-    margin-bottom: 40px;
-  }
-
-  .heading {
-    font-size: clamp(1.7rem, 8vw, 2.2rem);
-  }
-
-  .heading::after {
-    width: 70px;
-    height: 3px;
-    bottom: -10px;
-  }
-
-  .subHeading {
-    font-size: clamp(0.9rem, 3vw, 1rem);
-    margin-top: 20px;
-    line-height: 1.6;
-  }
-
-  .grid {
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 15px;
-  }
-
-  .card {
-    border-radius: 15px;
-  }
-
-  .imageWrapper {
-    height: 140px;
-  }
-
-  .name {
-    font-size: clamp(0.85rem, 3vw, 0.95rem);
-    padding: 14px 10px;
-    line-height: 1.4;
+    padding: 0.875rem 1rem;
+    font-size: 0.9375rem;
   }
 }

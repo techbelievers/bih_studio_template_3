@@ -17,12 +17,12 @@ const RealEstateShowcase = ({slug}) => {
     fetch(API.GALLERY_STUDIO(slug))
       .then((response) => response.json())
       .then((data) => {
-        setGalleryData(data.property_photos);
-        setGalleryHeading(data.page[0]?.heading || 'Gallery');
-        setGallerySubHeading(data.page[0]?.subheading || 'Explore Stunning Properties');
+        setGalleryData(data.property_photos || []);
+        setGalleryHeading(data.page?.[0]?.heading || 'Gallery');
+        setGallerySubHeading(data.page?.[0]?.subheading || 'Explore Stunning Properties');
       })
       .catch((error) => console.error('Error fetching gallery data:', error));
-  }, []);
+  }, [slug]);
 
   // Fetch Video Data
   useEffect(() => {
@@ -30,7 +30,7 @@ const RealEstateShowcase = ({slug}) => {
       try {
         const response = await fetch(API.VIDEO_STUDIO(slug));
         const data = await response.json();
-        setVideoData(data.property_videos);
+        setVideoData(data.property_videos || []);
         setVideoHeading(data.page?.heading || 'Video');
         setVideoSubHeading(data.page?.subheading || 'Experience Luxury Living');
       } catch (error) {
@@ -39,7 +39,7 @@ const RealEstateShowcase = ({slug}) => {
     };
 
     fetchVideoData();
-  }, []);
+  }, [slug]);
 
   // Handle Modal for Gallery
   const openModal = (image) => setSelectedImage(image);

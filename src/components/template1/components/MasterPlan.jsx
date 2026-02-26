@@ -3,101 +3,72 @@ import styles from "../css/MasterPlan.module.css";
 import { API } from "../../../../config.js";
 
 const RealEstateTabs = () => {
-  const [activeSection, setActiveSection] = useState(0);
-  const [masterPlans, setMasterPlans] = useState([]);
-  const [unitLayouts, setUnitLayouts] = useState([]);
-  const [floorPlans, setFloorPlans] = useState([]);
+  const [tab, setTab] = useState(0);
+  const [master, setMaster] = useState([]);
+  const [unit, setUnit] = useState([]);
+  const [floor, setFloor] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [modalImage, setModalImage] = useState("");
+  const [modal, setModal] = useState("");
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const masterPlanResponse = await fetch(API.MASTER_LAYOUT());
-        const masterPlanData = await masterPlanResponse.json();
-        setMasterPlans(masterPlanData.master_layout);
-
-        const unitLayoutResponse = await fetch(API.UNIT_LAYOUT());
-        const unitLayoutData = await unitLayoutResponse.json();
-        setUnitLayouts(unitLayoutData.unit_layout);
-
-        const floorPlansResponse = await fetch(API.FLOOR_PLANS());
-        const floorPlansData = await floorPlansResponse.json();
-        setFloorPlans(floorPlansData.Floor_plans || []);
-
+    Promise.all([
+      fetch(API.MASTER_LAYOUT()).then((r) => r.json()),
+      fetch(API.UNIT_LAYOUT()).then((r) => r.json()),
+      fetch(API.FLOOR_PLANS()).then((r) => r.json()),
+    ])
+      .then(([a, b, c]) => {
+        setMaster(a.master_layout || []);
+        setUnit(b.unit_layout || []);
+        setFloor(c.Floor_plans || []);
         setLoading(false);
-      } catch (err) {
-        console.error("Error fetching data:", err);
-        setError("Failed to load data.");
-        setLoading(false);
-      }
-    };
-
-    fetchData();
+      })
+      .catch(() => { setError("Failed to load"); setLoading(false); });
   }, []);
 
-  const sections = [
-    masterPlans.length > 0 && { id: 0, label: "Master Plans", data: masterPlans },
-    unitLayouts.length > 0 && { id: 1, label: "Unit Layouts", data: unitLayouts },
-    floorPlans.length > 0 && { id: 2, label: "Floor Plans", data: floorPlans },
+  const tabs = [
+    master.length && { label: "Master plans", data: master, imgKey: "photo" },
+    unit.length && { label: "Unit layouts", data: unit, imgKey: "layout_image" },
+    floor.length && { label: "Floor plans", data: floor, imgKey: "layout_image" },
   ].filter(Boolean);
 
-  const openModal = (image) => setModalImage(image);
-  const closeModal = () => setModalImage("");
+  if (loading) return <section className={styles.section}><p className={styles.loading}>Loading…</p></section>;
+  if (error) return <section className={styles.section}><p className={styles.error}>{error}</p></section>;
+  if (!tabs.length) return null;
 
-  if (loading) return <div className={styles.loader}>Loading...</div>;
-  if (error) return <div className={styles.error}>{error}</div>;
+  const list = tabs[tab].data;
+  const imgKey = tabs[tab].imgKey;
+  const getImg = (item) => item[imgKey] || item.layout_image || item.photo;
+  const getName = (item) => item.phase_name || item.layout_name || "Plan";
 
   return (
-    <div id="layouts" className={styles.container}>
-      {/* Section Headers */}
-      <div className={styles.sectionHeaders}>
-        {sections.map((section, index) => (
-          <button
-            key={section.id}
-            className={`${styles.sectionHeader} ${
-              activeSection === index ? styles.active : ""
-            }`}
-            onClick={() => setActiveSection(index)}
-          >
-            {section.label}
+    <section id="layouts" className={styles.section}>
+      <div className={styles.tabs}>
+        {tabs.map((t, i) => (
+          <button key={i} type="button" className={tab === i ? styles.tabActive : styles.tab} onClick={() => setTab(i)}>
+            {t.label}
           </button>
         ))}
       </div>
-
-      {/* Section Content */}
-      <div className={styles.gridContainer}>
-        {sections[activeSection].data.map((item) => (
-          <div key={item.id} className={styles.card} onClick={() => openModal(item.layout_image || item.photo)}>
-            <div className={styles.imageContainer}>
-              <img
-                src={item.layout_image || item.photo}
-                alt={item.layout_name || "Plan"}
-                className={styles.image}
-              />
-              <div className={styles.overlay}>
-                <span className={styles.text}>
-                  {item.layout_name || "View Details"}
-                </span>
-              </div>
+      <div className={styles.grid}>
+        {list.map((item) => (
+          <button key={item.id} type="button" className={styles.card} onClick={() => setModal(getImg(item))}>
+            <div className={styles.imgWrap}>
+              <img src={getImg(item)} alt={getName(item)} />
             </div>
-          </div>
+            <span className={styles.name}>{getName(item)}</span>
+          </button>
         ))}
       </div>
-
-      {/* Modal */}
-      {modalImage && (
-        <div className={styles.modal} onClick={closeModal}>
-          <div className={styles.modalContent}>
-            <img src={modalImage} alt="Full View" className={styles.modalImage} />
-            <button className={styles.closeButton} onClick={closeModal}>
-              &times;
-            </button>
+      {modal && (
+        <div className={styles.overlay} onClick={() => setModal("")}>
+          <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+            <img src={modal} alt="View" />
+            <button type="button" className={styles.close} onClick={() => setModal("")} aria-label="Close">×</button>
           </div>
         </div>
       )}
-    </div>
+    </section>
   );
 };
 

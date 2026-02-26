@@ -1,134 +1,72 @@
-/* Container Styles */
-.locationHighlightsContainer {
-  padding: 60px 5%;
-  background-color: #f4f4f4;
-  border-radius: 10px;
+.section {
+  padding: 4rem 1.5rem;
+  font-family: var(--font-body);
+  background: var(--color-bg-light);
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  color: var(--color-text-dark);
+  margin: 0 0 1.5rem;
   text-align: center;
 }
 
-.heading {
-  font-size: 2.5rem;
-  color: #222;
-  font-weight: bold;
-  margin-bottom: 40px;
-}
-
-/* Grid Layout for Location Cards */
-.locationGrid {
+.grid {
+  max-width: 960px;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 30px;
-  justify-items: center;
-  padding: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
 }
 
-/* Card Styles */
-.locationCard {
-  width: 100%;
-  background: #fff;
-  border-radius: 15px;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+.card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-bg-light);
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: border-color 0.2s;
 }
 
-.locationCard:hover {
-  transform: translateY(-10px);
-  box-shadow: 0px 6px 25px rgba(0, 0, 0, 0.2);
-}
+.card:hover { border-color: var(--color-primary); }
 
-/* Image Container */
-.imageContainer {
+.img {
   width: 100%;
-  height: 200px;
-  overflow: hidden;
-  position: relative;
-}
-
-.image {
-  width: 100%;
-  height: 100%;
+  aspect-ratio: 16/10;
   object-fit: cover;
-  object-position: center;
-  transition: transform 0.4s ease;
-}
-
-.locationCard:hover .image {
-  transform: scale(1.1);
-}
-
-/* Text Content */
-.textContent {
-  padding: 20px;
-  text-align: center;
-}
-
-.locationName {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-.distance {
-  font-size: 1.2rem;
-  color: #777;
-  margin-bottom: 15px;
-}
-
-.description {
-  font-size: 1rem;
-  color: #555;
-}
-
-/* Loading Text */
-.loadingText {
-  font-size: 1.5rem;
-  color: #888;
-  margin-top: 20px;
-}
-
-/* "See More" Button */
-.seeMoreButton {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 20px;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
-}
-
-.seeMoreButton:hover {
-  background-color: #0056b3;
-}
-
-
-/* Universal Header Style */
-.luxuryHeading {
-  font-size: 1.6rem;
-  font-weight: bold;
-  text-align: center;
-  color: #2e3b4e; /* Rich, elegant color */
-  margin-bottom: 30px;
-  text-transform: uppercase;
-  letter-spacing: 1.5px; /* Slightly increased letter-spacing for sophistication */
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle shadow for a 3D effect */
-  background: linear-gradient(90deg, #4b79a1, #283e51); /* Gradient for a unique feel */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; /* Gradient applies to the text */
-  position: relative;
-}
-
-/* Optional: Add an underline effect */
-.luxuryHeading::after {
-  content: '';
   display: block;
-  width: 80px;
-  height: 4px;
-  background: #4b79a1; /* Matches the heading color scheme */
-  margin: 10px auto 0;
-  border-radius: 2px;
 }
+
+.body { padding: 1rem; }
+
+.name {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem;
+  color: var(--color-text-dark);
+}
+
+.dist, .desc {
+  font-size: 0.8125rem;
+  color: var(--color-text-light);
+  margin: 0;
+}
+
+.desc { margin-top: 0.5rem; }
+
+.moreWrap { text-align: center; margin-top: 2rem; }
+
+.more {
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--color-primary);
+  background: none;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.more:hover { background: var(--color-primary); color: #fff; }

@@ -41,14 +41,14 @@ if (typeof window !== 'undefined') {
   }
 }
 
-// Better Loading Fallback Component
+// Better Loading Fallback Component - theme from CSS variables
 const LoadingFallback = () => (
   <div style={{
     minHeight: '400px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    background: 'linear-gradient(135deg, #F8F9FA 0%, #FFFFFF 100%)',
+    background: 'linear-gradient(135deg, var(--color-bg-light) 0%, var(--color-bg) 100%)',
     padding: '60px 20px'
   }}>
     <Loader />
@@ -57,7 +57,7 @@ const LoadingFallback = () => (
 
 function App({ propertyDetails }) {
   return (
-    <div className="App">
+    <div className="App theme-redesign">
       {/* Critical components - Load immediately */}
       <Suspense fallback={<LoadingFallback />}>
         <Header />

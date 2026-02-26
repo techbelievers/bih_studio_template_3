@@ -52,8 +52,7 @@ const EnquirePopup = ({ onClose, slug}) => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      formData.note =slug;
-      await axios.post(API.postContactUs, formData);
+      await axios.post(API.postContactUs, { ...formData, note: slug ?? "" });
       setSubmitSuccess(true);
       setFormData({
         first_name: "",

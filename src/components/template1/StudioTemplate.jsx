@@ -22,7 +22,7 @@ function StudioTemplate({ propertyDetails, headerData, galleryData }) {
   }
 
   return (
-    <div className="App">
+    <div className="App theme-redesign">
       <Header 
         headerData={headerData} 
         slug={propertyDetails.property_slug}

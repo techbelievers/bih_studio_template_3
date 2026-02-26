@@ -1,146 +1,108 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
-
-/* Section Styles */
-.amenitiesSection {
-  position: relative;
-  padding: 60px 20px;
-  background: #f9f9f9;
-  overflow: hidden;
-  z-index: 1;
+/* Amenities - redesigned */
+.section {
+  padding: 4.5rem 1.5rem;
+  font-family: var(--font-body);
+  background: var(--color-bg);
 }
 
-/* Clip-path Background */
-.amenitiesSection::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #ffcc007b, #ffd966); /* Real estate theme gradient */
-  clip-path: polygon(0% 0%, 100% 0%, 85% 100%, 15% 100%);
-  z-index: -1;
-  animation: slideBackground 3s infinite alternate ease-in-out;
-}
-
-/* Container */
-.container {
-  max-width: 1200px;
-  margin: auto;
+.title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin: 0 0 0.5rem;
   text-align: center;
+  letter-spacing: -0.02em;
 }
 
-/* Heading */
-.luxuryHeading {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.5rem;
-  color: #333;
-  margin-bottom: 0.5rem;
+.sub {
+  text-align: center;
+  font-size: 1rem;
+  color: var(--color-text-light);
+  margin: 0 auto 2.5rem;
+  max-width: 520px;
+  line-height: 1.5;
 }
 
-.subHeading {
-  font-size: 1.2rem;
-  color: #666;
-  margin-bottom: 40px;
-}
-
-/* Grid Layout */
 .grid {
+  max-width: 1100px;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
 }
 
-/* Card */
 .card {
   position: relative;
-  background: #fff;
-  border-radius: 12px;
+  background: var(--color-bg-card);
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: fadeInUp 0.5s ease forwards;
-  transform: translateY(20px);
-  opacity: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--color-bg-light);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.2s;
 }
 
 .card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(15, 118, 110, 0.12);
+  border-color: rgba(15, 118, 110, 0.25);
 }
 
-/* Image Container */
-.imageContainer {
+.imgWrap {
   position: relative;
+  aspect-ratio: 1;
   overflow: hidden;
+  background: var(--color-bg-light);
 }
 
-.image {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.card:hover .image {
-  transform: scale(1.1);
-}
-
-/* Overlay */
-.overlay {
+.imgWrap::after {
+  content: "";
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.7);
-  color: #fff;
-  padding: 10px;
-  text-align: center;
-  transform: translateY(100%);
-  transition: transform 0.3s ease;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.4) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
 }
 
-.card:hover .overlay {
-  transform: translateY(0);
+.card:hover .imgWrap::after {
+  opacity: 1;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.card:hover .img {
+  transform: scale(1.05);
 }
 
 .name {
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-family: var(--font-heading);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  padding: 1.125rem 1.25rem;
+  margin: 0;
+  color: var(--color-text-dark);
+  background: var(--color-bg-card);
+  transition: color 0.2s;
 }
 
-/* Animations */
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.card:hover .name {
+  color: var(--color-primary);
 }
 
-@keyframes slideBackground {
-  from {
-    clip-path: polygon(0% 0%, 100% 0%, 85% 100%, 15% 100%);
-  }
-  to {
-    clip-path: polygon(0% 10%, 100% 0%, 85% 90%, 15% 100%);
-  }
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
+@media (max-width: 640px) {
   .grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
   }
 
-  .image {
-    height: 150px;
-  }
-
-  .luxuryHeading {
-    font-size: 2rem;
-  }
-
-  .subHeading {
-    font-size: 1rem;
+  .name {
+    padding: 0.875rem 1rem;
+    font-size: 0.9375rem;
   }
 }

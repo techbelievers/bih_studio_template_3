@@ -2,249 +2,141 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes, FaPhone } from "react-icons/fa";
 import { API } from "../../../../config.js";
 import styles from "../css/Header.module.css";
 import EnquirePopup from "./EnquirePopup.jsx";
 
-const Header = ({headerData: initialHeaderData , slug}) => {
+const Header = ({ headerData: initialHeaderData, slug }) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [headerData, setHeaderData] = useState(initialHeaderData || {}); 
+  const [headerData, setHeaderData] = useState(initialHeaderData || {});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const location = useLocation();
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
+  const toggleMenu = () => setMenuOpen(!menuOpen);
 
   useEffect(() => {
-    // Defer API calls for better LCP
     const fetchHeaderData = async () => {
       if (window.requestIdleCallback) {
         requestIdleCallback(() => {
           axios.get(API.HEADER())
-            .then(response => {
+            .then((response) => {
               setHeaderData(response.data);
               setLoading(false);
             })
-            .catch(error => {
-              console.error("Error fetching header data:", error);
-              setError(error);
+            .catch((err) => {
+              console.error("Error fetching header data:", err);
+              setError(err);
               setLoading(false);
             });
         }, { timeout: 2000 });
       } else {
         setTimeout(() => {
           axios.get(API.HEADER())
-            .then(response => {
+            .then((response) => {
               setHeaderData(response.data);
               setLoading(false);
             })
-            .catch(error => {
-              console.error("Error fetching header data:", error);
-              setError(error);
+            .catch((err) => {
+              console.error("Error fetching header data:", err);
+              setError(err);
               setLoading(false);
             });
         }, 100);
       }
     };
-
-    if (!initialHeaderData) {
-      fetchHeaderData();
-    } else {
-      setLoading(false);
-    }
+    if (!initialHeaderData) fetchHeaderData();
+    else setLoading(false);
   }, [initialHeaderData]);
 
   if (error) {
     return (
       <div className={styles.error}>
-        Error loading header data: {error.message}
+        Error loading header: {error?.message ?? String(error)}
       </div>
     );
   }
 
-  // Check if the current page is a properties page
   const isPropertiesPage = location.pathname.includes("/studios");
   const isHomePage = location.pathname === "/";
+  const contact = headerData?.contact || headerData?.data?.contact || "+91-81818-17136";
+  const logo = headerData?.logo || headerData?.data?.logo || "/default-logo.png";
 
   return (
-    <header className={`${styles.header} ${menuOpen ? styles.menuOpen : ""}`}>
-      {/* Modern Split Layout */}
-      <div className={styles.headerWrapper}>
-        {/* Left Side - Logo with Tagline */}
-        <div className={styles.logoSection}>
-          <Link to="/" className={styles.logoLink}>
-            <div className={styles.logoContainer}>
-              <img
-                src={headerData?.logo || headerData?.data?.logo || "/default-logo.png"}
-                alt="Real Estate Logo"
-                className={styles.logo}
-              />
-              <div className={styles.logoBadge}>
-                <span className={styles.badgeText}>Premium</span>
-              </div>
-            </div>
-            <div className={styles.tagline}>
-              <span>Your Dream Home Awaits</span>
-            </div>
-          </Link>
-        </div>
+    <header className={styles.header}>
+      <div className={styles.bar}>
+        <Link to="/" className={styles.logoWrap}>
+          <img src={logo} alt="Logo" className={styles.logo} />
+        </Link>
 
-        {/* Center - Navigation */}
-        <nav className={`${styles.navMenu} ${menuOpen ? styles.active : ""}`}>
-          <div className={styles.navInner}>
-            <ul className={styles.navList}>
-              <li className={styles.navItem}>
-                <a href="/" className={styles.navLink}>
-                  <span className={styles.linkIcon}>🏠</span>
-                  <span>Home</span>
-                </a>
-              </li>
-              {isPropertiesPage && (
-                <>
-                  <li className={styles.navItem}>
-                    <a href="#about" className={styles.navLink}>
-                      <span className={styles.linkIcon}>📋</span>
-                      <span>About</span>
-                    </a>
-                  </li>
-                  <li className={styles.navItem}>
-                    <a href="#price" className={styles.navLink}>
-                      <span className={styles.linkIcon}>💰</span>
-                      <span>Price</span>
-                    </a>
-                  </li>
-                  <li className={styles.navItem}>
-                    <a href="#amenities" className={styles.navLink}>
-                      <span className={styles.linkIcon}>✨</span>
-                      <span>Amenities</span>
-                    </a>
-                  </li>
-                  <li className={styles.navItem}>
-                    <a href="#layouts" className={styles.navLink}>
-                      <span className={styles.linkIcon}>📐</span>
-                      <span>Layouts</span>
-                    </a>
-                  </li>
-                  <li className={styles.navItem}>
-                    <a href="#gallery" className={styles.navLink}>
-                      <span className={styles.linkIcon}>📷</span>
-                      <span>Gallery</span>
-                    </a>
-                  </li>
-                  <li className={styles.navItem}>
-                    <a href="#location" className={styles.navLink}>
-                      <span className={styles.linkIcon}>📍</span>
-                      <span>Location</span>
-                    </a>
-                  </li>
-                </>
-              )}
-              {isHomePage && !isPropertiesPage && (
-                <>
-                  <li className={styles.navItem}>
-                    <a href="#properties" className={styles.navLink}>
-                      <span className={styles.linkIcon}>🏢</span>
-                      <span>Properties</span>
-                    </a>
-                  </li>
-                  <li className={styles.navItem}>
-                    <a href="#blogs" className={styles.navLink}>
-                      <span className={styles.linkIcon}>📰</span>
-                      <span>Blogs</span>
-                    </a>
-                  </li>
-                  <li className={styles.navItem}>
-                    <a href="#faq" className={styles.navLink}>
-                      <span className={styles.linkIcon}>❓</span>
-                      <span>FAQ</span>
-                    </a>
-                  </li>
-                </>
-              )}
-            </ul>
-          </div>
+        <nav className={styles.nav}>
+          <a href="/" className={styles.navLink}>Home</a>
+          {isPropertiesPage && (
+            <>
+              <a href="#about" className={styles.navLink}>About</a>
+              <a href="#price" className={styles.navLink}>Price</a>
+              <a href="#amenities" className={styles.navLink}>Amenities</a>
+              <a href="#layouts" className={styles.navLink}>Layouts</a>
+              <a href="#gallery" className={styles.navLink}>Gallery</a>
+              <a href="#location" className={styles.navLink}>Location</a>
+            </>
+          )}
+          {isHomePage && !isPropertiesPage && (
+            <>
+              <a href="#properties" className={styles.navLink}>Properties</a>
+              <a href="#blogs" className={styles.navLink}>Blogs</a>
+              <a href="#faq" className={styles.navLink}>FAQ</a>
+            </>
+          )}
         </nav>
 
-        {/* Right Side - CTA Buttons in Unique Layout */}
-        <div className={styles.ctaSection}>
-          <a
-            href={`tel:${headerData?.contact || headerData?.data?.contact || "+918181817136"}`}
-            className={styles.phoneCta}
-          >
-            <span className={styles.phoneIcon}>📞</span>
-            <div className={styles.phoneText}>
-              <span className={styles.phoneLabel}>Call Now</span>
-              <span className={styles.phoneNumber}>
-                {headerData?.contact || headerData?.data?.contact || "+91-81818-17136"}
-              </span>
-            </div>
+        <div className={styles.actions}>
+          <a href={`tel:${contact.replace(/\s/g, "")}`} className={styles.phoneLink}>
+            <FaPhone className={styles.phoneIcon} />
+            <span>{contact}</span>
           </a>
-          <button
-            onClick={() => setIsPopupOpen(true)}
-            className={styles.enquireCta}
-          >
-            <span>Enquire</span>
-            <span className={styles.arrowIcon}>→</span>
+          <button type="button" onClick={() => setIsPopupOpen(true)} className={styles.enquireBtn}>
+            Enquire
           </button>
         </div>
 
-        {/* Mobile Hamburger */}
-        <div className={styles.hamburger} onClick={toggleMenu}>
-          <div className={styles.hamburgerInner}>
-            <span className={menuOpen ? styles.open : ""}></span>
-            <span className={menuOpen ? styles.open : ""}></span>
-            <span className={menuOpen ? styles.open : ""}></span>
-          </div>
-        </div>
+        <button type="button" className={styles.menuBtn} onClick={toggleMenu} aria-label="Menu">
+          {menuOpen ? <FaTimes /> : <FaBars />}
+        </button>
       </div>
 
-      {/* Mobile Menu */}
       {menuOpen && (
-        <div className={styles.mobileMenu}>
-          <nav className={styles.mobileNav}>
-            <ul className={styles.mobileNavList}>
-              <li><a href="/" onClick={toggleMenu}>Home</a></li>
-              {isPropertiesPage && (
-                <>
-                  <li><a href="#about" onClick={toggleMenu}>About</a></li>
-                  <li><a href="#price" onClick={toggleMenu}>Price</a></li>
-                  <li><a href="#amenities" onClick={toggleMenu}>Amenities</a></li>
-                  <li><a href="#layouts" onClick={toggleMenu}>Layouts</a></li>
-                  <li><a href="#gallery" onClick={toggleMenu}>Gallery</a></li>
-                  <li><a href="#location" onClick={toggleMenu}>Location</a></li>
-                </>
-              )}
-              {isHomePage && !isPropertiesPage && (
-                <>
-                  <li><a href="#properties" onClick={toggleMenu}>Properties</a></li>
-                  <li><a href="#blogs" onClick={toggleMenu}>Blogs</a></li>
-                  <li><a href="#faq" onClick={toggleMenu}>FAQ</a></li>
-                </>
-              )}
-            </ul>
-            <div className={styles.mobileCta}>
-              <a
-                href={`tel:${headerData?.contact || headerData?.data?.contact || "+918181817136"}`}
-                className={styles.mobileCallButton}
-                onClick={toggleMenu}
-              >
-                📞 Call Us
-              </a>
-              <button
-                onClick={() => {
-                  setIsPopupOpen(true);
-                  toggleMenu();
-                }}
-                className={styles.mobileEnquireButton}
-              >
-                ✉️ Enquire Now
-              </button>
-            </div>
+        <div className={styles.drawer}>
+          <nav className={styles.drawerNav}>
+            <a href="/" onClick={toggleMenu} className={styles.drawerLink}>Home</a>
+            {isPropertiesPage && (
+              <>
+                <a href="#about" onClick={toggleMenu} className={styles.drawerLink}>About</a>
+                <a href="#price" onClick={toggleMenu} className={styles.drawerLink}>Price</a>
+                <a href="#amenities" onClick={toggleMenu} className={styles.drawerLink}>Amenities</a>
+                <a href="#layouts" onClick={toggleMenu} className={styles.drawerLink}>Layouts</a>
+                <a href="#gallery" onClick={toggleMenu} className={styles.drawerLink}>Gallery</a>
+                <a href="#location" onClick={toggleMenu} className={styles.drawerLink}>Location</a>
+              </>
+            )}
+            {isHomePage && !isPropertiesPage && (
+              <>
+                <a href="#properties" onClick={toggleMenu} className={styles.drawerLink}>Properties</a>
+                <a href="#blogs" onClick={toggleMenu} className={styles.drawerLink}>Blogs</a>
+                <a href="#faq" onClick={toggleMenu} className={styles.drawerLink}>FAQ</a>
+              </>
+            )}
           </nav>
+          <div className={styles.drawerActions}>
+            <a href={`tel:${contact.replace(/\s/g, "")}`} onClick={toggleMenu} className={styles.drawerPhone}>
+              <FaPhone /> Call
+            </a>
+            <button type="button" onClick={() => { setIsPopupOpen(true); toggleMenu(); }} className={styles.drawerEnquire}>
+              Enquire
+            </button>
+          </div>
         </div>
       )}
 
@@ -252,17 +144,5 @@ const Header = ({headerData: initialHeaderData , slug}) => {
     </header>
   );
 };
-
-// export const getServerSideProps = async () => {
-//   let headerData = {};
-//   try {
-//     const response = await axios.get(API.HEADER());
-//     headerData = response.data;
-//   } catch (error) {
-//     console.error("Error fetching header data:", error);
-//   }
-//   return { props: { getServerSideProps } };
-// };
-
 
 export default Header;

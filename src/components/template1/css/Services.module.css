@@ -1,108 +1,70 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500;700&display=swap");
-
-/* Container */
-.servicesContainer {
-  padding: 20px 5%;
-  background: #000;
+.section {
+  padding: 3rem 1.5rem;
+  background: var(--color-bg-dark);
   color: #fff;
-  text-align: center;
-  font-family: "Roboto", sans-serif;
+  font-family: var(--font-body);
 }
 
-.heroBanner {
-  max-width: 1200px;
+.grid {
+  max-width: 960px;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
 }
 
-.heading {
-  font-family: "Playfair Display", serif;
-  font-size: 2.5rem;
-  color: #e3f954;
-  margin-bottom: 10px;
-}
-
-.subheading {
-  font-size: 1.2rem;
-  color: #ddd;
-  margin-bottom: 40px;
-}
-
-/* Hero Cards */
-.heroCards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-
-/* Card */
 .card {
-  flex: 0 1 calc(33.333% - 20px);
-  background: #222;
-  border: 2px solid #e3f954;
-  /* clip-path: polygon(0 0, 100% 0, 95% 100%, 0 95%); */
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.cardContent {
-  padding: 20px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
   text-align: center;
+  transition: background 0.2s, border-color 0.2s;
 }
 
-.card img {
-  /* max-width: 100px;  */
-  height: 100px;
-  margin-bottom: 10px;
-  transition: transform 0.3s ease;
+.card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--color-primary);
 }
 
-.card:hover img {
-  transform: scale(1.1);
+.cardImg {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  margin: 0 auto 0.75rem;
+  display: block;
 }
 
-.title {
-  font-size: 1.5rem;
-  font-weight: bold;
+.cardTitle {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem;
   color: #fff;
-  margin-bottom: 10px;
 }
 
-.subtitle {
-  font-size: 1rem;
-  color: #ddd;
+.cardSub,
+.cardMeta {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0;
 }
 
-.updatedText {
-  font-size: 0.9rem;
-  color: #bbb;
-  margin-top: 10px;
+.cardMeta {
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
+  opacity: 0.9;
 }
 
-/* Loading */
 .loading {
-  font-size: 1.2rem;
-  color: #fff;
   text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  padding: 2rem;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .heroCards {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .card {
-    flex: 0 1 100%;
-  }
-
-  .title {
-    font-size: 1.2rem;
-  }
-
-  .subtitle {
-    font-size: 0.9rem;
-  }
+.error {
+  padding: 1rem;
+  text-align: center;
+  color: #b91c1c;
+  font-family: var(--font-body);
 }

@@ -32,8 +32,8 @@ const KnowYourReturns = ({ slug }) => {
   if (!data) return <div className={styles.empty}>No data available.</div>;
 
   const { page, returns } = data;
-  const heading = page[0]?.heading || "Know Your Returns";
-  const filteredReturns = returns.filter((item) => item.type === activeTab);
+  const heading = page?.[0]?.heading || "Know Your Returns";
+  const filteredReturns = (returns || []).filter((item) => item.type === activeTab);
 
   return (
     <section className={styles.returnsSection}>

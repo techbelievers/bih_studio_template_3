@@ -7,7 +7,7 @@
 .popupBackdrop {
   position: fixed;
   inset: 0;
-  background: rgba(26, 35, 50, 0.82);
+  background: rgba(28, 25, 23, 0.75);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   z-index: 999;
@@ -30,11 +30,11 @@
   max-height: calc(100vh - 32px);
   max-height: calc(100dvh - 32px);
   margin: 0;
-  background: #fff;
+  background: var(--color-bg-card);
   border-radius: 20px;
   box-shadow:
-    0 24px 64px rgba(26, 35, 50, 0.28),
-    0 0 0 1px rgba(212, 175, 55, 0.12);
+    0 24px 64px rgba(28, 25, 23, 0.18),
+    0 0 0 1px rgba(15, 118, 110, 0.12);
   z-index: 1000;
   overflow: hidden;
   display: flex;
@@ -54,7 +54,7 @@
   }
 }
 
-/* Real estate accent bar */
+/* Theme accent bar */
 .enquirePopup::before {
   content: '';
   position: absolute;
@@ -62,7 +62,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #1A2332 0%, #B8860B 50%, #1A2332 100%);
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-accent) 50%, var(--color-primary) 100%);
   background-size: 200% 100%;
   animation: shimmer 5s ease-in-out infinite;
   z-index: 1;
@@ -88,19 +88,19 @@
 }
 
 .enquirePopupContent::-webkit-scrollbar-track {
-  background: #f1f3f5;
+  background: var(--color-bg-light);
 }
 
 .enquirePopupContent::-webkit-scrollbar-thumb {
-  background: #B8860B;
+  background: var(--color-primary);
   border-radius: 3px;
 }
 
 /* Header */
 .popupHeader {
   padding: 24px 20px 20px;
-  background: linear-gradient(180deg, #f8f9fa 0%, #fff 100%);
-  border-bottom: 1px solid #eee;
+  background: linear-gradient(180deg, var(--color-bg-light) 0%, var(--color-bg-card) 100%);
+  border-bottom: 1px solid var(--color-bg-light);
   position: relative;
   text-align: center;
   flex-shrink: 0;
@@ -126,7 +126,7 @@
 .enquireNowHeading {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #1A2332;
+  color: var(--color-text-dark);
   margin: 0 0 6px 0;
   line-height: 1.25;
   letter-spacing: -0.02em;
@@ -134,7 +134,7 @@
 
 .popupSubtitle {
   font-size: 0.9rem;
-  color: #5c6b7a;
+  color: var(--color-text-light);
   margin: 0;
   line-height: 1.45;
 }
@@ -148,7 +148,7 @@
   height: 44px;
   min-width: 44px;
   min-height: 44px;
-  background: rgba(26, 35, 50, 0.06);
+  background: rgba(15, 118, 110, 0.08);
   border: none;
   border-radius: 50%;
   display: flex;
@@ -161,7 +161,7 @@
 }
 
 .enquirePopupClose:hover {
-  background: rgba(184, 134, 11, 0.15);
+  background: rgba(15, 118, 110, 0.15);
 }
 
 .enquirePopupClose:active {
@@ -171,7 +171,7 @@
 .enquirePopupClose svg {
   width: 20px;
   height: 20px;
-  color: #1A2332;
+  color: var(--color-text-dark);
 }
 
 /* Error */
@@ -181,8 +181,8 @@
   gap: 12px;
   padding: 14px 18px;
   margin: 0 20px 16px;
-  background: #fef2f2;
-  border: 1px solid #fecaca;
+  background: rgba(185, 28, 28, 0.08);
+  border: 1px solid rgba(185, 28, 28, 0.3);
   border-radius: 12px;
   color: #b91c1c;
   font-size: 0.875rem;
@@ -226,7 +226,7 @@
 .inputLabel {
   font-size: 0.8125rem;
   font-weight: 600;
-  color: #1A2332;
+  color: var(--color-text-dark);
   margin: 0;
 }
 
@@ -234,11 +234,11 @@
 .formTextarea {
   width: 100%;
   padding: 14px 16px;
-  border: 2px solid #e5e7eb;
+  border: 2px solid var(--color-bg-light);
   border-radius: 12px;
   font-size: 1rem;
-  color: #1A2332;
-  background: #fff;
+  color: var(--color-text-dark);
+  background: var(--color-bg-card);
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
   box-sizing: border-box;
@@ -246,13 +246,13 @@
 
 .formInput::placeholder,
 .formTextarea::placeholder {
-  color: #9ca3af;
+  color: var(--color-text-light);
 }
 
 .formInput:focus,
 .formTextarea:focus {
-  border-color: #B8860B;
-  box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.15);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.15);
 }
 
 .formTextarea {
@@ -261,7 +261,7 @@
   line-height: 1.5;
 }
 
-/* Submit - real estate CTA */
+/* Submit - theme primary CTA */
 .submitButton {
   display: flex;
   align-items: center;
@@ -269,7 +269,7 @@
   gap: 10px;
   padding: 16px 24px;
   min-height: 52px;
-  background: linear-gradient(135deg, #1A2332 0%, #2d3d52 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
   color: #fff;
   font-size: 1rem;
   font-weight: 700;
@@ -278,13 +278,13 @@
   cursor: pointer;
   transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
   margin-top: 4px;
-  box-shadow: 0 4px 14px rgba(26, 35, 50, 0.35);
+  box-shadow: 0 4px 14px rgba(15, 118, 110, 0.35);
 }
 
 .submitButton:hover:not(:disabled) {
-  background: linear-gradient(135deg, #2d3d52 0%, #1A2332 100%);
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, #0f766e 100%);
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(26, 35, 50, 0.4);
+  box-shadow: 0 6px 20px rgba(15, 118, 110, 0.4);
 }
 
 .submitButton:active:not(:disabled) {
@@ -292,7 +292,7 @@
 }
 
 .submitButton:disabled {
-  background: #94a3b8;
+  background: var(--color-text-light);
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
@@ -330,11 +330,11 @@
   transform: translate(-50%, -50%);
   width: calc(100% - 32px);
   max-width: 420px;
-  background: #fff;
+  background: var(--color-bg-card);
   border-radius: 20px;
   box-shadow:
-    0 24px 64px rgba(26, 35, 50, 0.28),
-    0 0 0 1px rgba(34, 197, 94, 0.2);
+    0 24px 64px rgba(28, 25, 23, 0.18),
+    0 0 0 1px rgba(5, 150, 105, 0.2);
   z-index: 1000;
   overflow: hidden;
   animation: popIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -392,7 +392,7 @@
 .thankYouClose svg {
   width: 20px;
   height: 20px;
-  color: #1A2332;
+  color: var(--color-text-dark);
 }
 
 .successIcon {
@@ -413,14 +413,14 @@
 .thankYouContent h2 {
   font-size: 1.75rem;
   font-weight: 700;
-  color: #1A2332;
+  color: var(--color-text-dark);
   margin: 0 0 12px 0;
   line-height: 1.25;
 }
 
 .thankYouContent p {
   font-size: 0.9375rem;
-  color: #5c6b7a;
+  color: var(--color-text-light);
   margin: 0 0 28px 0;
   line-height: 1.6;
   max-width: 320px;
@@ -429,7 +429,7 @@
 .closeButton {
   padding: 16px 36px;
   min-height: 52px;
-  background: linear-gradient(135deg, #1A2332 0%, #2d3d52 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
   color: #fff;
   font-size: 1rem;
   font-weight: 700;
@@ -437,15 +437,15 @@
   border-radius: 12px;
   cursor: pointer;
   transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 4px 14px rgba(26, 35, 50, 0.35);
+  box-shadow: 0 4px 14px rgba(15, 118, 110, 0.35);
   width: 100%;
   max-width: 200px;
 }
 
 .closeButton:hover {
-  background: linear-gradient(135deg, #2d3d52 0%, #1A2332 100%);
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, #0f766e 100%);
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(26, 35, 50, 0.4);
+  box-shadow: 0 6px 20px rgba(15, 118, 110, 0.4);
 }
 
 .closeButton:active {

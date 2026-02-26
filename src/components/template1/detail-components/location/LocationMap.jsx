@@ -6,7 +6,7 @@ import styles from "./LocationMap.module.css";
 const CompactLocation = ({slug}) => {
   const [mapData, setMapData] = useState({ heading: "", map: "" });
   const [locationData, setLocationData] = useState([]);
-  const [locationDataHeading, setLocationDataHeading] = useState([]);
+  const [locationDataHeading, setLocationDataHeading] = useState("");
   const [activeTab, setActiveTab] = useState("0–5 km");
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const CompactLocation = ({slug}) => {
         const response = await fetch(API.LOCATION_ADVANTAGES_STUDIO(slug));
         const data = await response.json();
         setLocationData(data.location_advantages || []);
-        setLocationDataHeading(data.page[0].heading || []);
+        setLocationDataHeading(data.page?.[0]?.heading || "Location highlights");
       } catch (error) {
         console.error("Error fetching location data:", error);
       }
@@ -36,7 +36,7 @@ const CompactLocation = ({slug}) => {
 
     fetchMapData();
     fetchLocationData();
-  }, []);
+  }, [slug]);
 
   // Group locations by distance ranges
   const groupedLocations = {

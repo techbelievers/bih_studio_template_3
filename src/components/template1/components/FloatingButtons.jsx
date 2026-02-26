@@ -4,7 +4,8 @@ import { API } from "../../../../config.js";
 import { FaWhatsapp, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 import styles from "../css/FloatingButtons.module.css";
 
-const FloatingButtons = (slug , websiteDomain) => {
+const FloatingButtons = ({ slug: slugProp, websiteDomain }) => {
+  const slugValue = (typeof slugProp === "string" && slugProp !== "undefined" ? slugProp : websiteDomain?.websiteDomain) || "";
   const [footerData, setFooterData] = useState(null);
   const [isContactFormOpen, setIsContactFormOpen] = useState(false);
   const [isWhatsAppPopupOpen, setIsWhatsAppPopupOpen] = useState(false);
@@ -15,7 +16,7 @@ const FloatingButtons = (slug , websiteDomain) => {
     email_id: "",
     phone_number: "",
     message: "",
-    note:""
+    note: "",
   });
 
   useEffect(() => {
@@ -34,9 +35,7 @@ const FloatingButtons = (slug , websiteDomain) => {
   const handleSendWhatsApp = (e) => {
     e.preventDefault();
     if (whatsappMessage.trim()) {
-      const domainName = websiteDomain.websiteDomain;
-      const slugValue = slug.slug && slug.slug !== "undefined" ? slug.slug : domainName;
-      const fullMessage = `Property Enquiry for: ${slugValue}\n\nMessage: ${whatsappMessage}`;
+      const fullMessage = `Property Enquiry for: ${slugValue || "Property"}\n\nMessage: ${whatsappMessage}`;
       const whatsappUrl = `https://wa.me/${footerData.g_setting.footer_phone}?text=${encodeURIComponent(fullMessage)}`;
       window.open(whatsappUrl, "_blank");
       setIsWhatsAppPopupOpen(false);
@@ -52,15 +51,14 @@ const FloatingButtons = (slug , websiteDomain) => {
   const handleContactFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      formData.note =slug.slug;
-      await axios.post(API.postContactUs, formData);
+      await axios.post(API.postContactUs, { ...formData, note: slugValue });
       setFormData({
         first_name: "",
         last_name: "",
         email_id: "",
         phone_number: "",
         message: "",
-        note:""
+        note: "",
       });
       alert("Message sent successfully!");
       setIsContactFormOpen(false);

@@ -1,60 +1,52 @@
-import React, { useState, useEffect } from 'react';
-import { API } from '../../../../config.js';
-import styles from '../css/LocationHighlights.module.css'; // Ensure the path is correct
+import React, { useState, useEffect } from "react";
+import { API } from "../../../../config.js";
+import styles from "../css/LocationHighlights.module.css";
 
 const LocationHighlights = () => {
-  const [locationData, setLocationData] = useState([]);
-  const [heading, setHeading] = useState('');
-  const [visibleItems, setVisibleItems] = useState(8); // Initially show 6 items
+  const [items, setItems] = useState([]);
+  const [heading, setHeading] = useState("");
+  const [show, setShow] = useState(8);
 
   useEffect(() => {
-    const fetchLocationData = async () => {
-      try {
-        const response = await fetch(API.LOCATION_ADVANTAGES());
-        const data = await response.json();
-        setLocationData(data.location_advantages);
-        setHeading(data.page[0]?.heading || 'Location Advantages');
-      } catch (error) {
-        console.error('Error fetching location advantages data:', error);
-      }
-    };
-
-    fetchLocationData();
+    fetch(API.LOCATION_ADVANTAGES())
+      .then((res) => res.json())
+      .then((data) => {
+        setItems(data.location_advantages || []);
+        setHeading(data.page?.[0]?.heading || "Location advantages");
+      })
+      .catch(console.error);
   }, []);
 
-  const handleSeeMore = () => {
-    setVisibleItems((prev) => prev + 8); // Increase by 6 on each click
-  };
+  if (!items.length) return null;
+
+  const list = items.slice(0, show);
+  const hasMore = show < items.length;
 
   return (
-    <div className={styles.locationHighlightsContainer}>
-      <h2 className={styles.luxuryHeading}>{heading}</h2>
-      {locationData.length > 0 ? (
-        <>
-          <div className={styles.locationGrid}>
-            {locationData.slice(0, visibleItems).map((item) => (
-              <div key={item.id} className={styles.locationCard}>
-                <div className={styles.imageContainer}>
-                  <img src={item.location_image} alt={item.location} className={styles.image} />
-                </div>
-                <div className={styles.textContent}>
-                  <h3 className={styles.locationName}>{item.location}</h3>
-                  <p className={styles.distance}>{item.distance}</p>
-                  <p className={styles.description}>{item.description}</p>
-                </div>
-              </div>
-            ))}
+    <section className={styles.section}>
+      <h2 className={styles.title}>{heading}</h2>
+      <div className={styles.grid}>
+        {list.map((item) => (
+          <div key={item.id} className={styles.card}>
+            {item.location_image && (
+              <img src={item.location_image} alt={item.location} className={styles.img} />
+            )}
+            <div className={styles.body}>
+              <h3 className={styles.name}>{item.location}</h3>
+              {item.distance && <p className={styles.dist}>{item.distance}</p>}
+              {item.description && <p className={styles.desc}>{item.description}</p>}
+            </div>
           </div>
-          {visibleItems < locationData.length && (
-            <button onClick={handleSeeMore} className={styles.seeMoreButton}>
-              See More
-            </button>
-          )}
-        </>
-      ) : (
-        <p className={styles.loadingText}>Loading location highlights...</p>
+        ))}
+      </div>
+      {hasMore && (
+        <div className={styles.moreWrap}>
+          <button type="button" className={styles.more} onClick={() => setShow((s) => s + 8)}>
+            See more
+          </button>
+        </div>
       )}
-    </div>
+    </section>
   );
 };
 

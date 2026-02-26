@@ -29,7 +29,7 @@ const Advertisements = ({slug}) => {
     updateScreenSize();
     window.addEventListener("resize", updateScreenSize);
     return () => window.removeEventListener("resize", updateScreenSize);
-  }, []);
+  }, [slug]);
 
   useEffect(() => {
     const shouldEnableSlider = ads.length > 3 || !isDesktop;

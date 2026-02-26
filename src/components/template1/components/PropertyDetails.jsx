@@ -1,51 +1,32 @@
-import React, { useState } from 'react';
-import styles from '../css/PropertyDetails.module.css';
+import React, { useState } from "react";
+import styles from "../css/PropertyDetails.module.css";
 
 const PropertyDetails = ({ propertyDetails, error }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(false);
 
-  const handleReadMore = () => {
-    setIsExpanded(!isExpanded);
-  };
+  if (!propertyDetails) return <div className={styles.loading}>Loading…</div>;
+  if (error) return <div className={styles.error}>{error}</div>;
 
-  if (!propertyDetails) {
-    return <div className={styles.loading}>Loading...</div>;
-  }
-
-  if (error) {
-    return <div className={styles.error}>{error}</div>;
-  }
+  const html = propertyDetails.studio_description || propertyDetails.property_description || "";
+  const short = html.slice(0, 800);
+  const isLong = html.length > 800;
+  const showShort = !expanded && isLong;
 
   return (
-    <div id="about" className={styles.propertyDetailsContainer}>
-      {/* Header */}
-      {/* <div className={styles.headerCard}>
-        <h1 className={styles.propertyName}>{propertyDetails.property_name}</h1>
-        <p className={styles.propertyTagline}>
-          {propertyDetails.tagline || 'Luxury Living at its Best'}
-        </p>
-      </div> */}
-
-      {/* Description Section */}
-      <div className={styles.descriptionCard}>
-  <h2 className={styles.sectionHeading}>Information -</h2>
-  <div
-    className={`${styles.description} ${
-      isExpanded ? styles.expanded : ''
-    }`}
-    dangerouslySetInnerHTML={{
-      __html: isExpanded
-        ? propertyDetails?.studio_description || ''
-        : `${propertyDetails?.studio_description?.slice(0, 1000) || ''}`,
-    }}
-  />
-        <button className={styles.readMoreButton} onClick={handleReadMore}>
-          {isExpanded ? 'Read Less' : 'Read More'}
+    <section id="about" className={styles.section}>
+      <h2 className={styles.title}>About this property</h2>
+      <div
+        className={styles.content}
+        dangerouslySetInnerHTML={{
+          __html: showShort ? short + (isLong ? "…" : "") : html,
+        }}
+      />
+      {isLong && (
+        <button type="button" className={styles.toggle} onClick={() => setExpanded(!expanded)}>
+          {expanded ? "Show less" : "Read more"}
         </button>
-      </div>
-
-  
-    </div>
+      )}
+    </section>
   );
 };
 

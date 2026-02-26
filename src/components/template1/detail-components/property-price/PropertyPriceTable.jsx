@@ -25,7 +25,7 @@ const PropertyPriceTable = ({slug}) => {
     };
 
     fetchPropertyPrices();
-  }, []);
+  }, [slug]);
 
   return (
     <section id="price" className={styles.priceSection}>
@@ -51,13 +51,6 @@ const PropertyPriceTable = ({slug}) => {
               <div key={price.id} className={styles.priceCard}>
                 <div className={styles.cardHeader}>
                   <div className={styles.typeBadge}>
-                    <span className={styles.typeIcon}>
-                      <img
-                        src="https://cdn-icons-png.flaticon.com/512/9428/9428563.png"
-                        alt="Property Type"
-                        className={styles.icon}
-                      />
-                    </span>
                     <span className={styles.typeText}>{price.property_type}</span>
                   </div>
                   {price.price_tag && (

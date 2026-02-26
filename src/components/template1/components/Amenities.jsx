@@ -3,55 +3,36 @@ import { API } from "../../../../config.js";
 import styles from "../css/Amenities.module.css";
 
 const Amenities = () => {
-  const [amenitiesData, setAmenitiesData] = useState([]);
+  const [list, setList] = useState([]);
   const [heading, setHeading] = useState("");
   const [subHeading, setSubHeading] = useState("");
 
   useEffect(() => {
-    const fetchAmenitiesData = async () => {
-      try {
-        const response = await fetch(API.AMENITIES());
-        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-        const data = await response.json();
-        setAmenitiesData(data.amenities?.amenities || []);
+    fetch(API.AMENITIES())
+      .then((r) => r.ok ? r.json() : Promise.reject())
+      .then((data) => {
+        setList(data.amenities?.amenities || []);
         setHeading(data.amenities?.page?.heading || "Amenities");
-        setSubHeading(
-          data.amenities?.page?.subheading ||
-            "Discover the features that enhance your living experience"
-        );
-      } catch (error) {
-        console.error("Error fetching amenities data:", error);
-      }
-    };
-
-    fetchAmenitiesData();
+        setSubHeading(data.amenities?.page?.subheading || "Features that enhance your living experience.");
+      })
+      .catch(console.error);
   }, []);
 
+  if (!list.length) return null;
+
   return (
-    <section id="amenities" className={styles.amenitiesSection}>
-      <div className={styles.container}>
-        <h2 className={styles.luxuryHeading}>{heading}</h2>
-        <p className={styles.subHeading}>{subHeading}</p>
-        <div className={styles.grid}>
-          {amenitiesData.map((amenity, index) => (
-            <div
-              key={amenity.id}
-              className={styles.card}
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className={styles.imageContainer}>
-                <img
-                  src={amenity.property_amenities_photo}
-                  alt={amenity.amenity_name}
-                  className={styles.image}
-                />
-                <div className={styles.overlay}>
-                  <h3 className={styles.name}>{amenity.amenity_name}</h3>
-                </div>
-              </div>
+    <section id="amenities" className={styles.section}>
+      <h2 className={styles.title}>{heading}</h2>
+      {subHeading && <p className={styles.sub}>{subHeading}</p>}
+      <div className={styles.grid}>
+        {list.map((a) => (
+          <article key={a.id} className={styles.card}>
+            <div className={styles.imgWrap}>
+              <img src={a.property_amenities_photo} alt={a.amenity_name} className={styles.img} />
             </div>
-          ))}
-        </div>
+            <h3 className={styles.name}>{a.amenity_name}</h3>
+          </article>
+        ))}
       </div>
     </section>
   );
