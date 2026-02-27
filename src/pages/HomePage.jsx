@@ -71,13 +71,13 @@ const HomePage = () => {
         <h1 className="hidden-h1">{seo.title || 'Studio Apartments'}</h1>
         <h2 className="hidden-h1">{seo.meta_description || ''}</h2>
         
-        {templateId === '2' && (
+        {templateId === '3' && (
           <Suspense fallback={<Loader />}>
             <Template1 propertyDetails={propertyDetails} />
           </Suspense>
         )}
         
-        {templateId !== '2' && (
+        {templateId !== '3' && (
           <div>Template not found: {templateId}</div>
         )}
       </main>

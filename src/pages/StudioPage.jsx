@@ -119,7 +119,7 @@ const StudioPage = () => {
         <h1 className="hidden-h1">{seo.title || propertyDetails.property_name || 'Studio Property'}</h1>
         <h2 className="hidden-h1">{seo.meta_description || propertyDetails.seo_meta_description || propertyDetails.property_description || ''}</h2>
         
-        {templateId === '2' && (
+        {templateId === '3' && (
           <Suspense fallback={<Loader />}>
             <Template1
               propertyDetails={propertyDetails}
@@ -129,7 +129,7 @@ const StudioPage = () => {
           </Suspense>
         )}
         
-        {templateId !== '2' && (
+        {templateId !== '3' && (
           <div>Template not found: {templateId}</div>
         )}
       </main>
