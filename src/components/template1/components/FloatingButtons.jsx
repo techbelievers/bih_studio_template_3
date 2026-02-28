@@ -100,7 +100,14 @@ const FloatingButtons = ({ slug: slugProp, websiteDomain }) => {
 
       {/* WhatsApp Popup */}
       {isWhatsAppPopupOpen && (
-        <div className={styles.whatsappPopup}>
+        <div
+          className={styles.popupOverlay}
+          onClick={() => setIsWhatsAppPopupOpen(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="WhatsApp chat"
+        >
+          <div className={styles.whatsappPopup} onClick={(e) => e.stopPropagation()}>
           <div className={styles.popupHeader}>
             <h3>Chat with us on WhatsApp</h3>
             <button
@@ -122,12 +129,20 @@ const FloatingButtons = ({ slug: slugProp, websiteDomain }) => {
               Send
             </button>
           </form>
+          </div>
         </div>
       )}
 
       {/* Contact Us Popup */}
       {isContactFormOpen && (
-        <div className={styles.contactFormPopup}>
+        <div
+          className={styles.popupOverlay}
+          onClick={() => setIsContactFormOpen(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Contact form"
+        >
+          <div className={styles.contactFormPopup} onClick={(e) => e.stopPropagation()}>
           <div className={styles.popupHeader}>
             <h3>Contact Us</h3>
             <button
@@ -187,6 +202,7 @@ const FloatingButtons = ({ slug: slugProp, websiteDomain }) => {
               Send Message
             </button>
           </form>
+          </div>
         </div>
       )}
     </>

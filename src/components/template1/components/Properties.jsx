@@ -96,7 +96,7 @@ const PropertiesSection = () => {
                 onError={(e) => { e.target.src = "/default-image.jpg"; }}
               />
               <span className={styles.cardPrice}>
-                ₹ {property.property_price} Lakhs
+                ₹ {property.property_price} Lakhs *
               </span>
             </div>
             <div className={styles.cardBody}>

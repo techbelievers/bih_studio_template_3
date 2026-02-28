@@ -80,7 +80,7 @@ const BlogContent = () => {
         </div>
 
         <Link to="/" className={styles.backLink}>
-          ← Back to Blogs
+          Back to Blogs
         </Link>
       </div>
     </>

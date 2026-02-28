@@ -105,7 +105,7 @@ const Footer = () => {
 
         {g_setting.footer_agent_rera && (
           <div className={styles.rera}>
-            <span className={styles.reraLabel}>MahaRERA</span>
+            <span className={styles.reraLabel}> Agent MahaRERA</span>
             <span className={styles.reraNum}>{g_setting.footer_agent_rera}</span>
           </div>
         )}
