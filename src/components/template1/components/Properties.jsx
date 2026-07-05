@@ -8,6 +8,7 @@ const PropertiesSection = () => {
   const [sectionInfo, setSectionInfo] = useState({ heading: "", subheading: "" });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     const fetchProperties = async () => {
@@ -63,6 +64,22 @@ const PropertiesSection = () => {
     );
   }
 
+  const normalizedQuery = query.trim().toLowerCase();
+  const filteredProperties = normalizedQuery
+    ? properties.filter((property) =>
+        [
+          property.property_name,
+          property.builder_name,
+          property.sub_location,
+          property.property_location_name,
+        ]
+          .filter(Boolean)
+          .join(" ")
+          .toLowerCase()
+          .includes(normalizedQuery)
+      )
+    : properties;
+
   return (
     <section id="properties" className={styles.section}>
       <header className={styles.head}>
@@ -74,8 +91,48 @@ const PropertiesSection = () => {
         )}
       </header>
 
+      <div className={styles.searchBar}>
+        <svg
+          className={styles.searchIcon}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+        <input
+          type="search"
+          className={styles.searchInput}
+          placeholder="Search by name, builder or location…"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          aria-label="Search properties"
+        />
+        {query && (
+          <button
+            type="button"
+            className={styles.searchClear}
+            onClick={() => setQuery("")}
+            aria-label="Clear search"
+          >
+            &times;
+          </button>
+        )}
+      </div>
+
+      {!filteredProperties.length ? (
+        <div className={styles.state}>
+          <h3>No matches found</h3>
+          <p>Try a different name, builder or location.</p>
+        </div>
+      ) : (
       <div className={styles.list}>
-        {properties.map((property) => (
+        {filteredProperties.map((property) => (
           <article
             key={property.id}
             className={styles.card}
@@ -124,6 +181,7 @@ const PropertiesSection = () => {
           </article>
         ))}
       </div>
+      )}
     </section>
   );
 };
